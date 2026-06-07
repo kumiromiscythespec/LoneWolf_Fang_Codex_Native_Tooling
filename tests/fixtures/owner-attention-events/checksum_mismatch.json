@@ -1,0 +1,22 @@
+{
+  "schema_version": "lwf.owner_attention_event.v1",
+  "event_id": "OAE-20260607-CHECKSUM-001",
+  "event_type": "CHECKSUM_MISMATCH",
+  "severity": "blocked",
+  "created_at_local": "2026-06-07T12:03:00+09:00",
+  "source_repo_name": "LoneWolf_Fang_Codex_Native_Tooling",
+  "source_repo_path_label": "core tooling repo",
+  "artifact_name": "checksum_review_packet.zip",
+  "artifact_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "high_level_reason": "Artifact checksum verification failed and requires manual review.",
+  "owner_review_required": true,
+  "safe_next_action_label": "Stop and verify the artifact source of truth.",
+  "stop_message": "Stop and Wait - Owner Review Required.",
+  "related_phase": "Phase 2B",
+  "approval_phrase_required": "REQUEST_MORE_REVIEW_FOR_PHASE2B_SCHEMA_CONTRACT",
+  "payload_redaction_status": "synthetic_safe_fixture",
+  "notification_allowed_future": false,
+  "notification_sent": false,
+  "fallback_artifact_only": true,
+  "no_secret_payload_confirmed": true
+}

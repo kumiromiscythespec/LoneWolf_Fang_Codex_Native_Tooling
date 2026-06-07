@@ -1,0 +1,22 @@
+{
+  "schema_version": "lwf.owner_attention_event.v1",
+  "event_id": "OAE-20260607-OWNER-APPROVAL-001",
+  "event_type": "OWNER_APPROVAL_REQUIRED",
+  "severity": "owner_review_required",
+  "created_at_local": "2026-06-07T12:00:00+09:00",
+  "source_repo_name": "LoneWolf_Fang_Codex_Native_Tooling",
+  "source_repo_path_label": "core tooling repo",
+  "artifact_name": "phase2b_schema_contract_packet.zip",
+  "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "high_level_reason": "Owner approval is required before the next bounded phase.",
+  "owner_review_required": true,
+  "safe_next_action_label": "Review artifact and choose the next approval phrase.",
+  "stop_message": "Stop and Wait - Owner Review Required.",
+  "related_phase": "Phase 2B",
+  "approval_phrase_required": "APPROVE_COMMIT_SCHEMA_ONLY_OWNER_ATTENTION_EVENT_CONTRACT_PHASE2B",
+  "payload_redaction_status": "synthetic_safe_fixture",
+  "notification_allowed_future": false,
+  "notification_sent": false,
+  "fallback_artifact_only": true,
+  "no_secret_payload_confirmed": true
+}

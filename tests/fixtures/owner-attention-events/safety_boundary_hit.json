@@ -1,0 +1,22 @@
+{
+  "schema_version": "lwf.owner_attention_event.v1",
+  "event_id": "OAE-20260607-SAFETY-001",
+  "event_type": "SAFETY_BOUNDARY_HIT",
+  "severity": "critical_stop",
+  "created_at_local": "2026-06-07T12:02:00+09:00",
+  "source_repo_name": "LoneWolf_Fang_Codex_Native_Tooling",
+  "source_repo_path_label": "core tooling repo",
+  "artifact_name": "safety_boundary_hit_packet.zip",
+  "artifact_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "high_level_reason": "A requested action would cross the approved schema-only boundary.",
+  "owner_review_required": true,
+  "safe_next_action_label": "Stop and request owner review of the boundary.",
+  "stop_message": "Stop and Wait - Owner Review Required.",
+  "related_phase": "Phase 2B",
+  "approval_phrase_required": "STOP_AND_WAIT_OWNER_REVIEW_REQUIRED",
+  "payload_redaction_status": "synthetic_safe_fixture",
+  "notification_allowed_future": false,
+  "notification_sent": false,
+  "fallback_artifact_only": true,
+  "no_secret_payload_confirmed": true
+}

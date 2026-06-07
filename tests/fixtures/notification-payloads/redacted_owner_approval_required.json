@@ -1,0 +1,16 @@
+{
+  "schema_version": "lwf.notification_payload_redacted.v1",
+  "event_type": "OWNER_APPROVAL_REQUIRED",
+  "severity": "owner_review_required",
+  "repo_name": "LoneWolf_Fang_Codex_Native_Tooling",
+  "artifact_name": "phase2b_schema_contract_packet.zip",
+  "artifact_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+  "high_level_reason": "Owner approval is required before a future schema-only phase can be committed or pushed.",
+  "owner_review_required": true,
+  "safe_next_action_label": "Review artifact and choose the next approval phrase.",
+  "created_at_local": "2026-06-07T12:05:00+09:00",
+  "redaction_status": "synthetic_safe_fixture",
+  "no_sensitive_content_confirmed": true,
+  "contact_details_excluded": true,
+  "provider_credentials_excluded": true
+}

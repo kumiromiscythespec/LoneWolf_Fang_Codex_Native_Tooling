@@ -1,0 +1,20 @@
+{
+  "schema_version": "lwf.notification_payload_redacted.v1",
+  "event_type": "OWNER_APPROVAL_REQUIRED",
+  "severity": "owner_review_required",
+  "repo_name": "LoneWolf_Fang_Codex_Native_Tooling",
+  "artifact_name": "invalid_contact_detail_fixture.zip",
+  "artifact_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+  "high_level_reason": "Invalid fixture with fake forbidden contact/provider fields for schema rejection testing.",
+  "owner_review_required": true,
+  "safe_next_action_label": "Reject this fixture because it contains forbidden contact/provider fields.",
+  "created_at_local": "2026-06-07T12:08:00+09:00",
+  "redaction_status": "synthetic_safe_fixture",
+  "no_sensitive_content_confirmed": true,
+  "contact_details_excluded": false,
+  "provider_credentials_excluded": false,
+  "fixture_note": "Invalid fake fixture. The contact/provider fields are forbidden and must be rejected.",
+  "email_address": "fake@example.invalid",
+  "phone_number": "+00000000000",
+  "webhook_url": "https://example.invalid/webhook"
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": "lwf.owner_attention_event.v1",
+  "event_id": "OAE-20260607-LONG-RUN-001",
+  "event_type": "LONG_RUN_SAFE_STOP",
+  "severity": "warning",
+  "created_at_local": "2026-06-07T12:04:00+09:00",
+  "source_repo_name": "LoneWolf_Fang_Codex_Native_Tooling",
+  "source_repo_path_label": "core tooling repo",
+  "artifact_name": "long_run_safe_stop_packet.zip",
+  "artifact_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "high_level_reason": "The bounded run stopped safely and produced an artifact for review.",
+  "owner_review_required": true,
+  "safe_next_action_label": "Review the handoff before any continuation.",
+  "stop_message": "Stop and Wait - Owner Review Required.",
+  "related_phase": "Phase 2B",
+  "approval_phrase_required": "KEEP_PHASE2B_SCHEMA_CONTRACT_AS_FUTURE_IDEA_AND_PAUSE",
+  "payload_redaction_status": "synthetic_safe_fixture",
+  "notification_allowed_future": false,
+  "notification_sent": false,
+  "fallback_artifact_only": true,
+  "no_secret_payload_confirmed": true
+}

@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Local Status File",
+  "description": "Artifact-only local status file contract for manual owner review. This schema is not a runtime trigger, notification sender, or auto-continue permission.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "current_status",
+    "latest_event_id",
+    "latest_event_type",
+    "latest_severity",
+    "latest_artifact_name",
+    "latest_artifact_sha256",
+    "safe_next_action_label",
+    "owner_review_required",
+    "stop_message",
+    "updated_at_local",
+    "read_only_evidence",
+    "not_runtime_trigger",
+    "not_notification_sender",
+    "not_auto_continue_permission"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "lwf.local_status_file.v1"
+    },
+    "current_status": {
+      "type": "string",
+      "enum": [
+        "owner_attention_required",
+        "blocked",
+        "manual_review_required",
+        "artifact_validation_failed",
+        "safe_pause"
+      ]
+    },
+    "latest_event_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9][A-Z0-9_.:-]{7,127}$"
+    },
+    "latest_event_type": {
+      "type": "string",
+      "enum": [
+        "OWNER_APPROVAL_REQUIRED",
+        "BLOCKER_DETECTED",
+        "SAFETY_BOUNDARY_HIT",
+        "MISSING_RULE_FILE",
+        "SECRET_LIKE_CONTENT_DETECTED",
+        "COMMAND_REQUIRES_EXPLICIT_APPROVAL",
+        "LONG_RUN_SAFE_STOP",
+        "ARTIFACT_VALIDATION_FAILED",
+        "CHECKSUM_MISMATCH",
+        "WORKTREE_DIRTY_STOP",
+        "GIT_PUSH_REQUIRED_BUT_NOT_APPROVED",
+        "PUBLICIZATION_REQUIRES_OWNER_UI_DECISION",
+        "NOTIFICATION_PROVIDER_UNAVAILABLE",
+        "UNKNOWN_ESCALATION_REASON"
+      ]
+    },
+    "latest_severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "warning",
+        "owner_review_required",
+        "blocked",
+        "critical_stop"
+      ]
+    },
+    "latest_artifact_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "latest_artifact_sha256": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "safe_next_action_label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "owner_review_required": {
+      "type": "boolean"
+    },
+    "stop_message": {
+      "type": "string",
+      "const": "Stop and Wait - Owner Review Required."
+    },
+    "updated_at_local": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:[+-]\\d{2}:\\d{2}|Z)$"
+    },
+    "read_only_evidence": {
+      "type": "boolean",
+      "const": true
+    },
+    "not_runtime_trigger": {
+      "type": "boolean",
+      "const": true
+    },
+    "not_notification_sender": {
+      "type": "boolean",
+      "const": true
+    },
+    "not_auto_continue_permission": {
+      "type": "boolean",
+      "const": true
+    }
+  }
+}

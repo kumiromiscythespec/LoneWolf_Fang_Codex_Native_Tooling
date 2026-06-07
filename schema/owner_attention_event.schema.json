@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Owner Attention Event",
+  "description": "Safe, redacted owner attention event for artifact-only review. This schema is not a notification sender, runtime writer, or permission to continue automatically.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "event_id",
+    "event_type",
+    "severity",
+    "created_at_local",
+    "source_repo_name",
+    "artifact_name",
+    "artifact_sha256",
+    "high_level_reason",
+    "owner_review_required",
+    "safe_next_action_label",
+    "stop_message",
+    "payload_redaction_status",
+    "fallback_artifact_only",
+    "no_secret_payload_confirmed"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "lwf.owner_attention_event.v1"
+    },
+    "event_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9][A-Z0-9_.:-]{7,127}$"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "OWNER_APPROVAL_REQUIRED",
+        "BLOCKER_DETECTED",
+        "SAFETY_BOUNDARY_HIT",
+        "MISSING_RULE_FILE",
+        "SECRET_LIKE_CONTENT_DETECTED",
+        "COMMAND_REQUIRES_EXPLICIT_APPROVAL",
+        "LONG_RUN_SAFE_STOP",
+        "ARTIFACT_VALIDATION_FAILED",
+        "CHECKSUM_MISMATCH",
+        "WORKTREE_DIRTY_STOP",
+        "GIT_PUSH_REQUIRED_BUT_NOT_APPROVED",
+        "PUBLICIZATION_REQUIRES_OWNER_UI_DECISION",
+        "NOTIFICATION_PROVIDER_UNAVAILABLE",
+        "UNKNOWN_ESCALATION_REASON"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "warning",
+        "owner_review_required",
+        "blocked",
+        "critical_stop"
+      ]
+    },
+    "created_at_local": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:[+-]\\d{2}:\\d{2}|Z)$"
+    },
+    "source_repo_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "source_repo_path_label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "artifact_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "artifact_sha256": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "high_level_reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "owner_review_required": {
+      "type": "boolean"
+    },
+    "safe_next_action_label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "stop_message": {
+      "type": "string",
+      "const": "Stop and Wait - Owner Review Required."
+    },
+    "related_phase": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "approval_phrase_required": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "payload_redaction_status": {
+      "type": "string",
+      "enum": [
+        "redacted",
+        "synthetic_safe_fixture",
+        "not_applicable"
+      ]
+    },
+    "notification_allowed_future": {
+      "type": "boolean",
+      "const": false,
+      "description": "False in this schema-only phase. Future notification adapters require separate approval."
+    },
+    "notification_sent": {
+      "type": "boolean",
+      "const": false
+    },
+    "fallback_artifact_only": {
+      "type": "boolean",
+      "const": true
+    },
+    "no_secret_payload_confirmed": {
+      "type": "boolean",
+      "const": true
+    }
+  }
+}

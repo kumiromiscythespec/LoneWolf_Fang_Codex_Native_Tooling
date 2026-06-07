@@ -1,0 +1,17 @@
+{
+  "schema_version": "lwf.local_status_file.v1",
+  "current_status": "owner_attention_required",
+  "latest_event_id": "OAE-20260607-OWNER-APPROVAL-001",
+  "latest_event_type": "OWNER_APPROVAL_REQUIRED",
+  "latest_severity": "owner_review_required",
+  "latest_artifact_name": "phase2b_schema_contract_packet.zip",
+  "latest_artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "safe_next_action_label": "Review artifact and choose the next approval phrase.",
+  "owner_review_required": true,
+  "stop_message": "Stop and Wait - Owner Review Required.",
+  "updated_at_local": "2026-06-07T12:06:00+09:00",
+  "read_only_evidence": true,
+  "not_runtime_trigger": true,
+  "not_notification_sender": true,
+  "not_auto_continue_permission": true
+}
