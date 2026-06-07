@@ -168,7 +168,17 @@ can inspect later.
 ChatGPT app notifications may be the best future user experience only if an
 official safe mechanism exists. Email and SMS are future opt-in adapters only
 and require separate secrets handling. This repo must not send notifications,
-collect contact details, or store provider credentials by default.
+collect contact details, or keep notification-provider secrets by default.
+
+Phase 2A owner notification / escalation design:
+
+- [docs/owner/owner_notification_escalation_design.md](docs/owner/owner_notification_escalation_design.md)
+- [docs/owner/owner_attention_events.md](docs/owner/owner_attention_events.md)
+- [docs/safety/notification_privacy_policy.md](docs/safety/notification_privacy_policy.md)
+- [docs/safety/notification_payload_redaction_policy.md](docs/safety/notification_payload_redaction_policy.md)
+- [docs/runbooks/owner_escalation_events.md](docs/runbooks/owner_escalation_events.md)
+- [docs/runbooks/notification_failure_fallback.md](docs/runbooks/notification_failure_fallback.md)
+- [docs/examples/safe_notification_payloads.md](docs/examples/safe_notification_payloads.md)
 
 ## Safe Starter Prompt
 
