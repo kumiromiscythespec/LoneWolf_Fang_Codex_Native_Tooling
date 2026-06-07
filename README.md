@@ -45,13 +45,20 @@ publicization, notification sending, commits, or pushes.
 2. Read [docs/runbooks/first_time_setup.md](docs/runbooks/first_time_setup.md).
 3. Read [docs/safety/file_placement_policy.md](docs/safety/file_placement_policy.md)
    before placing files.
-4. Use [docs/runbooks/start_orchestration_prompt.md](docs/runbooks/start_orchestration_prompt.md)
+4. Read the OSS readiness and security pointers:
+   - [SECURITY.md](SECURITY.md)
+   - [CONTRIBUTING.md](CONTRIBUTING.md)
+   - [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+   - [docs/architecture/overview.md](docs/architecture/overview.md)
+   - [docs/oss_review/open_source_safety_review.md](docs/oss_review/open_source_safety_review.md)
+   - [docs/oss_review/publicization_readiness_checklist.md](docs/oss_review/publicization_readiness_checklist.md)
+5. Use [docs/runbooks/start_orchestration_prompt.md](docs/runbooks/start_orchestration_prompt.md)
    for a safe starter prompt.
-5. Keep generated handoff artifacts outside the repo under:
+6. Keep generated handoff artifacts outside the repo under:
    `C:\Users\yu_ki\AppData\Local\LoneWolfFang\data`
-6. Verify artifact ZIPs with SHA256 sidecars before using them as input to a
+7. Verify artifact ZIPs with SHA256 sidecars before using them as input to a
    later phase.
-7. Stop with `Stop and Wait - Owner Review Required.` whenever repo identity,
+8. Stop with `Stop and Wait - Owner Review Required.` whenever repo identity,
    scope, approval, safety boundary, or artifact identity is unclear.
 
 ## Repo Structure
@@ -62,6 +69,11 @@ Expected layout:
 - `docs/owner/`: owner approval gates and decision rules.
 - `docs/safety/`: safety boundaries, file placement, artifact handoff, and
   secret-handling policy.
+- `docs/security/`: secret handling, redaction, and vulnerability reporting.
+- `docs/contributor/`: implementer, reviewer, owner, and handoff expectations.
+- `docs/architecture/`: one-lane workflow, approval gates, and evidence chain.
+- `docs/oss_review/`: publicization readiness and OSS application planning.
+- `docs/release_notes/`: phase baseline summaries.
 - `docs/runbooks/`: first-time setup and safe starter prompts.
 - `docs/evidence_chain/`: future evidence-chain and SHA256 handoff notes.
 - `schema/`: future schemas for safe synthetic artifacts or status files.
@@ -179,6 +191,25 @@ Phase 2A owner notification / escalation design:
 - [docs/runbooks/owner_escalation_events.md](docs/runbooks/owner_escalation_events.md)
 - [docs/runbooks/notification_failure_fallback.md](docs/runbooks/notification_failure_fallback.md)
 - [docs/examples/safe_notification_payloads.md](docs/examples/safe_notification_payloads.md)
+
+## OSS Readiness Boundary
+
+Phase 3 adds OSS-readiness documentation only. It does not make this repository
+public, submit an OpenAI Codex for OSS application, implement notifications,
+collect contact details, integrate providers, create credentials, implement a
+local status writer, place Local Orchestrator files, run runtime behavior, or
+change Public Radar.
+
+Start with:
+
+- [docs/oss_review/license_readiness.md](docs/oss_review/license_readiness.md)
+- [docs/oss_review/open_source_safety_review.md](docs/oss_review/open_source_safety_review.md)
+- [docs/oss_review/openai_codex_for_oss_application_materials_plan.md](docs/oss_review/openai_codex_for_oss_application_materials_plan.md)
+- [docs/oss_review/public_radar_supporting_evidence.md](docs/oss_review/public_radar_supporting_evidence.md)
+- [docs/release_notes/phase1_phase2_baseline.md](docs/release_notes/phase1_phase2_baseline.md)
+
+License selection remains an owner decision until the intended public license
+and copyright holder are explicitly confirmed.
 
 ## Safe Starter Prompt
 
