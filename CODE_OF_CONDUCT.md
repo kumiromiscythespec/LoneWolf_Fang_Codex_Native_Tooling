@@ -26,7 +26,15 @@ publicization risk.
 
 ## Reporting
 
-Reporting and enforcement contact: owner-defined / pending publicization review.
+Prefer GitHub Security Advisories for sensitive security or privacy concerns
+when they are enabled for this repository. If advisories are not available, open
+a minimal public issue that describes the affected area and concern type without
+exploit details, secrets, raw auth data, billing payloads, private API payloads,
+private logs, raw conversations, contact details, or working exploit steps.
+
+For conduct concerns that are not security-sensitive, open a minimal public
+issue with the relevant conduct category and affected project area. Keep
+reporting factual, bounded, and free of private material.
 
 If the safe reporting path is unclear, stop with:
 `Stop and Wait - Owner Review Required.`
