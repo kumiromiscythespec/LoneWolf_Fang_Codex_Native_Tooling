@@ -2,12 +2,16 @@
 
 ## Status
 
-This repository is a pre-public, private OSS candidate. Publicization is not
-approved, and this document is safety guidance for review and future readiness.
+This repository keeps public-ready security guidance while preserving conservative
+owner gates for sensitive actions. This document does not itself approve
+publicization, releases, deployment, or external program submission.
 
 ## Reporting
 
-Contact method: owner-defined / pending publicization review.
+Prefer GitHub Security Advisories when they are enabled for this repository. If
+advisories are not available, open a minimal public issue that describes the
+affected area and risk category without exploit details, secrets, raw auth data,
+private API payloads, or sensitive logs.
 
 Do not include sensitive material in a report. Keep reports limited to safe
 metadata, reproduction notes that do not touch production systems, and a clear
@@ -34,9 +38,9 @@ guidance, do not run exploit steps against production systems, and do not use
 private APIs. Public disclosure, repository publicization, and application
 submission require future owner approval.
 
-## Phase 3 Non-Implementation Flags
+## Safety Non-Implementation Flags
 
-For this Phase 3 docs-only readiness phase:
+For this docs-only public-readiness guidance:
 
 - public_visibility_changed = false
 - openai_application_submitted = false

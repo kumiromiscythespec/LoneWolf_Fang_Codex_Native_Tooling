@@ -1,7 +1,8 @@
 # Contributing
 
-This repository uses owner-gated, docs-first contribution rules. It is a private
-OSS candidate until a future owner decision changes visibility.
+This repository uses owner-gated, docs-first contribution rules for public-ready
+template work. Repository visibility changes, releases, and external program
+submissions remain separate owner-gated actions when applicable.
 
 ## Before Work
 
@@ -31,7 +32,8 @@ are separate from implementation approval.
 - Do not add runtime, deploy, private API, trading, backtest, notification, or
   local status writer behavior without explicit separate approval.
 - Do not send notifications.
-- Do not publicize the repository.
+- Do not change repository visibility, publish releases, or submit external
+  applications without explicit separate approval.
 - Do not include secrets, raw private logs, raw conversation dumps, credentials,
   or contact details.
 

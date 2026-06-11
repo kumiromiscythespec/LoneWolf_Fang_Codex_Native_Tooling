@@ -1,10 +1,19 @@
 # NEXT_CODEX_PROMPT
 
-Before doing any work, read and follow the rule files in `C:\LoneWolf_Fang_Project`, starting with `AGENTS.md`. If any required rule file is missing, report the missing list and stop with: `STOP_OWNER_REVIEW_REQUIRED`.
+Before doing any work, read and follow the rule files under `<RULES_ROOT>`, starting with `<RULES_ROOT>/AGENTS.md`. Treat `<RULES_ROOT>` as the project or rules directory chosen for the local environment. If any required rule file is missing, report the missing list and stop with: `STOP_OWNER_REVIEW_REQUIRED`.
 
 The previous task created the Local Orchestrator Skeleton v0.1 state-machine design slice as docs/schema/fixtures/static-tests/examples only.
 
 Review the result without launching workers, running real orchestration, sending prompts, using browser bridge automation, deploying, mutating cloud/billing/GitHub settings, running runtime/trading/private API actions, or doing git add/commit/push/fetch/pull.
+
+Safety boundary phrases to preserve in the review:
+
+- No Worker Launch.
+- No Real Orchestration.
+- no browser bridge by default.
+- no ChatGPT automation by default.
+- no runtime/private API/deploy/trading by default.
+- approval gates for dangerous actions.
 
 Output encoding rule for future final reports:
 
