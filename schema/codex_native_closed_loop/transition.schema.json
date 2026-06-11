@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/codex_native_closed_loop/transition.schema.json",
+  "title": "Codex Native Closed Loop Transition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "from",
+    "event",
+    "guard",
+    "action",
+    "to",
+    "allowed",
+    "owner_review_required",
+    "forbidden_if",
+    "evidence_required"
+  ],
+  "properties": {
+    "from": { "$ref": "#/$defs/state_name" },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "source", "owner_action_marker"],
+      "properties": {
+        "type": { "type": "string", "minLength": 1 },
+        "source": { "type": "string" },
+        "owner_action_marker": { "type": "boolean" }
+      }
+    },
+    "guard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "conditions", "result"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "conditions": { "type": "array", "items": { "type": "string" } },
+        "result": { "type": "boolean" }
+      }
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "writes", "forbidden_effects"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "writes": { "type": "array", "items": { "type": "string" } },
+        "forbidden_effects": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "to": { "$ref": "#/$defs/state_name" },
+    "allowed": { "type": "boolean" },
+    "owner_review_required": { "type": "boolean" },
+    "forbidden_if": { "type": "array", "items": { "type": "string" } },
+    "evidence_required": { "type": "array", "items": { "type": "string" } },
+    "safety_flags": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "worker_launch_enabled",
+        "real_orchestration_allowed",
+        "prompt_sending_allowed",
+        "runtime_execution_allowed"
+      ],
+      "properties": {
+        "worker_launch_enabled": { "type": "boolean", "const": false },
+        "real_orchestration_allowed": { "type": "boolean", "const": false },
+        "prompt_sending_allowed": { "type": "boolean", "const": false },
+        "runtime_execution_allowed": { "type": "boolean", "const": false }
+      }
+    }
+  },
+  "$defs": {
+    "state_name": {
+      "type": "string",
+      "enum": [
+        "PAUSED_NO_CREDITS",
+        "READY_FOR_TRIAGE",
+        "TASK_SELECTED",
+        "MICRO_SPEC_READY",
+        "CODEX_PROMPT_READY",
+        "CODEX_RUNNING",
+        "RESULT_REVIEW_REQUIRED",
+        "BASELINE_ACCEPTED",
+        "REPAIR_REQUIRED",
+        "REJECTED_FOR_SAFETY",
+        "STOP_OWNER_REVIEW_REQUIRED",
+        "PAUSED_OWNER_DECISION_REQUIRED"
+      ]
+    }
+  }
+}

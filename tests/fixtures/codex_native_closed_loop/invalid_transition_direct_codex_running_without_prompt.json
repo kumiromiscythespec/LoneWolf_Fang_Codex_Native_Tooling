@@ -1,0 +1,20 @@
+{
+  "schema_version": "codex_native_closed_loop.transition_table.v0.1.invalid",
+  "transition": {
+    "from": "READY_FOR_TRIAGE",
+    "event": { "type": "codex_started", "source": "codex", "owner_action_marker": false },
+    "guard": { "name": "missing_prompt_gate", "conditions": ["no micro spec", "no prompt draft"], "result": false },
+    "action": { "name": "invalid_start", "writes": ["state.json"], "forbidden_effects": ["Codex decides next task freely"] },
+    "to": "CODEX_RUNNING",
+    "allowed": true,
+    "owner_review_required": true,
+    "forbidden_if": ["direct READY_FOR_TRIAGE to CODEX_RUNNING"],
+    "evidence_required": [],
+    "safety_flags": {
+      "worker_launch_enabled": false,
+      "real_orchestration_allowed": false,
+      "prompt_sending_allowed": false,
+      "runtime_execution_allowed": false
+    }
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/codex_native_closed_loop/state.schema.json",
+  "title": "Codex Native Closed Loop State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "current_state",
+    "allowed_next_states",
+    "owner_review_required",
+    "worker_launch_allowed",
+    "real_orchestration_allowed",
+    "prompt_sending_allowed",
+    "runtime_execution_allowed",
+    "updated_at",
+    "evidence_refs"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "codex_native_closed_loop.state.v0.1" },
+    "current_state": { "$ref": "#/$defs/state_name" },
+    "allowed_next_states": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/state_name" },
+      "uniqueItems": true
+    },
+    "owner_review_required": { "type": "boolean" },
+    "worker_launch_allowed": { "type": "boolean", "const": false },
+    "real_orchestration_allowed": { "type": "boolean", "const": false },
+    "prompt_sending_allowed": { "type": "boolean", "const": false },
+    "runtime_execution_allowed": { "type": "boolean", "const": false },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "evidence_refs": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "safety_invariants": { "$ref": "#/$defs/safety_invariants" },
+    "state_definitions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/state_definition" }
+    },
+    "notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "$defs": {
+    "state_name": {
+      "type": "string",
+      "enum": [
+        "PAUSED_NO_CREDITS",
+        "READY_FOR_TRIAGE",
+        "TASK_SELECTED",
+        "MICRO_SPEC_READY",
+        "CODEX_PROMPT_READY",
+        "CODEX_RUNNING",
+        "RESULT_REVIEW_REQUIRED",
+        "BASELINE_ACCEPTED",
+        "REPAIR_REQUIRED",
+        "REJECTED_FOR_SAFETY",
+        "STOP_OWNER_REVIEW_REQUIRED",
+        "PAUSED_OWNER_DECISION_REQUIRED"
+      ]
+    },
+    "state_definition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "purpose",
+        "allowed_events",
+        "forbidden_events",
+        "required_evidence",
+        "owner_review_required",
+        "next_possible_states",
+        "safety_notes"
+      ],
+      "properties": {
+        "state": { "$ref": "#/$defs/state_name" },
+        "purpose": { "type": "string", "minLength": 1 },
+        "allowed_events": { "type": "array", "items": { "type": "string" } },
+        "forbidden_events": { "type": "array", "items": { "type": "string" } },
+        "required_evidence": { "type": "array", "items": { "type": "string" } },
+        "owner_review_required": { "type": "boolean" },
+        "next_possible_states": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/state_name" }
+        },
+        "safety_notes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "safety_invariants": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "worker_session_close_required_after_review_handoff",
+        "no_next_worker_until_previous_worker_closed",
+        "previous_worker_retired_must_be_true_before_START_NEXT_IMPLEMENTER",
+        "max_open_implementer_sessions_per_lane",
+        "max_open_reviewer_sessions_per_lane",
+        "max_total_open_worker_sessions_initial",
+        "v0_1_is_one_lane_only",
+        "missing_close_or_retire_confirmation_next_state",
+        "invariant_text"
+      ],
+      "properties": {
+        "worker_session_close_required_after_review_handoff": { "type": "boolean", "const": true },
+        "no_next_worker_until_previous_worker_closed": { "type": "boolean", "const": true },
+        "previous_worker_retired_must_be_true_before_START_NEXT_IMPLEMENTER": { "type": "boolean", "const": true },
+        "max_open_implementer_sessions_per_lane": { "type": "integer", "const": 1 },
+        "max_open_reviewer_sessions_per_lane": { "type": "integer", "const": 1 },
+        "max_total_open_worker_sessions_initial": { "type": "integer", "const": 2 },
+        "v0_1_is_one_lane_only": { "type": "boolean", "const": true },
+        "missing_close_or_retire_confirmation_next_state": { "type": "string", "const": "STOP_OWNER_REVIEW_REQUIRED" },
+        "invariant_text": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

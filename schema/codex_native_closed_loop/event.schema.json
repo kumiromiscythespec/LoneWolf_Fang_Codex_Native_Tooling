@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/codex_native_closed_loop/event.schema.json",
+  "title": "Codex Native Closed Loop Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "event_type",
+    "source",
+    "created_at",
+    "evidence_refs",
+    "owner_action_marker",
+    "safety_flags"
+  ],
+  "properties": {
+    "event_id": { "type": "string", "minLength": 1 },
+    "event_type": { "type": "string", "minLength": 1 },
+    "source": {
+      "type": "string",
+      "enum": ["owner", "chatgpt", "codex", "reviewer", "local_orchestrator", "static_test"]
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "evidence_refs": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "owner_action_marker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["present", "description"],
+      "properties": {
+        "present": { "type": "boolean" },
+        "description": { "type": "string" }
+      }
+    },
+    "safety_flags": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "worker_launch_enabled",
+        "real_orchestration_allowed",
+        "prompt_sending_allowed",
+        "runtime_execution_allowed",
+        "deploy_or_private_api_allowed"
+      ],
+      "properties": {
+        "worker_launch_enabled": { "type": "boolean", "const": false },
+        "real_orchestration_allowed": { "type": "boolean", "const": false },
+        "prompt_sending_allowed": { "type": "boolean", "const": false },
+        "runtime_execution_allowed": { "type": "boolean", "const": false },
+        "deploy_or_private_api_allowed": { "type": "boolean", "const": false }
+      }
+    }
+  }
+}

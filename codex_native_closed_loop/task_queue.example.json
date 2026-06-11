@@ -1,0 +1,32 @@
+{
+  "schema_version": "codex_native_closed_loop.task_queue.v0.1",
+  "queue_id": "cncl-v0-1-static-design-example",
+  "tasks": [
+    {
+      "task_id": "task-state-machine-docs-schema-tests-v0-1",
+      "state": "CODEX_PROMPT_READY",
+      "micro_task_goal": "Create static state-machine docs, schemas, fixtures, tests, and examples.",
+      "allowed_files": [
+        "docs/codex_native_closed_loop/*",
+        "schema/codex_native_closed_loop/*",
+        "tests/codex_native_closed_loop/*",
+        "tests/fixtures/codex_native_closed_loop/*",
+        "codex_native_closed_loop/*"
+      ],
+      "forbidden_files": [
+        "src/*",
+        "scripts/*",
+        ".github/*",
+        ".git/*",
+        "runtime configuration",
+        "provider credentials"
+      ],
+      "owner_review_required": true,
+      "codex_prompt_ready": true,
+      "next_action": "Owner manually reviews and, if accepted, pastes the prompt into Codex.",
+      "next_implementer_start_allowed": false,
+      "worker_launch_allowed": false,
+      "prompt_sending_allowed": false
+    }
+  ]
+}

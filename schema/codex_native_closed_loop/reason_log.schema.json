@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/codex_native_closed_loop/reason_log.schema.json",
+  "title": "Codex Native Closed Loop Reason Log Line",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "timestamp",
+    "state_before",
+    "event",
+    "guard_result",
+    "action",
+    "state_after",
+    "reason",
+    "evidence_refs",
+    "owner_review_required"
+  ],
+  "properties": {
+    "timestamp": { "type": "string", "format": "date-time" },
+    "state_before": { "type": "string" },
+    "event": { "type": "string" },
+    "guard_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["passed", "name"],
+      "properties": {
+        "passed": { "type": "boolean" },
+        "name": { "type": "string" }
+      }
+    },
+    "action": { "type": "string" },
+    "state_after": { "type": "string" },
+    "reason": { "type": "string", "minLength": 1 },
+    "evidence_refs": { "type": "array", "items": { "type": "string" } },
+    "owner_review_required": { "type": "boolean" }
+  }
+}

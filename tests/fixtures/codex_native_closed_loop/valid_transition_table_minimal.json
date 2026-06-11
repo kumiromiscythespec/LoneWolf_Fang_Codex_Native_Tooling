@@ -1,0 +1,208 @@
+{
+  "schema_version": "codex_native_closed_loop.transition_table.v0.1",
+  "state_model_ref": "codex_native_closed_loop/state.example.json",
+  "safety_invariants": {
+    "worker_session_close_required_after_review_handoff": true,
+    "no_next_worker_until_previous_worker_closed": true,
+    "previous_worker_retired_must_be_true_before_START_NEXT_IMPLEMENTER": true,
+    "max_open_implementer_sessions_per_lane": 1,
+    "max_open_reviewer_sessions_per_lane": 1,
+    "max_total_open_worker_sessions_initial": 2,
+    "v0_1_is_one_lane_only": true,
+    "missing_close_or_retire_confirmation_next_state": "STOP_OWNER_REVIEW_REQUIRED",
+    "invariant_text": [
+      "worker_session_close_required_after_review_handoff = true",
+      "no_next_worker_until_previous_worker_closed = true",
+      "previous_worker_retired must be true before START_NEXT_IMPLEMENTER",
+      "max_open_implementer_sessions_per_lane = 1",
+      "max_open_reviewer_sessions_per_lane = 1",
+      "max_total_open_worker_sessions_initial = 2",
+      "v0.1 is one-lane-only",
+      "if close/retire confirmation is missing, transition to STOP_OWNER_REVIEW_REQUIRED"
+    ]
+  },
+  "valid_transitions": [
+    {
+      "from": "PAUSED_NO_CREDITS",
+      "event": { "type": "credits_reset", "source": "owner", "owner_action_marker": true },
+      "guard": { "name": "owner_allows_manual_work", "conditions": ["manual work only", "no worker launch"], "result": true },
+      "action": { "name": "mark_ready_for_triage", "writes": ["state.json", "reason_log.jsonl"], "forbidden_effects": ["worker launch", "prompt send"] },
+      "to": "READY_FOR_TRIAGE",
+      "allowed": true,
+      "owner_review_required": true,
+      "forbidden_if": ["worker_launch_enabled", "real_orchestration_allowed"],
+      "evidence_required": ["owner manual work marker"],
+      "safety_flags": { "worker_launch_enabled": false, "real_orchestration_allowed": false, "prompt_sending_allowed": false, "runtime_execution_allowed": false }
+    },
+    {
+      "from": "READY_FOR_TRIAGE",
+      "event": { "type": "chatgpt_reviews_context", "source": "chatgpt", "owner_action_marker": false },
+      "guard": { "name": "one_safe_task_exists", "conditions": ["task is docs/schema/static-test only"], "result": true },
+      "action": { "name": "select_one_micro_task", "writes": ["task_queue.json", "reason_log.jsonl"], "forbidden_effects": ["scope expansion"] },
+      "to": "TASK_SELECTED",
+      "allowed": true,
+      "owner_review_required": true,
+      "forbidden_if": ["Codex decides next task freely"],
+      "evidence_required": ["reviewed context summary"],
+      "safety_flags": { "worker_launch_enabled": false, "real_orchestration_allowed": false, "prompt_sending_allowed": false, "runtime_execution_allowed": false }
+    },
+    {
+      "from": "TASK_SELECTED",
+      "event": { "type": "micro_task_defined", "source": "chatgpt", "owner_action_marker": false },
+      "guard": { "name": "micro_spec_is_bounded", "conditions": ["allowed files listed", "forbidden files listed"], "result": true },
+      "action": { "name": "write_micro_spec", "writes": ["task_queue.json", "reason_log.jsonl"], "forbidden_effects": ["runtime execution"] },
+      "to": "MICRO_SPEC_READY",
+      "allowed": true,
+      "owner_review_required": true,
+      "forbidden_if": ["missing allowed_files", "missing forbidden_files"],
+      "evidence_required": ["micro task goal"],
+      "safety_flags": { "worker_launch_enabled": false, "real_orchestration_allowed": false, "prompt_sending_allowed": false, "runtime_execution_allowed": false }
+    },
+    {
+      "from": "MICRO_SPEC_READY",
+      "event": { "type": "prompt_generated", "source": "chatgpt", "owner_action_marker": false },
+      "guard": { "name": "prompt_is_low_risk", "conditions": ["prompt repeats prohibitions", "no source/runtime request"], "result": true },
+      "action": { "name": "draft_next_codex_prompt", "writes": ["next_codex_prompt.md", "reason_log.jsonl"], "forbidden_effects": ["prompt send"] },
+      "to": "CODEX_PROMPT_READY",
+      "allowed": true,
+      "owner_review_required": true,
+      "forbidden_if": ["prompt_sending_allowed"],
+      "evidence_required": ["prompt draft"],
+      "safety_flags": { "worker_launch_enabled": false, "real_orchestration_allowed": false, "prompt_sending_allowed": false, "runtime_execution_allowed": false }
+    },
+    {
+      "from": "CODEX_PROMPT_READY",
+      "event": { "type": "owner_pastes_to_codex_or_bridge_dry_run_prepared", "source": "owner", "owner_action_marker": true },
+      "guard": { "name": "manual_owner_action_present", "conditions": ["owner action marker true", "paste-only or manual Codex session"], "result": true },
+      "action": { "name": "record_codex_running_state", "writes": ["state.json", "reason_log.jsonl"], "forbidden_effects": ["worker launch", "auto-start", "prompt send"] },
+      "to": "CODEX_RUNNING",
+      "allowed": true,
+      "owner_review_required": true,
+      "forbidden_if": ["missing owner_action_marker", "worker_launch_enabled", "real_orchestration_allowed"],
+      "evidence_required": ["owner/manual action marker"],
+      "safety_flags": { "worker_launch_enabled": false, "real_orchestration_allowed": false, "prompt_sending_allowed": false, "runtime_execution_allowed": false }
+    },
+    {
+      "from": "CODEX_RUNNING",
+      "event": { "type": "codex_finished", "source": "codex", "owner_action_marker": false },
+      "guard": { "name": "handoff_artifact_exists", "conditions": ["summary present", "checks reported"], "result": true },
+      "action": { "name": "require_result_review", "writes": ["state.json", "reason_log.jsonl"], "forbidden_effects": ["auto acceptance"] },
+      "to": "RESULT_REVIEW_REQUIRED",
+      "allowed": true,
+      "owner_review_required": true,
+      "forbidden_if": ["missing result summary"],
+      "evidence_required": ["Codex result summary"],
+      "safety_flags": { "worker_launch_enabled": false, "real_orchestration_allowed": false, "prompt_sending_allowed": false, "runtime_execution_allowed": false }
+    },
+    {
+      "from": "RESULT_REVIEW_REQUIRED",
+      "event": { "type": "tests_pass_and_scope_ok", "source": "reviewer", "owner_action_marker": false },
+      "guard": { "name": "review_passed", "conditions": ["tests pass", "scope ok", "no forbidden action"], "result": true },
+      "action": { "name": "accept_baseline_candidate", "writes": ["state.json", "reason_log.jsonl"], "forbidden_effects": ["commit", "push"] },
+      "to": "BASELINE_ACCEPTED",
+      "allowed": true,
+      "owner_review_required": true,
+      "forbidden_if": ["commit requested without approval"],
+      "evidence_required": ["test summary", "changed file list"],
+      "safety_flags": { "worker_launch_enabled": false, "real_orchestration_allowed": false, "prompt_sending_allowed": false, "runtime_execution_allowed": false }
+    },
+    {
+      "from": "BASELINE_ACCEPTED",
+      "event": { "type": "next_task_exists", "source": "reviewer", "owner_action_marker": false },
+      "guard": { "name": "next_task_is_safe", "conditions": ["next task is low risk", "previous worker closed or no worker existed"], "result": true },
+      "action": { "name": "return_to_triage", "writes": ["state.json", "reason_log.jsonl"], "forbidden_effects": ["auto-start next worker"] },
+      "to": "READY_FOR_TRIAGE",
+      "allowed": true,
+      "owner_review_required": true,
+      "forbidden_if": ["previous_worker_retired missing"],
+      "evidence_required": ["next task summary"],
+      "safety_flags": { "worker_launch_enabled": false, "real_orchestration_allowed": false, "prompt_sending_allowed": false, "runtime_execution_allowed": false }
+    },
+    {
+      "from": "CODEX_RUNNING",
+      "event": { "type": "tests_failed", "source": "codex", "owner_action_marker": false },
+      "guard": { "name": "failure_is_repairable", "conditions": ["failure is local/static", "no safety reject"], "result": true },
+      "action": { "name": "request_repair_spec", "writes": ["state.json", "reason_log.jsonl"], "forbidden_effects": ["retry loop"] },
+      "to": "REPAIR_REQUIRED",
+      "allowed": true,
+      "owner_review_required": true,
+      "forbidden_if": ["uncontrolled retry"],
+      "evidence_required": ["failed check summary"],
+      "safety_flags": { "worker_launch_enabled": false, "real_orchestration_allowed": false, "prompt_sending_allowed": false, "runtime_execution_allowed": false }
+    },
+    {
+      "from": "CODEX_RUNNING",
+      "event": { "type": "forbidden_file_touched", "source": "reviewer", "owner_action_marker": false },
+      "guard": { "name": "safety_boundary_hit", "conditions": ["forbidden file touched"], "result": true },
+      "action": { "name": "reject_for_safety", "writes": ["state.json", "reason_log.jsonl"], "forbidden_effects": ["cleanup", "restore"] },
+      "to": "REJECTED_FOR_SAFETY",
+      "allowed": true,
+      "owner_review_required": true,
+      "forbidden_if": ["automatic cleanup"],
+      "evidence_required": ["forbidden path evidence"],
+      "safety_flags": { "worker_launch_enabled": false, "real_orchestration_allowed": false, "prompt_sending_allowed": false, "runtime_execution_allowed": false }
+    },
+    {
+      "from": "RESULT_REVIEW_REQUIRED",
+      "event": { "type": "unclear_result", "source": "reviewer", "owner_action_marker": false },
+      "guard": { "name": "result_not_reviewable", "conditions": ["missing evidence or ambiguous scope"], "result": true },
+      "action": { "name": "stop_for_owner_review", "writes": ["state.json", "reason_log.jsonl"], "forbidden_effects": ["guess"] },
+      "to": "STOP_OWNER_REVIEW_REQUIRED",
+      "allowed": true,
+      "owner_review_required": true,
+      "forbidden_if": ["Codex guesses"],
+      "evidence_required": ["unclear result note"],
+      "safety_flags": { "worker_launch_enabled": false, "real_orchestration_allowed": false, "prompt_sending_allowed": false, "runtime_execution_allowed": false }
+    },
+    {
+      "from": "READY_FOR_TRIAGE",
+      "event": { "type": "no_safe_task", "source": "chatgpt", "owner_action_marker": false },
+      "guard": { "name": "no_safe_task_available", "conditions": ["all candidates need owner decision"], "result": true },
+      "action": { "name": "pause_for_owner_decision", "writes": ["state.json", "reason_log.jsonl"], "forbidden_effects": ["task invention"] },
+      "to": "PAUSED_OWNER_DECISION_REQUIRED",
+      "allowed": true,
+      "owner_review_required": true,
+      "forbidden_if": ["Codex decides next task freely"],
+      "evidence_required": ["candidate task review"],
+      "safety_flags": { "worker_launch_enabled": false, "real_orchestration_allowed": false, "prompt_sending_allowed": false, "runtime_execution_allowed": false }
+    }
+  ],
+  "invalid_transition_examples": [
+    {
+      "from": "READY_FOR_TRIAGE",
+      "to": "CODEX_RUNNING",
+      "reason": "Direct READY_FOR_TRIAGE to CODEX_RUNNING skips task selection, micro spec, prompt draft, and owner/manual action marker.",
+      "allowed": false
+    },
+    {
+      "from": "CODEX_PROMPT_READY",
+      "to": "CODEX_RUNNING",
+      "reason": "CODEX_RUNNING requires owner/manual action marker.",
+      "allowed": false
+    },
+    {
+      "reason": "Any transition where worker_launch_enabled is true is invalid.",
+      "allowed": false
+    },
+    {
+      "reason": "Any transition where real_orchestration_allowed is true is invalid.",
+      "allowed": false
+    },
+    {
+      "reason": "Any transition where prompt_sending_allowed is true is invalid.",
+      "allowed": false
+    },
+    {
+      "reason": "Any transition where runtime_execution_allowed is true is invalid.",
+      "allowed": false
+    },
+    {
+      "reason": "Any transition with deploy/private API/trading mutation is invalid.",
+      "allowed": false
+    },
+    {
+      "reason": "Any transition where Codex decides next task freely is invalid.",
+      "allowed": false
+    }
+  ]
+}

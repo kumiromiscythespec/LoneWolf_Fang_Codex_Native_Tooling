@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/codex_native_closed_loop/task_queue.schema.json",
+  "title": "Codex Native Closed Loop Task Queue",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["queue_id", "tasks"],
+  "properties": {
+    "queue_id": { "type": "string", "minLength": 1 },
+    "schema_version": { "type": "string" },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "task_id",
+          "state",
+          "micro_task_goal",
+          "allowed_files",
+          "forbidden_files",
+          "owner_review_required",
+          "codex_prompt_ready",
+          "next_action"
+        ],
+        "properties": {
+          "task_id": { "type": "string", "minLength": 1 },
+          "state": { "type": "string" },
+          "micro_task_goal": { "type": "string", "minLength": 1 },
+          "allowed_files": { "type": "array", "items": { "type": "string" } },
+          "forbidden_files": { "type": "array", "items": { "type": "string" } },
+          "owner_review_required": { "type": "boolean" },
+          "codex_prompt_ready": { "type": "boolean" },
+          "next_action": { "type": "string", "minLength": 1 },
+          "next_implementer_start_allowed": { "type": "boolean", "const": false },
+          "worker_launch_allowed": { "type": "boolean", "const": false },
+          "prompt_sending_allowed": { "type": "boolean", "const": false }
+        }
+      }
+    }
+  }
+}

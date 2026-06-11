@@ -1,0 +1,168 @@
+{
+  "schema_version": "codex_native_closed_loop.state.v0.1",
+  "current_state": "READY_FOR_TRIAGE",
+  "allowed_next_states": ["TASK_SELECTED", "PAUSED_OWNER_DECISION_REQUIRED"],
+  "owner_review_required": true,
+  "worker_launch_allowed": false,
+  "real_orchestration_allowed": false,
+  "prompt_sending_allowed": false,
+  "runtime_execution_allowed": false,
+  "updated_at": "2026-06-11T00:00:00+09:00",
+  "evidence_refs": [
+    "state_machine_overview_ja.md",
+    "valid_transition_table_minimal.json"
+  ],
+  "safety_invariants": {
+    "worker_session_close_required_after_review_handoff": true,
+    "no_next_worker_until_previous_worker_closed": true,
+    "previous_worker_retired_must_be_true_before_START_NEXT_IMPLEMENTER": true,
+    "max_open_implementer_sessions_per_lane": 1,
+    "max_open_reviewer_sessions_per_lane": 1,
+    "max_total_open_worker_sessions_initial": 2,
+    "v0_1_is_one_lane_only": true,
+    "missing_close_or_retire_confirmation_next_state": "STOP_OWNER_REVIEW_REQUIRED",
+    "invariant_text": [
+      "worker_session_close_required_after_review_handoff = true",
+      "no_next_worker_until_previous_worker_closed = true",
+      "previous_worker_retired must be true before START_NEXT_IMPLEMENTER",
+      "max_open_implementer_sessions_per_lane = 1",
+      "max_open_reviewer_sessions_per_lane = 1",
+      "max_total_open_worker_sessions_initial = 2",
+      "v0.1 is one-lane-only",
+      "if close/retire confirmation is missing, transition to STOP_OWNER_REVIEW_REQUIRED",
+      "would_continue=true is not equivalent to real auto-start permission",
+      "owner_review_required=false does not mean owner execution approval",
+      "next_prompt_ready=true only means a text draft exists",
+      "next_implementer_start_allowed remains false unless separately approved",
+      "worker_launch_allowed remains false unless separately approved",
+      "prompt_sending_allowed remains false unless separately approved",
+      "real_orchestration_allowed remains false unless separately approved"
+    ]
+  },
+  "state_definitions": [
+    {
+      "state": "PAUSED_NO_CREDITS",
+      "purpose": "Wait until credits reset or owner allows manual work.",
+      "allowed_events": ["credits_reset"],
+      "forbidden_events": ["auto_start_worker", "prompt_send"],
+      "required_evidence": ["owner/manual work marker"],
+      "owner_review_required": true,
+      "next_possible_states": ["READY_FOR_TRIAGE", "PAUSED_OWNER_DECISION_REQUIRED"],
+      "safety_notes": ["No worker launch."]
+    },
+    {
+      "state": "READY_FOR_TRIAGE",
+      "purpose": "Review context and pick one safe micro task.",
+      "allowed_events": ["chatgpt_reviews_context", "no_safe_task"],
+      "forbidden_events": ["codex_started"],
+      "required_evidence": ["context summary"],
+      "owner_review_required": true,
+      "next_possible_states": ["TASK_SELECTED", "PAUSED_OWNER_DECISION_REQUIRED"],
+      "safety_notes": ["Codex must not decide next task freely."]
+    },
+    {
+      "state": "TASK_SELECTED",
+      "purpose": "One task has been selected.",
+      "allowed_events": ["micro_task_defined"],
+      "forbidden_events": ["worker_launch"],
+      "required_evidence": ["task id", "micro task goal"],
+      "owner_review_required": true,
+      "next_possible_states": ["MICRO_SPEC_READY", "STOP_OWNER_REVIEW_REQUIRED"],
+      "safety_notes": ["Scope must not expand."]
+    },
+    {
+      "state": "MICRO_SPEC_READY",
+      "purpose": "Allowed files, forbidden files, and checks are fixed.",
+      "allowed_events": ["prompt_generated"],
+      "forbidden_events": ["runtime_execution"],
+      "required_evidence": ["allowed_files", "forbidden_files", "success_criteria"],
+      "owner_review_required": true,
+      "next_possible_states": ["CODEX_PROMPT_READY", "STOP_OWNER_REVIEW_REQUIRED"],
+      "safety_notes": ["No source/runtime request."]
+    },
+    {
+      "state": "CODEX_PROMPT_READY",
+      "purpose": "A next Codex prompt text draft exists.",
+      "allowed_events": ["owner_pastes_to_codex_or_bridge_dry_run_prepared"],
+      "forbidden_events": ["auto_send_prompt", "worker_launch"],
+      "required_evidence": ["next_codex_prompt.md"],
+      "owner_review_required": true,
+      "next_possible_states": ["CODEX_RUNNING", "STOP_OWNER_REVIEW_REQUIRED"],
+      "safety_notes": ["next_prompt_ready=true only means a text draft exists."]
+    },
+    {
+      "state": "CODEX_RUNNING",
+      "purpose": "Record that a manually started Codex task is in progress.",
+      "allowed_events": ["codex_finished", "tests_failed", "forbidden_file_touched"],
+      "forbidden_events": ["auto_start_next_worker"],
+      "required_evidence": ["owner/manual action marker"],
+      "owner_review_required": true,
+      "next_possible_states": ["RESULT_REVIEW_REQUIRED", "REPAIR_REQUIRED", "REJECTED_FOR_SAFETY"],
+      "safety_notes": ["This is not worker launch permission."]
+    },
+    {
+      "state": "RESULT_REVIEW_REQUIRED",
+      "purpose": "Review Codex output before acceptance.",
+      "allowed_events": ["tests_pass_and_scope_ok", "unclear_result"],
+      "forbidden_events": ["auto_accept"],
+      "required_evidence": ["changed file list", "test summary", "artifact metadata"],
+      "owner_review_required": true,
+      "next_possible_states": ["BASELINE_ACCEPTED", "REPAIR_REQUIRED", "STOP_OWNER_REVIEW_REQUIRED"],
+      "safety_notes": ["Reviewer must inspect handoff."]
+    },
+    {
+      "state": "BASELINE_ACCEPTED",
+      "purpose": "A bounded baseline is accepted for future work.",
+      "allowed_events": ["next_task_exists"],
+      "forbidden_events": ["commit_without_approval", "push_without_approval"],
+      "required_evidence": ["acceptance note"],
+      "owner_review_required": true,
+      "next_possible_states": ["READY_FOR_TRIAGE", "PAUSED_OWNER_DECISION_REQUIRED"],
+      "safety_notes": ["Commit/push need separate current approval."]
+    },
+    {
+      "state": "REPAIR_REQUIRED",
+      "purpose": "A repair spec is needed after failed checks.",
+      "allowed_events": ["repair_task_defined"],
+      "forbidden_events": ["uncontrolled_retry"],
+      "required_evidence": ["failed check summary"],
+      "owner_review_required": true,
+      "next_possible_states": ["MICRO_SPEC_READY", "STOP_OWNER_REVIEW_REQUIRED"],
+      "safety_notes": ["No vague retry loop."]
+    },
+    {
+      "state": "REJECTED_FOR_SAFETY",
+      "purpose": "Safety boundary was crossed or likely crossed.",
+      "allowed_events": ["owner_reviews_rejection"],
+      "forbidden_events": ["automatic_cleanup"],
+      "required_evidence": ["boundary violation evidence"],
+      "owner_review_required": true,
+      "next_possible_states": ["STOP_OWNER_REVIEW_REQUIRED", "PAUSED_OWNER_DECISION_REQUIRED"],
+      "safety_notes": ["No restore/reset/clean by default."]
+    },
+    {
+      "state": "STOP_OWNER_REVIEW_REQUIRED",
+      "purpose": "Stop when evidence, closure, or permission is missing.",
+      "allowed_events": ["owner_decision_recorded"],
+      "forbidden_events": ["guess_next_step"],
+      "required_evidence": ["stop reason"],
+      "owner_review_required": true,
+      "next_possible_states": ["READY_FOR_TRIAGE", "PAUSED_OWNER_DECISION_REQUIRED"],
+      "safety_notes": ["Human judgment required."]
+    },
+    {
+      "state": "PAUSED_OWNER_DECISION_REQUIRED",
+      "purpose": "Wait for owner decision when no safe automatic next step exists.",
+      "allowed_events": ["owner_selects_resume_option"],
+      "forbidden_events": ["Codex decides next task freely"],
+      "required_evidence": ["owner decision point"],
+      "owner_review_required": true,
+      "next_possible_states": ["READY_FOR_TRIAGE", "STOP_OWNER_REVIEW_REQUIRED"],
+      "safety_notes": ["Owner approval remains separate."]
+    }
+  ],
+  "notes": [
+    "This file is a static example, not an executable orchestrator.",
+    "No background process, worker launch, or prompt sending is implied."
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "codex_native_closed_loop.state.v0.1",
+  "current_state": "RESULT_REVIEW_REQUIRED",
+  "allowed_next_states": ["BASELINE_ACCEPTED", "REPAIR_REQUIRED", "STOP_OWNER_REVIEW_REQUIRED"],
+  "owner_review_required": true,
+  "worker_launch_allowed": false,
+  "real_orchestration_allowed": false,
+  "prompt_sending_allowed": false,
+  "runtime_execution_allowed": false,
+  "updated_at": "2026-06-11T00:00:00+09:00",
+  "evidence_refs": [
+    "codex_result_summary",
+    "changed_files",
+    "validation_summary"
+  ],
+  "notes": [
+    "Reviewer must inspect evidence before acceptance.",
+    "next_prompt_ready=true only means a text draft exists."
+  ]
+}

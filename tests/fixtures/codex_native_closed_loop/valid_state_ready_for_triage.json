@@ -1,0 +1,19 @@
+{
+  "schema_version": "codex_native_closed_loop.state.v0.1",
+  "current_state": "READY_FOR_TRIAGE",
+  "allowed_next_states": ["TASK_SELECTED", "PAUSED_OWNER_DECISION_REQUIRED"],
+  "owner_review_required": true,
+  "worker_launch_allowed": false,
+  "real_orchestration_allowed": false,
+  "prompt_sending_allowed": false,
+  "runtime_execution_allowed": false,
+  "updated_at": "2026-06-11T00:00:00+09:00",
+  "evidence_refs": [
+    "dirty_state_baseline_resolution_packet",
+    "state_machine_overview_ja.md"
+  ],
+  "notes": [
+    "ChatGPT may review context and propose one micro task.",
+    "Codex does not decide the next task freely."
+  ]
+}

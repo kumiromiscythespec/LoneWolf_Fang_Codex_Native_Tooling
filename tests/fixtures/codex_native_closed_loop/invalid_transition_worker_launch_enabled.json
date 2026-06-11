@@ -1,0 +1,20 @@
+{
+  "schema_version": "codex_native_closed_loop.transition_table.v0.1.invalid",
+  "transition": {
+    "from": "CODEX_PROMPT_READY",
+    "event": { "type": "owner_pastes_to_codex_or_bridge_dry_run_prepared", "source": "owner", "owner_action_marker": true },
+    "guard": { "name": "unsafe_worker_launch_flag", "conditions": ["worker launch flag is true"], "result": false },
+    "action": { "name": "invalid_worker_launch", "writes": ["state.json"], "forbidden_effects": ["worker launch"] },
+    "to": "CODEX_RUNNING",
+    "allowed": true,
+    "owner_review_required": true,
+    "forbidden_if": ["worker_launch_enabled"],
+    "evidence_required": ["owner/manual action marker"],
+    "safety_flags": {
+      "worker_launch_enabled": true,
+      "real_orchestration_allowed": false,
+      "prompt_sending_allowed": false,
+      "runtime_execution_allowed": false
+    }
+  }
+}
