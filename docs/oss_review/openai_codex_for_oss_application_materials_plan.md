@@ -10,7 +10,8 @@ approved research step before final drafting or submission.
 - It documents a safe AI coding workflow.
 - It preserves owner approval gates.
 - It separates implementer, reviewer, and owner roles.
-- It uses an AppData artifact evidence chain with checksums.
+- It uses an external artifact evidence chain under `<ARTIFACT_ROOT>` with
+  checksums.
 - It defaults to no runtime behavior.
 - It defaults to no notification sending.
 - It has a public-safety orientation around private content and explicit gates.
@@ -22,6 +23,12 @@ approved research step before final drafting or submission.
 - Phase 2B owner attention schema contract.
 - Public Radar supporting evidence, with no automatic mutation or
   publicization.
+- A future GitHub Releases ZIP can be supporting distribution evidence after a
+  separate owner-approved release process.
+
+The future release ZIP plan is not an OpenAI submission. It does not verify
+OpenAI criteria. Official OpenAI criteria verification remains separate. OpenAI
+application submission remains separate approval.
 
 ## Remaining Work Before Applying
 

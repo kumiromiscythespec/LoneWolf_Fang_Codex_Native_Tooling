@@ -9,7 +9,7 @@ Codex Native Closed Loop v0.1 addresses this by making the workflow explicit:
 - bounded task prompt;
 - implementer result;
 - reviewer check;
-- AppData evidence packet;
+- external evidence packet under `<ARTIFACT_ROOT>`;
 - SHA256 verification;
 - one owner decision point;
 - separate approvals for commit, push, publicization, application submission,

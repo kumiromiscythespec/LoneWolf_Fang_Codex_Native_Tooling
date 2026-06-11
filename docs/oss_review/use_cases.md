@@ -3,7 +3,8 @@
 ## Bounded Docs Implementation
 
 An owner approves a docs-only task. The implementer updates only the approved
-files, validates text and safety boundaries, and creates an AppData artifact.
+files, validates text and safety boundaries, and creates an external artifact
+under `<ARTIFACT_ROOT>`.
 
 ## Reviewer Handoff
 

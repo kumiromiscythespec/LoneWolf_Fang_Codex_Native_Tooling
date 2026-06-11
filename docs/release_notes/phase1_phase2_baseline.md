@@ -24,3 +24,12 @@ runtime writer, notification adapter, watcher, or Local Orchestrator placement.
 - no publicization;
 - no OpenAI application submission;
 - GitHub repository remains PRIVATE.
+
+## Future Release Packaging Plan
+
+Release ZIP packaging docs were added as a future final-stage plan. The plan
+records that a future GitHub Releases ZIP can bundle the public template file
+set for one-download use after separate owner approval.
+
+This note does not create a release ZIP, tag, GitHub Release, release asset
+upload, publicization, or OpenAI application submission.

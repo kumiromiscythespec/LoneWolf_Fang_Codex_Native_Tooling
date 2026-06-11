@@ -12,8 +12,9 @@ access, or notification sending.
 - A local copy of the repository.
 - A human owner who can approve or reject gated actions.
 - A clear target repo or documentation task.
-- A safe place for external artifacts:
-  `C:\Users\yu_ki\AppData\Local\LoneWolfFang\data`
+- A safe external artifact root chosen by you and referenced as
+  `<ARTIFACT_ROOT>`.
+- A project profile chosen by you and referenced as `<PROJECT_PROFILE>`.
 - A habit of stopping when scope, approval, or identity is unclear.
 
 ## Read The Rules First
@@ -27,6 +28,10 @@ Before editing or asking Codex to act, read:
 - `docs/safety/file_placement_policy.md`
 - `docs/safety/artifact_handoff_policy.md`
 - `docs/owner/owner_approval_gate.md`
+- `docs/setup/environment_variables.md`
+- `docs/setup/artifact_root_setup.md`
+- `docs/setup/project_profile_template.md`
+- `docs/setup/public_template_vs_private_project.md`
 
 If a required rule file is missing, stop with:
 
@@ -66,14 +71,24 @@ General placement:
 - tests go under `tests/`;
 - metadata-only artifact indexes may go under `artifacts_index/`.
 
-Artifacts themselves stay outside the repo in AppData.
+Artifacts themselves stay outside the repo under `<ARTIFACT_ROOT>`.
 
-## Create AppData Artifacts
+## Create External Artifacts
 
 When a handoff artifact is required, create a timestamped folder under:
 
 ```text
-C:\Users\yu_ki\AppData\Local\LoneWolfFang\data
+<ARTIFACT_ROOT>
+```
+
+Recommended public examples:
+
+```powershell
+$env:CNCL_ARTIFACT_ROOT = "$env:LOCALAPPDATA\CodexNativeClosedLoop\data"
+```
+
+```sh
+export CNCL_ARTIFACT_ROOT="$HOME/.local/share/codex-native-closed-loop/data"
 ```
 
 Typical contents:
@@ -101,7 +116,7 @@ A good first task asks Codex to:
 - list touched files and must-not-touch files;
 - confirm safety boundaries;
 - inspect only the approved paths;
-- create an AppData artifact;
+- create an external artifact under `<ARTIFACT_ROOT>`;
 - stop for owner review.
 
 Use [start_orchestration_prompt.md](start_orchestration_prompt.md) for a safe
@@ -111,12 +126,16 @@ starter prompt template.
 
 When adapting the template to another project:
 
-- replace local paths with project-appropriate placeholders;
+- replace placeholders such as `<REPO_ROOT>`, `<PROJECT_ROOT>`,
+  `<ARTIFACT_ROOT>`, and `<PROJECT_PROFILE>` with your own environment;
+- keep private project profiles outside the public repo, or in ignored local
+  files only after that pattern is explicitly approved;
 - use synthetic examples;
 - do not copy private logs;
 - do not copy raw ChatGPT or Codex conversations;
 - do not copy secrets, tokens, account data, order IDs, or private API payloads;
 - do not include screenshots with private information;
+- do not hardcode personal user directories in public docs;
 - keep owner approval gates explicit.
 
 ## Safe Stop

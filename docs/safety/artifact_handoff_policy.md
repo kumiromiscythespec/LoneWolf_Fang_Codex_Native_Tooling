@@ -8,7 +8,24 @@ Codex phases without placing generated handoff payloads inside the repo.
 Artifacts should be stored under:
 
 ```text
-C:\Users\yu_ki\AppData\Local\LoneWolfFang\data
+<ARTIFACT_ROOT>
+```
+
+Each user chooses `<ARTIFACT_ROOT>` for their own environment. Public docs must
+not require a personal user directory or private project path.
+
+Recommended public examples:
+
+```text
+%LOCALAPPDATA%\CodexNativeClosedLoop\data
+```
+
+```powershell
+$env:CNCL_ARTIFACT_ROOT = "$env:LOCALAPPDATA\CodexNativeClosedLoop\data"
+```
+
+```sh
+export CNCL_ARTIFACT_ROOT="$HOME/.local/share/codex-native-closed-loop/data"
 ```
 
 Use a timestamped artifact folder and ZIP name so each handoff is immutable and

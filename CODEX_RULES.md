@@ -1,6 +1,6 @@
 # CODEX_RULES.md
 
-Codex operating rules for LoneWolf Fang development.
+Codex operating rules for Codex Native Closed Loop template work.
 
 These rules are intended to be used together with `CLAUDE.md` and project-specific instructions.
 
@@ -171,7 +171,12 @@ Do not claim a check passed unless it was actually run.
 
 When creating a handoff or Codex result artifact, save it under:
 
-`C:\Users\yu_ki\AppData\Local\LoneWolfFang\data`
+`<ARTIFACT_ROOT>`
+
+Users should choose `<ARTIFACT_ROOT>` for their own local environment. Public
+template docs must not require a personal user directory or private downstream
+project path. Useful environment variables include `CNCL_ARTIFACT_ROOT`,
+`CNCL_REPO_ROOT`, `CNCL_PROJECT_ROOT`, and `CNCL_PROJECT_PROFILE`.
 
 The artifact ZIP should include, when relevant:
 

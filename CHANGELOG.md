@@ -29,4 +29,4 @@
 
 - Added README, first-time usage, safe starter prompt, file placement,
   artifact handoff, and owner approval gate documentation.
-- Established AppData artifact handoff and phrase-based owner approval gates.
+- Established external artifact handoff and phrase-based owner approval gates.

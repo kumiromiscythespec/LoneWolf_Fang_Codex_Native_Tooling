@@ -3,8 +3,8 @@
 This guide provides a safe starter prompt for Codex Native Closed Loop work.
 
 The prompt is intentionally conservative. It starts with read-only or docs-only
-work, requires a pre-work safety statement, creates AppData artifacts when
-needed, and stops when owner approval is required.
+work, requires a pre-work safety statement, creates external artifacts under
+`<ARTIFACT_ROOT>` when needed, and stops when owner approval is required.
 
 ## How To Choose The Target Repo
 
@@ -13,7 +13,12 @@ repos unless the current owner approval explicitly allows that.
 
 Include:
 
-- target repo path;
+- target repo path as `<REPO_ROOT>` or another explicit repo path chosen by the
+  user;
+- project root as `<PROJECT_ROOT>` when the target project is different from
+  the template repo;
+- artifact root as `<ARTIFACT_ROOT>`;
+- project profile as `<PROJECT_PROFILE>`;
 - allowed scope;
 - forbidden actions;
 - expected artifact path when relevant;
@@ -41,22 +46,28 @@ Stop and Wait - Owner Review Required.
 ## Safe Starter Prompt Template
 
 ```text
-Before doing any work, read and follow the rule files in
-C:\LoneWolf_Fang_Project, starting with AGENTS.md. If any required rule file is
-missing, report the missing list and stop with:
+Before doing any work, read and follow the rule files in <RULE_FILES>. If any
+required rule file is missing, report the missing list and stop with:
 Stop and Wait - Owner Review Required.
+
+Environment placeholders:
+- <REPO_ROOT>: [absolute path to this template repo or the target repo]
+- <PROJECT_ROOT>: [absolute path to the user's project root]
+- <ARTIFACT_ROOT>: [external artifact folder outside the repo]
+- <PROJECT_PROFILE>: [user-owned private profile, kept outside the public repo]
+- <RULE_FILES>: [ordered list of rule files for this task]
 
 Task:
 [Describe the small read-only or docs-only task.]
 
 Target repo:
-[Absolute path to one repo.]
+<REPO_ROOT>
 
 Allowed scope:
 - read-only inspection and/or docs-only edits to these exact paths:
   [list paths]
-- AppData artifact creation under:
-  C:\Users\yu_ki\AppData\Local\LoneWolfFang\data
+- artifact creation under:
+  <ARTIFACT_ROOT>
 
 Forbidden:
 - source code implementation
@@ -82,6 +93,11 @@ Forbidden:
 - git push
 - PR creation or merge
 
+Do not assume private downstream project details such as trading APIs,
+Cloudflare, Stripe, D1/R2/KV/Queue, Public Radar, MEXC, or any other
+project-specific service unless the user explicitly adds them in
+<PROJECT_PROFILE>.
+
 Before editing, print:
 - assumptions
 - unclear points
@@ -97,7 +113,9 @@ Verification:
 - required phrase scan
 - forbidden dangerous default phrase scan
 - secret-like value scan
-- AppData manifest/checksum/ZIP validation if an artifact is required
+- artifact manifest/checksum/ZIP validation if an artifact is required
+- no owner-local path defaults remain in public setup docs
+- no private project profile is copied into the public repo
 
 Final report:
 - Japanese owner-facing summary
@@ -107,7 +125,7 @@ Final report:
 - artifact ZIP path and SHA256, if created
 ```
 
-## AppData Artifact Requirement
+## Artifact Requirement
 
 When a task creates a handoff artifact, require:
 

@@ -44,7 +44,7 @@ document.
 ### Artifact-only / local status file
 
 This is the recommended first channel. It has the lowest privacy risk because
-it can stay local and can point to AppData artifacts by name and SHA256. It is
+it can stay local and can point to external artifacts by name and SHA256. It is
 also suitable for OSS users because it does not require provider accounts,
 contact details, or credentials.
 

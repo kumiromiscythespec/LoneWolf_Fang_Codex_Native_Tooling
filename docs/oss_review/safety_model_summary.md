@@ -6,7 +6,7 @@ The safety model uses explicit boundaries instead of implicit trust.
 
 - phrase-based owner approvals;
 - implementer / reviewer / owner separation;
-- AppData artifact chain;
+- external artifact chain under `<ARTIFACT_ROOT>`;
 - SHA256 sidecars;
 - one-lane v0.1;
 - stop state for unclear approvals;

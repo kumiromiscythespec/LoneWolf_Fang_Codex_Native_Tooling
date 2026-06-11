@@ -1,6 +1,6 @@
 # LONEWOLF_FANG_SAFETY_BOUNDARY.md
 
-Safety boundary for LoneWolf Fang development.
+Safety boundary for Codex Native Closed Loop template work.
 
 This document defines default forbidden actions, allowed safe defaults, and reporting expectations for Codex-assisted work.
 
@@ -133,28 +133,29 @@ Even allowed work must remain within the requested repo and scope.
 
 Do not cross repo boundaries unless explicitly requested.
 
-The consolidated project root is:
+For public-template use, define your own project root:
 
-- `C:\LoneWolf_Fang_Project`
+- `<PROJECT_ROOT>`
+- optional environment variable: `CNCL_PROJECT_ROOT=<PROJECT_ROOT>`
 
-Core repos are now grouped under:
+Define your own target repo root separately:
 
-- `C:\LoneWolf_Fang_Project\repos\core`
+- `<REPO_ROOT>`
+- optional environment variable: `CNCL_REPO_ROOT=<REPO_ROOT>`
 
 When a task is scoped to project-root rule files or documentation, do not edit
-anything under `C:\LoneWolf_Fang_Project\repos\core`.
+anything under another repo unless the current prompt explicitly authorizes
+that repo and scope.
 
-Examples of repo boundaries:
+Examples of generic repo boundaries:
 
-- `C:\LoneWolf_Fang_Project\repos\core\LoneWolf_Fang_standard`
-- `C:\LoneWolf_Fang_Project\repos\core\LoneWolf_Fang_aggressive_compound_lab`
-- `C:\LoneWolf_Fang_Project\repos\core\LoneWolf_Fang_free`
-- `C:\LoneWolf_Fang_Project\repos\core\LoneWolf_Fang_Pocket_Android_Agent`
-- `C:\LoneWolf_Fang_Project\repos\core\LoneWolf_Fang_Pocket_Signal_Worker`
-- `C:\LoneWolf_Fang_Project\repos\core\lwf-site`
-- `C:\LoneWolf_Fang_Project\repos\core\lwf-public-radar`
-- `C:\LoneWolf_Fang_Project\repos\core\LoneWolf_Fang_AI_Trading_Prompt_Lab`
-- `C:\LoneWolf_Fang_Project\repos\core\LoneWolf_Fang_Hybrid_Research`
+- `<PROJECT_ROOT>/repos/<repo-a>`
+- `<PROJECT_ROOT>/repos/<repo-b>`
+- `<PROJECT_ROOT>/private/<downstream-profile-repo>`
+
+Private downstream project layouts are not public template requirements. Keep
+private product rules and owner-local paths in `<PROJECT_PROFILE>` outside the
+public repo unless an ignored local profile pattern is separately approved.
 
 If a task mentions one repo, do not modify another repo.
 
@@ -212,7 +213,13 @@ Artifacts must be safe to share.
 
 External artifact ZIPs should be saved under:
 
-`C:\Users\yu_ki\AppData\Local\LoneWolfFang\data`
+`<ARTIFACT_ROOT>`
+
+Users should choose `<ARTIFACT_ROOT>` for their own environment. Public docs
+may show generic examples such as
+`%LOCALAPPDATA%\CodexNativeClosedLoop\data` or
+`$HOME/.local/share/codex-native-closed-loop/data`, but must not require a
+personal user directory or private downstream artifact path.
 
 Include:
 

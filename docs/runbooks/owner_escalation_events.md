@@ -14,7 +14,8 @@ When owner attention is required:
    SHA256, high-level reason, timestamp, and safe next action label.
 3. Do not dump secrets, raw private logs, raw ChatGPT conversations, raw Codex
    outputs, contact details, provider credentials, or private payloads.
-4. Create or preserve an AppData artifact ZIP when a handoff is needed.
+4. Create or preserve an artifact ZIP under `<ARTIFACT_ROOT>` when a handoff is
+   needed.
 5. Write `human_review_one_point.md` with one clear owner decision.
 6. Stop safely with:
 

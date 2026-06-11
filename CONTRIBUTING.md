@@ -39,7 +39,10 @@ are separate from implementation approval.
 
 Handoff artifacts live outside the repo under:
 
-`C:\Users\yu_ki\AppData\Local\LoneWolfFang\data`
+`<ARTIFACT_ROOT>`
+
+Each contributor chooses their own local artifact root. The public template
+does not require a private downstream project path or personal user directory.
 
 Expected handoff shape:
 

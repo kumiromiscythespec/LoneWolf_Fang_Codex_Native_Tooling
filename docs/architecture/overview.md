@@ -9,7 +9,7 @@ keep implementation, review, and owner approval separate.
 - The implementer performs only the approved task.
 - The reviewer checks evidence, artifacts, checksums, and safety boundaries.
 - The owner makes the next decision.
-- Handoff evidence is packaged under AppData with SHA256 sidecars.
+- Handoff evidence is packaged under `<ARTIFACT_ROOT>` with SHA256 sidecars.
 
 ## Defaults
 

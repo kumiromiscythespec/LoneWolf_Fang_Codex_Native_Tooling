@@ -6,7 +6,7 @@ The evidence chain is the review trail between phases.
 
 1. Approved bounded prompt.
 2. Implementer result.
-3. Safe artifact packet under AppData.
+3. Safe artifact packet under `<ARTIFACT_ROOT>`.
 4. SHA256 sidecars.
 5. Reviewer packet.
 6. Owner decision point.

@@ -20,7 +20,7 @@ The fallback is artifact-only:
 
 1. Write or preserve a safe local artifact/status summary.
 2. Include only redacted metadata.
-3. Create an AppData artifact ZIP when a handoff is needed.
+3. Create an artifact ZIP under `<ARTIFACT_ROOT>` when a handoff is needed.
 4. Record one human review point.
 5. Stop with:
 
@@ -36,10 +36,11 @@ forbidden.
 
 ## Manual Inspection
 
-The owner can inspect AppData artifacts manually under:
+The owner can inspect artifacts manually under the project-specific artifact
+root:
 
 ```text
-C:\Users\yu_ki\AppData\Local\LoneWolfFang\data
+<ARTIFACT_ROOT>
 ```
 
 Artifact identity should be checked by ZIP path, entry count, and SHA256

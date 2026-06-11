@@ -27,11 +27,15 @@ place private data, raw logs, secrets, or generated handoff ZIPs in the repo.
 
 ## What Must Stay Outside The Repo
 
-Store handoff artifacts under:
+Store handoff artifacts under the user-chosen external root:
 
 ```text
-C:\Users\yu_ki\AppData\Local\LoneWolfFang\data
+<ARTIFACT_ROOT>
 ```
+
+Use `CNCL_ARTIFACT_ROOT` when a local environment variable is helpful. Public
+template docs must not require a specific private project path, personal user
+directory, or downstream owner artifact root.
 
 Do not store these in the repo:
 
@@ -85,6 +89,7 @@ Before publicization or application drafting, check:
 - no generated caches or large exports;
 - no unsafe automation wording that implies default execution;
 - no private Windows paths that should be generalized for public readers.
+- no required setup defaults tied to one private downstream project.
 
 If any item is uncertain, stop with:
 

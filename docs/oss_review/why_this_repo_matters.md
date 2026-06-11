@@ -7,7 +7,7 @@ It matters because it:
 
 - keeps owner approval explicit;
 - separates implementer and reviewer responsibilities;
-- records evidence under AppData with checksums;
+- records evidence under `<ARTIFACT_ROOT>` with checksums;
 - blocks automatic worker continuation by default;
 - avoids notification sending by default;
 - avoids runtime orchestration by default;

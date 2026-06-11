@@ -1,7 +1,7 @@
-# LoneWolf Fang Codex Native Tooling
+# Codex Native Closed Loop Tooling
 
-This repository is a dedicated tooling and documentation repository for the
-Codex Native Closed Loop v0.1 workflow.
+This repository is a generic tooling and documentation template for the Codex
+Native Closed Loop v0.1 workflow.
 
 It is meant to help a human owner, an implementer, and a reviewer keep Codex or
 AI-coding work inside explicit safety gates. The repo starts from documentation
@@ -15,6 +15,8 @@ phase.
 - A template for separating implementer, reviewer, and owner decision gates.
 - A place to document safe file placement, artifact handoff, and owner approval
   rules.
+- A reusable public template that visitors adapt by choosing their own
+  `<REPO_ROOT>`, `<PROJECT_ROOT>`, `<ARTIFACT_ROOT>`, and `<PROJECT_PROFILE>`.
 - A future home for local orchestration tooling only after a separate owner
   placement approval.
 
@@ -29,7 +31,9 @@ This repository is not:
 - a deploy tool;
 - a private API, account, or order execution tool;
 - a notification sender;
-- an OpenAI application submission package.
+- an OpenAI application submission package;
+- a repository that requires a specific private project, personal Windows user
+  directory, or owner-local artifact path.
 
 Initial repository setup and docs work do not authorize worker launch, prompt
 sending, GUI/window automation, real orchestration, PAPER or LIVE trading,
@@ -54,11 +58,15 @@ publicization, notification sending, commits, or pushes.
    - [docs/oss_review/publicization_readiness_checklist.md](docs/oss_review/publicization_readiness_checklist.md)
 5. Use [docs/runbooks/start_orchestration_prompt.md](docs/runbooks/start_orchestration_prompt.md)
    for a safe starter prompt.
-6. Keep generated handoff artifacts outside the repo under:
-   `C:\Users\yu_ki\AppData\Local\LoneWolfFang\data`
-7. Verify artifact ZIPs with SHA256 sidecars before using them as input to a
+6. Choose a local artifact root outside the repo and refer to it as
+   `<ARTIFACT_ROOT>`.
+7. Recommended public examples:
+   - Windows path: `%LOCALAPPDATA%\CodexNativeClosedLoop\data`
+   - PowerShell: `$env:CNCL_ARTIFACT_ROOT = "$env:LOCALAPPDATA\CodexNativeClosedLoop\data"`
+   - macOS/Linux: `$HOME/.local/share/codex-native-closed-loop/data`
+8. Verify artifact ZIPs with SHA256 sidecars before using them as input to a
    later phase.
-8. Stop with `Stop and Wait - Owner Review Required.` whenever repo identity,
+9. Stop with `Stop and Wait - Owner Review Required.` whenever repo identity,
    scope, approval, safety boundary, or artifact identity is unclear.
 
 ## Repo Structure
@@ -73,8 +81,12 @@ Expected layout:
 - `docs/contributor/`: implementer, reviewer, owner, and handoff expectations.
 - `docs/architecture/`: one-lane workflow, approval gates, and evidence chain.
 - `docs/oss_review/`: publicization readiness and OSS application planning.
+- `docs/release_packaging/`: future GitHub Releases ZIP plan, versioning,
+  manifest, exclusion, and validation policies.
 - `docs/release_notes/`: phase baseline summaries.
 - `docs/runbooks/`: first-time setup and safe starter prompts.
+- `docs/setup/`: environment variables, artifact root setup, and project
+  profile templates for public template users.
 - `docs/evidence_chain/`: future evidence-chain and SHA256 handoff notes.
 - `schema/`: future schemas for safe synthetic artifacts or status files.
 - `fixtures/`: future synthetic, non-secret fixtures.
@@ -82,7 +94,7 @@ Expected layout:
 - `src/local_orchestrator/`: future local orchestrator source only after
   explicit owner approval.
 - `tests/`: future tests for approved source or documentation checks.
-- `artifacts_index/`: metadata-only index of external AppData artifacts. Do not
+- `artifacts_index/`: metadata-only index of external artifacts. Do not
   store artifact ZIP payloads here by default.
 
 ## Safety Defaults
@@ -150,7 +162,17 @@ See [docs/owner/owner_approval_gate.md](docs/owner/owner_approval_gate.md).
 
 Handoff artifacts live outside the repo under:
 
-`C:\Users\yu_ki\AppData\Local\LoneWolfFang\data`
+`<ARTIFACT_ROOT>`
+
+Each user must choose their own artifact root. Do not commit private local
+profiles, raw conversations, generated handoff ZIPs, or personal local paths.
+
+Useful environment variables:
+
+- `CNCL_REPO_ROOT=<REPO_ROOT>`
+- `CNCL_PROJECT_ROOT=<PROJECT_ROOT>`
+- `CNCL_ARTIFACT_ROOT=<ARTIFACT_ROOT>`
+- `CNCL_PROJECT_PROFILE=<PROJECT_PROFILE>`
 
 Expected artifact shape:
 
@@ -170,6 +192,36 @@ secrets, raw auth payloads, production DB dumps, `.git`, `node_modules`, nested
 ZIPs, raw private logs, or private ChatGPT/Codex conversation dumps in artifacts.
 
 See [docs/safety/artifact_handoff_policy.md](docs/safety/artifact_handoff_policy.md).
+
+## Public Template And Private Project Profiles
+
+This public repository is the template layer. It teaches the workflow, safety
+gates, evidence handoff shape, and placeholder conventions.
+
+Private downstream projects may keep their own project profile outside this
+repo, or in ignored `.local` files if a later task explicitly approves that
+pattern. A private profile can define project-specific product rules, local
+paths, approval phrases, or operational boundaries, but those details are not
+requirements for using the public template.
+
+Start with:
+
+- [docs/setup/environment_variables.md](docs/setup/environment_variables.md)
+- [docs/setup/artifact_root_setup.md](docs/setup/artifact_root_setup.md)
+- [docs/setup/project_profile_template.md](docs/setup/project_profile_template.md)
+- [docs/setup/public_template_vs_private_project.md](docs/setup/public_template_vs_private_project.md)
+- [docs/setup/migration_from_private_project_paths.md](docs/setup/migration_from_private_project_paths.md)
+
+## Future Release Packaging
+
+Release packaging is planned as a final-stage process. See
+[docs/release_packaging/](docs/release_packaging/) for the future GitHub
+Releases ZIP plan. No release asset is created by default.
+
+The planned public ZIP is a public template bundle, not a private project
+artifact. Future ZIP dry-runs, tag creation, GitHub Release creation, release
+asset upload, public visibility changes, and OpenAI application submission each
+require separate owner approval.
 
 ## Future Notification Boundary
 
@@ -217,5 +269,5 @@ Use the safe template in
 [docs/runbooks/start_orchestration_prompt.md](docs/runbooks/start_orchestration_prompt.md).
 
 Start read-only or docs-only first. Require assumptions, unclear points, success
-criteria, touched files plan, must-not-touch files, safety confirmation, AppData
-artifacts, and a final owner-facing summary.
+criteria, touched files plan, must-not-touch files, safety confirmation,
+external artifacts under `<ARTIFACT_ROOT>`, and a final owner-facing summary.

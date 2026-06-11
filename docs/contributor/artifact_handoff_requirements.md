@@ -1,8 +1,15 @@
 # Artifact Handoff Requirements
 
-Handoff artifacts live outside the repository under:
+Handoff artifacts live outside the repository under the user-chosen artifact
+root:
 
-`C:\Users\yu_ki\AppData\Local\LoneWolfFang\data`
+`<ARTIFACT_ROOT>`
+
+Recommended public environment variable:
+
+`CNCL_ARTIFACT_ROOT=<ARTIFACT_ROOT>`
+
+Do not treat any private downstream project path as a public template default.
 
 ## Required Shape
 

@@ -20,7 +20,7 @@ If a task would require sensitive content, stop with:
 
 ## Artifact Handling
 
-AppData artifacts must be redacted before packaging. They should include safe
+External artifacts must be redacted before packaging. They should include safe
 metadata, summaries, manifests, checksums, and next prompts. They must not
 include `.git`, `node_modules`, nested ZIPs, production database dumps, raw
 private logs, raw conversations, secrets, provider credentials, notification
