@@ -1,0 +1,18 @@
+{
+  "schema": "lonewolf.file_queue.state.v1",
+  "build_id": "20260612_file_queue_fixture_v1",
+  "task_id": "file_queue_task_docs_only",
+  "state": "RUNNING",
+  "previous_state": "READY",
+  "allowed_next_states": [
+    "DONE"
+  ],
+  "event": {
+    "type": "direct_run_without_claim",
+    "source": "file_queue",
+    "owner_action_marker": false
+  },
+  "timestamp": "2026-06-12T00:00:00Z",
+  "owner_review_required": false,
+  "stop_reason": "none"
+}

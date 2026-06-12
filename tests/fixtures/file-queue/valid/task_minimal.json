@@ -1,0 +1,48 @@
+{
+  "schema": "lonewolf.file_queue.task.v1",
+  "build_id": "20260612_file_queue_fixture_v1",
+  "task_id": "file_queue_task_minimal",
+  "title": "Minimal static file queue task",
+  "target_repo": "<REPO_ROOT>",
+  "mode": "schema_tests_only",
+  "allowed_files": [
+    "docs/orchestration/file_queue_contract.md"
+  ],
+  "forbidden_actions": [
+    "worker_launch",
+    "real_orchestration",
+    "browser_ui_automation",
+    "chatgpt_ui_automation",
+    "codex_ui_automation",
+    "runtime_execution",
+    "deploy",
+    "paper_live_order",
+    "cancel_order",
+    "fetch_balance",
+    "private_api",
+    "provider_mutation",
+    "billing_mutation",
+    "secrets_output",
+    "reset_restore_clean",
+    "force_push"
+  ],
+  "success_criteria": [
+    "Static contract file validates from disk.",
+    "No runtime behavior is enabled."
+  ],
+  "stop_conditions": [
+    "Any path outside the allowlist is required.",
+    "Any forbidden action appears necessary."
+  ],
+  "owner_approval_phrase": "APPROVE_FILE_QUEUE_SCHEMA_STATIC_TESTS_DOCS_ONLY",
+  "artifact_requirements": [
+    "manifest.json",
+    "safe_summary.md",
+    "checksum_summary.md"
+  ],
+  "expected_final_report_labels": [
+    "CHANGED_SUMMARY",
+    "STATIC_TEST_RESULT",
+    "FORBIDDEN_ACTIONS_CONFIRMATION"
+  ]
+}

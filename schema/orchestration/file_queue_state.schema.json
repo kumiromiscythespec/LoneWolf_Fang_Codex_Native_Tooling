@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/file_queue_state.schema.json",
+  "$comment": "BUILD_ID: 20260612_file_queue_state_schema_v1",
+  "title": "File Queue State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "task_id",
+    "state",
+    "previous_state",
+    "allowed_next_states",
+    "event",
+    "timestamp",
+    "owner_review_required",
+    "stop_reason"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.file_queue.state.v1" },
+    "build_id": { "type": "string", "const": "20260612_file_queue_fixture_v1" },
+    "task_id": { "type": "string", "minLength": 1 },
+    "state": { "$ref": "#/$defs/state_name" },
+    "previous_state": { "$ref": "#/$defs/state_name" },
+    "allowed_next_states": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/state_name" },
+      "uniqueItems": true
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "source", "owner_action_marker"],
+      "properties": {
+        "type": { "type": "string", "minLength": 1 },
+        "source": { "type": "string", "minLength": 1 },
+        "owner_action_marker": { "type": "boolean" }
+      }
+    },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "owner_review_required": { "type": "boolean" },
+    "stop_reason": { "type": "string" }
+  },
+  "$defs": {
+    "state_name": {
+      "type": "string",
+      "enum": [
+        "READY",
+        "CLAIMED",
+        "RUNNING",
+        "NEEDS_OWNER_APPROVAL",
+        "BLOCKED",
+        "DONE",
+        "FAILED_SAFE",
+        "ARCHIVED"
+      ]
+    }
+  }
+}

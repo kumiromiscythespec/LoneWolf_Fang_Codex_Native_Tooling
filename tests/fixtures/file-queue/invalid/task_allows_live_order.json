@@ -1,0 +1,42 @@
+{
+  "schema": "lonewolf.file_queue.task.v1",
+  "build_id": "20260612_file_queue_fixture_v1",
+  "task_id": "file_queue_task_allows_live_order",
+  "title": "Unsafe live order task",
+  "target_repo": "<REPO_ROOT>",
+  "mode": "LIVE_ORDER",
+  "allowed_files": [
+    "runtime/order_runner.js"
+  ],
+  "forbidden_actions": [
+    "worker_launch",
+    "real_orchestration",
+    "browser_ui_automation",
+    "chatgpt_ui_automation",
+    "codex_ui_automation",
+    "runtime_execution",
+    "deploy",
+    "paper_live_order",
+    "cancel_order",
+    "fetch_balance",
+    "private_api",
+    "provider_mutation",
+    "billing_mutation",
+    "secrets_output",
+    "reset_restore_clean",
+    "force_push"
+  ],
+  "success_criteria": [
+    "This fixture must fail because the mode is unsafe."
+  ],
+  "stop_conditions": [
+    "Unsafe mode detected."
+  ],
+  "owner_approval_phrase": "APPROVE_FILE_QUEUE_SCHEMA_STATIC_TESTS_DOCS_ONLY",
+  "artifact_requirements": [
+    "manifest.json"
+  ],
+  "expected_final_report_labels": [
+    "STOP_OWNER_REVIEW_REQUIRED"
+  ]
+}

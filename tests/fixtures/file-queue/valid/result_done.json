@@ -1,0 +1,69 @@
+{
+  "schema": "lonewolf.file_queue.result.v1",
+  "build_id": "20260612_file_queue_fixture_v1",
+  "task_id": "file_queue_task_docs_only",
+  "status": "DONE",
+  "changed_summary": "Docs, schemas, fixtures, and static tests were updated within the approved allowlist.",
+  "changed_files": [
+    "docs/orchestration/file_queue_contract.md",
+    "docs/orchestration/file_queue_state_machine.md",
+    "docs/orchestration/file_queue_safety_gates.md",
+    "schema/orchestration/file_queue_task.schema.json",
+    "schema/orchestration/file_queue_result.schema.json",
+    "schema/orchestration/file_queue_state.schema.json",
+    "tests/fixtures/file-queue/valid/task_minimal.json",
+    "tests/fixtures/file-queue/valid/task_docs_only.json",
+    "tests/fixtures/file-queue/valid/result_done.json",
+    "tests/fixtures/file-queue/valid/state_ready.json",
+    "tests/fixtures/file-queue/invalid/task_allows_live_order.json",
+    "tests/fixtures/file-queue/invalid/task_missing_stop_conditions.json",
+    "tests/fixtures/file-queue/invalid/result_missing_artifact_sha.json",
+    "tests/fixtures/file-queue/invalid/state_illegal_transition.json",
+    "tests/file_queue_contract.test.mjs"
+  ],
+  "tests": [
+    {
+      "command": "node --test tests\\codex_native_closed_loop\\*.test.mjs tests\\file_queue_contract.test.mjs",
+      "status": "PASS",
+      "notes": "Static local tests only."
+    }
+  ],
+  "blocker_matrix": [
+    {
+      "check": "allowlist",
+      "result": "PASS",
+      "notes": "Changed files are within the approved allowlist."
+    },
+    {
+      "check": "forbidden actions",
+      "result": "PASS",
+      "notes": "No forbidden actions were performed."
+    }
+  ],
+  "forbidden_actions_confirmation": {
+    "forbidden_actions_performed": false,
+    "confirmed_absent": [
+      "worker_launch",
+      "real_orchestration",
+      "browser_ui_automation",
+      "chatgpt_ui_automation",
+      "codex_ui_automation",
+      "runtime_execution",
+      "deploy",
+      "paper_live_order",
+      "cancel_order",
+      "fetch_balance",
+      "private_api",
+      "provider_mutation",
+      "billing_mutation",
+      "secrets_output",
+      "reset_restore_clean",
+      "force_push"
+    ],
+    "notes": "The result describes static validation only."
+  },
+  "artifact_zip_path": "%LOCALAPPDATA%\\CodexNativeClosedLoop\\data\\file_queue_result.zip",
+  "sha256": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+  "human_review_one_point": "Review the static contract before approving any runtime-oriented phase.",
+  "next_recommended_task": "REVIEW_FILE_QUEUE_STATIC_CONTRACT"
+}

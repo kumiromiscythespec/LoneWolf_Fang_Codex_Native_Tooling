@@ -1,0 +1,73 @@
+{
+  "schema": "lonewolf.file_queue.task.v1",
+  "build_id": "20260612_file_queue_fixture_v1",
+  "task_id": "file_queue_task_docs_only",
+  "title": "Docs schema fixtures static tests only",
+  "target_repo": "<REPO_ROOT>",
+  "mode": "docs_only",
+  "allowed_files": [
+    "docs/orchestration/file_queue_contract.md",
+    "docs/orchestration/file_queue_state_machine.md",
+    "docs/orchestration/file_queue_safety_gates.md",
+    "schema/orchestration/file_queue_task.schema.json",
+    "schema/orchestration/file_queue_result.schema.json",
+    "schema/orchestration/file_queue_state.schema.json",
+    "tests/fixtures/file-queue/valid/task_minimal.json",
+    "tests/fixtures/file-queue/valid/task_docs_only.json",
+    "tests/fixtures/file-queue/valid/result_done.json",
+    "tests/fixtures/file-queue/valid/state_ready.json",
+    "tests/fixtures/file-queue/invalid/task_allows_live_order.json",
+    "tests/fixtures/file-queue/invalid/task_missing_stop_conditions.json",
+    "tests/fixtures/file-queue/invalid/result_missing_artifact_sha.json",
+    "tests/fixtures/file-queue/invalid/state_illegal_transition.json",
+    "tests/file_queue_contract.test.mjs"
+  ],
+  "forbidden_actions": [
+    "worker_launch",
+    "real_orchestration",
+    "browser_ui_automation",
+    "chatgpt_ui_automation",
+    "codex_ui_automation",
+    "runtime_execution",
+    "deploy",
+    "paper_live_order",
+    "cancel_order",
+    "fetch_balance",
+    "private_api",
+    "provider_mutation",
+    "billing_mutation",
+    "secrets_output",
+    "reset_restore_clean",
+    "force_push"
+  ],
+  "success_criteria": [
+    "Only the allowlisted docs, schemas, fixtures, and static test files change.",
+    "Valid fixtures pass contract validation.",
+    "Invalid fixtures fail contract validation.",
+    "No hidden runtime or orchestration mode is allowed."
+  ],
+  "stop_conditions": [
+    "Required rule files are missing.",
+    "Worktree is dirty before implementation.",
+    "A file outside the allowlist needs editing.",
+    "Static tests fail.",
+    "A forbidden action is necessary."
+  ],
+  "owner_approval_phrase": "APPROVE_FILE_QUEUE_SCHEMA_STATIC_TESTS_DOCS_ONLY",
+  "artifact_requirements": [
+    "manifest.json",
+    "safe_summary.md",
+    "implementation_summary.md",
+    "static_test_summary.md",
+    "checksum_summary.md",
+    "NEXT_CODEX_PROMPT.md"
+  ],
+  "expected_final_report_labels": [
+    "CHANGED_SUMMARY",
+    "IMPLEMENTATION_RESULT",
+    "STATIC_TEST_RESULT",
+    "COMMIT_HASH",
+    "ZIP_PATH",
+    "SHA256"
+  ]
+}

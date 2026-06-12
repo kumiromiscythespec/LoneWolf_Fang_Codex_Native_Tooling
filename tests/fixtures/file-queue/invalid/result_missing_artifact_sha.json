@@ -1,0 +1,49 @@
+{
+  "schema": "lonewolf.file_queue.result.v1",
+  "build_id": "20260612_file_queue_fixture_v1",
+  "task_id": "file_queue_task_docs_only",
+  "status": "DONE",
+  "changed_summary": "This fixture must fail because sha256 is absent.",
+  "changed_files": [
+    "docs/orchestration/file_queue_contract.md"
+  ],
+  "tests": [
+    {
+      "command": "node --test tests\\file_queue_contract.test.mjs",
+      "status": "PASS",
+      "notes": "Synthetic invalid fixture."
+    }
+  ],
+  "blocker_matrix": [
+    {
+      "check": "artifact sha",
+      "result": "BLOCKED",
+      "notes": "Missing sha256 must block acceptance."
+    }
+  ],
+  "forbidden_actions_confirmation": {
+    "forbidden_actions_performed": false,
+    "confirmed_absent": [
+      "worker_launch",
+      "real_orchestration",
+      "browser_ui_automation",
+      "chatgpt_ui_automation",
+      "codex_ui_automation",
+      "runtime_execution",
+      "deploy",
+      "paper_live_order",
+      "cancel_order",
+      "fetch_balance",
+      "private_api",
+      "provider_mutation",
+      "billing_mutation",
+      "secrets_output",
+      "reset_restore_clean",
+      "force_push"
+    ],
+    "notes": "No forbidden actions were performed."
+  },
+  "artifact_zip_path": "%LOCALAPPDATA%\\CodexNativeClosedLoop\\data\\missing_sha.zip",
+  "human_review_one_point": "Reject result packets that lack artifact SHA256 evidence.",
+  "next_recommended_task": "STOP_OWNER_REVIEW_REQUIRED"
+}
