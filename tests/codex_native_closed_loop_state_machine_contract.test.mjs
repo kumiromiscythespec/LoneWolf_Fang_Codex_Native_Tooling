@@ -159,6 +159,7 @@ test("classifier defaults unsafe or ambiguous input to owner review stop", () =>
     { current_state: "REVIEW_PACKET_CREATED", event: "linkage_proof_ready" },
     { current_state: "TASK_AUTHORED", event: "validation_passed", execution_allowed: true },
     { current_state: "TASK_AUTHORED", event: "validation_passed", evidence: { auto_execute_enabled: true } },
+    { current_state: "TASK_AUTHORED", event: "validation_passed", evidence: { owner_note: "please deploy next" } },
     { current_state: "UNKNOWN", event: "task_found" },
     { current_state: "NO_TASK", event: "unknown_event" },
     { current_state: "NO_TASK", event: "unsafe_condition" }

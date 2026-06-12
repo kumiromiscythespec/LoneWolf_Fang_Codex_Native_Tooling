@@ -129,6 +129,8 @@ const unsafeEvidenceKeys = new Set([
   "watcher_enabled",
   "worker_launch_allowed"
 ]);
+const unsafeEvidenceTextPattern =
+  /\b(auto[-_\s]?continue|auto[-_\s]?execute|auto[-_\s]?send|billing|cleanup|daemon|delete|deploy|execute|fetch_balance|force[-_\s]?push|helper|interpreter|ledger[-_\s]?mutation|openai|order|paper|private[-_\s]?api|pull|push|queue[-_\s]?mutation|real[-_\s]?orchestration|reset|restore|runtime|secret|task[-_\s]?execution|trading|validator|watcher|worker)\b/i;
 
 function transition(currentState, event, nextState, allowedNextPhase, ownerApprovalRequired, options = {}) {
   return [
@@ -178,6 +180,7 @@ function stopPlan(currentState, event, reason) {
 }
 
 function hasUnsafeEvidence(value) {
+  if (typeof value === "string") return unsafeEvidenceTextPattern.test(value);
   if (value === null || typeof value !== "object") return false;
   for (const [key, nested] of Object.entries(value)) {
     if (unsafeEvidenceKeys.has(key) && nested === true) return true;
