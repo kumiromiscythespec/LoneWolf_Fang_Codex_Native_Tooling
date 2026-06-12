@@ -1,0 +1,11 @@
+{
+  "schema": "lonewolf.codex_native.closed_loop_state.plan.v0",
+  "build_id": "20260612_fasttrack_window4_closed_loop_state_machine_fixture_v0",
+  "current_state": "OWNER_DECISION_REQUIRED",
+  "event": "linkage_proof_ready",
+  "next_state": "LINKAGE_PROOF_CREATED",
+  "allowed_next_phase": "manual_closeout_review",
+  "execution_allowed": false,
+  "owner_approval_required": true,
+  "reason": "Linkage proof evidence is accepted only after explicit owner decision evidence; the coordinator still must not execute closeout."
+}

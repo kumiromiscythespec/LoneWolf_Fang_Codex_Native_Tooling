@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/codex_native_closed_loop_state.schema.json",
+  "$comment": "BUILD_ID: 20260612_fasttrack_window4_closed_loop_state_machine_schema_v0",
+  "title": "Codex Native Closed Loop Manual Coordinator Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "current_state",
+    "event",
+    "next_state",
+    "allowed_next_phase",
+    "execution_allowed",
+    "owner_approval_required",
+    "reason"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "lonewolf.codex_native.closed_loop_state.plan.v0"
+    },
+    "build_id": {
+      "type": "string",
+      "const": "20260612_fasttrack_window4_closed_loop_state_machine_fixture_v0"
+    },
+    "current_state": {
+      "$ref": "#/$defs/state"
+    },
+    "event": {
+      "$ref": "#/$defs/event"
+    },
+    "next_state": {
+      "$ref": "#/$defs/state"
+    },
+    "allowed_next_phase": {
+      "$ref": "#/$defs/phase"
+    },
+    "execution_allowed": {
+      "type": "boolean",
+      "const": false
+    },
+    "owner_approval_required": {
+      "type": "boolean"
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "$defs": {
+    "state": {
+      "type": "string",
+      "enum": [
+        "NO_TASK",
+        "TASK_AUTHORED",
+        "VALIDATOR_ACCEPTED",
+        "VALIDATOR_REJECTED",
+        "INTERPRETER_COMPLETED",
+        "REVIEW_PACKET_CREATED",
+        "OWNER_DECISION_REQUIRED",
+        "LINKAGE_PROOF_CREATED",
+        "CLOSED_OUT",
+        "STOP_OWNER_REVIEW_REQUIRED"
+      ]
+    },
+    "event": {
+      "type": "string",
+      "enum": [
+        "task_found",
+        "validation_passed",
+        "validation_failed",
+        "interpreter_completed",
+        "review_packet_ready",
+        "owner_go",
+        "owner_repair",
+        "linkage_proof_ready",
+        "closeout_ready",
+        "unsafe_condition"
+      ]
+    },
+    "phase": {
+      "type": "string",
+      "enum": [
+        "manual_validator_review",
+        "owner_review_before_interpreter",
+        "manual_repair_review",
+        "manual_review_packet_creation",
+        "owner_decision_gate",
+        "manual_linkage_proof_creation",
+        "manual_closeout_review",
+        "closed_loop_complete",
+        "stop_owner_review_required"
+      ]
+    }
+  }
+}

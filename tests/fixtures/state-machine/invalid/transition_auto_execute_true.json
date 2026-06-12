@@ -1,0 +1,11 @@
+{
+  "schema": "lonewolf.codex_native.closed_loop_state.plan.v0",
+  "build_id": "20260612_fasttrack_window4_closed_loop_state_machine_fixture_v0",
+  "current_state": "VALIDATOR_ACCEPTED",
+  "event": "interpreter_completed",
+  "next_state": "INTERPRETER_COMPLETED",
+  "allowed_next_phase": "manual_review_packet_creation",
+  "execution_allowed": true,
+  "owner_approval_required": false,
+  "reason": "Invalid fixture: auto execution is never allowed."
+}
