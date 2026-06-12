@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/file_queue_validation_report.schema.json",
+  "$comment": "BUILD_ID: 20260612_file_queue_validation_report_schema_v1",
+  "title": "File Queue Validation Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "validator_build_id",
+    "task_id",
+    "status",
+    "accepted",
+    "reasons",
+    "checked_at",
+    "input_task_path",
+    "output_packet_path",
+    "schema_validation",
+    "forbidden_action_validation",
+    "stop_condition_validation",
+    "artifact_requirement_validation",
+    "owner_review_validation",
+    "safety_gate_validation",
+    "next_recommended_action"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.file_queue.validation_report.v1" },
+    "build_id": { "type": "string", "const": "20260612_file_queue_validation_report_fixture_v1" },
+    "validator_build_id": { "type": "string", "minLength": 1 },
+    "task_id": { "type": "string", "minLength": 1 },
+    "status": {
+      "type": "string",
+      "enum": [
+        "VALID_DRY_RUN",
+        "INVALID_SCHEMA",
+        "UNSAFE_FORBIDDEN_ACTIONS",
+        "MISSING_STOP_CONDITIONS",
+        "MISSING_ARTIFACT_REQUIREMENTS",
+        "OWNER_REVIEW_REQUIRED",
+        "FAILED_SAFE"
+      ]
+    },
+    "accepted": { "type": "boolean" },
+    "reasons": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "checked_at": { "type": "string", "format": "date-time" },
+    "input_task_path": { "type": "string", "minLength": 1 },
+    "output_packet_path": { "type": "string", "minLength": 1 },
+    "schema_validation": { "$ref": "#/$defs/validation_section" },
+    "forbidden_action_validation": { "$ref": "#/$defs/validation_section" },
+    "stop_condition_validation": { "$ref": "#/$defs/validation_section" },
+    "artifact_requirement_validation": { "$ref": "#/$defs/validation_section" },
+    "owner_review_validation": { "$ref": "#/$defs/validation_section" },
+    "safety_gate_validation": { "$ref": "#/$defs/validation_section" },
+    "next_recommended_action": {
+      "type": "string",
+      "enum": [
+        "PROCEED_TO_OWNER_REVIEW",
+        "REPAIR_TASK_FILE",
+        "STOP_OWNER_REVIEW_REQUIRED",
+        "FAILED_SAFE"
+      ]
+    }
+  },
+  "$defs": {
+    "validation_section": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["passed", "messages"],
+      "properties": {
+        "passed": { "type": "boolean" },
+        "messages": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1
+        }
+      }
+    }
+  }
+}

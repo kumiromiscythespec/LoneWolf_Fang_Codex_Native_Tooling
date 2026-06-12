@@ -1,0 +1,48 @@
+{
+  "schema": "lonewolf.file_queue.validation_report.v1",
+  "build_id": "20260612_file_queue_validation_report_fixture_v1",
+  "validator_build_id": "20260612_file_queue_dry_run_validator_mvp_v1",
+  "task_id": "file_queue_task_docs_only",
+  "status": "FAILED_SAFE",
+  "accepted": false,
+  "checked_at": "2026-06-12T00:00:00Z",
+  "input_task_path": "tests/fixtures/file-queue/valid/task_docs_only.json",
+  "output_packet_path": "%TEMP%/file_queue_validation_report_file_queue_task_docs_only.json",
+  "schema_validation": {
+    "passed": false,
+    "messages": [
+      "This invalid fixture omits reasons and must fail schema validation."
+    ]
+  },
+  "forbidden_action_validation": {
+    "passed": true,
+    "messages": [
+      "Forbidden action coverage check was not the failure under test."
+    ]
+  },
+  "stop_condition_validation": {
+    "passed": true,
+    "messages": [
+      "Stop condition check was not the failure under test."
+    ]
+  },
+  "artifact_requirement_validation": {
+    "passed": true,
+    "messages": [
+      "Artifact requirement check was not the failure under test."
+    ]
+  },
+  "owner_review_validation": {
+    "passed": true,
+    "messages": [
+      "Owner review check was not the failure under test."
+    ]
+  },
+  "safety_gate_validation": {
+    "passed": true,
+    "messages": [
+      "Safety gate check was not the failure under test."
+    ]
+  },
+  "next_recommended_action": "FAILED_SAFE"
+}
