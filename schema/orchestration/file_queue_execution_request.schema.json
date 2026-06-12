@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/file_queue_execution_request.schema.json",
+  "$comment": "BUILD_ID: 20260612_file_queue_execution_request_schema_v1",
+  "title": "File Queue Execution Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "request_id",
+    "task_id",
+    "task_type",
+    "operation_class",
+    "task_json_path",
+    "task_json_sha256",
+    "validator_report_path",
+    "validator_report_sha256",
+    "expected_validator_status",
+    "expected_validator_accepted",
+    "owner_approval_phrase",
+    "output_root_policy",
+    "success_criteria",
+    "stop_conditions",
+    "expected_final_report_labels"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.file_queue.execution_request.v1" },
+    "build_id": { "type": "string", "const": "20260612_file_queue_execution_request_fixture_v1" },
+    "request_id": { "type": "string", "minLength": 1 },
+    "task_id": { "type": "string", "minLength": 1 },
+    "task_type": {
+      "type": "string",
+      "enum": ["APPDATA_REVIEW_PACKET_ONLY"]
+    },
+    "operation_class": {
+      "type": "string",
+      "enum": ["APPDATA_PACKET_CREATION"]
+    },
+    "task_json_path": { "type": "string", "minLength": 1 },
+    "task_json_sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" },
+    "validator_report_path": { "type": "string", "minLength": 1 },
+    "validator_report_sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" },
+    "expected_validator_status": { "type": "string", "const": "VALID_DRY_RUN" },
+    "expected_validator_accepted": { "type": "boolean", "const": true },
+    "owner_approval_phrase": { "type": "string", "minLength": 1 },
+    "output_root_policy": {
+      "type": "string",
+      "enum": [
+        "APPDATA_OR_TEST_TEMP_ONLY",
+        "APPDATA_ONLY",
+        "TEST_TEMP_ONLY"
+      ]
+    },
+    "success_criteria": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "stop_conditions": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "expected_final_report_labels": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    }
+  }
+}

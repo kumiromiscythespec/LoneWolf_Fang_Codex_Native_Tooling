@@ -1,0 +1,24 @@
+{
+  "schema": "lonewolf.file_queue.execution_request.v1",
+  "build_id": "20260612_file_queue_execution_request_fixture_v1",
+  "request_id": "exec_request_missing_validator_report_sha",
+  "task_id": "exec_task_missing_validator_report_sha",
+  "task_type": "APPDATA_REVIEW_PACKET_ONLY",
+  "operation_class": "APPDATA_PACKET_CREATION",
+  "task_json_path": "%TEMP%/exec_task_missing_validator_report_sha.json",
+  "task_json_sha256": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+  "validator_report_path": "%TEMP%/validator_report_exec_task_missing_validator_report_sha.json",
+  "expected_validator_status": "VALID_DRY_RUN",
+  "expected_validator_accepted": true,
+  "owner_approval_phrase": "APPROVE_EXECUTION_INTERPRETER_STATIC_MVP",
+  "output_root_policy": "APPDATA_OR_TEST_TEMP_ONLY",
+  "success_criteria": [
+    "This fixture must be rejected."
+  ],
+  "stop_conditions": [
+    "Missing validator report SHA."
+  ],
+  "expected_final_report_labels": [
+    "CHANGED_SUMMARY"
+  ]
+}

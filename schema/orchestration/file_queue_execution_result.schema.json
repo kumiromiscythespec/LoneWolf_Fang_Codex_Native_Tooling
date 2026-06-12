@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/file_queue_execution_result.schema.json",
+  "$comment": "BUILD_ID: 20260612_file_queue_execution_result_schema_v1",
+  "title": "File Queue Execution Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "interpreter_build_id",
+    "request_id",
+    "task_id",
+    "status",
+    "accepted",
+    "reasons",
+    "operation_class",
+    "task_json_sha256",
+    "validator_report_sha256",
+    "output_packet_path",
+    "checked_at",
+    "safety_summary",
+    "forbidden_actions_confirmation",
+    "next_recommended_action"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.file_queue.execution_result.v1" },
+    "build_id": { "type": "string", "const": "20260612_file_queue_execution_result_fixture_v1" },
+    "interpreter_build_id": { "type": "string", "minLength": 1 },
+    "request_id": { "type": "string", "minLength": 1 },
+    "task_id": { "type": "string", "minLength": 1 },
+    "status": {
+      "type": "string",
+      "enum": [
+        "EXECUTION_COMPLETED",
+        "INVALID_REQUEST",
+        "UNSAFE_TASK_TYPE",
+        "UNSAFE_OPERATION_CLASS",
+        "SHA_MISMATCH",
+        "VALIDATOR_REPORT_REJECTED",
+        "OUTPUT_BOUNDARY_VIOLATION",
+        "STOP_OWNER_REVIEW_REQUIRED",
+        "FAILED_SAFE"
+      ]
+    },
+    "accepted": { "type": "boolean" },
+    "reasons": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "operation_class": { "type": "string", "minLength": 1 },
+    "task_json_sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$|^$" },
+    "validator_report_sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$|^$" },
+    "output_packet_path": { "type": "string" },
+    "checked_at": { "type": "string", "minLength": 1 },
+    "safety_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "local_cli_only",
+        "no_daemon",
+        "no_watcher",
+        "no_queue_loop",
+        "no_codex_cli",
+        "no_openai_api",
+        "no_ui_bridge",
+        "appdata_or_test_temp_output_only",
+        "no_repo_mutation",
+        "forbidden_actions"
+      ],
+      "properties": {
+        "local_cli_only": { "type": "boolean", "const": true },
+        "no_daemon": { "type": "boolean", "const": true },
+        "no_watcher": { "type": "boolean", "const": true },
+        "no_queue_loop": { "type": "boolean", "const": true },
+        "no_codex_cli": { "type": "boolean", "const": true },
+        "no_openai_api": { "type": "boolean", "const": true },
+        "no_ui_bridge": { "type": "boolean", "const": true },
+        "appdata_or_test_temp_output_only": { "type": "boolean", "const": true },
+        "no_repo_mutation": { "type": "boolean", "const": true },
+        "forbidden_actions": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1
+        }
+      }
+    },
+    "forbidden_actions_confirmation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["forbidden_actions_performed", "confirmed_absent"],
+      "properties": {
+        "forbidden_actions_performed": { "type": "boolean", "const": false },
+        "confirmed_absent": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1
+        }
+      }
+    },
+    "next_recommended_action": {
+      "type": "string",
+      "enum": [
+        "OWNER_REVIEW_REQUIRED",
+        "REPAIR_EXECUTION_REQUEST",
+        "STOP_OWNER_REVIEW_REQUIRED",
+        "FAILED_SAFE"
+      ]
+    }
+  }
+}

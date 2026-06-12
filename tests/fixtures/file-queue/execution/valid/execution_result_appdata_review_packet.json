@@ -1,0 +1,62 @@
+{
+  "schema": "lonewolf.file_queue.execution_result.v1",
+  "build_id": "20260612_file_queue_execution_result_fixture_v1",
+  "interpreter_build_id": "20260612_file_queue_execution_interpreter_static_mvp_v1",
+  "request_id": "exec_request_appdata_review_packet_only",
+  "task_id": "exec_task_appdata_review_packet_only",
+  "status": "EXECUTION_COMPLETED",
+  "accepted": true,
+  "reasons": [
+    "Execution request completed as AppData packet creation only."
+  ],
+  "operation_class": "APPDATA_PACKET_CREATION",
+  "task_json_sha256": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+  "validator_report_sha256": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+  "output_packet_path": "%TEMP%/execution_review_exec_request_appdata_review_packet_only",
+  "checked_at": "2026-06-12T00:00:00Z",
+  "safety_summary": {
+    "local_cli_only": true,
+    "no_daemon": true,
+    "no_watcher": true,
+    "no_queue_loop": true,
+    "no_codex_cli": true,
+    "no_openai_api": true,
+    "no_ui_bridge": true,
+    "appdata_or_test_temp_output_only": true,
+    "no_repo_mutation": true,
+    "forbidden_actions": [
+      "runner",
+      "daemon",
+      "watcher",
+      "queue_loop",
+      "codex_cli",
+      "openai_api",
+      "ui_bridge",
+      "repo_mutation",
+      "provider_mutation",
+      "private_api",
+      "deploy",
+      "paper_live_order",
+      "secrets_output"
+    ]
+  },
+  "forbidden_actions_confirmation": {
+    "forbidden_actions_performed": false,
+    "confirmed_absent": [
+      "runner",
+      "daemon",
+      "watcher",
+      "queue_loop",
+      "codex_cli",
+      "openai_api",
+      "ui_bridge",
+      "repo_mutation",
+      "provider_mutation",
+      "private_api",
+      "deploy",
+      "paper_live_order",
+      "secrets_output"
+    ]
+  },
+  "next_recommended_action": "OWNER_REVIEW_REQUIRED"
+}
