@@ -1,0 +1,13 @@
+{
+  "schema": "lonewolf.file_queue.linkage_consumer_observation.v1",
+  "build_id": "20260612_fasttrack_window3_readonly_linkage_consumer_fixture_v0",
+  "consumer_build_id": "20260612_fasttrack_window3_readonly_linkage_consumer_v0",
+  "observed_at_utc": "2026-06-12T08:00:00.000Z",
+  "source_ledger_path": "%LOCALAPPDATA%/LoneWolfFang/data/linkage_ledger.jsonl",
+  "latest_proof_status": "UNKNOWN",
+  "next_action_recommendation": "STOP_OWNER_REVIEW_REQUIRED",
+  "owner_approval_required": true,
+  "execution_allowed": false,
+  "runtime_allowed": false,
+  "reason": "No accepted linkage proof was found; owner review is required."
+}
