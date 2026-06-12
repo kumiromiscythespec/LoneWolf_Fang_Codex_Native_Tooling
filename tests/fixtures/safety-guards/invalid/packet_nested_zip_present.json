@@ -1,0 +1,18 @@
+{
+  "schema": "lonewolf.codex_native.packet_safety_report.v1",
+  "build_id": "20260612_fasttrack_window5_safety_guards_fixture_minimal_v1",
+  "output_path": "C:\\Users\\yu_ki\\AppData\\Local\\LoneWolfFang\\data\\lane5_safety_guards_minimal_impl_20260612_120000.zip",
+  "runtime_performed": false,
+  "deploy_performed": false,
+  "private_api_performed": false,
+  "trading_performed": false,
+  "billing_performed": false,
+  "push_fetch_pull_performed": false,
+  "push_fetch_pull_explicitly_allowed": false,
+  "repo_changes_performed": true,
+  "contains_git_dir": false,
+  "contains_node_modules": false,
+  "contains_nested_zip": true,
+  "contains_build_cache": false,
+  "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+}

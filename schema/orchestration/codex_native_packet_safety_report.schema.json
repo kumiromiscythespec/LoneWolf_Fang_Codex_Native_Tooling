@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/codex_native_packet_safety_report.schema.json",
+  "$comment": "BUILD_ID: 20260612_fasttrack_window5_safety_guards_schema_minimal_v1",
+  "title": "Codex Native Packet Safety Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "output_path",
+    "runtime_performed",
+    "deploy_performed",
+    "private_api_performed",
+    "trading_performed",
+    "billing_performed",
+    "push_fetch_pull_performed",
+    "push_fetch_pull_explicitly_allowed",
+    "repo_changes_performed",
+    "contains_git_dir",
+    "contains_node_modules",
+    "contains_nested_zip",
+    "contains_build_cache"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.codex_native.packet_safety_report.v1" },
+    "build_id": { "type": "string", "const": "20260612_fasttrack_window5_safety_guards_fixture_minimal_v1" },
+    "output_path": { "type": "string", "minLength": 1 },
+    "runtime_performed": { "type": "boolean" },
+    "deploy_performed": { "type": "boolean" },
+    "private_api_performed": { "type": "boolean" },
+    "trading_performed": { "type": "boolean" },
+    "billing_performed": { "type": "boolean" },
+    "push_fetch_pull_performed": { "type": "boolean" },
+    "push_fetch_pull_explicitly_allowed": { "type": "boolean" },
+    "repo_changes_performed": { "type": "boolean" },
+    "contains_git_dir": { "type": "boolean" },
+    "contains_node_modules": { "type": "boolean" },
+    "contains_nested_zip": { "type": "boolean" },
+    "contains_build_cache": { "type": "boolean" },
+    "artifact_sha256": { "$ref": "#/$defs/sha256" },
+    "sidecar_sha256": { "$ref": "#/$defs/sha256" },
+    "notes": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[A-Fa-f0-9]{64}$"
+    }
+  }
+}
