@@ -1,0 +1,51 @@
+{
+  "schema": "lonewolf.file_queue.task_author_request.v1",
+  "build_id": "20260612_file_queue_task_author_request_fixture_v1",
+  "request_id": "author_request_review_packet_only",
+  "task_id": "authored_task_docs_only",
+  "title": "Task authoring helper docs-only static MVP",
+  "target_repo": "<REPO_ROOT>",
+  "task_type": "DOCS_SCHEMA_STATIC_TESTS_ONLY",
+  "mode": "docs_only",
+  "allowed_files": [
+    "docs/orchestration/file_queue_task_authoring_helper.md",
+    "schema/orchestration/file_queue_task_author_request.schema.json",
+    "schema/orchestration/file_queue_task_author_output.schema.json",
+    "tests/fixtures/file-queue/authoring/valid/request_review_packet_only.json",
+    "tests/fixtures/file-queue/authoring/invalid/request_forbidden_runtime.json",
+    "tests/fixtures/file-queue/authoring/valid/authored_task_docs_only.json",
+    "tests/file_queue_task_authoring_helper_contract.test.mjs",
+    "tools/file_queue_task_authoring_helper.mjs"
+  ],
+  "owner_approval_phrase": "APPROVE_TASK_AUTHORING_HELPER_STATIC_MVP",
+  "success_criteria": [
+    "Only the allowlisted task authoring helper files change.",
+    "The helper writes a task JSON, preview, and author output report under an explicit temp or AppData output root.",
+    "The generated task JSON validates against the file queue task schema.",
+    "Forbidden runtime-style authoring requests are rejected."
+  ],
+  "stop_conditions": [
+    "A file outside the allowlist would need editing.",
+    "A forbidden runtime, deploy, provider, private API, trading, worker, daemon, or browser automation action appears necessary.",
+    "Required static tests fail.",
+    "The helper would need to run the dry-run validator or execute a task."
+  ],
+  "artifact_requirements": [
+    "manifest.json",
+    "safe_summary.md",
+    "implementation_summary.md",
+    "test_summary.md",
+    "validation_summary.md",
+    "checksum_summary.md",
+    "NEXT_CODEX_PROMPT.md"
+  ],
+  "expected_final_report_labels": [
+    "CHANGED_SUMMARY",
+    "IMPLEMENTATION_RESULT",
+    "VALIDATION_RESULT",
+    "COMMIT_HASH",
+    "ZIP_PATH",
+    "SHA256"
+  ],
+  "output_root_policy": "APPDATA_OR_TEST_TEMP_ONLY"
+}

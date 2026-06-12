@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/file_queue_task_author_request.schema.json",
+  "$comment": "BUILD_ID: 20260612_file_queue_task_author_request_schema_v1",
+  "title": "File Queue Task Author Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "request_id",
+    "task_id",
+    "title",
+    "target_repo",
+    "task_type",
+    "mode",
+    "allowed_files",
+    "owner_approval_phrase",
+    "success_criteria",
+    "stop_conditions",
+    "artifact_requirements",
+    "expected_final_report_labels",
+    "output_root_policy"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.file_queue.task_author_request.v1" },
+    "build_id": { "type": "string", "const": "20260612_file_queue_task_author_request_fixture_v1" },
+    "request_id": { "type": "string", "minLength": 1 },
+    "task_id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "target_repo": { "type": "string", "minLength": 1 },
+    "task_type": {
+      "type": "string",
+      "enum": [
+        "APPDATA_REVIEW_PACKET_ONLY",
+        "APPROVAL_PACKET_ONLY",
+        "DOCS_SCHEMA_STATIC_TESTS_ONLY",
+        "READ_ONLY_INVENTORY_ONLY",
+        "PUSH_APPROVAL_PACKET_ONLY",
+        "PUSH_EXECUTION_ONLY"
+      ]
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "docs_only",
+        "schema_tests_only",
+        "static_validation_only",
+        "artifact_handoff_only"
+      ]
+    },
+    "allowed_files": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "owner_approval_phrase": { "type": "string", "minLength": 1 },
+    "success_criteria": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "stop_conditions": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "artifact_requirements": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "expected_final_report_labels": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "output_root_policy": {
+      "type": "string",
+      "enum": [
+        "APPDATA_OR_TEST_TEMP_ONLY",
+        "APPDATA_ONLY",
+        "TEST_TEMP_ONLY"
+      ]
+    }
+  }
+}

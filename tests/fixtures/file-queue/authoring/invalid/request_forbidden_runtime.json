@@ -1,0 +1,27 @@
+{
+  "schema": "lonewolf.file_queue.task_author_request.v1",
+  "build_id": "20260612_file_queue_task_author_request_fixture_v1",
+  "request_id": "author_request_forbidden_runtime",
+  "task_id": "forbidden_runtime_private_api_task",
+  "title": "Forbidden runtime private API worker task",
+  "target_repo": "<REPO_ROOT>",
+  "task_type": "RUNTIME_EXECUTION",
+  "mode": "static_validation_only",
+  "allowed_files": [
+    "tools/runtime/private_api_worker.mjs"
+  ],
+  "owner_approval_phrase": "APPROVE_FORBIDDEN_RUNTIME_PRIVATE_API_TASK",
+  "success_criteria": [
+    "This fixture must be rejected."
+  ],
+  "stop_conditions": [
+    "Runtime execution, deploy, private API, trading, or worker behavior is requested."
+  ],
+  "artifact_requirements": [
+    "safe_failure_report.json"
+  ],
+  "expected_final_report_labels": [
+    "FAILED_SAFE"
+  ],
+  "output_root_policy": "APPDATA_OR_TEST_TEMP_ONLY"
+}

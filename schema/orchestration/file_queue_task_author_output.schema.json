@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/file_queue_task_author_output.schema.json",
+  "$comment": "BUILD_ID: 20260612_file_queue_task_author_output_schema_v1",
+  "title": "File Queue Task Author Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "helper_build_id",
+    "request_id",
+    "task_id",
+    "status",
+    "accepted",
+    "reasons",
+    "output_task_path",
+    "preview_path",
+    "checked_at",
+    "safety_summary",
+    "next_recommended_action"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.file_queue.task_author_output.v1" },
+    "build_id": { "type": "string", "const": "20260612_file_queue_task_author_output_fixture_v1" },
+    "helper_build_id": { "type": "string", "minLength": 1 },
+    "request_id": { "type": "string", "minLength": 1 },
+    "task_id": { "type": "string", "minLength": 1 },
+    "status": {
+      "type": "string",
+      "enum": [
+        "TASK_DRAFTED",
+        "INVALID_REQUEST",
+        "UNSAFE_TASK_TYPE",
+        "MISSING_OWNER_APPROVAL",
+        "MISSING_STOP_CONDITIONS",
+        "FAILED_SAFE"
+      ]
+    },
+    "accepted": { "type": "boolean" },
+    "reasons": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "output_task_path": { "type": "string" },
+    "preview_path": { "type": "string" },
+    "checked_at": { "type": "string", "format": "date-time" },
+    "safety_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "author_only",
+        "output_root_policy",
+        "forbidden_actions"
+      ],
+      "properties": {
+        "author_only": { "type": "boolean" },
+        "output_root_policy": { "type": "string", "minLength": 1 },
+        "forbidden_actions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/forbidden_action" },
+          "minItems": 16,
+          "uniqueItems": true
+        }
+      }
+    },
+    "next_recommended_action": {
+      "type": "string",
+      "enum": [
+        "VALIDATE_WITH_DRY_RUN_VALIDATOR",
+        "REPAIR_AUTHORING_REQUEST",
+        "STOP_OWNER_REVIEW_REQUIRED",
+        "FAILED_SAFE"
+      ]
+    }
+  },
+  "$defs": {
+    "forbidden_action": {
+      "type": "string",
+      "enum": [
+        "worker_launch",
+        "real_orchestration",
+        "browser_ui_automation",
+        "chatgpt_ui_automation",
+        "codex_ui_automation",
+        "runtime_execution",
+        "deploy",
+        "paper_live_order",
+        "cancel_order",
+        "fetch_balance",
+        "private_api",
+        "provider_mutation",
+        "billing_mutation",
+        "secrets_output",
+        "reset_restore_clean",
+        "force_push"
+      ]
+    }
+  }
+}
