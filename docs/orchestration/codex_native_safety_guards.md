@@ -15,6 +15,8 @@ before a packet can be treated as safe evidence.
 
 The helper validates:
 
+- `schema` and `build_id` match the accepted packet safety report contract.
+- unexpected top-level fields fail closed.
 - `output_path` is under the approved AppData artifact root.
 - `output_path` is not under the wrong project root.
 - runtime, deploy, private API, trading, and billing flags are false.

@@ -4,6 +4,8 @@ import { win32 as pathWin32 } from "node:path";
 const APPDATA_ARTIFACT_ROOT = "C:\\Users\\yu_ki\\AppData\\Local\\LoneWolfFang\\data";
 const WRONG_PROJECT_ROOT = "C:\\LoneWolf_Fang_Project";
 const STOP_OWNER_REVIEW_REQUIRED = "STOP_OWNER_REVIEW_REQUIRED";
+const REPORT_SCHEMA_ID = "lonewolf.codex_native.packet_safety_report.v1";
+const REPORT_BUILD_ID = "20260612_fasttrack_window5_safety_guards_fixture_minimal_v1";
 
 const REQUIRED_BOOLEAN_FIELDS = [
   "runtime_performed",
@@ -19,6 +21,15 @@ const REQUIRED_BOOLEAN_FIELDS = [
   "contains_nested_zip",
   "contains_build_cache"
 ];
+
+const OPTIONAL_FIELDS = ["artifact_sha256", "sidecar_sha256", "notes"];
+const ALLOWED_FIELDS = new Set([
+  "schema",
+  "build_id",
+  "output_path",
+  ...REQUIRED_BOOLEAN_FIELDS,
+  ...OPTIONAL_FIELDS
+]);
 
 const MUST_BE_FALSE_FIELDS = [
   "runtime_performed",
@@ -90,6 +101,29 @@ export function validatePacketSafetyReport(report) {
       status: STOP_OWNER_REVIEW_REQUIRED,
       reasons: ["report must be an object"]
     };
+  }
+
+  for (const key of Object.keys(report)) {
+    if (!ALLOWED_FIELDS.has(key)) {
+      reasons.push(`unexpected field ${key}`);
+    }
+  }
+
+  if (report.schema !== REPORT_SCHEMA_ID) {
+    reasons.push("schema must be lonewolf.codex_native.packet_safety_report.v1");
+  }
+
+  if (report.build_id !== REPORT_BUILD_ID) {
+    reasons.push("build_id must match safety guard fixture contract");
+  }
+
+  if (
+    Object.hasOwn(report, "notes") &&
+    (!Array.isArray(report.notes) ||
+      report.notes.length === 0 ||
+      report.notes.some((item) => typeof item !== "string" || item.length === 0))
+  ) {
+    reasons.push("notes must be a non-empty string array when present");
   }
 
   if (typeof report.output_path !== "string" || report.output_path.trim() === "") {

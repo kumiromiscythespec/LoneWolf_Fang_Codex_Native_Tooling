@@ -52,6 +52,19 @@ test("schema and fixtures carry the minimal safety contract", () => {
   }
   assert.equal(schema.properties.artifact_sha256.$ref, "#/$defs/sha256");
   assert.equal(schema.properties.sidecar_sha256.$ref, "#/$defs/sha256");
+  for (const field of [
+    "runtime_performed",
+    "deploy_performed",
+    "private_api_performed",
+    "trading_performed",
+    "billing_performed",
+    "contains_git_dir",
+    "contains_node_modules",
+    "contains_nested_zip",
+    "contains_build_cache"
+  ]) {
+    assert.equal(schema.properties[field].const, false, `schema must require ${field}=false`);
+  }
   assert.equal(
     validReport.build_id,
     "20260612_fasttrack_window5_safety_guards_fixture_minimal_v1"
@@ -126,6 +139,27 @@ test("ambiguous, missing, and unsafe fields fail closed", () => {
       "artifact_sha256 must be a 64-character SHA256 hex string"
     )
   );
+
+  const missingSchema = { ...validReport };
+  delete missingSchema.schema;
+  assert.ok(
+    validatePacketSafetyReport(missingSchema).reasons.includes(
+      "schema must be lonewolf.codex_native.packet_safety_report.v1"
+    )
+  );
+
+  const badBuildId = { ...validReport, build_id: "stale_or_wrong_build" };
+  assert.ok(
+    validatePacketSafetyReport(badBuildId).reasons.includes(
+      "build_id must match safety guard fixture contract"
+    )
+  );
+
+  const extraField = { ...validReport, auto_execute_enabled: false };
+  assert.ok(validatePacketSafetyReport(extraField).reasons.includes("unexpected field auto_execute_enabled"));
+
+  const badNotes = { ...validReport, notes: "approved" };
+  assert.ok(validatePacketSafetyReport(badNotes).reasons.includes("notes must be a non-empty string array when present"));
 });
 
 test("minimal helper remains local-only and non-operational", () => {
