@@ -1,0 +1,44 @@
+{
+  "schema": "lonewolf.file_queue.linkage_ledger_entry.v1",
+  "build_id": "20260612_fasttrack_window2_linkage_ledger_writer_fixture_v0",
+  "proof_id": "proof_non_appdata_path_001",
+  "chain_id": "chain_phase44_task_result_linkage_001",
+  "task_id": "task_phase44_task_result_linkage_001",
+  "current_state": "EXECUTED_APPDATA_ONLY",
+  "ledger_path": "C:\\temp\\file_queue_linkage_ledger.jsonl",
+  "overwrite_existing": false,
+  "created_at": "2026-06-12T00:00:00.000Z",
+  "proof_summary": "Invalid fixture using a ledger path outside AppData.",
+  "evidence_references": [
+    {
+      "kind": "task_result_linkage",
+      "path": "C:\\Users\\yu_ki\\AppData\\Local\\LoneWolfFang\\data\\phase44\\linkage_complete_chain.json",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  ],
+  "safety_summary": {
+    "local_only": true,
+    "appdata_only": true,
+    "evidence_by_reference": true,
+    "no_secrets": true,
+    "no_network": true,
+    "no_task_execution": true,
+    "no_queue_consumption": true,
+    "no_daemon_watcher": true
+  },
+  "forbidden_actions_confirmation": {
+    "forbidden_actions_performed": false,
+    "confirmed_absent": [
+      "network_api",
+      "task_execution",
+      "queue_consumption",
+      "daemon",
+      "watcher",
+      "private_api",
+      "trading",
+      "billing",
+      "deploy",
+      "secrets_output"
+    ]
+  }
+}
