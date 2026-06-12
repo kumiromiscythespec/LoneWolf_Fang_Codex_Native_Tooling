@@ -1,0 +1,208 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/file_queue_linkage_supersession_record.schema.json",
+  "$comment": "BUILD_ID: 20260613_ledger_consumer_static_hardening_v1",
+  "title": "File Queue Linkage Supersession Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "supersession_id",
+    "chain_id",
+    "task_id",
+    "supersedes_proof_id",
+    "superseding_proof_id",
+    "supersession_reason",
+    "supersession_created_at",
+    "supersession_status",
+    "ledger_path",
+    "evidence_references",
+    "parent_proof_sha256",
+    "superseding_proof_sha256",
+    "supersession_record_sha256",
+    "checksum_algorithm",
+    "owner_approval_required",
+    "execution_allowed",
+    "runtime_allowed",
+    "safety_summary",
+    "forbidden_actions_confirmation",
+    "human_review_one_point"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "lonewolf.file_queue.linkage_supersession_record.v1"
+    },
+    "build_id": {
+      "type": "string",
+      "const": "20260613_ledger_consumer_static_hardening_v1"
+    },
+    "supersession_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]+$"
+    },
+    "chain_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "supersedes_proof_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "superseding_proof_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "supersession_reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "supersession_created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "supersession_status": {
+      "type": "string",
+      "enum": ["SUPERSESSION_RECORDED"]
+    },
+    "ledger_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_references": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "path", "sha256"],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "superseded_proof",
+              "superseding_proof",
+              "owner_decision",
+              "output_packet",
+              "artifact_manifest"
+            ]
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "notes": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "parent_proof_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "superseding_proof_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "supersession_record_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "checksum_algorithm": {
+      "type": "string",
+      "const": "SHA256"
+    },
+    "owner_approval_required": {
+      "type": "boolean",
+      "const": true
+    },
+    "execution_allowed": {
+      "type": "boolean",
+      "const": false
+    },
+    "runtime_allowed": {
+      "type": "boolean",
+      "const": false
+    },
+    "safety_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "append_only",
+        "evidence_by_reference",
+        "no_ledger_rewrite",
+        "no_deletion",
+        "no_task_execution",
+        "no_queue_mutation",
+        "no_daemon_watcher"
+      ],
+      "properties": {
+        "append_only": {
+          "type": "boolean",
+          "const": true
+        },
+        "evidence_by_reference": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_ledger_rewrite": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_deletion": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_task_execution": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_queue_mutation": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_daemon_watcher": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "forbidden_actions_confirmation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["forbidden_actions_performed", "confirmed_absent"],
+      "properties": {
+        "forbidden_actions_performed": {
+          "type": "boolean",
+          "const": false
+        },
+        "confirmed_absent": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "human_review_one_point": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[A-Fa-f0-9]{64}$"
+    }
+  }
+}

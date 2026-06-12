@@ -1,0 +1,33 @@
+{
+  "schema": "lonewolf.file_queue.linkage_supersession_fixture.v1",
+  "build_id": "20260613_ledger_consumer_static_hardening_v1",
+  "fixture_id": "LC_SUP_DUP_SUP",
+  "purpose": "Duplicate supersession_id values must fail closed.",
+  "expected_result": {
+    "next_action_recommendation": "STOP_OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "severity": "MEDIUM"
+  },
+  "records": [
+    {
+      "schema": "lonewolf.file_queue.linkage_supersession_record.v1",
+      "build_id": "20260613_ledger_consumer_static_hardening_v1",
+      "supersession_id": "supersession_duplicate_static_001",
+      "chain_id": "chain_duplicate_supersession",
+      "task_id": "task_duplicate_supersession",
+      "supersedes_proof_id": "proof_duplicate_old_001",
+      "superseding_proof_id": "proof_duplicate_new_001"
+    },
+    {
+      "schema": "lonewolf.file_queue.linkage_supersession_record.v1",
+      "build_id": "20260613_ledger_consumer_static_hardening_v1",
+      "supersession_id": "supersession_duplicate_static_001",
+      "chain_id": "chain_duplicate_supersession",
+      "task_id": "task_duplicate_supersession",
+      "supersedes_proof_id": "proof_duplicate_old_002",
+      "superseding_proof_id": "proof_duplicate_new_002"
+    }
+  ]
+}

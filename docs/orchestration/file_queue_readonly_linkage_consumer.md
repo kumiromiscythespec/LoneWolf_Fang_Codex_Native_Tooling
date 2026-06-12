@@ -1,4 +1,5 @@
 <!-- BUILD_ID: 20260612_fasttrack_window3_readonly_linkage_consumer_v0 -->
+<!-- BUILD_ID: 20260613_ledger_consumer_static_hardening_v1 -->
 # File Queue Read-only Linkage Consumer
 
 ## Purpose
@@ -85,3 +86,33 @@ This implementation does not provide:
 The consumer may recommend a next owner-review action. It must never execute
 that action. If evidence is incomplete or ambiguous, the only safe
 recommendation is `STOP_OWNER_REVIEW_REQUIRED`.
+
+## Wrong-State Static Hardening Contract
+
+Future wrong-state hardening must keep the consumer read-only. The consumer may
+derive an observation from existing evidence, but it must not mutate a ledger,
+repair a record, write queue state, execute a task, or continue automatically.
+
+The authoritative proof selection rule is intentionally narrow:
+
+1. parse JSON or JSONL evidence without mutation;
+2. reject malformed records and unexpected top-level fields;
+3. consider only accepted review statuses such as `ACCEPTED` and
+   `EXECUTED_APPDATA_ONLY`;
+4. validate identity fields, timestamp fields, SHA256 fields, parent references,
+   safety flags, and forbidden-action confirmations;
+5. apply valid supersession records as a read-only overlay;
+6. select exactly one active terminal proof;
+7. emit `STOP_OWNER_REVIEW_REQUIRED` when proof authority is missing,
+   duplicated, tied, stale without a valid supersession relation,
+   checksum-mismatched, or ambiguous.
+
+Fail-closed observations should include a human-readable reason and a
+`human_review_one_point` value that names the single owner decision needed to
+repair or pause. For all static/manual paths, `owner_approval_required` remains
+`true`, `execution_allowed` remains `false`, and `runtime_allowed` remains
+`false`.
+
+The consumer must never infer owner approval from artifact presence, file order,
+matching `chain_id`, an old `GO` decision, or a missing checksum. Ambiguity is a
+stop condition, not a tie-breaker.

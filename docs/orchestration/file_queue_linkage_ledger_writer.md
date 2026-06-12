@@ -1,4 +1,5 @@
 <!-- BUILD_ID: 20260612_fasttrack_window2_linkage_ledger_writer_v0 -->
+<!-- BUILD_ID: 20260613_ledger_consumer_static_hardening_v1 -->
 # File Queue Linkage Ledger Writer
 
 ## Purpose
@@ -87,6 +88,38 @@ line already contains the same `proof_id`, the write is refused with
 `DUPLICATE_PROOF_ID`.
 
 This rule prevents silent replay and preserves append-only review history.
+
+## Static Supersession Hardening Contract
+
+Future ledger hardening must keep the ledger append-only. A stale or corrected
+proof is represented by a new supersession evidence record, never by editing,
+deleting, truncating, reordering, or rewriting an older ledger line.
+
+The static supersession contract uses these review terms:
+
+- active proof: the single accepted terminal proof that remains after valid
+  supersession evidence is applied;
+- superseded proof: an older proof preserved in the ledger and referenced by a
+  valid supersession record;
+- stale proof: a proof that is older than the active terminal proof or whose
+  next action is no longer authoritative;
+- duplicate proof: two records with the same `proof_id`, which must fail closed;
+- ambiguous proof: evidence that does not identify exactly one terminal proof;
+- invalid proof: evidence with bad schema, missing identity, unsafe fields,
+  unsafe recommendation, or malformed checksum data;
+- checksum-mismatched proof: evidence whose recorded SHA256 does not match the
+  referenced parent or artifact.
+
+A future supersession record must use a new `supersession_id` and must point to
+existing proof identifiers by reference. It must include SHA256 values for the
+superseded proof and superseding proof. It must keep
+`owner_approval_required=true`, `execution_allowed=false`, and
+`runtime_allowed=false` either directly or through the consuming observation.
+
+The writer boundary remains unchanged: it may record approved AppData evidence,
+but it must not infer approval, consume a queue, run a worker, or repair ledger
+history. If duplicate handling requires update or replacement behavior, the
+safe result is `STOP_OWNER_REVIEW_REQUIRED`.
 
 ## STOP_OWNER_REVIEW_REQUIRED Conditions
 

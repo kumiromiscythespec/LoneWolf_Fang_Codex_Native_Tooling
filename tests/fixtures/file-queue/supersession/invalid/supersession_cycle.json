@@ -1,0 +1,33 @@
+{
+  "schema": "lonewolf.file_queue.linkage_supersession_fixture.v1",
+  "build_id": "20260613_ledger_consumer_static_hardening_v1",
+  "fixture_id": "LC_SUP_015",
+  "purpose": "A supersession cycle must fail closed.",
+  "expected_result": {
+    "next_action_recommendation": "STOP_OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "severity": "HIGH"
+  },
+  "records": [
+    {
+      "schema": "lonewolf.file_queue.linkage_supersession_record.v1",
+      "build_id": "20260613_ledger_consumer_static_hardening_v1",
+      "supersession_id": "supersession_cycle_001",
+      "chain_id": "chain_cycle",
+      "task_id": "task_cycle",
+      "supersedes_proof_id": "proof_cycle_a",
+      "superseding_proof_id": "proof_cycle_b"
+    },
+    {
+      "schema": "lonewolf.file_queue.linkage_supersession_record.v1",
+      "build_id": "20260613_ledger_consumer_static_hardening_v1",
+      "supersession_id": "supersession_cycle_002",
+      "chain_id": "chain_cycle",
+      "task_id": "task_cycle",
+      "supersedes_proof_id": "proof_cycle_b",
+      "superseding_proof_id": "proof_cycle_a"
+    }
+  ]
+}

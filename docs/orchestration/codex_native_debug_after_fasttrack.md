@@ -1,4 +1,5 @@
 <!-- BUILD_ID: 20260612_fasttrack_window6_user_runbook_docs_v0 -->
+<!-- BUILD_ID: 20260613_ledger_consumer_static_hardening_v1 -->
 # Codex Native Debugging After Fast-Track
 
 ## Purpose
@@ -54,6 +55,31 @@ Use this pattern for future bug fixing:
 - Do not call OpenAI APIs, browser automation, provider APIs, private APIs,
   billing services, deploy services, or trading services.
 - Do not treat `GO` in an old artifact as permission for a new action.
+
+## Ledger And Consumer Static Hardening Lane
+
+Use a docs/schema/tests/fixtures-only lane when the bug is a ledger
+supersession or read-only consumer wrong-state contract issue. The safe repair
+shape is:
+
+1. preserve existing ledger evidence by reference;
+2. add or update synthetic fixtures for duplicate, stale, ambiguous,
+   checksum-mismatched, malformed, missing-schema, wrong-schema, cycle, and
+   unknown-reference cases;
+3. add static tests that require `STOP_OWNER_REVIEW_REQUIRED` for ambiguous or
+   unsafe evidence;
+4. keep helper, validator, interpreter, writer, and consumer runtime behavior
+   unchanged unless a later owner-approved implementation packet explicitly
+   allows source behavior changes;
+5. create a new AppData evidence packet with SHA256 sidecars and one owner
+   review point.
+
+Choose `GO` only for a later bounded implementation when the allowlist, tests,
+and safety boundary all match the owner-approved packet. Choose `REPAIR` when
+the static fixture or schema contract needs another docs/schema/tests/fixtures
+pass. Choose `STOP` when the evidence would require ledger rewrite, deletion,
+runtime execution, private API access, deployment, trading, billing, daemon,
+watcher, UI automation, push, fetch, pull, or cleanup behavior.
 
 ## Common Debug Outcomes
 

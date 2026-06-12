@@ -1,0 +1,46 @@
+{
+  "schema": "lonewolf.file_queue.linkage_supersession_fixture.v1",
+  "build_id": "20260613_ledger_consumer_static_hardening_v1",
+  "fixture_id": "LC_SUP_007",
+  "purpose": "A supersession checksum mismatch must fail closed.",
+  "expected_result": {
+    "next_action_recommendation": "STOP_OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "severity": "HIGH"
+  },
+  "records": [
+    {
+      "schema": "lonewolf.file_queue.linkage_proof.v1",
+      "build_id": "20260613_ledger_consumer_static_hardening_v1",
+      "proof_id": "proof_checksum_old",
+      "chain_id": "chain_checksum_mismatch",
+      "task_id": "task_checksum_mismatch",
+      "proof_status": "ACCEPTED",
+      "accepted_at_utc": "2026-06-13T00:00:00.000Z",
+      "proof_record_sha256": "5555555555555555555555555555555555555555555555555555555555555555"
+    },
+    {
+      "schema": "lonewolf.file_queue.linkage_proof.v1",
+      "build_id": "20260613_ledger_consumer_static_hardening_v1",
+      "proof_id": "proof_checksum_new",
+      "chain_id": "chain_checksum_mismatch",
+      "task_id": "task_checksum_mismatch",
+      "proof_status": "ACCEPTED",
+      "accepted_at_utc": "2026-06-13T00:10:00.000Z",
+      "proof_record_sha256": "6666666666666666666666666666666666666666666666666666666666666666"
+    },
+    {
+      "schema": "lonewolf.file_queue.linkage_supersession_record.v1",
+      "build_id": "20260613_ledger_consumer_static_hardening_v1",
+      "supersession_id": "supersession_checksum_mismatch",
+      "chain_id": "chain_checksum_mismatch",
+      "task_id": "task_checksum_mismatch",
+      "supersedes_proof_id": "proof_checksum_old",
+      "superseding_proof_id": "proof_checksum_new",
+      "parent_proof_sha256": "7777777777777777777777777777777777777777777777777777777777777777",
+      "superseding_proof_sha256": "6666666666666666666666666666666666666666666666666666666666666666"
+    }
+  ]
+}

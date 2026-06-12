@@ -1,0 +1,89 @@
+{
+  "schema": "lonewolf.file_queue.linkage_supersession_fixture.v1",
+  "build_id": "20260613_ledger_consumer_static_hardening_v1",
+  "fixture_id": "LC_SUP_014",
+  "purpose": "A supersession chain with one active terminal proof preserves the older proof and selects the terminal proof for owner review.",
+  "expected_result": {
+    "latest_authoritative_proof_id": "proof_static_terminal_002",
+    "next_action_recommendation": "OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "severity": "MEDIUM"
+  },
+  "records": [
+    {
+      "schema": "lonewolf.file_queue.linkage_proof.v1",
+      "build_id": "20260613_ledger_consumer_static_hardening_v1",
+      "proof_id": "proof_static_superseded_001",
+      "chain_id": "chain_static_supersession_001",
+      "task_id": "task_static_supersession_001",
+      "proof_status": "ACCEPTED",
+      "accepted_at_utc": "2026-06-13T00:00:00.000Z",
+      "proof_record_sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    {
+      "schema": "lonewolf.file_queue.linkage_proof.v1",
+      "build_id": "20260613_ledger_consumer_static_hardening_v1",
+      "proof_id": "proof_static_terminal_002",
+      "chain_id": "chain_static_supersession_001",
+      "task_id": "task_static_supersession_001",
+      "proof_status": "ACCEPTED",
+      "accepted_at_utc": "2026-06-13T00:10:00.000Z",
+      "proof_record_sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+    },
+    {
+      "schema": "lonewolf.file_queue.linkage_supersession_record.v1",
+      "build_id": "20260613_ledger_consumer_static_hardening_v1",
+      "supersession_id": "supersession_static_001",
+      "chain_id": "chain_static_supersession_001",
+      "task_id": "task_static_supersession_001",
+      "supersedes_proof_id": "proof_static_superseded_001",
+      "superseding_proof_id": "proof_static_terminal_002",
+      "supersession_reason": "Terminal proof supersedes older accepted proof while preserving history.",
+      "supersession_created_at": "2026-06-13T00:15:00.000Z",
+      "supersession_status": "SUPERSESSION_RECORDED",
+      "ledger_path": "C:\\Users\\yu_ki\\AppData\\Local\\LoneWolfFang\\data\\file_queue_linkage_ledger.jsonl",
+      "evidence_references": [
+        {
+          "kind": "superseded_proof",
+          "path": "C:\\Users\\yu_ki\\AppData\\Local\\LoneWolfFang\\data\\proof_static_superseded_001.json",
+          "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        {
+          "kind": "superseding_proof",
+          "path": "C:\\Users\\yu_ki\\AppData\\Local\\LoneWolfFang\\data\\proof_static_terminal_002.json",
+          "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+        }
+      ],
+      "parent_proof_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "superseding_proof_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "supersession_record_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+      "checksum_algorithm": "SHA256",
+      "owner_approval_required": true,
+      "execution_allowed": false,
+      "runtime_allowed": false,
+      "safety_summary": {
+        "append_only": true,
+        "evidence_by_reference": true,
+        "no_ledger_rewrite": true,
+        "no_deletion": true,
+        "no_task_execution": true,
+        "no_queue_mutation": true,
+        "no_daemon_watcher": true
+      },
+      "forbidden_actions_confirmation": {
+        "forbidden_actions_performed": false,
+        "confirmed_absent": [
+          "ledger_rewrite",
+          "deletion",
+          "task_execution",
+          "queue_mutation",
+          "daemon",
+          "watcher"
+        ]
+      },
+      "human_review_one_point": "Review the single terminal proof before any next action."
+    }
+  ]
+}

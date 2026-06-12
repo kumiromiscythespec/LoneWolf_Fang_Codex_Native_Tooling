@@ -1,0 +1,47 @@
+{
+  "schema": "lonewolf.file_queue.linkage_consumer_observation.v1",
+  "build_id": "20260613_ledger_consumer_static_hardening_v1",
+  "consumer_build_id": "20260612_fasttrack_window3_readonly_linkage_consumer_v0",
+  "observed_at_utc": "2026-06-13T00:00:00.000Z",
+  "source_ledger_path": "%LOCALAPPDATA%/LoneWolfFang/data/missing_linkage_ledger.jsonl",
+  "latest_proof_id": "",
+  "latest_proof_status": "UNKNOWN",
+  "next_action_recommendation": "STOP_OWNER_REVIEW_REQUIRED",
+  "owner_approval_required": true,
+  "execution_allowed": false,
+  "runtime_allowed": false,
+  "reason": "Ledger path does not exist; owner review is required.",
+  "human_review_one_point": "Ledger evidence is missing; choose repair or pause before any next action.",
+  "safety_summary": {
+    "read_only": true,
+    "no_task_execution": true,
+    "no_daemon": true,
+    "no_watcher": true,
+    "no_queue_mutation": true,
+    "appdata_only_default": true,
+    "fixture_paths_only_in_tests": true
+  },
+  "forbidden_actions_confirmation": {
+    "forbidden_actions_performed": false,
+    "confirmed_absent": [
+      "helper_execution",
+      "validator_execution",
+      "interpreter_execution",
+      "queue_mutation",
+      "runner",
+      "daemon",
+      "watcher",
+      "task_execution",
+      "runtime_execution",
+      "codex_cli",
+      "openai_api",
+      "browser_ui_automation",
+      "private_api",
+      "provider_mutation",
+      "deploy",
+      "paper_live_order",
+      "billing_mutation",
+      "secrets_output"
+    ]
+  }
+}
