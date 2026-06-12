@@ -1,0 +1,16 @@
+{
+  "build_id": "20260612_task_result_linkage_fixture_v1",
+  "schema": "lonewolf.file_queue.linkage_state.v1",
+  "chain_id": "chain_phase44_task_result_linkage_001",
+  "task_id": "task_phase44_task_result_linkage_001",
+  "state": "EXECUTED_APPDATA_ONLY",
+  "previous_state": "AUTHORED",
+  "allowed_next_states": [
+    "STOP_OWNER_REVIEW_REQUIRED",
+    "ARCHIVED"
+  ],
+  "event": "unsafe_direct_execution_jump",
+  "timestamp": "2026-06-12T07:10:00.000Z",
+  "reason": "Invalid fixture: AUTHORED must not jump directly to EXECUTED_APPDATA_ONLY.",
+  "owner_review_required": true
+}

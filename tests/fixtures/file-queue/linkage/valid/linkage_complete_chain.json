@@ -1,0 +1,83 @@
+{
+  "build_id": "20260612_task_result_linkage_fixture_v1",
+  "schema": "lonewolf.file_queue.task_result_linkage.v1",
+  "chain_id": "chain_phase44_task_result_linkage_001",
+  "task_id": "task_phase44_task_result_linkage_001",
+  "authoring_request_id": "author_request_phase44_001",
+  "generated_task_id": "generated_task_phase44_001",
+  "validation_id": "validation_phase44_001",
+  "execution_request_id": "execution_request_phase44_001",
+  "interpreter_result_id": "interpreter_result_phase44_001",
+  "output_packet_id": "output_packet_phase44_001",
+  "owner_decision_id": "owner_decision_phase44_001",
+  "authoring_request_path": "%LOCALAPPDATA%/CodexNativeClosedLoop/data/author_request_phase44_001.json",
+  "authoring_request_sha256": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+  "generated_task_path": "%LOCALAPPDATA%/CodexNativeClosedLoop/data/generated_task_phase44_001.json",
+  "generated_task_sha256": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+  "validator_report_path": "%LOCALAPPDATA%/CodexNativeClosedLoop/data/validation_phase44_001.json",
+  "validator_report_sha256": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+  "execution_request_path": "%LOCALAPPDATA%/CodexNativeClosedLoop/data/execution_request_phase44_001.json",
+  "execution_request_sha256": "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",
+  "interpreter_result_path": "%LOCALAPPDATA%/CodexNativeClosedLoop/data/interpreter_result_phase44_001.json",
+  "interpreter_result_sha256": "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE",
+  "output_packet_path": "%LOCALAPPDATA%/CodexNativeClosedLoop/data/output_packet_phase44_001.zip",
+  "output_packet_sha256": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+  "owner_decision_path": "%LOCALAPPDATA%/CodexNativeClosedLoop/data/owner_decision_phase44_001.json",
+  "owner_decision_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+  "current_state": "EXECUTED_APPDATA_ONLY",
+  "allowed_next_states": [
+    "STOP_OWNER_REVIEW_REQUIRED",
+    "ARCHIVED",
+    "SUPERSEDED"
+  ],
+  "owner_approval_phrase": "APPROVE_TASK_RESULT_LINKAGE_CONTRACTS_DOCS_SCHEMA_TESTS_ONLY",
+  "created_at": "2026-06-12T07:00:00.000Z",
+  "updated_at": "2026-06-12T07:10:00.000Z",
+  "stop_conditions": [
+    "STOP_OWNER_REVIEW_REQUIRED when any parent artifact hash is missing or mismatched",
+    "STOP_OWNER_REVIEW_REQUIRED when the linkage state transition is illegal",
+    "STOP_OWNER_REVIEW_REQUIRED when a future consumer or runner would be inferred"
+  ],
+  "forbidden_actions_confirmation": {
+    "forbidden_actions_performed": false,
+    "confirmed_absent": [
+      "queue_consumer",
+      "runner",
+      "daemon",
+      "watcher",
+      "task_execution",
+      "codex_cli",
+      "openai_api",
+      "browser_ui_automation",
+      "provider_private_api",
+      "deploy",
+      "paper_live_order",
+      "billing_mutation",
+      "secrets_output"
+    ]
+  },
+  "parent_references": {
+    "authoring_request_id": "author_request_phase44_001",
+    "generated_task_id": "generated_task_phase44_001",
+    "validation_id": "validation_phase44_001",
+    "execution_request_id": "execution_request_phase44_001",
+    "interpreter_result_id": "interpreter_result_phase44_001",
+    "output_packet_id": "output_packet_phase44_001",
+    "owner_decision_id": "owner_decision_phase44_001",
+    "authoring_request_sha256": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "generated_task_sha256": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "validator_report_sha256": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+    "execution_request_sha256": "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",
+    "interpreter_result_sha256": "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE",
+    "output_packet_sha256": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+    "owner_decision_sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "linkage_checks": {
+    "parent_ids_match": true,
+    "parent_hashes_match": true,
+    "no_consumer_inference": true
+  },
+  "notes": [
+    "Synthetic fixture only; no private payloads or runtime output."
+  ]
+}

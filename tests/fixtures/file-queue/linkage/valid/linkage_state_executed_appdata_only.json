@@ -1,0 +1,17 @@
+{
+  "build_id": "20260612_task_result_linkage_fixture_v1",
+  "schema": "lonewolf.file_queue.linkage_state.v1",
+  "chain_id": "chain_phase44_task_result_linkage_001",
+  "task_id": "task_phase44_task_result_linkage_001",
+  "state": "EXECUTED_APPDATA_ONLY",
+  "previous_state": "EXECUTION_APPROVED",
+  "allowed_next_states": [
+    "STOP_OWNER_REVIEW_REQUIRED",
+    "ARCHIVED",
+    "SUPERSEDED"
+  ],
+  "event": "interpreter_result_recorded",
+  "timestamp": "2026-06-12T07:10:00.000Z",
+  "reason": "AppData-only output packet was produced and now requires owner review.",
+  "owner_review_required": true
+}

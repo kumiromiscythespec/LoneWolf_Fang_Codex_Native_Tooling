@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/file_queue_linkage_state.schema.json",
+  "$comment": "BUILD_ID: 20260612_task_result_linkage_contracts_schema_v1",
+  "title": "File Queue Linkage State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "chain_id",
+    "task_id",
+    "state",
+    "previous_state",
+    "allowed_next_states",
+    "event",
+    "timestamp",
+    "reason",
+    "owner_review_required"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.file_queue.linkage_state.v1" },
+    "build_id": { "type": "string", "const": "20260612_task_result_linkage_fixture_v1" },
+    "chain_id": { "type": "string", "minLength": 1 },
+    "task_id": { "type": "string", "minLength": 1 },
+    "state": { "$ref": "#/$defs/linkage_state" },
+    "previous_state": { "$ref": "#/$defs/linkage_state" },
+    "allowed_next_states": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/linkage_state" },
+      "uniqueItems": true
+    },
+    "event": { "type": "string", "minLength": 1 },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "reason": { "type": "string", "minLength": 1 },
+    "owner_review_required": { "type": "boolean" }
+  },
+  "$defs": {
+    "linkage_state": {
+      "type": "string",
+      "enum": [
+        "AUTHORED",
+        "VALIDATED_DRY_RUN",
+        "EXECUTION_APPROVED",
+        "EXECUTED_APPDATA_ONLY",
+        "BLOCKED",
+        "FAILED_SAFE",
+        "STOP_OWNER_REVIEW_REQUIRED",
+        "SUPERSEDED",
+        "ARCHIVED"
+      ]
+    }
+  }
+}

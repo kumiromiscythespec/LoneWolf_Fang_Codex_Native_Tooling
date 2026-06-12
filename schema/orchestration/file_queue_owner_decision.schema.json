@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/file_queue_owner_decision.schema.json",
+  "$comment": "BUILD_ID: 20260612_task_result_linkage_contracts_schema_v1",
+  "title": "File Queue Owner Decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "owner_decision_id",
+    "chain_id",
+    "task_id",
+    "decision",
+    "decision_phrase",
+    "decision_timestamp",
+    "artifact_path",
+    "artifact_sha256",
+    "human_review_one_point",
+    "next_recommended_action"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.file_queue.owner_decision.v1" },
+    "build_id": { "type": "string", "const": "20260612_task_result_linkage_fixture_v1" },
+    "owner_decision_id": { "type": "string", "minLength": 1 },
+    "chain_id": { "type": "string", "minLength": 1 },
+    "task_id": { "type": "string", "minLength": 1 },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "GO",
+        "REPAIR",
+        "STOP",
+        "SPLIT_TASK",
+        "OWNER_MANUAL_ACTION"
+      ]
+    },
+    "decision_phrase": { "type": "string", "minLength": 1 },
+    "decision_timestamp": { "type": "string", "format": "date-time" },
+    "artifact_path": { "type": "string", "minLength": 1 },
+    "artifact_sha256": { "$ref": "#/$defs/sha256" },
+    "human_review_one_point": { "type": "string", "minLength": 1 },
+    "next_recommended_action": { "type": "string", "minLength": 1 }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[A-Fa-f0-9]{64}$"
+    }
+  }
+}

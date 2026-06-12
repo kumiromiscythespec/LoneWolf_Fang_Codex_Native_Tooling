@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/file_queue_task_result_linkage.schema.json",
+  "$comment": "BUILD_ID: 20260612_task_result_linkage_contracts_schema_v1",
+  "title": "File Queue Task Result Linkage",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "chain_id",
+    "task_id",
+    "authoring_request_id",
+    "generated_task_id",
+    "validation_id",
+    "execution_request_id",
+    "interpreter_result_id",
+    "output_packet_id",
+    "owner_decision_id",
+    "authoring_request_path",
+    "authoring_request_sha256",
+    "generated_task_path",
+    "generated_task_sha256",
+    "validator_report_path",
+    "validator_report_sha256",
+    "execution_request_path",
+    "execution_request_sha256",
+    "interpreter_result_path",
+    "interpreter_result_sha256",
+    "output_packet_path",
+    "output_packet_sha256",
+    "current_state",
+    "allowed_next_states",
+    "owner_approval_phrase",
+    "created_at",
+    "updated_at",
+    "stop_conditions",
+    "forbidden_actions_confirmation"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.file_queue.task_result_linkage.v1" },
+    "build_id": { "type": "string", "const": "20260612_task_result_linkage_fixture_v1" },
+    "chain_id": { "type": "string", "minLength": 1 },
+    "task_id": { "type": "string", "minLength": 1 },
+    "authoring_request_id": { "type": "string", "minLength": 1 },
+    "generated_task_id": { "type": "string", "minLength": 1 },
+    "validation_id": { "type": "string", "minLength": 1 },
+    "execution_request_id": { "type": "string", "minLength": 1 },
+    "interpreter_result_id": { "type": "string", "minLength": 1 },
+    "output_packet_id": { "type": "string", "minLength": 1 },
+    "owner_decision_id": { "type": "string", "minLength": 1 },
+    "authoring_request_path": { "type": "string", "minLength": 1 },
+    "authoring_request_sha256": { "$ref": "#/$defs/sha256" },
+    "generated_task_path": { "type": "string", "minLength": 1 },
+    "generated_task_sha256": { "$ref": "#/$defs/sha256" },
+    "validator_report_path": { "type": "string", "minLength": 1 },
+    "validator_report_sha256": { "$ref": "#/$defs/sha256" },
+    "execution_request_path": { "type": "string", "minLength": 1 },
+    "execution_request_sha256": { "$ref": "#/$defs/sha256" },
+    "interpreter_result_path": { "type": "string", "minLength": 1 },
+    "interpreter_result_sha256": { "$ref": "#/$defs/sha256" },
+    "output_packet_path": { "type": "string", "minLength": 1 },
+    "output_packet_sha256": { "$ref": "#/$defs/sha256" },
+    "owner_decision_path": { "type": "string", "minLength": 1 },
+    "owner_decision_sha256": { "$ref": "#/$defs/sha256" },
+    "current_state": { "$ref": "#/$defs/linkage_state" },
+    "allowed_next_states": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/linkage_state" },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "owner_approval_phrase": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "stop_conditions": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "forbidden_actions_confirmation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["forbidden_actions_performed", "confirmed_absent"],
+      "properties": {
+        "forbidden_actions_performed": { "type": "boolean", "const": false },
+        "confirmed_absent": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      }
+    },
+    "parent_references": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authoring_request_id",
+        "generated_task_id",
+        "validation_id",
+        "execution_request_id",
+        "interpreter_result_id",
+        "output_packet_id",
+        "owner_decision_id",
+        "authoring_request_sha256",
+        "generated_task_sha256",
+        "validator_report_sha256",
+        "execution_request_sha256",
+        "interpreter_result_sha256",
+        "output_packet_sha256",
+        "owner_decision_sha256"
+      ],
+      "properties": {
+        "authoring_request_id": { "type": "string", "minLength": 1 },
+        "generated_task_id": { "type": "string", "minLength": 1 },
+        "validation_id": { "type": "string", "minLength": 1 },
+        "execution_request_id": { "type": "string", "minLength": 1 },
+        "interpreter_result_id": { "type": "string", "minLength": 1 },
+        "output_packet_id": { "type": "string", "minLength": 1 },
+        "owner_decision_id": { "type": "string", "minLength": 1 },
+        "authoring_request_sha256": { "$ref": "#/$defs/sha256" },
+        "generated_task_sha256": { "$ref": "#/$defs/sha256" },
+        "validator_report_sha256": { "$ref": "#/$defs/sha256" },
+        "execution_request_sha256": { "$ref": "#/$defs/sha256" },
+        "interpreter_result_sha256": { "$ref": "#/$defs/sha256" },
+        "output_packet_sha256": { "$ref": "#/$defs/sha256" },
+        "owner_decision_sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "linkage_checks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["parent_ids_match", "parent_hashes_match", "no_consumer_inference"],
+      "properties": {
+        "parent_ids_match": { "type": "boolean" },
+        "parent_hashes_match": { "type": "boolean" },
+        "no_consumer_inference": { "type": "boolean" }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[A-Fa-f0-9]{64}$"
+    },
+    "linkage_state": {
+      "type": "string",
+      "enum": [
+        "AUTHORED",
+        "VALIDATED_DRY_RUN",
+        "EXECUTION_APPROVED",
+        "EXECUTED_APPDATA_ONLY",
+        "BLOCKED",
+        "FAILED_SAFE",
+        "STOP_OWNER_REVIEW_REQUIRED",
+        "SUPERSEDED",
+        "ARCHIVED"
+      ]
+    }
+  }
+}

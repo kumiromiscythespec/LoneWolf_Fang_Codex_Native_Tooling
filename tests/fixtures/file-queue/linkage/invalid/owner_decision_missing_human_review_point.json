@@ -1,0 +1,14 @@
+{
+  "build_id": "20260612_task_result_linkage_fixture_v1",
+  "schema": "lonewolf.file_queue.owner_decision.v1",
+  "owner_decision_id": "owner_decision_phase44_001",
+  "chain_id": "chain_phase44_task_result_linkage_001",
+  "task_id": "task_phase44_task_result_linkage_001",
+  "decision": "GO",
+  "decision_phrase": "APPROVE_TASK_RESULT_LINKAGE_CONTRACTS_DOCS_SCHEMA_TESTS_ONLY",
+  "decision_timestamp": "2026-06-12T07:12:00.000Z",
+  "artifact_path": "%LOCALAPPDATA%/CodexNativeClosedLoop/data/phase44_task_result_linkage_impl.zip",
+  "artifact_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+  "human_review_one_point": "",
+  "next_recommended_action": "CREATE_PUSH_APPROVAL_PACKET_ONLY"
+}
