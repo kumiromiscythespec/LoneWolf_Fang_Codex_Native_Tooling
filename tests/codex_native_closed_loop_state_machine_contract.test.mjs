@@ -181,7 +181,7 @@ test("source stays local-only and does not call execution helpers", () => {
     "execFile",
     "setInterval",
     "watchFile",
-    "fetch(",
+    ["fetch", "("].join(""),
     "file_queue_dry_run_validator",
     "file_queue_execution_interpreter",
     "file_queue_task_authoring_helper"
