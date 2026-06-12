@@ -1,0 +1,64 @@
+{
+  "build_id": "20260612_fasttrack_window6_user_runbook_docs_fixture_v0",
+  "schema": "lonewolf.codex_native.fasttrack_acceptance_checklist.v1",
+  "checklist_id": "fasttrack_window6_user_runbook_docs_acceptance",
+  "scope": "Codex Native Closed Loop v0.1+ fast-track MVP docs",
+  "required_docs": [
+    "docs/orchestration/codex_native_v0_1_fasttrack_user_runbook.md",
+    "docs/orchestration/codex_native_fasttrack_operator_checklist.md",
+    "docs/orchestration/codex_native_debug_after_fasttrack.md",
+    "docs/orchestration/codex_native_known_boundaries_after_fasttrack.md"
+  ],
+  "completed_mvp_items": [
+    "task authoring helper",
+    "generated task",
+    "dry-run validator",
+    "execution interpreter",
+    "AppData-only review packet",
+    "task-result linkage contracts",
+    "first linkage proof",
+    "post-linkage review"
+  ],
+  "fasttrack_additions": [
+    "AppData linkage ledger writer",
+    "read-only linkage consumer",
+    "manual state machine coordinator",
+    "safety guards"
+  ],
+  "forbidden_actions": [
+    "deploy",
+    "runtime automatic execution",
+    "private API",
+    "trading",
+    "billing",
+    "daemon",
+    "watcher"
+  ],
+  "static_checks": [
+    "node tests/codex_native_fasttrack_docs_contract.test.mjs",
+    "node tests/file_queue_contract.test.mjs",
+    "node tests/file_queue_task_result_linkage_contract.test.mjs",
+    "git diff --check"
+  ],
+  "artifact_expectations": [
+    "artifact root outside repository",
+    "ZIP path",
+    "SHA256",
+    "ZIP entry count",
+    "manifest",
+    "safe summary",
+    "human review point",
+    "no secrets or private payloads"
+  ],
+  "owner_decisions": [
+    "GO",
+    "REPAIR",
+    "STOP"
+  ],
+  "acceptance": {
+    "go": "Evidence complete, checks pass, forbidden actions absent, next bounded action named.",
+    "repair": "Evidence incomplete, wording unsafe, checksum missing, static check failing, or docs coverage incomplete.",
+    "stop": "Forbidden action appears necessary, source of truth is ambiguous, or owner judgment is required."
+  },
+  "human_review_one_point": "Owner should decide whether the fast-track MVP docs are accepted as the operator baseline for future GO / REPAIR / STOP reviews."
+}
