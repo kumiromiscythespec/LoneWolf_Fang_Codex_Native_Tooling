@@ -1,0 +1,22 @@
+{
+  "schema": "lonewolf.codex_native.static_coverage_fixture.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "fixture_id": "fixture_transition_valid_owner_gate_v1",
+  "candidate_schema": "lonewolf.codex_native.blocker_matrix_record.v1",
+  "purpose": "Valid owner-gated transition evidence for a static implementation approval packet.",
+  "severity": "LOW",
+  "expected_result": {
+    "status": "OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "automatic_continuation_allowed": false
+  },
+  "transition": {
+    "from": "APPROVAL_PACKET_READY",
+    "event": "owner_static_implementation_approval",
+    "to": "STATIC_IMPLEMENTATION_READY",
+    "gate": "exact_owner_phrase_for_docs_schema_tests_fixtures_only"
+  },
+  "human_review_one_point": "Confirm the static implementation scope before edits."
+}

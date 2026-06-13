@@ -1,0 +1,55 @@
+{
+  "schema": "lonewolf.codex_native.human_review_one_point.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "review_id": "W5-HUMAN-REVIEW-001",
+  "generated_at": "2026-06-13T16:25:00+09:00",
+  "packet_id": "W5-FORBIDDEN-ACTION-GOVERNANCE",
+  "question": "Should the owner include the Window 5 docs/schema/tests/fixtures output in implementation integration review?",
+  "recommendation": "GO",
+  "options": [
+    "GO",
+    "REPAIR",
+    "STOP"
+  ],
+  "exact_go_phrase": "APPROVE_W5_IMPLEMENTATION_OUTPUT_INTEGRATION_REVIEW_ONLY",
+  "exact_repair_phrase": "REPAIR_W5_DOCS_SCHEMA_TESTS_FIXTURES_ONLY",
+  "exact_stop_phrase": "STOP_OWNER_REVIEW_REQUIRED",
+  "scope_limit": "Implementation output integration/review only; no commit, push, deploy, runtime, API, cloud, billing, trading, cleanup, process control, or history rewrite.",
+  "not_approval_for": [
+    "stage",
+    "commit",
+    "push",
+    "fetch",
+    "pull",
+    "deploy",
+    "runtime_workflow",
+    "daemon_watcher",
+    "ui_automation",
+    "private_api",
+    "openai_api",
+    "cloud_mutation",
+    "billing_mutation",
+    "trading_order",
+    "destructive_git_or_file",
+    "process_kill_security_bypass"
+  ],
+  "evidence_refs": [
+    {
+      "label": "synthetic_fixture",
+      "path": "tests/fixtures/operator-governance/valid/human_review_one_point_go_repair_stop.json",
+      "sha256": "7777777777777777777777777777777777777777777777777777777777777777"
+    }
+  ],
+  "expires_on_change": [
+    "branch",
+    "commit",
+    "artifact_checksum",
+    "target_environment",
+    "risk_category",
+    "owner_instruction",
+    "validation_result",
+    "required_file_set"
+  ],
+  "continuation_decision_count": 1,
+  "execution_allowed": false
+}

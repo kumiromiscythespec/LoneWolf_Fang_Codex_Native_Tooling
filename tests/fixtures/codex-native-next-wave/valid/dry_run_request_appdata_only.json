@@ -1,0 +1,22 @@
+{
+  "schema": "lonewolf.codex_native.static_coverage_fixture.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "fixture_id": "fixture_dry_run_request_valid_appdata_only_v1",
+  "candidate_schema": "lonewolf.codex_native.dry_run_execution_request.v1",
+  "purpose": "Safe future dry-run request shape with AppData-only output policy.",
+  "severity": "LOW",
+  "request": {
+    "operation_class": "STATIC_FIXTURE_REVIEW",
+    "output_root_policy": "APPDATA_ONLY",
+    "input_artifact_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+    "validator_report_sha256": "3333333333333333333333333333333333333333333333333333333333333333"
+  },
+  "expected_result": {
+    "status": "OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "automatic_continuation_allowed": false
+  },
+  "human_review_one_point": "Review the dry-run request shape before any future dry-run lane."
+}

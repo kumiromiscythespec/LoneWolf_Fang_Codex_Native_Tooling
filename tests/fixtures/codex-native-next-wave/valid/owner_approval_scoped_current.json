@@ -1,0 +1,23 @@
+{
+  "schema": "lonewolf.codex_native.static_coverage_fixture.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "fixture_id": "fixture_owner_approval_valid_scoped_v1",
+  "candidate_schema": "lonewolf.codex_native.human_review_one_point.v1",
+  "purpose": "Current exact owner approval evidence for static docs/schema/tests/fixtures work only.",
+  "severity": "LOW",
+  "approval": {
+    "phrase": "APPROVE_NEXT_WAVE_DOCS_SCHEMA_TESTS_FIXTURES_IMPLEMENTATION_SIX_WINDOW",
+    "scope": "docs/schema/tests/fixtures-only",
+    "approval_created_at": "2026-06-13T07:30:00.000Z",
+    "approval_expires_at": "2026-06-13T09:30:00.000Z",
+    "artifact_sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "expected_result": {
+    "status": "OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "automatic_continuation_allowed": false
+  },
+  "human_review_one_point": "Confirm the approval remains scoped to static files only."
+}

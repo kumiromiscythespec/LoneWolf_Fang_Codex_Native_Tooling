@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/codex_native_dry_run_execution_result.schema.json",
+  "$comment": "BUILD_ID: 20260613_codex_native_automation_gate_contracts_v1",
+  "title": "Codex Native Dry Run Execution Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "result_id",
+    "request_id",
+    "task_id",
+    "status",
+    "accepted",
+    "reasons",
+    "output_artifact_path",
+    "output_artifact_sha256",
+    "owner_review_required",
+    "execution_allowed",
+    "runtime_allowed",
+    "automatic_continuation_allowed",
+    "forbidden_actions_confirmation",
+    "blocker_matrix",
+    "human_review_one_point",
+    "next_recommended_action"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.codex_native.dry_run_execution_result.v1" },
+    "build_id": { "type": "string", "const": "20260613_codex_native_automation_gate_contracts_v1" },
+    "result_id": { "type": "string", "minLength": 1 },
+    "request_id": { "type": "string", "minLength": 1 },
+    "task_id": { "type": "string", "minLength": 1 },
+    "status": {
+      "type": "string",
+      "enum": [
+        "DRY_RUN_REVIEW_READY",
+        "STOP_OWNER_REVIEW_REQUIRED",
+        "FAILED_SAFE"
+      ]
+    },
+    "accepted": { "type": "boolean" },
+    "reasons": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "output_artifact_path": { "type": "string", "minLength": 1 },
+    "output_artifact_sha256": { "$ref": "#/$defs/sha256" },
+    "owner_review_required": { "type": "boolean", "const": true },
+    "execution_allowed": { "type": "boolean", "const": false },
+    "runtime_allowed": { "type": "boolean", "const": false },
+    "automatic_continuation_allowed": { "type": "boolean", "const": false },
+    "forbidden_actions_confirmation": { "$ref": "#/$defs/forbidden_actions_confirmation" },
+    "blocker_matrix": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "human_review_one_point": { "type": "string", "minLength": 1 },
+    "next_recommended_action": {
+      "type": "string",
+      "enum": ["OWNER_REVIEW_REQUIRED", "STOP_OWNER_REVIEW_REQUIRED"]
+    }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" },
+    "forbidden_actions_confirmation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["forbidden_actions_performed", "confirmed_absent"],
+      "properties": {
+        "forbidden_actions_performed": { "type": "boolean", "const": false },
+        "confirmed_absent": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1
+        }
+      }
+    }
+  }
+}

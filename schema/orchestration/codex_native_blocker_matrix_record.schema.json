@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/codex_native_blocker_matrix_record.schema.json",
+  "$comment": "BUILD_ID: 20260613_codex_native_automation_gate_contracts_v1",
+  "title": "Codex Native Blocker Matrix Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "blocker_id",
+    "blocker_type",
+    "severity",
+    "evidence_reference",
+    "expected_result",
+    "owner_review_required",
+    "execution_allowed",
+    "runtime_allowed",
+    "automatic_continuation_allowed",
+    "human_review_one_point"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.codex_native.blocker_matrix_record.v1" },
+    "build_id": { "type": "string", "const": "20260613_codex_native_automation_gate_contracts_v1" },
+    "blocker_id": { "type": "string", "minLength": 1 },
+    "blocker_type": { "$ref": "#/$defs/blocker_type" },
+    "severity": { "type": "string", "enum": ["LOW", "MEDIUM", "HIGH"] },
+    "evidence_reference": { "type": "string", "minLength": 1 },
+    "expected_result": { "type": "string", "enum": ["OWNER_REVIEW_REQUIRED", "STOP_OWNER_REVIEW_REQUIRED"] },
+    "owner_review_required": { "type": "boolean", "const": true },
+    "execution_allowed": { "type": "boolean", "const": false },
+    "runtime_allowed": { "type": "boolean", "const": false },
+    "automatic_continuation_allowed": { "type": "boolean", "const": false },
+    "human_review_one_point": { "type": "string", "minLength": 1 }
+  },
+  "$defs": {
+    "blocker_type": {
+      "type": "string",
+      "enum": [
+        "missing_artifact",
+        "corrupt_artifact",
+        "stale_artifact",
+        "duplicate_task_id",
+        "duplicate_artifact_id",
+        "unknown_state",
+        "unknown_gate",
+        "unknown_action",
+        "illegal_transition",
+        "owner_gate_skipped",
+        "unknown_owner_approval",
+        "stale_owner_approval",
+        "automatic_continuation_attempt",
+        "forbidden_action_attempt",
+        "runtime_attempt",
+        "deploy_attempt",
+        "private_openai_api_attempt",
+        "cloud_mutation_attempt",
+        "billing_mutation_attempt",
+        "trading_order_attempt"
+      ]
+    }
+  }
+}

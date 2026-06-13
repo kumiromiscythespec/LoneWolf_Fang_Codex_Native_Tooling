@@ -1,0 +1,80 @@
+{
+  "schema": "lonewolf.codex_native.owner_approval_freshness_fixture.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "fixture_id": "OA_VALID_001",
+  "purpose": "Exact-scope owner approval for the repaired Window 3 docs/schema/tests/fixtures implementation.",
+  "current_context": {
+    "now_utc": "2026-06-13T07:45:00.000Z",
+    "worktree_status": "clean",
+    "staged_file_count": 0
+  },
+  "approval_record": {
+    "schema": "lonewolf.codex_native.owner_approval_record.v1",
+    "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+    "approval_id": "approval_w3_owner_freshness_exact_001",
+    "approval_created_at_utc": "2026-06-13T07:30:00.000Z",
+    "approval_expires_at_utc": "2026-06-13T08:30:00.000Z",
+    "task_id": "NEXT_WAVE_IMPLEMENTATION_W3_OWNER_APPROVAL_FRESHNESS",
+    "target_repo": "C:\\LoneWolf_Fang_Project\\repos\\core\\LoneWolf_Fang_Codex_Native_Tooling",
+    "branch": "master",
+    "head": "25a4ec7277e2f18bcf4dec4cbfc93f7bdc36284b",
+    "local_origin_master": "25a4ec7277e2f18bcf4dec4cbfc93f7bdc36284b",
+    "stable_baseline": "25a4ec7277e2f18bcf4dec4cbfc93f7bdc36284b",
+    "artifact_chain_id": "codex_native_next_wave_docs_schema_tests_fixtures_implementation_prompts_repaired_20260613_161547",
+    "artifact_sha256": "37FEDBF54203D4F089DD118C44F99252F2D489760A817C94214FFCAF7C2DBEB7",
+    "approval_phrase": "APPROVE_NEXT_WAVE_DOCS_SCHEMA_TESTS_FIXTURES_IMPLEMENTATION_SIX_WINDOW",
+    "action_class": "DOCS_SCHEMA_TESTS_FIXTURES_IMPLEMENTATION",
+    "approved_file_allowlist": [
+      "docs/orchestration/codex_native_owner_approval_freshness_policy.md",
+      "docs/orchestration/codex_native_owner_approval_record_contract.md",
+      "schema/orchestration/codex_native_owner_approval_record.schema.json",
+      "schema/orchestration/codex_native_owner_approval_supersession.schema.json",
+      "tests/owner_approval_freshness_contract.test.mjs",
+      "tests/fixtures/owner-approval/**/*.json"
+    ],
+    "approved_command_allowlist": [
+      "node --test tests/owner_approval_freshness_contract.test.mjs",
+      "git diff --check"
+    ],
+    "safety_boundary_version": "lonewolf_fang_safety_boundary_20260613",
+    "owner_approval_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "automatic_continuation_allowed": false,
+    "mutation_approval_single_use": true,
+    "stale_if_any_bound_field_differs": true,
+    "ambiguity_result": "STOP_OWNER_REVIEW_REQUIRED",
+    "reuse_prohibitions": {
+      "commit": true,
+      "push": true,
+      "runtime": true,
+      "deploy": true,
+      "api": true,
+      "cloud": true,
+      "billing": true,
+      "trading": true,
+      "daemon_watcher": true,
+      "ui_automation": true,
+      "automatic_continuation": true,
+      "cleanup_or_history_rewrite": true
+    },
+    "supersession_status": "ACTIVE",
+    "expected_result": {
+      "owner_review_required": true,
+      "execution_allowed": false,
+      "runtime_allowed": false,
+      "automatic_continuation_allowed": false,
+      "next_action_recommendation": "IMPLEMENTATION_OUTPUT_REVIEW_REQUIRED"
+    },
+    "human_review_one_point": "Review the implementation output before any commit approval packet."
+  },
+  "expected_result": {
+    "valid": true,
+    "stale": false,
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "automatic_continuation_allowed": false,
+    "next_action_recommendation": "IMPLEMENTATION_OUTPUT_REVIEW_REQUIRED"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/codex_native_closed_loop/automation_state_transition_record.schema.json",
+  "$comment": "BUILD_ID: 20260613_codex_native_automation_gate_contracts_v1",
+  "title": "Codex Native Automation State Transition Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "transition_id",
+    "task_id",
+    "previous_state",
+    "requested_event",
+    "guards",
+    "next_state",
+    "next_action",
+    "allowed",
+    "reason",
+    "owner_review_required",
+    "execution_allowed",
+    "runtime_allowed",
+    "automatic_continuation_allowed",
+    "human_review_one_point",
+    "created_at"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.codex_native.automation_state_transition_record.v1" },
+    "build_id": { "type": "string", "const": "20260613_codex_native_automation_gate_contracts_v1" },
+    "transition_id": { "type": "string", "minLength": 1 },
+    "task_id": { "type": "string", "minLength": 1 },
+    "previous_state": { "$ref": "state_gate_names.schema.json#/$defs/state_name" },
+    "requested_event": { "$ref": "state_gate_names.schema.json#/$defs/event_name" },
+    "guards": {
+      "type": "array",
+      "items": { "$ref": "state_gate_names.schema.json#/$defs/guard_name" },
+      "uniqueItems": true
+    },
+    "next_state": { "$ref": "state_gate_names.schema.json#/$defs/state_name" },
+    "next_action": { "$ref": "state_gate_names.schema.json#/$defs/next_action_name" },
+    "allowed": { "type": "boolean" },
+    "reason": { "type": "string", "minLength": 1 },
+    "owner_review_required": { "type": "boolean" },
+    "execution_allowed": { "type": "boolean", "const": false },
+    "runtime_allowed": { "type": "boolean", "const": false },
+    "automatic_continuation_allowed": { "type": "boolean", "const": false },
+    "human_review_one_point": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" }
+  }
+}

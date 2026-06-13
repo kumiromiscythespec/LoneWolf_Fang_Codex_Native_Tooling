@@ -1,0 +1,22 @@
+{
+  "schema": "lonewolf.codex_native.static_coverage_fixture.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "fixture_id": "fixture_unknown_state_gate_action_fail_closed_v1",
+  "candidate_schema": "lonewolf.codex_native.blocker_matrix_record.v1",
+  "purpose": "Unknown state, unknown gate, unknown action, and owner-gate skip all fail closed.",
+  "severity": "HIGH",
+  "cases": [
+    { "fixture_id": "fixture_unknown_state_fail_closed_v1", "blocker_type": "unknown_state" },
+    { "fixture_id": "fixture_unknown_gate_fail_closed_v1", "blocker_type": "unknown_gate" },
+    { "fixture_id": "fixture_unknown_action_fail_closed_v1", "blocker_type": "unknown_action" },
+    { "fixture_id": "fixture_wrong_transition_owner_skip_v1", "blocker_type": "owner_gate_skipped" }
+  ],
+  "expected_result": {
+    "status": "STOP_OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "automatic_continuation_allowed": false
+  },
+  "human_review_one_point": "Define or reject the unknown state, gate, or action."
+}

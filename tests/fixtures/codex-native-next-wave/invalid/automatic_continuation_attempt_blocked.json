@@ -1,0 +1,21 @@
+{
+  "schema": "lonewolf.codex_native.static_coverage_fixture.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "fixture_id": "fixture_auto_continuation_attempt_v1",
+  "candidate_schema": "lonewolf.codex_native.forbidden_action_report.v1",
+  "purpose": "Evidence requests next-worker start or automatic continuation.",
+  "severity": "HIGH",
+  "attempted_action": "automatic_continuation_attempt",
+  "evidence": {
+    "next_worker_start_requested": true,
+    "automatic_continuation_requested": true
+  },
+  "expected_result": {
+    "status": "STOP_OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "automatic_continuation_allowed": false
+  },
+  "human_review_one_point": "Reject automatic continuation unless a future exact approval exists."
+}

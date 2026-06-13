@@ -1,0 +1,17 @@
+{
+  "schema": "lonewolf.codex_native.static_coverage_fixture.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "fixture_id": "fixture_missing_required_artifact_v1",
+  "candidate_schema": "lonewolf.codex_native.blocker_matrix_record.v1",
+  "purpose": "Required artifact path or SHA is absent.",
+  "severity": "HIGH",
+  "blocker_type": "missing_artifact",
+  "expected_result": {
+    "status": "STOP_OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "automatic_continuation_allowed": false
+  },
+  "human_review_one_point": "Provide the missing artifact or stop."
+}

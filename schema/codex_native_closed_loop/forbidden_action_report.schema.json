@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/codex_native_closed_loop/forbidden_action_report.schema.json",
+  "$comment": "BUILD_ID: 20260613_codex_native_automation_gate_contracts_v1",
+  "title": "Codex Native Forbidden Action Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "report_id",
+    "task_id",
+    "attempted_action",
+    "source_context",
+    "redaction_status",
+    "detected_at",
+    "stop_reason",
+    "owner_review_required",
+    "execution_allowed",
+    "runtime_allowed",
+    "automatic_continuation_allowed",
+    "next_state",
+    "next_action"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.codex_native.forbidden_action_report.v1" },
+    "build_id": { "type": "string", "const": "20260613_codex_native_automation_gate_contracts_v1" },
+    "report_id": { "type": "string", "minLength": 1 },
+    "task_id": { "type": "string", "minLength": 1 },
+    "attempted_action": {
+      "type": "string",
+      "enum": [
+        "RUNTIME_ATTEMPT",
+        "DEPLOY_ATTEMPT",
+        "API_ATTEMPT",
+        "TRADING_ATTEMPT",
+        "FORBIDDEN_ACTION_ATTEMPT",
+        "DESTRUCTIVE_GIT_ATTEMPT",
+        "UI_AUTOMATION_ATTEMPT"
+      ]
+    },
+    "source_context": { "type": "string", "minLength": 1 },
+    "redaction_status": { "type": "string", "enum": ["NO_PRIVATE_PAYLOAD_INCLUDED", "REDACTED_REFERENCE_ONLY"] },
+    "detected_at": { "type": "string", "format": "date-time" },
+    "stop_reason": { "type": "string", "minLength": 1 },
+    "owner_review_required": { "type": "boolean", "const": true },
+    "execution_allowed": { "type": "boolean", "const": false },
+    "runtime_allowed": { "type": "boolean", "const": false },
+    "automatic_continuation_allowed": { "type": "boolean", "const": false },
+    "next_state": {
+      "type": "string",
+      "enum": ["RUNTIME_PROHIBITED", "DEPLOY_PROHIBITED", "API_PROHIBITED", "TRADING_PROHIBITED", "FAIL_CLOSED"]
+    },
+    "next_action": {
+      "type": "string",
+      "enum": [
+        "STOP_RUNTIME_PROHIBITED",
+        "STOP_DEPLOY_PROHIBITED",
+        "STOP_API_PROHIBITED",
+        "STOP_TRADING_PROHIBITED",
+        "STOP_FAIL_CLOSED"
+      ]
+    }
+  }
+}

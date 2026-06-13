@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/codex_native_owner_approval_supersession.schema.json",
+  "$comment": "BUILD_ID: 20260613_codex_native_automation_gate_contracts_v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "title": "Codex Native Owner Approval Supersession",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "supersession_id",
+    "supersession_created_at_utc",
+    "artifact_chain_id",
+    "supersedes_approval_id",
+    "superseding_approval_id",
+    "supersession_reason",
+    "superseded_artifact_sha256",
+    "superseding_artifact_sha256",
+    "owner_gate",
+    "rollback_path",
+    "old_record_preserved",
+    "no_deletion",
+    "no_history_rewrite",
+    "owner_approval_required",
+    "execution_allowed",
+    "runtime_allowed",
+    "automatic_continuation_allowed",
+    "supersession_status",
+    "human_review_one_point"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "lonewolf.codex_native.owner_approval_supersession.v1"
+    },
+    "build_id": {
+      "type": "string",
+      "const": "20260613_codex_native_automation_gate_contracts_v1"
+    },
+    "supersession_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]+$"
+    },
+    "supersession_created_at_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "artifact_chain_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "supersedes_approval_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "superseding_approval_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "supersession_reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "superseded_artifact_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "superseding_artifact_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "owner_gate": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rollback_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "old_record_preserved": {
+      "type": "boolean",
+      "const": true
+    },
+    "no_deletion": {
+      "type": "boolean",
+      "const": true
+    },
+    "no_history_rewrite": {
+      "type": "boolean",
+      "const": true
+    },
+    "owner_approval_required": {
+      "type": "boolean",
+      "const": true
+    },
+    "execution_allowed": {
+      "type": "boolean",
+      "const": false
+    },
+    "runtime_allowed": {
+      "type": "boolean",
+      "const": false
+    },
+    "automatic_continuation_allowed": {
+      "type": "boolean",
+      "const": false
+    },
+    "supersession_status": {
+      "type": "string",
+      "const": "SUPERSESSION_RECORDED"
+    },
+    "human_review_one_point": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[A-Fa-f0-9]{64}$"
+    }
+  }
+}

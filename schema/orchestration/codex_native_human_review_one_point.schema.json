@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/codex_native_human_review_one_point.schema.json",
+  "$comment": "BUILD_ID: 20260613_codex_native_automation_gate_contracts_v1",
+  "title": "Codex Native Human Review One Point",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "review_id",
+    "artifact_path",
+    "artifact_sha256",
+    "question",
+    "options",
+    "recommended_option",
+    "reason",
+    "owner_review_required",
+    "execution_allowed",
+    "runtime_allowed",
+    "automatic_continuation_allowed"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.codex_native.human_review_one_point.v1" },
+    "build_id": { "type": "string", "const": "20260613_codex_native_automation_gate_contracts_v1" },
+    "review_id": { "type": "string", "minLength": 1 },
+    "artifact_path": { "type": "string", "minLength": 1 },
+    "artifact_sha256": { "$ref": "#/$defs/sha256" },
+    "question": { "type": "string", "minLength": 1 },
+    "options": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "recommended_option": { "type": "string", "minLength": 1 },
+    "reason": { "type": "string", "minLength": 1 },
+    "owner_review_required": { "type": "boolean", "const": true },
+    "execution_allowed": { "type": "boolean", "const": false },
+    "runtime_allowed": { "type": "boolean", "const": false },
+    "automatic_continuation_allowed": { "type": "boolean", "const": false }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" }
+  }
+}

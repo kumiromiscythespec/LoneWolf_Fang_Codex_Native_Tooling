@@ -1,0 +1,20 @@
+{
+  "schema": "lonewolf.codex_native.owner_approval_freshness_mutation_fixture.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "fixture_id": "OA_INVALID_SAFETY_BOUNDARY_CHANGED",
+  "base_fixture": "tests/fixtures/owner-approval/valid/exact_scope_single_use_approval.json",
+  "mutation": {
+    "path": "approval_record.safety_boundary_version",
+    "value": "lonewolf_fang_safety_boundary_runtime_expanded"
+  },
+  "expected_result": {
+    "valid": false,
+    "stale": true,
+    "reason_contains": "safety boundary changed",
+    "next_action_recommendation": "STOP_OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "automatic_continuation_allowed": false
+  }
+}

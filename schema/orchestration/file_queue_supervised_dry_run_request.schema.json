@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/file_queue_supervised_dry_run_request.schema.json",
+  "$comment": "BUILD_ID: 20260613_codex_native_automation_gate_contracts_v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "title": "File Queue Supervised Dry-run Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "request_id",
+    "chain_id",
+    "task_id",
+    "task_json_path",
+    "task_json_sha256",
+    "validator_report_path",
+    "validator_report_sha256",
+    "expected_validator_status",
+    "expected_validator_accepted",
+    "operation_class",
+    "output_root_policy",
+    "output_root",
+    "owner_approval_phrase",
+    "owner_gate_before_dry_run",
+    "success_criteria",
+    "stop_conditions",
+    "allowed_files",
+    "allowed_operations",
+    "prohibited_actions",
+    "expected_final_report_labels",
+    "no_executor_approval",
+    "no_task_execution"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "lonewolf.file_queue.supervised_dry_run_request.v1"
+    },
+    "build_id": {
+      "type": "string",
+      "const": "20260613_codex_native_automation_gate_contracts_v1"
+    },
+    "request_id": { "type": "string", "minLength": 1 },
+    "chain_id": { "type": "string", "minLength": 1 },
+    "task_id": { "type": "string", "minLength": 1 },
+    "task_json_path": { "type": "string", "minLength": 1 },
+    "task_json_sha256": { "$ref": "#/$defs/sha256" },
+    "validator_report_path": { "type": "string", "minLength": 1 },
+    "validator_report_sha256": { "$ref": "#/$defs/sha256" },
+    "expected_validator_status": {
+      "type": "string",
+      "const": "VALID_DRY_RUN"
+    },
+    "expected_validator_accepted": {
+      "type": "boolean",
+      "const": true
+    },
+    "operation_class": {
+      "type": "string",
+      "enum": ["APPDATA_PACKET_CREATION_REVIEW_ONLY"]
+    },
+    "output_root_policy": {
+      "type": "string",
+      "enum": ["APPDATA_ONLY", "TEST_TEMP_ONLY"]
+    },
+    "output_root": { "type": "string", "minLength": 1 },
+    "owner_approval_phrase": { "type": "string", "minLength": 1 },
+    "owner_gate_before_dry_run": {
+      "type": "boolean",
+      "const": true
+    },
+    "success_criteria": { "$ref": "#/$defs/non_empty_string_array" },
+    "stop_conditions": { "$ref": "#/$defs/non_empty_string_array" },
+    "allowed_files": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "allowed_operations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["APPDATA_PACKET_CREATION_REVIEW_ONLY"]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "prohibited_actions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/prohibited_action" },
+      "minItems": 17,
+      "uniqueItems": true,
+      "allOf": [
+        { "contains": { "const": "live_execution" } },
+        { "contains": { "const": "paper_trading" } },
+        { "contains": { "const": "order_cancel_fetch_balance" } },
+        { "contains": { "const": "deploy" } },
+        { "contains": { "const": "runtime_workflow" } },
+        { "contains": { "const": "task_execution" } },
+        { "contains": { "const": "executor_code" } },
+        { "contains": { "const": "shell_escape" } },
+        { "contains": { "const": "network_private_openai_api" } },
+        { "contains": { "const": "cloud_mutation" } },
+        { "contains": { "const": "billing_mutation" } },
+        { "contains": { "const": "daemon_watcher" } },
+        { "contains": { "const": "ui_automation" } },
+        { "contains": { "const": "process_kill" } },
+        { "contains": { "const": "security_bypass" } },
+        { "contains": { "const": "repo_mutation" } },
+        { "contains": { "const": "secrets_output" } }
+      ]
+    },
+    "expected_final_report_labels": { "$ref": "#/$defs/non_empty_string_array" },
+    "no_executor_approval": {
+      "type": "boolean",
+      "const": true
+    },
+    "no_task_execution": {
+      "type": "boolean",
+      "const": true
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[A-Fa-f0-9]{64}$"
+    },
+    "non_empty_string_array": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "prohibited_action": {
+      "type": "string",
+      "enum": [
+        "live_execution",
+        "paper_trading",
+        "order_cancel_fetch_balance",
+        "deploy",
+        "runtime_workflow",
+        "task_execution",
+        "executor_code",
+        "shell_escape",
+        "network_private_openai_api",
+        "cloud_mutation",
+        "billing_mutation",
+        "daemon_watcher",
+        "ui_automation",
+        "process_kill",
+        "security_bypass",
+        "repo_mutation",
+        "secrets_output"
+      ]
+    }
+  }
+}

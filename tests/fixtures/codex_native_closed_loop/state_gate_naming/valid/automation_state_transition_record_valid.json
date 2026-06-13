@@ -1,0 +1,24 @@
+{
+  "schema": "lonewolf.codex_native.automation_state_transition_record.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "transition_id": "transition_w2_state_gate_valid_001",
+  "task_id": "w2_state_gate_contracts",
+  "previous_state": "PAUSED_BASELINE_ACCEPTED",
+  "requested_event": "PACKET_CREATED",
+  "guards": [
+    "exact_sha_match",
+    "clean_worktree",
+    "staged_file_count_zero",
+    "no_forbidden_action"
+  ],
+  "next_state": "APPROVAL_PACKET_READY",
+  "next_action": "INCLUDE_IN_NEXT_WAVE_IMPLEMENTATION_APPROVAL_INTEGRATION_PACKET",
+  "allowed": true,
+  "reason": "Static naming packet is ready for owner integration review only.",
+  "owner_review_required": true,
+  "execution_allowed": false,
+  "runtime_allowed": false,
+  "automatic_continuation_allowed": false,
+  "human_review_one_point": "Review canonical state/event/guard/next_action naming before integration.",
+  "created_at": "2026-06-13T00:00:00Z"
+}

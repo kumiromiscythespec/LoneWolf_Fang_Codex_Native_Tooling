@@ -1,0 +1,12 @@
+{
+  "schema": "lonewolf.codex_native.safe_governance_fixture.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "fixture_id": "W5-SAFE-READONLY-001",
+  "generated_at": "2026-06-13T16:25:00+09:00",
+  "request_type": "read_only_review",
+  "high_risk_action_requested": false,
+  "mutation_requested": false,
+  "execution_allowed": false,
+  "expected_classification": "allowed_safe_preparation",
+  "safe_next_action": "Collect local metadata and create an evidence packet."
+}

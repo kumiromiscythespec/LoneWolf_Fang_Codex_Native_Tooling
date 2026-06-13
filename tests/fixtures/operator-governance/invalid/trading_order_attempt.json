@@ -1,0 +1,37 @@
+{
+  "schema": "lonewolf.codex_native.forbidden_action_report.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "report_id": "W5-FORBIDDEN-TRADING-001",
+  "generated_at": "2026-06-13T16:25:00+09:00",
+  "target_repo": "C:\\LoneWolf_Fang_Project\\repos\\core\\LoneWolf_Fang_Codex_Native_Tooling",
+  "baseline_head": "25a4ec7277e2f18bcf4dec4cbfc93f7bdc36284b",
+  "action_category": "trading_order",
+  "action_label": "trading order attempt",
+  "attempted_action_text": "Synthetic request asked for PAPER LIVE order cancel or fetch_balance action.",
+  "matched_forbidden_terms": [
+    "PAPER",
+    "LIVE",
+    "order",
+    "cancel",
+    "fetch_balance"
+  ],
+  "exact_approval_present": false,
+  "classification": "blocked",
+  "execution_allowed": false,
+  "mutation_performed": false,
+  "owner_review_required": true,
+  "safe_alternatives": [
+    "read_only_review",
+    "preview_packet",
+    "stop_owner_review_required"
+  ],
+  "human_review_one_point": "Owner must choose GO, REPAIR, or STOP for safe docs/schema/tests/fixtures work only.",
+  "evidence_refs": [
+    {
+      "label": "synthetic_fixture",
+      "path": "tests/fixtures/operator-governance/invalid/trading_order_attempt.json",
+      "sha256": "3333333333333333333333333333333333333333333333333333333333333333"
+    }
+  ],
+  "stop_reason": "Forbidden trading or order request must stop for owner review."
+}

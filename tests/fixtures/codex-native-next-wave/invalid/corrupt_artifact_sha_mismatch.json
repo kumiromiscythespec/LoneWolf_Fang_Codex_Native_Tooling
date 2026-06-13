@@ -1,0 +1,19 @@
+{
+  "schema": "lonewolf.codex_native.static_coverage_fixture.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "fixture_id": "fixture_corrupt_artifact_sha_mismatch_v1",
+  "candidate_schema": "lonewolf.codex_native.blocker_matrix_record.v1",
+  "purpose": "Artifact exists but observed SHA256 differs from expected SHA256.",
+  "severity": "HIGH",
+  "blocker_type": "corrupt_artifact",
+  "expected_sha256": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+  "observed_sha256": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+  "expected_result": {
+    "status": "STOP_OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "automatic_continuation_allowed": false
+  },
+  "human_review_one_point": "Investigate the checksum mismatch before continuing."
+}

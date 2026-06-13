@@ -1,0 +1,13 @@
+{
+  "schema": "lonewolf.codex_native.state_gate_unknown_name_fixture.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "unknown_family": "guard",
+  "observed_name": "allow_runtime_now",
+  "expected_reason": "UNKNOWN_GUARD",
+  "next_state": "FAIL_CLOSED",
+  "next_action": "STOP_FAIL_CLOSED",
+  "owner_review_required": true,
+  "execution_allowed": false,
+  "runtime_allowed": false,
+  "automatic_continuation_allowed": false
+}

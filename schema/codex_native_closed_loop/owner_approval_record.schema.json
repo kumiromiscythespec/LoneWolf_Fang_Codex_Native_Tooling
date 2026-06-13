@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/codex_native_closed_loop/owner_approval_record.schema.json",
+  "$comment": "BUILD_ID: 20260613_codex_native_automation_gate_contracts_v1",
+  "title": "Codex Native Owner Approval Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "approval_id",
+    "task_id",
+    "approval_phrase",
+    "approval_scope",
+    "approval_created_at",
+    "artifact_sha256",
+    "owner_review_required",
+    "execution_allowed",
+    "runtime_allowed",
+    "automatic_continuation_allowed",
+    "human_review_one_point"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.codex_native.owner_approval_record.v1" },
+    "build_id": { "type": "string", "const": "20260613_codex_native_automation_gate_contracts_v1" },
+    "approval_id": { "type": "string", "minLength": 1 },
+    "task_id": { "type": "string", "minLength": 1 },
+    "approval_phrase": {
+      "type": "string",
+      "const": "APPROVE_NEXT_WAVE_DOCS_SCHEMA_TESTS_FIXTURES_IMPLEMENTATION_SIX_WINDOW"
+    },
+    "approval_scope": { "type": "string", "const": "docs_schema_tests_fixtures_only" },
+    "approval_created_at": { "type": "string", "format": "date-time" },
+    "approval_expires_at": { "type": "string", "format": "date-time" },
+    "artifact_sha256": { "type": "string", "pattern": "^[A-F0-9]{64}$" },
+    "owner_review_required": { "type": "boolean" },
+    "execution_allowed": { "type": "boolean", "const": false },
+    "runtime_allowed": { "type": "boolean", "const": false },
+    "automatic_continuation_allowed": { "type": "boolean", "const": false },
+    "human_review_one_point": { "type": "string", "minLength": 1 }
+  }
+}

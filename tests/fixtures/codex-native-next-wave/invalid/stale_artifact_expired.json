@@ -1,0 +1,19 @@
+{
+  "schema": "lonewolf.codex_native.static_coverage_fixture.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "fixture_id": "fixture_stale_artifact_expired_v1",
+  "candidate_schema": "lonewolf.codex_native.blocker_matrix_record.v1",
+  "purpose": "Artifact is outside the owner-approved freshness window.",
+  "severity": "HIGH",
+  "blocker_type": "stale_artifact",
+  "artifact_created_at": "2026-06-13T01:00:00.000Z",
+  "artifact_expires_at": "2026-06-13T02:00:00.000Z",
+  "expected_result": {
+    "status": "STOP_OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "automatic_continuation_allowed": false
+  },
+  "human_review_one_point": "Decide whether a fresh artifact is required."
+}

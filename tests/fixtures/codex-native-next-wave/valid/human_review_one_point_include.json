@@ -1,0 +1,21 @@
+{
+  "schema": "lonewolf.codex_native.static_coverage_fixture.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "fixture_id": "fixture_human_review_one_point_valid_include_v1",
+  "candidate_schema": "lonewolf.codex_native.human_review_one_point.v1",
+  "purpose": "Exactly one owner decision point for a static packet.",
+  "severity": "LOW",
+  "review": {
+    "question": "Include this static implementation output in integration review?",
+    "options": ["INCLUDE_FOR_REVIEW", "STOP_OWNER_REVIEW_REQUIRED"],
+    "recommended_option": "INCLUDE_FOR_REVIEW"
+  },
+  "expected_result": {
+    "status": "OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "automatic_continuation_allowed": false
+  },
+  "human_review_one_point": "Choose whether to include the static output in integration review."
+}

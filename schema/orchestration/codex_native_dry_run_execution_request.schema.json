@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/codex_native_dry_run_execution_request.schema.json",
+  "$comment": "BUILD_ID: 20260613_codex_native_automation_gate_contracts_v1",
+  "title": "Codex Native Dry Run Execution Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "request_id",
+    "task_id",
+    "operation_class",
+    "input_artifact_path",
+    "input_artifact_sha256",
+    "validator_report_sha256",
+    "owner_approval_record_sha256",
+    "output_root_policy",
+    "owner_review_required",
+    "execution_allowed",
+    "runtime_allowed",
+    "automatic_continuation_allowed",
+    "stop_conditions",
+    "forbidden_actions_confirmation",
+    "human_review_one_point"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.codex_native.dry_run_execution_request.v1" },
+    "build_id": { "type": "string", "const": "20260613_codex_native_automation_gate_contracts_v1" },
+    "request_id": { "type": "string", "minLength": 1 },
+    "task_id": { "type": "string", "minLength": 1 },
+    "operation_class": {
+      "type": "string",
+      "enum": ["STATIC_FIXTURE_REVIEW", "APPDATA_PACKET_REVIEW", "SCHEMA_CONTRACT_REVIEW"]
+    },
+    "input_artifact_path": { "type": "string", "minLength": 1 },
+    "input_artifact_sha256": { "$ref": "#/$defs/sha256" },
+    "validator_report_sha256": { "$ref": "#/$defs/sha256" },
+    "owner_approval_record_sha256": { "$ref": "#/$defs/sha256" },
+    "output_root_policy": {
+      "type": "string",
+      "enum": ["APPDATA_ONLY", "TEST_TEMP_ONLY", "APPDATA_OR_TEST_TEMP_ONLY"]
+    },
+    "owner_review_required": { "type": "boolean", "const": true },
+    "execution_allowed": { "type": "boolean", "const": false },
+    "runtime_allowed": { "type": "boolean", "const": false },
+    "automatic_continuation_allowed": { "type": "boolean", "const": false },
+    "stop_conditions": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "forbidden_actions_confirmation": { "$ref": "#/$defs/forbidden_actions_confirmation" },
+    "human_review_one_point": { "type": "string", "minLength": 1 }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" },
+    "forbidden_actions_confirmation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["forbidden_actions_performed", "confirmed_absent"],
+      "properties": {
+        "forbidden_actions_performed": { "type": "boolean", "const": false },
+        "confirmed_absent": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1
+        }
+      }
+    }
+  }
+}

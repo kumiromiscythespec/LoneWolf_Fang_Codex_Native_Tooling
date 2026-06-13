@@ -1,0 +1,22 @@
+{
+  "schema": "lonewolf.codex_native.static_coverage_fixture.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "fixture_id": "fixture_dry_run_result_valid_review_required_v1",
+  "candidate_schema": "lonewolf.codex_native.dry_run_execution_result.v1",
+  "purpose": "Safe future dry-run result shape that still requires owner review.",
+  "severity": "LOW",
+  "result": {
+    "status": "DRY_RUN_REVIEW_READY",
+    "accepted": true,
+    "output_artifact_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+    "next_recommended_action": "OWNER_REVIEW_REQUIRED"
+  },
+  "expected_result": {
+    "status": "OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "automatic_continuation_allowed": false
+  },
+  "human_review_one_point": "Review the dry-run result evidence before any continuation."
+}

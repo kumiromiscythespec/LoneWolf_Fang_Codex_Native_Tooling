@@ -1,0 +1,20 @@
+{
+  "schema": "lonewolf.codex_native.owner_approval_freshness_mutation_fixture.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "fixture_id": "OA_INVALID_TTL_EXPIRED",
+  "base_fixture": "tests/fixtures/owner-approval/valid/exact_scope_single_use_approval.json",
+  "mutation": {
+    "path": "approval_record.approval_expires_at_utc",
+    "value": "2026-06-13T07:40:00.000Z"
+  },
+  "expected_result": {
+    "valid": false,
+    "stale": true,
+    "reason_contains": "ttl expired",
+    "next_action_recommendation": "STOP_OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "automatic_continuation_allowed": false
+  }
+}

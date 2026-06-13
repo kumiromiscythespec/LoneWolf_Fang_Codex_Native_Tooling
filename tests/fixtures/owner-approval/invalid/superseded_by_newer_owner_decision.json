@@ -1,0 +1,43 @@
+{
+  "schema": "lonewolf.codex_native.owner_approval_freshness_mutation_fixture.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "fixture_id": "OA_INVALID_SUPERSEDED",
+  "base_fixture": "tests/fixtures/owner-approval/valid/exact_scope_single_use_approval.json",
+  "mutation": {
+    "path": "approval_record.supersession_status",
+    "value": "SUPERSEDED"
+  },
+  "supersession_record": {
+    "schema": "lonewolf.codex_native.owner_approval_supersession.v1",
+    "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+    "supersession_id": "approval_supersession_w3_001",
+    "supersession_created_at_utc": "2026-06-13T07:50:00.000Z",
+    "artifact_chain_id": "codex_native_next_wave_docs_schema_tests_fixtures_implementation_prompts_repaired_20260613_161547",
+    "supersedes_approval_id": "approval_w3_owner_freshness_exact_001",
+    "superseding_approval_id": "approval_w3_owner_freshness_exact_002",
+    "supersession_reason": "Owner issued a newer exact-scope decision.",
+    "superseded_artifact_sha256": "37FEDBF54203D4F089DD118C44F99252F2D489760A817C94214FFCAF7C2DBEB7",
+    "superseding_artifact_sha256": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "owner_gate": "OWNER_REVIEW_REQUIRED",
+    "rollback_path": "Ignore the superseded approval and return to the latest active owner decision packet.",
+    "old_record_preserved": true,
+    "no_deletion": true,
+    "no_history_rewrite": true,
+    "owner_approval_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "automatic_continuation_allowed": false,
+    "supersession_status": "SUPERSESSION_RECORDED",
+    "human_review_one_point": "Review the newer owner decision before continuing."
+  },
+  "expected_result": {
+    "valid": false,
+    "stale": true,
+    "reason_contains": "superseded",
+    "next_action_recommendation": "STOP_OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "automatic_continuation_allowed": false
+  }
+}

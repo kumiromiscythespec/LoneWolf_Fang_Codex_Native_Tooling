@@ -1,0 +1,35 @@
+{
+  "schema": "lonewolf.codex_native.forbidden_action_report.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "report_id": "W5-FORBIDDEN-BILLING-001",
+  "generated_at": "2026-06-13T16:25:00+09:00",
+  "target_repo": "C:\\LoneWolf_Fang_Project\\repos\\core\\LoneWolf_Fang_Codex_Native_Tooling",
+  "baseline_head": "25a4ec7277e2f18bcf4dec4cbfc93f7bdc36284b",
+  "action_category": "billing_mutation",
+  "action_label": "billing mutation attempt",
+  "attempted_action_text": "Synthetic request asked to mutate Stripe Clerk or billing state.",
+  "matched_forbidden_terms": [
+    "Stripe",
+    "Clerk",
+    "billing"
+  ],
+  "exact_approval_present": false,
+  "classification": "blocked",
+  "execution_allowed": false,
+  "mutation_performed": false,
+  "owner_review_required": true,
+  "safe_alternatives": [
+    "read_only_review",
+    "preview_packet",
+    "stop_owner_review_required"
+  ],
+  "human_review_one_point": "Owner must choose GO, REPAIR, or STOP for safe docs/schema/tests/fixtures work only.",
+  "evidence_refs": [
+    {
+      "label": "synthetic_fixture",
+      "path": "tests/fixtures/operator-governance/invalid/billing_mutation_attempt.json",
+      "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+    }
+  ],
+  "stop_reason": "Forbidden billing mutation request must stop for owner review."
+}

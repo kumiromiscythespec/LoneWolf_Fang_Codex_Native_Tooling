@@ -1,0 +1,17 @@
+{
+  "schema": "lonewolf.codex_native.forbidden_action_report.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "report_id": "forbidden_action_w2_runtime_001",
+  "task_id": "w2_state_gate_contracts",
+  "attempted_action": "RUNTIME_ATTEMPT",
+  "source_context": "Synthetic fixture describing rejected runtime evidence only.",
+  "redaction_status": "NO_PRIVATE_PAYLOAD_INCLUDED",
+  "detected_at": "2026-06-13T00:00:00Z",
+  "stop_reason": "Runtime behavior is outside the Window 2 implementation allowlist.",
+  "owner_review_required": true,
+  "execution_allowed": false,
+  "runtime_allowed": false,
+  "automatic_continuation_allowed": false,
+  "next_state": "RUNTIME_PROHIBITED",
+  "next_action": "STOP_RUNTIME_PROHIBITED"
+}

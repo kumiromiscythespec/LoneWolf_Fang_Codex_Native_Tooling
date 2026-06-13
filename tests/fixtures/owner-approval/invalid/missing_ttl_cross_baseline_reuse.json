@@ -1,0 +1,26 @@
+{
+  "schema": "lonewolf.codex_native.owner_approval_freshness_mutation_fixture.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "fixture_id": "OA_INVALID_MISSING_TTL_CROSS_BASELINE",
+  "base_fixture": "tests/fixtures/owner-approval/valid/reusable_docs_policy_approval_same_chain.json",
+  "mutations": [
+    {
+      "path": "approval_record.stable_baseline",
+      "value": "68740567c9acfe1a44305152822f4d46219e8603"
+    },
+    {
+      "path": "approval_record.artifact_chain_id",
+      "value": "codex_native_different_artifact_chain_20260613"
+    }
+  ],
+  "expected_result": {
+    "valid": false,
+    "stale": true,
+    "reason_contains": "missing ttl cannot cross",
+    "next_action_recommendation": "STOP_OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "automatic_continuation_allowed": false
+  }
+}

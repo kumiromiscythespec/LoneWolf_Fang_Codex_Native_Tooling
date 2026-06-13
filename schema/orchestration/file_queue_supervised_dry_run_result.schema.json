@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/file_queue_supervised_dry_run_result.schema.json",
+  "$comment": "BUILD_ID: 20260613_codex_native_automation_gate_contracts_v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "title": "File Queue Supervised Dry-run Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "request_id",
+    "chain_id",
+    "task_id",
+    "status",
+    "accepted",
+    "reasons",
+    "operation_class",
+    "task_json_sha256",
+    "validator_report_sha256",
+    "output_packet_path",
+    "output_packet_sha256",
+    "checked_at",
+    "owner_gate_after_dry_run",
+    "owner_gate_before_next_task_generation",
+    "no_repetition_started",
+    "no_runtime_or_persistent_watcher",
+    "no_executor_approval",
+    "no_task_execution",
+    "safety_summary",
+    "forbidden_actions_confirmation",
+    "next_recommended_action",
+    "human_review_one_point"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "lonewolf.file_queue.supervised_dry_run_result.v1"
+    },
+    "build_id": {
+      "type": "string",
+      "const": "20260613_codex_native_automation_gate_contracts_v1"
+    },
+    "request_id": { "type": "string", "minLength": 1 },
+    "chain_id": { "type": "string", "minLength": 1 },
+    "task_id": { "type": "string", "minLength": 1 },
+    "status": {
+      "type": "string",
+      "enum": [
+        "DRY_RUN_REVIEW_PACKET_CREATED",
+        "INVALID_REQUEST",
+        "UNSAFE_OPERATION_CLASS",
+        "SHA_MISMATCH",
+        "VALIDATOR_REPORT_REJECTED",
+        "OUTPUT_BOUNDARY_VIOLATION",
+        "PROHIBITED_FIELD_DETECTED",
+        "OWNER_GATE_MISSING",
+        "STOP_OWNER_REVIEW_REQUIRED",
+        "FAILED_SAFE"
+      ]
+    },
+    "accepted": { "type": "boolean" },
+    "reasons": { "$ref": "#/$defs/non_empty_string_array" },
+    "operation_class": {
+      "type": "string",
+      "enum": ["APPDATA_PACKET_CREATION_REVIEW_ONLY"]
+    },
+    "task_json_sha256": { "$ref": "#/$defs/sha256_or_empty" },
+    "validator_report_sha256": { "$ref": "#/$defs/sha256_or_empty" },
+    "output_packet_path": { "type": "string" },
+    "output_packet_sha256": { "$ref": "#/$defs/sha256_or_empty" },
+    "checked_at": { "type": "string", "minLength": 1 },
+    "owner_gate_after_dry_run": {
+      "type": "boolean",
+      "const": true
+    },
+    "owner_gate_before_next_task_generation": {
+      "type": "boolean",
+      "const": true
+    },
+    "no_repetition_started": {
+      "type": "boolean",
+      "const": true
+    },
+    "no_runtime_or_persistent_watcher": {
+      "type": "boolean",
+      "const": true
+    },
+    "no_executor_approval": {
+      "type": "boolean",
+      "const": true
+    },
+    "no_task_execution": {
+      "type": "boolean",
+      "const": true
+    },
+    "safety_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "local_only",
+        "appdata_or_test_temp_output_only",
+        "no_executor_code",
+        "no_task_execution",
+        "no_shell_command_runner",
+        "no_network",
+        "no_private_api",
+        "no_openai_api",
+        "no_deploy",
+        "no_cloud_mutation",
+        "no_billing_mutation",
+        "no_trading",
+        "no_daemon_watcher",
+        "no_ui_automation",
+        "no_process_kill",
+        "no_security_bypass",
+        "no_repo_mutation",
+        "no_secrets_output"
+      ],
+      "properties": {
+        "local_only": { "type": "boolean", "const": true },
+        "appdata_or_test_temp_output_only": { "type": "boolean", "const": true },
+        "no_executor_code": { "type": "boolean", "const": true },
+        "no_task_execution": { "type": "boolean", "const": true },
+        "no_shell_command_runner": { "type": "boolean", "const": true },
+        "no_network": { "type": "boolean", "const": true },
+        "no_private_api": { "type": "boolean", "const": true },
+        "no_openai_api": { "type": "boolean", "const": true },
+        "no_deploy": { "type": "boolean", "const": true },
+        "no_cloud_mutation": { "type": "boolean", "const": true },
+        "no_billing_mutation": { "type": "boolean", "const": true },
+        "no_trading": { "type": "boolean", "const": true },
+        "no_daemon_watcher": { "type": "boolean", "const": true },
+        "no_ui_automation": { "type": "boolean", "const": true },
+        "no_process_kill": { "type": "boolean", "const": true },
+        "no_security_bypass": { "type": "boolean", "const": true },
+        "no_repo_mutation": { "type": "boolean", "const": true },
+        "no_secrets_output": { "type": "boolean", "const": true }
+      }
+    },
+    "forbidden_actions_confirmation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["forbidden_actions_performed", "confirmed_absent"],
+      "properties": {
+        "forbidden_actions_performed": {
+          "type": "boolean",
+          "const": false
+        },
+        "confirmed_absent": { "$ref": "#/$defs/non_empty_string_array" }
+      }
+    },
+    "next_recommended_action": {
+      "type": "string",
+      "enum": [
+        "OWNER_REVIEW_REQUIRED",
+        "REPAIR_REQUEST",
+        "STOP_OWNER_REVIEW_REQUIRED",
+        "FAILED_SAFE"
+      ]
+    },
+    "human_review_one_point": { "type": "string", "minLength": 1 }
+  },
+  "$defs": {
+    "sha256_or_empty": {
+      "type": "string",
+      "pattern": "^[A-Fa-f0-9]{64}$|^$"
+    },
+    "non_empty_string_array": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    }
+  }
+}

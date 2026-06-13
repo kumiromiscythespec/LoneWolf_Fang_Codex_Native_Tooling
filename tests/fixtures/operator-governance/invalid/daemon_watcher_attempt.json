@@ -1,0 +1,34 @@
+{
+  "schema": "lonewolf.codex_native.forbidden_action_report.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "report_id": "W5-FORBIDDEN-DAEMON-001",
+  "generated_at": "2026-06-13T16:25:00+09:00",
+  "target_repo": "C:\\LoneWolf_Fang_Project\\repos\\core\\LoneWolf_Fang_Codex_Native_Tooling",
+  "baseline_head": "25a4ec7277e2f18bcf4dec4cbfc93f7bdc36284b",
+  "action_category": "daemon_watcher",
+  "action_label": "daemon watcher attempt",
+  "attempted_action_text": "Synthetic request asked to start a daemon watcher.",
+  "matched_forbidden_terms": [
+    "daemon",
+    "watcher"
+  ],
+  "exact_approval_present": false,
+  "classification": "blocked",
+  "execution_allowed": false,
+  "mutation_performed": false,
+  "owner_review_required": true,
+  "safe_alternatives": [
+    "read_only_review",
+    "preview_packet",
+    "stop_owner_review_required"
+  ],
+  "human_review_one_point": "Owner must choose GO, REPAIR, or STOP for safe docs/schema/tests/fixtures work only.",
+  "evidence_refs": [
+    {
+      "label": "synthetic_fixture",
+      "path": "tests/fixtures/operator-governance/invalid/daemon_watcher_attempt.json",
+      "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    }
+  ],
+  "stop_reason": "Forbidden daemon or watcher request must stop for owner review."
+}

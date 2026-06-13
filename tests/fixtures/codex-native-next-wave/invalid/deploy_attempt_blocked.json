@@ -1,0 +1,21 @@
+{
+  "schema": "lonewolf.codex_native.static_coverage_fixture.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "fixture_id": "fixture_deploy_attempt_blocked_v1",
+  "candidate_schema": "lonewolf.codex_native.forbidden_action_report.v1",
+  "purpose": "Deploy or production mutation evidence appears.",
+  "severity": "HIGH",
+  "attempted_action": "deploy_attempt",
+  "evidence": {
+    "deploy_requested": true,
+    "production_mutation_requested": true
+  },
+  "expected_result": {
+    "status": "STOP_OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "automatic_continuation_allowed": false
+  },
+  "human_review_one_point": "Reject deploy work in this static lane."
+}

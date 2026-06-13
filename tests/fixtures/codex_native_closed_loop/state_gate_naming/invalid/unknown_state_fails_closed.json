@@ -1,0 +1,13 @@
+{
+  "schema": "lonewolf.codex_native.state_gate_unknown_name_fixture.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "unknown_family": "state",
+  "observed_name": "READY_TO_RUN",
+  "expected_reason": "UNKNOWN_STATE",
+  "next_state": "OWNER_REVIEW_REQUIRED",
+  "next_action": "REQUIRE_OWNER_REVIEW",
+  "owner_review_required": true,
+  "execution_allowed": false,
+  "runtime_allowed": false,
+  "automatic_continuation_allowed": false
+}
