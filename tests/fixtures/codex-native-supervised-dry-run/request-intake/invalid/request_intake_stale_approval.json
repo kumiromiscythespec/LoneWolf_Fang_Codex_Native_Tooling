@@ -1,0 +1,32 @@
+{
+  "schema": "lonewolf.codex_native.supervised_dry_run_request_intake_invalid_fixture.v1",
+  "build_id": "20260614_request_intake_approval_binding_contracts_v1",
+  "fixture_id": "request_intake_stale_approval_invalid_v1",
+  "invalid_cases": [
+    {
+      "case_id": "missing_owner_approval",
+      "record_kind": "request_intake",
+      "mutation": { "path": "owner_approval_freshness", "delete": true },
+      "expected_error": "missing owner_approval_freshness"
+    },
+    {
+      "case_id": "empty_owner_approval_phrase",
+      "record_kind": "request_intake",
+      "mutation": { "path": "owner_approval_freshness.approval_phrase", "value": "" },
+      "expected_error": "bad approval phrase"
+    },
+    {
+      "case_id": "wrong_owner_approval_phrase",
+      "record_kind": "approval_binding",
+      "mutation": { "path": "owner_approval.approval_phrase", "value": "APPROVE_DIFFERENT_RUNTIME_TARGET" },
+      "expected_error": "bad approval phrase"
+    },
+    {
+      "case_id": "stale_owner_approval",
+      "record_kind": "approval_binding",
+      "mutation": { "path": "owner_approval.approval_stale", "value": true },
+      "expected_error": "stale approval"
+    }
+  ],
+  "expected_result": "STOP_OWNER_REVIEW_REQUIRED"
+}

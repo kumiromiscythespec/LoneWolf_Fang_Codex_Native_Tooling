@@ -1,0 +1,32 @@
+{
+  "schema": "lonewolf.codex_native.supervised_dry_run_request_intake_invalid_fixture.v1",
+  "build_id": "20260614_request_intake_approval_binding_contracts_v1",
+  "fixture_id": "request_intake_superseded_approval_invalid_v1",
+  "invalid_cases": [
+    {
+      "case_id": "superseded_owner_approval",
+      "record_kind": "request_intake",
+      "mutation": { "path": "owner_approval_freshness.approval_superseded", "value": true },
+      "expected_error": "superseded approval"
+    },
+    {
+      "case_id": "approval_target_mismatch",
+      "record_kind": "approval_binding",
+      "mutation": { "path": "owner_approval.approval_target", "value": "runtime_executor" },
+      "expected_error": "bad approval target"
+    },
+    {
+      "case_id": "broad_wildcard_scope",
+      "record_kind": "request_intake",
+      "mutation": { "path": "approval_scope.wildcard_scope_used", "value": true },
+      "expected_error": "broad scope"
+    },
+    {
+      "case_id": "broad_fixture_directory",
+      "record_kind": "approval_binding",
+      "mutation": { "path": "approval_scope.broad_fixture_directory_used", "value": true },
+      "expected_error": "broad scope"
+    }
+  ],
+  "expected_result": "STOP_OWNER_REVIEW_REQUIRED"
+}

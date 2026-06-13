@@ -1,0 +1,14 @@
+{
+  "schema": "lonewolf.codex_native.supervised_dry_run_request_intake_invalid_fixture.v1",
+  "build_id": "20260614_request_intake_approval_binding_contracts_v1",
+  "fixture_id": "request_intake_queue_mutation_present_invalid_v1",
+  "invalid_cases": [
+    {
+      "case_id": "queue_mutation_permission_true",
+      "record_kind": "approval_binding",
+      "mutation": { "path": "forbidden_actions.queue_mutation_allowed", "value": true },
+      "expected_error": "forbidden queue_mutation_allowed"
+    }
+  ],
+  "expected_result": "STOP_OWNER_REVIEW_REQUIRED"
+}

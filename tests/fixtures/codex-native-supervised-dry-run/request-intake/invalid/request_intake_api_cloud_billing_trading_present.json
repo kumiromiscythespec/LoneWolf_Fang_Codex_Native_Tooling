@@ -1,0 +1,38 @@
+{
+  "schema": "lonewolf.codex_native.supervised_dry_run_request_intake_invalid_fixture.v1",
+  "build_id": "20260614_request_intake_approval_binding_contracts_v1",
+  "fixture_id": "request_intake_api_cloud_billing_trading_present_invalid_v1",
+  "invalid_cases": [
+    {
+      "case_id": "private_api_permission_true",
+      "record_kind": "request_intake",
+      "mutation": { "path": "forbidden_actions.private_api_allowed", "value": true },
+      "expected_error": "forbidden private_api_allowed"
+    },
+    {
+      "case_id": "openai_api_permission_true",
+      "record_kind": "approval_binding",
+      "mutation": { "path": "forbidden_actions.openai_api_allowed", "value": true },
+      "expected_error": "forbidden openai_api_allowed"
+    },
+    {
+      "case_id": "cloud_mutation_permission_true",
+      "record_kind": "request_intake",
+      "mutation": { "path": "forbidden_actions.cloud_mutation_allowed", "value": true },
+      "expected_error": "forbidden cloud_mutation_allowed"
+    },
+    {
+      "case_id": "billing_mutation_permission_true",
+      "record_kind": "approval_binding",
+      "mutation": { "path": "forbidden_actions.billing_mutation_allowed", "value": true },
+      "expected_error": "forbidden billing_mutation_allowed"
+    },
+    {
+      "case_id": "trading_order_permission_true",
+      "record_kind": "request_intake",
+      "mutation": { "path": "forbidden_actions.trading_order_allowed", "value": true },
+      "expected_error": "forbidden trading_order_allowed"
+    }
+  ],
+  "expected_result": "STOP_OWNER_REVIEW_REQUIRED"
+}

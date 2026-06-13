@@ -1,0 +1,26 @@
+{
+  "schema": "lonewolf.codex_native.supervised_dry_run_request_intake_invalid_fixture.v1",
+  "build_id": "20260614_request_intake_approval_binding_contracts_v1",
+  "fixture_id": "request_intake_runtime_permission_present_invalid_v1",
+  "invalid_cases": [
+    {
+      "case_id": "runtime_permission_true",
+      "record_kind": "request_intake",
+      "mutation": { "path": "forbidden_actions.runtime_execution_allowed", "value": true },
+      "expected_error": "forbidden runtime_execution_allowed"
+    },
+    {
+      "case_id": "worker_permission_true",
+      "record_kind": "approval_binding",
+      "mutation": { "path": "forbidden_actions.worker_launch_allowed", "value": true },
+      "expected_error": "forbidden worker_launch_allowed"
+    },
+    {
+      "case_id": "daemon_permission_true",
+      "record_kind": "request_intake",
+      "mutation": { "path": "forbidden_actions.daemon_watcher_allowed", "value": true },
+      "expected_error": "forbidden daemon_watcher_allowed"
+    }
+  ],
+  "expected_result": "STOP_OWNER_REVIEW_REQUIRED"
+}

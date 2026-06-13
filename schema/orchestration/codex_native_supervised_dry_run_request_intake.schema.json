@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/codex_native_supervised_dry_run_request_intake.schema.json",
+  "$comment": "BUILD_ID: 20260614_request_intake_approval_binding_contracts_v1",
+  "build_id": "20260614_request_intake_approval_binding_contracts_v1",
+  "title": "Codex Native Supervised Dry-Run Request Intake",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "request_id",
+    "requested_target",
+    "stable_baseline",
+    "expected_repo",
+    "expected_branch",
+    "expected_head",
+    "expected_origin_master",
+    "expected_ahead_behind",
+    "owner_approval_phrase",
+    "owner_approval_freshness",
+    "approval_scope",
+    "artifact_chain",
+    "blocker_matrix",
+    "fail_closed_decision",
+    "forbidden_actions",
+    "human_review_one_point",
+    "recommended_next_action"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.codex_native.supervised_dry_run_request_intake.v1" },
+    "build_id": { "type": "string", "const": "20260614_request_intake_approval_binding_contracts_v1" },
+    "request_id": { "type": "string", "minLength": 1 },
+    "requested_target": { "type": "string", "const": "request_intake_approval_binding_contracts" },
+    "stable_baseline": { "type": "string", "const": "990649259423bba0968169d96fc1b9d84077e074" },
+    "expected_repo": { "type": "string", "const": "C:\\LoneWolf_Fang_Project\\repos\\core\\LoneWolf_Fang_Codex_Native_Tooling" },
+    "expected_branch": { "type": "string", "const": "master" },
+    "expected_head": { "type": "string", "const": "990649259423bba0968169d96fc1b9d84077e074" },
+    "expected_origin_master": { "type": "string", "const": "990649259423bba0968169d96fc1b9d84077e074" },
+    "expected_ahead_behind": { "type": "string", "const": "0 / 0" },
+    "owner_approval_phrase": { "type": "string", "const": "APPROVE_REQUEST_INTAKE_APPROVAL_BINDING_CONTRACTS_DOCS_SCHEMA_TESTS_FIXTURES_ONLY" },
+    "owner_approval_freshness": { "$ref": "#/$defs/owner_approval_freshness" },
+    "approval_scope": { "$ref": "#/$defs/approval_scope" },
+    "artifact_chain": { "$ref": "#/$defs/artifact_chain" },
+    "blocker_matrix": { "$ref": "#/$defs/blocker_matrix" },
+    "fail_closed_decision": { "type": "string", "enum": ["READY_FOR_REQUEST_INTAKE_REVIEW", "STOP_OWNER_REVIEW_REQUIRED"] },
+    "forbidden_actions": { "$ref": "#/$defs/forbidden_actions" },
+    "human_review_one_point": { "type": "string", "minLength": 1 },
+    "recommended_next_action": { "type": "string", "enum": ["START_REQUEST_INTAKE_APPROVAL_BINDING_IMPLEMENTATION_REVIEW_PACKET", "STOP_OWNER_REVIEW_REQUIRED"] }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" },
+    "owner_approval_freshness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "approval_record_id",
+        "approval_phrase",
+        "target_scope",
+        "approval_current",
+        "approval_stale",
+        "approval_superseded",
+        "freshness_checked_at_utc",
+        "single_use_mutation_approval",
+        "reuse_for_runtime_prohibited"
+      ],
+      "properties": {
+        "approval_record_id": { "type": "string", "minLength": 1 },
+        "approval_phrase": { "type": "string", "const": "APPROVE_REQUEST_INTAKE_APPROVAL_BINDING_CONTRACTS_DOCS_SCHEMA_TESTS_FIXTURES_ONLY" },
+        "target_scope": { "type": "string", "const": "request_intake_approval_binding_contracts" },
+        "approval_current": { "type": "boolean", "const": true },
+        "approval_stale": { "type": "boolean", "const": false },
+        "approval_superseded": { "type": "boolean", "const": false },
+        "freshness_checked_at_utc": { "type": "string", "minLength": 1 },
+        "single_use_mutation_approval": { "type": "boolean", "const": true },
+        "reuse_for_runtime_prohibited": { "type": "boolean", "const": true }
+      }
+    },
+    "approval_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope_id",
+        "exact_file_allowlist_count",
+        "allowed_files",
+        "wildcard_scope_used",
+        "directory_only_scope_used",
+        "broad_fixture_directory_used",
+        "outside_docs_schema_tests_fixtures",
+        "runtime_source_cloud_billing_trading_paths_in_scope"
+      ],
+      "properties": {
+        "scope_id": { "type": "string", "const": "request_intake_approval_binding_contracts_14_file_scope" },
+        "exact_file_allowlist_count": { "type": "integer", "const": 14 },
+        "allowed_files": {
+          "type": "array",
+          "minItems": 14,
+          "maxItems": 14,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "wildcard_scope_used": { "type": "boolean", "const": false },
+        "directory_only_scope_used": { "type": "boolean", "const": false },
+        "broad_fixture_directory_used": { "type": "boolean", "const": false },
+        "outside_docs_schema_tests_fixtures": { "type": "boolean", "const": false },
+        "runtime_source_cloud_billing_trading_paths_in_scope": { "type": "boolean", "const": false }
+      }
+    },
+    "artifact_chain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_chain_role",
+        "implementation_approval_packet_path",
+        "implementation_approval_packet_sha256",
+        "planning_integration_packet_path",
+        "planning_integration_packet_sha256",
+        "stable_closeout_packet_path",
+        "stable_closeout_packet_sha256",
+        "implementation_evidence_required"
+      ],
+      "properties": {
+        "artifact_chain_role": { "type": "string", "const": "request_intake_approval_binding_evidence_chain" },
+        "implementation_approval_packet_path": { "type": "string", "minLength": 1 },
+        "implementation_approval_packet_sha256": { "$ref": "#/$defs/sha256" },
+        "planning_integration_packet_path": { "type": "string", "minLength": 1 },
+        "planning_integration_packet_sha256": { "$ref": "#/$defs/sha256" },
+        "stable_closeout_packet_path": { "type": "string", "minLength": 1 },
+        "stable_closeout_packet_sha256": { "$ref": "#/$defs/sha256" },
+        "implementation_evidence_required": { "type": "boolean", "const": true }
+      }
+    },
+    "blocker_matrix": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/blocker" }
+    },
+    "blocker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "blocker_id",
+        "severity",
+        "reason",
+        "evidence_reference",
+        "fail_closed_action",
+        "owner_review_required",
+        "allows_progression"
+      ],
+      "properties": {
+        "blocker_id": { "type": "string", "minLength": 1 },
+        "severity": { "type": "string", "enum": ["BLOCKER", "HIGH"] },
+        "reason": { "type": "string", "minLength": 1 },
+        "evidence_reference": { "type": "string", "minLength": 1 },
+        "fail_closed_action": { "type": "string", "const": "STOP_OWNER_REVIEW_REQUIRED" },
+        "owner_review_required": { "type": "boolean", "const": true },
+        "allows_progression": { "type": "boolean", "const": false }
+      }
+    },
+    "forbidden_actions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_execution_allowed",
+        "worker_launch_allowed",
+        "daemon_watcher_allowed",
+        "private_api_allowed",
+        "openai_api_allowed",
+        "cloud_mutation_allowed",
+        "queue_mutation_allowed",
+        "billing_mutation_allowed",
+        "trading_order_allowed",
+        "ui_automation_allowed",
+        "automatic_continuation_allowed"
+      ],
+      "properties": {
+        "runtime_execution_allowed": { "type": "boolean", "const": false },
+        "worker_launch_allowed": { "type": "boolean", "const": false },
+        "daemon_watcher_allowed": { "type": "boolean", "const": false },
+        "private_api_allowed": { "type": "boolean", "const": false },
+        "openai_api_allowed": { "type": "boolean", "const": false },
+        "cloud_mutation_allowed": { "type": "boolean", "const": false },
+        "queue_mutation_allowed": { "type": "boolean", "const": false },
+        "billing_mutation_allowed": { "type": "boolean", "const": false },
+        "trading_order_allowed": { "type": "boolean", "const": false },
+        "ui_automation_allowed": { "type": "boolean", "const": false },
+        "automatic_continuation_allowed": { "type": "boolean", "const": false }
+      }
+    }
+  }
+}

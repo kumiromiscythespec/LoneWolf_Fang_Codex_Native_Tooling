@@ -1,0 +1,44 @@
+{
+  "schema": "lonewolf.codex_native.supervised_dry_run_request_intake_invalid_fixture.v1",
+  "build_id": "20260614_request_intake_approval_binding_contracts_v1",
+  "fixture_id": "request_intake_baseline_mismatch_invalid_v1",
+  "invalid_cases": [
+    {
+      "case_id": "missing_stable_baseline",
+      "record_kind": "request_intake",
+      "mutation": { "path": "stable_baseline", "delete": true },
+      "expected_error": "missing stable_baseline"
+    },
+    {
+      "case_id": "mismatched_stable_baseline",
+      "record_kind": "approval_binding",
+      "mutation": { "path": "stable_baseline", "value": "16ab1da1fa40e575de90d91d155231338fcb33de" },
+      "expected_error": "bad stable baseline"
+    },
+    {
+      "case_id": "missing_artifact_chain",
+      "record_kind": "request_intake",
+      "mutation": { "path": "artifact_chain", "delete": true },
+      "expected_error": "missing artifact_chain"
+    },
+    {
+      "case_id": "missing_blocker_matrix",
+      "record_kind": "approval_binding",
+      "mutation": { "path": "blocker_matrix", "delete": true },
+      "expected_error": "missing blocker_matrix"
+    },
+    {
+      "case_id": "malformed_blocker_matrix",
+      "record_kind": "request_intake_blocked",
+      "mutation": { "path": "blocker_matrix.0.fail_closed_action", "delete": true },
+      "expected_error": "bad blocker missing fail_closed_action"
+    },
+    {
+      "case_id": "unknown_request_intake_decision",
+      "record_kind": "request_intake",
+      "mutation": { "path": "fail_closed_decision", "value": "READY_TO_EXECUTE" },
+      "expected_error": "bad decision"
+    }
+  ],
+  "expected_result": "STOP_OWNER_REVIEW_REQUIRED"
+}
