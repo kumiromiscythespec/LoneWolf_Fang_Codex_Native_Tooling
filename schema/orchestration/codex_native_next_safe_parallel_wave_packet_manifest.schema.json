@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/codex_native_next_safe_parallel_wave_packet_manifest.schema.json",
+  "$comment": "BUILD_ID: 20260613_single_shot_supervised_dry_run_readiness_map_v1",
+  "build_id": "20260613_single_shot_supervised_dry_run_readiness_map_v1",
+  "title": "Codex Native Next Safe Parallel Wave Packet Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "artifact_id",
+    "artifact_zip",
+    "artifact_sha256",
+    "target_repo",
+    "baseline_commit",
+    "changed_file_list",
+    "human_review_one_point",
+    "nested_zip_count",
+    "forbidden_entry_count",
+    "runtime_execution_performed",
+    "deploy_performed",
+    "api_calls_performed",
+    "cloud_billing_trading_performed",
+    "recommended_next_action"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.codex_native.next_safe_parallel_wave_packet_manifest.v1" },
+    "build_id": { "type": "string", "const": "20260613_single_shot_supervised_dry_run_readiness_map_v1" },
+    "artifact_id": { "type": "string", "minLength": 1 },
+    "artifact_zip": { "type": "string", "minLength": 1 },
+    "artifact_sha256": { "$ref": "#/$defs/sha256" },
+    "target_repo": { "type": "string", "minLength": 1 },
+    "baseline_commit": { "$ref": "#/$defs/sha1" },
+    "changed_file_list": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1, "uniqueItems": true },
+    "human_review_one_point": { "type": "string", "minLength": 1 },
+    "nested_zip_count": { "type": "integer", "const": 0 },
+    "forbidden_entry_count": { "type": "integer", "const": 0 },
+    "runtime_execution_performed": { "type": "boolean", "const": false },
+    "deploy_performed": { "type": "boolean", "const": false },
+    "api_calls_performed": { "type": "boolean", "const": false },
+    "cloud_billing_trading_performed": { "type": "boolean", "const": false },
+    "recommended_next_action": { "type": "string", "enum": ["START_SINGLE_SHOT_SUPERVISED_DRY_RUN_READINESS_MAP_IMPLEMENTATION_REVIEW_PACKET", "STOP_OWNER_REVIEW_REQUIRED"] }
+  },
+  "$defs": {
+    "sha1": { "type": "string", "pattern": "^[A-Fa-f0-9]{40}$" },
+    "sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" }
+  }
+}

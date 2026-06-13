@@ -1,0 +1,19 @@
+{
+  "schema": "lonewolf.codex_native.next_safe_parallel_wave_packet_manifest.v1",
+  "build_id": "20260613_single_shot_supervised_dry_run_readiness_map_v1",
+  "artifact_id": "artifact-sha-mismatch-001",
+  "artifact_zip": "C:\\Users\\yu_ki\\AppData\\Local\\LoneWolfFang\\data\\future_readiness_packet.zip",
+  "artifact_sha256": "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",
+  "expected_artifact_sha256": "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE",
+  "target_repo": "C:\\LoneWolf_Fang_Project\\repos\\core\\LoneWolf_Fang_Codex_Native_Tooling",
+  "baseline_commit": "16ab1da1fa40e575de90d91d155231338fcb33de",
+  "changed_file_list": ["docs/orchestration/codex_native_single_shot_supervised_dry_run_readiness_map.md"],
+  "human_review_one_point": "SHA mismatch requires owner review.",
+  "nested_zip_count": 0,
+  "forbidden_entry_count": 0,
+  "runtime_execution_performed": false,
+  "deploy_performed": false,
+  "api_calls_performed": false,
+  "cloud_billing_trading_performed": false,
+  "recommended_next_action": "STOP_OWNER_REVIEW_REQUIRED"
+}

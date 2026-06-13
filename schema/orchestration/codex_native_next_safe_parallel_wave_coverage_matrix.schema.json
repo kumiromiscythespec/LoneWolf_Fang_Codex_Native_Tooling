@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/codex_native_next_safe_parallel_wave_coverage_matrix.schema.json",
+  "$comment": "BUILD_ID: 20260613_single_shot_supervised_dry_run_readiness_map_v1",
+  "build_id": "20260613_single_shot_supervised_dry_run_readiness_map_v1",
+  "title": "Codex Native Next Safe Parallel Wave Coverage Matrix",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "build_id", "matrix_id", "rows", "expected_result"],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.codex_native.next_safe_parallel_wave_coverage_matrix.v1" },
+    "build_id": { "type": "string", "const": "20260613_single_shot_supervised_dry_run_readiness_map_v1" },
+    "matrix_id": { "type": "string", "minLength": 1 },
+    "rows": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/row" },
+      "minItems": 1
+    },
+    "expected_result": { "type": "string", "enum": ["READY_FOR_OWNER_REVIEW", "STOP_OWNER_REVIEW_REQUIRED"] }
+  },
+  "$defs": {
+    "row": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "category", "coverage_kind", "static_only"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "category": { "type": "string", "enum": ["docs", "schema", "tests", "fixtures"] },
+        "coverage_kind": { "type": "string", "minLength": 1 },
+        "static_only": { "type": "boolean", "const": true }
+      }
+    }
+  }
+}

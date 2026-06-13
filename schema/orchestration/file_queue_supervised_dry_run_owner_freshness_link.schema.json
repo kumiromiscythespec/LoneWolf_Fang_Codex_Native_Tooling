@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/file_queue_supervised_dry_run_owner_freshness_link.schema.json",
+  "$comment": "BUILD_ID: 20260613_single_shot_supervised_dry_run_readiness_map_v1",
+  "build_id": "20260613_single_shot_supervised_dry_run_readiness_map_v1",
+  "title": "File Queue Supervised Dry-Run Owner Freshness Link",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "link_id",
+    "approval_phrase",
+    "approval_fresh",
+    "baseline_commit",
+    "file_allowlist_sha256",
+    "approval_packet_sha256",
+    "implementation_type",
+    "stale_reasons",
+    "implementation_allowed",
+    "expected_result"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.file_queue.supervised_dry_run_owner_freshness_link.v1" },
+    "build_id": { "type": "string", "const": "20260613_single_shot_supervised_dry_run_readiness_map_v1" },
+    "link_id": { "type": "string", "minLength": 1 },
+    "approval_phrase": { "type": "string", "const": "APPROVE_SINGLE_SHOT_SUPERVISED_DRY_RUN_READINESS_MAP_DOCS_SCHEMA_TESTS_FIXTURES_ONLY" },
+    "approval_fresh": { "type": "boolean" },
+    "baseline_commit": { "$ref": "#/$defs/sha1" },
+    "file_allowlist_sha256": { "$ref": "#/$defs/sha256" },
+    "approval_packet_sha256": { "$ref": "#/$defs/sha256" },
+    "implementation_type": { "type": "string", "const": "docs/schema/tests/fixtures-only" },
+    "stale_reasons": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "implementation_allowed": { "type": "boolean" },
+    "expected_result": { "type": "string", "enum": ["READY_FOR_OWNER_REVIEW", "STOP_OWNER_REVIEW_REQUIRED"] }
+  },
+  "$defs": {
+    "sha1": { "type": "string", "pattern": "^[A-Fa-f0-9]{40}$" },
+    "sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" }
+  }
+}

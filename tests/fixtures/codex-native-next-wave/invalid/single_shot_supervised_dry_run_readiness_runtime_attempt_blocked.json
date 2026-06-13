@@ -1,0 +1,75 @@
+{
+  "schema": "lonewolf.codex_native.static_coverage_fixture.v1",
+  "build_id": "20260613_codex_native_automation_gate_contracts_v1",
+  "readiness_build_id": "20260613_single_shot_supervised_dry_run_readiness_map_v1",
+  "fixture_id": "fixture_single_shot_supervised_dry_run_runtime_attempt_blocked_v1",
+  "purpose": "Invalid readiness record that attempts to permit runtime.",
+  "severity": "HIGH",
+  "readiness_record": {
+    "schema": "lonewolf.codex_native.supervised_dry_run_readiness_record.v1",
+    "build_id": "20260613_single_shot_supervised_dry_run_readiness_map_v1",
+    "readiness_id": "readiness-runtime-blocked-001",
+    "objective": "single_shot_supervised_dry_run_readiness_map",
+    "target_repo": "C:\\LoneWolf_Fang_Project\\repos\\core\\LoneWolf_Fang_Codex_Native_Tooling",
+    "baseline_commit": "16ab1da1fa40e575de90d91d155231338fcb33de",
+    "expected_branch": "master",
+    "expected_ahead_behind": "0 / 0",
+    "owner_approval_phrase": "APPROVE_SINGLE_SHOT_SUPERVISED_DRY_RUN_READINESS_MAP_DOCS_SCHEMA_TESTS_FIXTURES_ONLY",
+    "owner_approval_fresh": true,
+    "owner_approval": {
+      "approval_phrase": "APPROVE_SINGLE_SHOT_SUPERVISED_DRY_RUN_READINESS_MAP_DOCS_SCHEMA_TESTS_FIXTURES_ONLY",
+      "target_scope": "single_shot_supervised_dry_run_readiness_map",
+      "exact_file_allowlist_count": 35,
+      "approval_fresh": true,
+      "approval_superseded": false,
+      "wildcard_scope_used": false,
+      "unbounded_fixture_scope": false,
+      "broader_than_allowlist": false,
+      "runtime_source_cloud_billing_trading_paths_in_scope": true,
+      "ambiguous_or_incomplete_scope": false
+    },
+    "dry_run_mode": "SINGLE_SHOT_SUPERVISED_STATIC_READINESS_ONLY",
+    "readiness_decision": "STOP_OWNER_REVIEW_REQUIRED",
+    "artifact_chain": {
+      "artifact_chain_role": "readiness_map_evidence_chain",
+      "approval_packet_path": "C:\\Users\\yu_ki\\AppData\\Local\\LoneWolfFang\\data\\codex_native_single_shot_supervised_dry_run_readiness_map_approval_packet_20260613_192559.zip",
+      "approval_packet_sha256": "121061C314E122FA43E9FD9040D66A1D2555150FF4CF2A3DC8A17D750CEE7757",
+      "stable_closeout_packet_path": "C:\\Users\\yu_ki\\AppData\\Local\\LoneWolfFang\\data\\codex_native_next_wave_docs_schema_tests_fixtures_stable_post_push_closeout_packet_20260613_183634.zip",
+      "stable_closeout_packet_sha256": "18E09FD8910D5C2BD47C422ABC445858D3F6CD1E2F6BEEFD4572EEC89CB3B412",
+      "implementation_artifact_sha256": "2990733E0144A83E7042D3F44929010CFDDBC7C2AC4F1A598BCD46735BD41742",
+      "implementation_review_packet_sha256": "C99639B2B3D80CF0B031F53BA2BBC9773FC34FC5180BE9CD8E451DBA019F676F",
+      "implementation_evidence_required": true
+    },
+    "blocker_matrix": [
+      {
+        "blocker_id": "runtime-permission-blocked",
+        "severity": "BLOCKER",
+        "reason": "The readiness record attempts to allow runtime execution before owner-reviewed dry-run readiness.",
+        "evidence_reference": "forbidden_actions.runtime_execution_allowed",
+        "fail_closed_action": "STOP_OWNER_REVIEW_REQUIRED",
+        "owner_review_required": true,
+        "allows_progression": false
+      }
+    ],
+    "forbidden_actions": {
+      "runtime_execution_allowed": true,
+      "worker_launch_allowed": false,
+      "daemon_watcher_allowed": false,
+      "api_calls_allowed": false,
+      "cloud_mutation_allowed": false,
+      "billing_mutation_allowed": false,
+      "trading_order_allowed": false,
+      "automatic_continuation_allowed": false,
+      "ui_automation_allowed": false
+    },
+    "human_review_one_point": "Runtime permission must stop owner review."
+  },
+  "expected_result": {
+    "status": "STOP_OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "execution_allowed": false,
+    "runtime_allowed": false,
+    "automatic_continuation_allowed": false
+  },
+  "human_review_one_point": "Remove runtime permission or stop."
+}

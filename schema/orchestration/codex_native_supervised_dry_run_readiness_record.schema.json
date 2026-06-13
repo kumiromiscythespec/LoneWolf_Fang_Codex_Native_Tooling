@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/codex_native_supervised_dry_run_readiness_record.schema.json",
+  "$comment": "BUILD_ID: 20260613_single_shot_supervised_dry_run_readiness_map_v1",
+  "build_id": "20260613_single_shot_supervised_dry_run_readiness_map_v1",
+  "title": "Codex Native Supervised Dry-Run Readiness Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "readiness_id",
+    "objective",
+    "target_repo",
+    "baseline_commit",
+    "expected_branch",
+    "expected_ahead_behind",
+    "owner_approval",
+    "owner_approval_phrase",
+    "owner_approval_fresh",
+    "dry_run_mode",
+    "readiness_decision",
+    "artifact_chain",
+    "blocker_matrix",
+    "forbidden_actions",
+    "human_review_one_point"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.codex_native.supervised_dry_run_readiness_record.v1" },
+    "build_id": { "type": "string", "const": "20260613_single_shot_supervised_dry_run_readiness_map_v1" },
+    "readiness_id": { "type": "string", "minLength": 1 },
+    "objective": { "type": "string", "const": "single_shot_supervised_dry_run_readiness_map" },
+    "target_repo": { "type": "string", "const": "C:\\LoneWolf_Fang_Project\\repos\\core\\LoneWolf_Fang_Codex_Native_Tooling" },
+    "baseline_commit": { "type": "string", "const": "16ab1da1fa40e575de90d91d155231338fcb33de" },
+    "expected_branch": { "type": "string", "const": "master" },
+    "expected_ahead_behind": { "type": "string", "const": "0 / 0" },
+    "owner_approval": { "$ref": "#/$defs/owner_approval" },
+    "owner_approval_phrase": { "type": "string", "const": "APPROVE_SINGLE_SHOT_SUPERVISED_DRY_RUN_READINESS_MAP_DOCS_SCHEMA_TESTS_FIXTURES_ONLY" },
+    "owner_approval_fresh": { "type": "boolean" },
+    "dry_run_mode": { "type": "string", "const": "SINGLE_SHOT_SUPERVISED_STATIC_READINESS_ONLY" },
+    "readiness_decision": { "type": "string", "enum": ["READY_FOR_OWNER_REVIEW", "STOP_OWNER_REVIEW_REQUIRED"] },
+    "artifact_chain": { "$ref": "#/$defs/artifact_chain" },
+    "blocker_matrix": { "$ref": "#/$defs/blocker_matrix" },
+    "forbidden_actions": { "$ref": "#/$defs/forbidden_actions" },
+    "human_review_one_point": { "type": "string", "minLength": 1 }
+  },
+  "$defs": {
+    "sha1": { "type": "string", "pattern": "^[A-Fa-f0-9]{40}$" },
+    "sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" },
+    "owner_approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "approval_phrase",
+        "target_scope",
+        "exact_file_allowlist_count",
+        "approval_fresh",
+        "approval_superseded",
+        "wildcard_scope_used",
+        "unbounded_fixture_scope",
+        "broader_than_allowlist",
+        "runtime_source_cloud_billing_trading_paths_in_scope",
+        "ambiguous_or_incomplete_scope"
+      ],
+      "properties": {
+        "approval_phrase": { "type": "string", "const": "APPROVE_SINGLE_SHOT_SUPERVISED_DRY_RUN_READINESS_MAP_DOCS_SCHEMA_TESTS_FIXTURES_ONLY" },
+        "target_scope": { "type": "string", "const": "single_shot_supervised_dry_run_readiness_map" },
+        "exact_file_allowlist_count": { "type": "integer", "const": 35 },
+        "approval_fresh": { "type": "boolean", "const": true },
+        "approval_superseded": { "type": "boolean", "const": false },
+        "wildcard_scope_used": { "type": "boolean", "const": false },
+        "unbounded_fixture_scope": { "type": "boolean", "const": false },
+        "broader_than_allowlist": { "type": "boolean", "const": false },
+        "runtime_source_cloud_billing_trading_paths_in_scope": { "type": "boolean", "const": false },
+        "ambiguous_or_incomplete_scope": { "type": "boolean", "const": false }
+      }
+    },
+    "artifact_chain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_chain_role",
+        "approval_packet_path",
+        "approval_packet_sha256",
+        "stable_closeout_packet_path",
+        "stable_closeout_packet_sha256",
+        "implementation_artifact_sha256",
+        "implementation_review_packet_sha256",
+        "implementation_evidence_required"
+      ],
+      "properties": {
+        "artifact_chain_role": { "type": "string", "const": "readiness_map_evidence_chain" },
+        "approval_packet_path": { "type": "string", "minLength": 1 },
+        "approval_packet_sha256": { "$ref": "#/$defs/sha256" },
+        "stable_closeout_packet_path": { "type": "string", "minLength": 1 },
+        "stable_closeout_packet_sha256": { "$ref": "#/$defs/sha256" },
+        "implementation_artifact_sha256": { "$ref": "#/$defs/sha256" },
+        "implementation_review_packet_sha256": { "$ref": "#/$defs/sha256" },
+        "implementation_evidence_required": { "type": "boolean", "const": true }
+      }
+    },
+    "blocker_matrix": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/blocker" }
+    },
+    "blocker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "blocker_id",
+        "severity",
+        "reason",
+        "evidence_reference",
+        "fail_closed_action",
+        "owner_review_required",
+        "allows_progression"
+      ],
+      "properties": {
+        "blocker_id": { "type": "string", "minLength": 1 },
+        "severity": { "type": "string", "enum": ["BLOCKER", "HIGH"] },
+        "reason": { "type": "string", "minLength": 1 },
+        "evidence_reference": { "type": "string", "minLength": 1 },
+        "fail_closed_action": { "type": "string", "const": "STOP_OWNER_REVIEW_REQUIRED" },
+        "owner_review_required": { "type": "boolean", "const": true },
+        "allows_progression": { "type": "boolean", "const": false }
+      }
+    },
+    "forbidden_actions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_execution_allowed",
+        "worker_launch_allowed",
+        "daemon_watcher_allowed",
+        "api_calls_allowed",
+        "cloud_mutation_allowed",
+        "billing_mutation_allowed",
+        "trading_order_allowed",
+        "automatic_continuation_allowed",
+        "ui_automation_allowed"
+      ],
+      "properties": {
+        "runtime_execution_allowed": { "type": "boolean", "const": false },
+        "worker_launch_allowed": { "type": "boolean", "const": false },
+        "daemon_watcher_allowed": { "type": "boolean", "const": false },
+        "api_calls_allowed": { "type": "boolean", "const": false },
+        "cloud_mutation_allowed": { "type": "boolean", "const": false },
+        "billing_mutation_allowed": { "type": "boolean", "const": false },
+        "trading_order_allowed": { "type": "boolean", "const": false },
+        "automatic_continuation_allowed": { "type": "boolean", "const": false },
+        "ui_automation_allowed": { "type": "boolean", "const": false }
+      }
+    }
+  }
+}

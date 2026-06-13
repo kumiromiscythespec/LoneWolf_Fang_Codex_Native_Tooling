@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/codex_native_next_safe_parallel_wave_parallel_collision.schema.json",
+  "$comment": "BUILD_ID: 20260613_single_shot_supervised_dry_run_readiness_map_v1",
+  "build_id": "20260613_single_shot_supervised_dry_run_readiness_map_v1",
+  "title": "Codex Native Next Safe Parallel Wave Parallel Collision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "collision_id",
+    "active_artifact_ids",
+    "duplicate_detected",
+    "superseded_artifact_reused",
+    "automatic_continuation_allowed",
+    "expected_result"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.codex_native.next_safe_parallel_wave_parallel_collision.v1" },
+    "build_id": { "type": "string", "const": "20260613_single_shot_supervised_dry_run_readiness_map_v1" },
+    "collision_id": { "type": "string", "minLength": 1 },
+    "active_artifact_ids": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1 },
+    "duplicate_detected": { "type": "boolean" },
+    "superseded_artifact_reused": { "type": "boolean" },
+    "automatic_continuation_allowed": { "type": "boolean", "const": false },
+    "expected_result": { "type": "string", "enum": ["READY_FOR_OWNER_REVIEW", "STOP_OWNER_REVIEW_REQUIRED"] }
+  }
+}

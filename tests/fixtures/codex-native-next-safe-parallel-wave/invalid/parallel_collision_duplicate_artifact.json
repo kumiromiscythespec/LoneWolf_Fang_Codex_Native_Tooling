@@ -1,0 +1,10 @@
+{
+  "schema": "lonewolf.codex_native.next_safe_parallel_wave_parallel_collision.v1",
+  "build_id": "20260613_single_shot_supervised_dry_run_readiness_map_v1",
+  "collision_id": "parallel-collision-duplicate-artifact-001",
+  "active_artifact_ids": ["artifact-duplicate-001", "artifact-duplicate-001"],
+  "duplicate_detected": true,
+  "superseded_artifact_reused": false,
+  "automatic_continuation_allowed": false,
+  "expected_result": "STOP_OWNER_REVIEW_REQUIRED"
+}

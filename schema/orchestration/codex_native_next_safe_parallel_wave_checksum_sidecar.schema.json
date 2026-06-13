@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/codex_native_next_safe_parallel_wave_checksum_sidecar.schema.json",
+  "$comment": "BUILD_ID: 20260613_single_shot_supervised_dry_run_readiness_map_v1",
+  "build_id": "20260613_single_shot_supervised_dry_run_readiness_map_v1",
+  "title": "Codex Native Next Safe Parallel Wave Checksum Sidecar",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "build_id", "artifact_zip", "sha256", "algorithm", "status"],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.codex_native.next_safe_parallel_wave_checksum_sidecar.v1" },
+    "build_id": { "type": "string", "const": "20260613_single_shot_supervised_dry_run_readiness_map_v1" },
+    "artifact_zip": { "type": "string", "minLength": 1 },
+    "sha256": { "$ref": "#/$defs/sha256" },
+    "algorithm": { "type": "string", "const": "SHA256" },
+    "status": { "type": "string", "enum": ["PASS", "STOP_OWNER_REVIEW_REQUIRED"] }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" }
+  }
+}

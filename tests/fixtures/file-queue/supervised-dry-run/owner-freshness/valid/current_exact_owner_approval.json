@@ -1,0 +1,14 @@
+{
+  "schema": "lonewolf.file_queue.supervised_dry_run_owner_freshness_link.v1",
+  "build_id": "20260613_single_shot_supervised_dry_run_readiness_map_v1",
+  "link_id": "owner-freshness-current-001",
+  "approval_phrase": "APPROVE_SINGLE_SHOT_SUPERVISED_DRY_RUN_READINESS_MAP_DOCS_SCHEMA_TESTS_FIXTURES_ONLY",
+  "approval_fresh": true,
+  "baseline_commit": "16ab1da1fa40e575de90d91d155231338fcb33de",
+  "file_allowlist_sha256": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+  "approval_packet_sha256": "121061C314E122FA43E9FD9040D66A1D2555150FF4CF2A3DC8A17D750CEE7757",
+  "implementation_type": "docs/schema/tests/fixtures-only",
+  "stale_reasons": [],
+  "implementation_allowed": true,
+  "expected_result": "READY_FOR_OWNER_REVIEW"
+}
