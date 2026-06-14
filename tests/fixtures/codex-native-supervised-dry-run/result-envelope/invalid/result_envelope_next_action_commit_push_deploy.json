@@ -1,0 +1,32 @@
+{
+  "schema": "lonewolf.codex_native.supervised_dry_run_result_envelope_invalid_fixture.v1",
+  "build_id": "RESULT_ENVELOPE_DRY_RUN_OUTCOME_CONTRACTS_20260614",
+  "fixture_id": "result_envelope_next_action_commit_push_deploy_invalid_v1",
+  "invalid_cases": [
+    {
+      "case_id": "commit_allowed_true",
+      "base_fixture": "ready",
+      "mutation": { "path": "forbidden_actions.commit_allowed", "value": true },
+      "expected_error": "forbidden commit_allowed"
+    },
+    {
+      "case_id": "push_allowed_true",
+      "base_fixture": "ready",
+      "mutation": { "path": "forbidden_actions.push_allowed", "value": true },
+      "expected_error": "forbidden push_allowed"
+    },
+    {
+      "case_id": "deploy_allowed_true",
+      "base_fixture": "ready",
+      "mutation": { "path": "forbidden_actions.deploy_allowed", "value": true },
+      "expected_error": "forbidden deploy_allowed"
+    },
+    {
+      "case_id": "unsafe_next_action_push",
+      "base_fixture": "ready",
+      "mutation": { "path": "recommended_next_action", "value": "PUSH_TO_MASTER" },
+      "expected_error": "unsafe recommended_next_action"
+    }
+  ],
+  "expected_result": "STOP_OWNER_REVIEW_REQUIRED"
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "lonewolf.codex_native.supervised_dry_run_result_envelope_invalid_fixture.v1",
+  "build_id": "RESULT_ENVELOPE_DRY_RUN_OUTCOME_CONTRACTS_20260614",
+  "fixture_id": "result_envelope_artifact_sha_mismatch_invalid_v1",
+  "invalid_cases": [
+    {
+      "case_id": "artifact_sha_malformed",
+      "base_fixture": "ready",
+      "mutation": { "path": "artifact_evidence.0.artifact_sha256", "value": "NOT_A_SHA256" },
+      "expected_error": "bad artifact sha256"
+    },
+    {
+      "case_id": "artifact_sha_mismatch_flag",
+      "base_fixture": "ready",
+      "mutation": { "path": "artifact_evidence.0.sha256_matches_expected", "value": false },
+      "expected_error": "artifact sha mismatch"
+    }
+  ],
+  "expected_result": "STOP_OWNER_REVIEW_REQUIRED"
+}

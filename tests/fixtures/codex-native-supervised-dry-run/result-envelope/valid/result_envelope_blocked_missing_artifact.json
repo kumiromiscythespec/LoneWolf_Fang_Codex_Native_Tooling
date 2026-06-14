@@ -1,0 +1,70 @@
+{
+  "schema": "lonewolf.codex_native.supervised_dry_run_result_envelope_fixture.v1",
+  "build_id": "RESULT_ENVELOPE_DRY_RUN_OUTCOME_CONTRACTS_20260614",
+  "fixture_id": "result_envelope_blocked_missing_artifact_valid_v1",
+  "result_envelopes": [
+    {
+      "schema": "lonewolf.codex_native.supervised_dry_run_result_envelope.v1",
+      "build_id": "RESULT_ENVELOPE_DRY_RUN_OUTCOME_CONTRACTS_20260614",
+      "envelope_id": "result-envelope-blocked-missing-artifact-001",
+      "target": "result_envelope_dry_run_outcome_contracts",
+      "stable_baseline": "85f1d5c94698071abce1b03d41cef6788417a48b",
+      "expected_branch": "master",
+      "expected_head": "85f1d5c94698071abce1b03d41cef6788417a48b",
+      "expected_origin_master": "85f1d5c94698071abce1b03d41cef6788417a48b",
+      "expected_ahead_behind": "0 / 0",
+      "result_kind": "request_intake_result",
+      "result_state": "BLOCKED",
+      "blockers": [
+        {
+          "blocker_id": "missing-artifact-evidence",
+          "severity": "HIGH",
+          "reason": "Expected implementation artifact evidence is not available yet.",
+          "evidence_reference": "artifact_evidence[0]",
+          "fail_closed_action": "STOP_OWNER_REVIEW_REQUIRED",
+          "owner_review_required": true,
+          "allows_progression": false
+        }
+      ],
+      "reasons": [
+        "The result is blocked because artifact evidence must be completed before review."
+      ],
+      "artifact_evidence": [
+        {
+          "artifact_role": "missing_expected_artifact",
+          "artifact_path": "C:\\Users\\yu_ki\\AppData\\Local\\LoneWolfFang\\data\\synthetic_missing_result_envelope_packet.zip",
+          "artifact_sha256": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+          "sha256_matches_expected": true
+        }
+      ],
+      "approval_binding": {
+        "owner_approval_phrase": "APPROVE_RESULT_ENVELOPE_DRY_RUN_OUTCOME_CONTRACTS_DOCS_SCHEMA_TESTS_FIXTURES_ONLY",
+        "approval_target": "result_envelope_dry_run_outcome_contracts",
+        "approval_current": true,
+        "approval_stale": false,
+        "approval_superseded": false,
+        "bound_stable_baseline": "85f1d5c94698071abce1b03d41cef6788417a48b",
+        "exact_file_allowlist_count": 17,
+        "allowed_scope": "docs_schema_tests_fixtures_only",
+        "reuse_for_runtime_prohibited": true
+      },
+      "forbidden_actions": {
+        "runtime_execution_allowed": false,
+        "worker_launch_allowed": false,
+        "daemon_or_watcher_allowed": false,
+        "queue_mutation_allowed": false,
+        "private_api_allowed": false,
+        "openai_api_allowed": false,
+        "cloud_mutation_allowed": false,
+        "billing_mutation_allowed": false,
+        "trading_or_order_allowed": false,
+        "commit_allowed": false,
+        "push_allowed": false,
+        "deploy_allowed": false
+      },
+      "human_review_one_point": "Review the missing artifact blocker before any next step.",
+      "recommended_next_action": "STOP_OWNER_REVIEW_REQUIRED"
+    }
+  ],
+  "expected_result": "BLOCKED"
+}

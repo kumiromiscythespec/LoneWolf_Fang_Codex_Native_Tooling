@@ -1,0 +1,44 @@
+{
+  "schema": "lonewolf.codex_native.supervised_dry_run_result_envelope_invalid_fixture.v1",
+  "build_id": "RESULT_ENVELOPE_DRY_RUN_OUTCOME_CONTRACTS_20260614",
+  "fixture_id": "result_envelope_api_cloud_queue_billing_trading_allowed_invalid_v1",
+  "invalid_cases": [
+    {
+      "case_id": "private_api_allowed_true",
+      "base_fixture": "ready",
+      "mutation": { "path": "forbidden_actions.private_api_allowed", "value": true },
+      "expected_error": "forbidden private_api_allowed"
+    },
+    {
+      "case_id": "openai_api_allowed_true",
+      "base_fixture": "ready",
+      "mutation": { "path": "forbidden_actions.openai_api_allowed", "value": true },
+      "expected_error": "forbidden openai_api_allowed"
+    },
+    {
+      "case_id": "cloud_mutation_allowed_true",
+      "base_fixture": "ready",
+      "mutation": { "path": "forbidden_actions.cloud_mutation_allowed", "value": true },
+      "expected_error": "forbidden cloud_mutation_allowed"
+    },
+    {
+      "case_id": "queue_mutation_allowed_true",
+      "base_fixture": "ready",
+      "mutation": { "path": "forbidden_actions.queue_mutation_allowed", "value": true },
+      "expected_error": "forbidden queue_mutation_allowed"
+    },
+    {
+      "case_id": "billing_mutation_allowed_true",
+      "base_fixture": "ready",
+      "mutation": { "path": "forbidden_actions.billing_mutation_allowed", "value": true },
+      "expected_error": "forbidden billing_mutation_allowed"
+    },
+    {
+      "case_id": "trading_or_order_allowed_true",
+      "base_fixture": "ready",
+      "mutation": { "path": "forbidden_actions.trading_or_order_allowed", "value": true },
+      "expected_error": "forbidden trading_or_order_allowed"
+    }
+  ],
+  "expected_result": "STOP_OWNER_REVIEW_REQUIRED"
+}

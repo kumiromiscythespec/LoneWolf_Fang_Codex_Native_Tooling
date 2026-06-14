@@ -1,0 +1,27 @@
+{
+  "schema": "lonewolf.codex_native.supervised_dry_run_result_envelope_invalid_fixture.v1",
+  "build_id": "RESULT_ENVELOPE_DRY_RUN_OUTCOME_CONTRACTS_20260614",
+  "fixture_id": "result_envelope_ready_with_blockers_invalid_v1",
+  "invalid_cases": [
+    {
+      "case_id": "ready_with_blockers",
+      "base_fixture": "ready",
+      "mutation": {
+        "path": "blockers",
+        "value": [
+          {
+            "blocker_id": "unexpected-ready-blocker",
+            "severity": "HIGH",
+            "reason": "READY cannot carry blockers.",
+            "evidence_reference": "blockers",
+            "fail_closed_action": "STOP_OWNER_REVIEW_REQUIRED",
+            "owner_review_required": true,
+            "allows_progression": false
+          }
+        ]
+      },
+      "expected_error": "ready has blockers"
+    }
+  ],
+  "expected_result": "STOP_OWNER_REVIEW_REQUIRED"
+}

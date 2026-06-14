@@ -1,0 +1,20 @@
+{
+  "schema": "lonewolf.codex_native.supervised_dry_run_result_envelope_invalid_fixture.v1",
+  "build_id": "RESULT_ENVELOPE_DRY_RUN_OUTCOME_CONTRACTS_20260614",
+  "fixture_id": "result_envelope_runtime_transition_allowed_invalid_v1",
+  "invalid_cases": [
+    {
+      "case_id": "runtime_execution_allowed_true",
+      "base_fixture": "ready",
+      "mutation": { "path": "forbidden_actions.runtime_execution_allowed", "value": true },
+      "expected_error": "forbidden runtime_execution_allowed"
+    },
+    {
+      "case_id": "ready_recommends_runtime",
+      "base_fixture": "ready",
+      "mutation": { "path": "recommended_next_action", "value": "RUN_RUNTIME_WORKFLOW" },
+      "expected_error": "unsafe recommended_next_action"
+    }
+  ],
+  "expected_result": "STOP_OWNER_REVIEW_REQUIRED"
+}

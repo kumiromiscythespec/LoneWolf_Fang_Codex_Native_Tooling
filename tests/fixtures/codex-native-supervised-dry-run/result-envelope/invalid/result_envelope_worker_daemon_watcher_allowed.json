@@ -1,0 +1,20 @@
+{
+  "schema": "lonewolf.codex_native.supervised_dry_run_result_envelope_invalid_fixture.v1",
+  "build_id": "RESULT_ENVELOPE_DRY_RUN_OUTCOME_CONTRACTS_20260614",
+  "fixture_id": "result_envelope_worker_daemon_watcher_allowed_invalid_v1",
+  "invalid_cases": [
+    {
+      "case_id": "worker_launch_allowed_true",
+      "base_fixture": "ready",
+      "mutation": { "path": "forbidden_actions.worker_launch_allowed", "value": true },
+      "expected_error": "forbidden worker_launch_allowed"
+    },
+    {
+      "case_id": "daemon_or_watcher_allowed_true",
+      "base_fixture": "ready",
+      "mutation": { "path": "forbidden_actions.daemon_or_watcher_allowed", "value": true },
+      "expected_error": "forbidden daemon_or_watcher_allowed"
+    }
+  ],
+  "expected_result": "STOP_OWNER_REVIEW_REQUIRED"
+}

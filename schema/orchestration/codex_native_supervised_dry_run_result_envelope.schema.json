@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/codex_native_supervised_dry_run_result_envelope.schema.json",
+  "$comment": "BUILD_ID: RESULT_ENVELOPE_DRY_RUN_OUTCOME_CONTRACTS_20260614",
+  "build_id": "RESULT_ENVELOPE_DRY_RUN_OUTCOME_CONTRACTS_20260614",
+  "title": "Codex Native Supervised Dry-Run Result Envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "envelope_id",
+    "target",
+    "stable_baseline",
+    "expected_branch",
+    "expected_head",
+    "expected_origin_master",
+    "expected_ahead_behind",
+    "result_kind",
+    "result_state",
+    "blockers",
+    "reasons",
+    "artifact_evidence",
+    "approval_binding",
+    "forbidden_actions",
+    "human_review_one_point",
+    "recommended_next_action"
+  ],
+  "properties": {
+    "schema": { "type": "string", "const": "lonewolf.codex_native.supervised_dry_run_result_envelope.v1" },
+    "build_id": { "type": "string", "const": "RESULT_ENVELOPE_DRY_RUN_OUTCOME_CONTRACTS_20260614" },
+    "envelope_id": { "type": "string", "minLength": 1 },
+    "target": { "type": "string", "const": "result_envelope_dry_run_outcome_contracts" },
+    "stable_baseline": { "type": "string", "const": "85f1d5c94698071abce1b03d41cef6788417a48b" },
+    "expected_branch": { "type": "string", "const": "master" },
+    "expected_head": { "type": "string", "const": "85f1d5c94698071abce1b03d41cef6788417a48b" },
+    "expected_origin_master": { "type": "string", "const": "85f1d5c94698071abce1b03d41cef6788417a48b" },
+    "expected_ahead_behind": { "type": "string", "const": "0 / 0" },
+    "result_kind": {
+      "type": "string",
+      "enum": [
+        "readiness_result",
+        "request_intake_result",
+        "dry_run_outcome_result",
+        "execution_result_placeholder"
+      ]
+    },
+    "result_state": {
+      "type": "string",
+      "enum": [
+        "READY",
+        "BLOCKED",
+        "REJECTED",
+        "STOP_OWNER_REVIEW_REQUIRED"
+      ]
+    },
+    "blockers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/blocker" }
+    },
+    "reasons": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "artifact_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/artifact_evidence" }
+    },
+    "approval_binding": { "$ref": "#/$defs/approval_binding" },
+    "forbidden_actions": { "$ref": "#/$defs/forbidden_actions" },
+    "human_review_one_point": { "type": "string", "minLength": 1 },
+    "recommended_next_action": {
+      "type": "string",
+      "enum": [
+        "START_RESULT_ENVELOPE_DRY_RUN_OUTCOME_IMPLEMENTATION_REVIEW_PACKET",
+        "REPAIR_REQUIRED_RESULT_ENVELOPE_DRY_RUN_OUTCOME_DOCS_SCHEMA_TESTS_FIXTURES_IMPLEMENTATION",
+        "STOP_OWNER_REVIEW_REQUIRED"
+      ]
+    }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" },
+    "blocker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "blocker_id",
+        "severity",
+        "reason",
+        "evidence_reference",
+        "fail_closed_action",
+        "owner_review_required",
+        "allows_progression"
+      ],
+      "properties": {
+        "blocker_id": { "type": "string", "minLength": 1 },
+        "severity": { "type": "string", "enum": ["BLOCKER", "HIGH"] },
+        "reason": { "type": "string", "minLength": 1 },
+        "evidence_reference": { "type": "string", "minLength": 1 },
+        "fail_closed_action": { "type": "string", "const": "STOP_OWNER_REVIEW_REQUIRED" },
+        "owner_review_required": { "type": "boolean", "const": true },
+        "allows_progression": { "type": "boolean", "const": false }
+      }
+    },
+    "artifact_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_role",
+        "artifact_path",
+        "artifact_sha256",
+        "sha256_matches_expected"
+      ],
+      "properties": {
+        "artifact_role": { "type": "string", "minLength": 1 },
+        "artifact_path": { "type": "string", "minLength": 1 },
+        "artifact_sha256": { "$ref": "#/$defs/sha256" },
+        "sha256_matches_expected": { "type": "boolean", "const": true }
+      }
+    },
+    "approval_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "owner_approval_phrase",
+        "approval_target",
+        "approval_current",
+        "approval_stale",
+        "approval_superseded",
+        "bound_stable_baseline",
+        "exact_file_allowlist_count",
+        "allowed_scope",
+        "reuse_for_runtime_prohibited"
+      ],
+      "properties": {
+        "owner_approval_phrase": {
+          "type": "string",
+          "const": "APPROVE_RESULT_ENVELOPE_DRY_RUN_OUTCOME_CONTRACTS_DOCS_SCHEMA_TESTS_FIXTURES_ONLY"
+        },
+        "approval_target": { "type": "string", "const": "result_envelope_dry_run_outcome_contracts" },
+        "approval_current": { "type": "boolean", "const": true },
+        "approval_stale": { "type": "boolean", "const": false },
+        "approval_superseded": { "type": "boolean", "const": false },
+        "bound_stable_baseline": { "type": "string", "const": "85f1d5c94698071abce1b03d41cef6788417a48b" },
+        "exact_file_allowlist_count": { "type": "integer", "const": 17 },
+        "allowed_scope": { "type": "string", "const": "docs_schema_tests_fixtures_only" },
+        "reuse_for_runtime_prohibited": { "type": "boolean", "const": true }
+      }
+    },
+    "forbidden_actions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_execution_allowed",
+        "worker_launch_allowed",
+        "daemon_or_watcher_allowed",
+        "queue_mutation_allowed",
+        "private_api_allowed",
+        "openai_api_allowed",
+        "cloud_mutation_allowed",
+        "billing_mutation_allowed",
+        "trading_or_order_allowed",
+        "commit_allowed",
+        "push_allowed",
+        "deploy_allowed"
+      ],
+      "properties": {
+        "runtime_execution_allowed": { "type": "boolean", "const": false },
+        "worker_launch_allowed": { "type": "boolean", "const": false },
+        "daemon_or_watcher_allowed": { "type": "boolean", "const": false },
+        "queue_mutation_allowed": { "type": "boolean", "const": false },
+        "private_api_allowed": { "type": "boolean", "const": false },
+        "openai_api_allowed": { "type": "boolean", "const": false },
+        "cloud_mutation_allowed": { "type": "boolean", "const": false },
+        "billing_mutation_allowed": { "type": "boolean", "const": false },
+        "trading_or_order_allowed": { "type": "boolean", "const": false },
+        "commit_allowed": { "type": "boolean", "const": false },
+        "push_allowed": { "type": "boolean", "const": false },
+        "deploy_allowed": { "type": "boolean", "const": false }
+      }
+    }
+  }
+}
