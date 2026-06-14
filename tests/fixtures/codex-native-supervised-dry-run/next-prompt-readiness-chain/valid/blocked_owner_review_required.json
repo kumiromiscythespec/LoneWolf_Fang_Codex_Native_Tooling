@@ -1,0 +1,106 @@
+{
+  "schema": "lonewolf.codex_native.next_prompt_readiness_chain.v1",
+  "build_id": "NEXT_PROMPT_READINESS_CHAIN_CONTRACTS_20260615",
+  "target": "next_prompt_readiness_chain_contracts",
+  "status": "STOP_OWNER_REVIEW_REQUIRED",
+  "transition_state": "BLOCKED_OWNER_REVIEW_REQUIRED",
+  "current_stable_baseline": "546301451af87141e29a07bedf155914f4e9c4be",
+  "transition_type": "blocked_owner_review_required",
+  "current_packet": {
+    "packet_role": "owner_review_packet",
+    "packet_status": "STOP_OWNER_REVIEW_REQUIRED",
+    "artifact_path": "%LOCALAPPDATA%/LoneWolfFang/data/synthetic_owner_review_packet.zip",
+    "artifact_sha256": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+    "artifact_is_evidence_only": true
+  },
+  "next_prompt": {
+    "prompt_path": "NEXT_CODEX_PROMPT.md",
+    "recommended_next_action": "STOP_OWNER_REVIEW_REQUIRED",
+    "instruction_artifact_only": true,
+    "executor": false,
+    "recommends_direct_implementation": false,
+    "recommends_stage": false,
+    "recommends_commit": false,
+    "recommends_push": false,
+    "recommends_fetch": false,
+    "recommends_pull": false,
+    "recommends_deploy": false,
+    "recommends_runtime_workflow": false,
+    "recommends_worker_launch": false,
+    "recommends_queue_mutation": false,
+    "recommends_cloud_mutation": false,
+    "recommends_private_api": false,
+    "recommends_openai_api": false,
+    "recommends_billing_auth_mutation": false,
+    "recommends_trading_order_action": false,
+    "recommends_cleanup": false,
+    "recommends_history_rewrite": false,
+    "ready_is_go": false,
+    "matched_is_go": false,
+    "observed_safe_no_action_is_go": false
+  },
+  "next_action_class": "OWNER_REVIEW_ONLY",
+  "owner_gate": {
+    "exact_owner_approval_required_for_implementation": true,
+    "owner_approval_phrase_required": "APPROVE_NEXT_PROMPT_READINESS_CHAIN_CONTRACTS_DOCS_SCHEMA_TESTS_FIXTURES_IMPLEMENTATION",
+    "implementation_approval_packet_required": true,
+    "commit_approval_separate": true,
+    "push_approval_separate": true,
+    "fetch_pull_owner_gate_present": false,
+    "ambiguity_result": "STOP_OWNER_REVIEW_REQUIRED"
+  },
+  "auto_continue": false,
+  "human_review_one_point": "Resolve the blocker before creating any new planning or approval packet.",
+  "blocker_matrix": [
+    {
+      "blocker_id": "OWNER_DECISION_MISSING",
+      "severity": "BLOCKER",
+      "reason": "The next prompt is ambiguous without an owner decision.",
+      "required_owner_decision": "Choose whether to continue with planning or stop the chain."
+    }
+  ],
+  "local_refs_referenced": true,
+  "local_metadata_only_disclosure": {
+    "origin_master_local_metadata_only": true,
+    "ahead_behind_local_metadata_only": true,
+    "independently_fetched_live_remote_truth": false,
+    "fetch_performed": false,
+    "pull_performed": false,
+    "fetch_pull_requires_future_owner_gate": true
+  },
+  "allowed_next_actions": [
+    "STOP_OWNER_REVIEW_REQUIRED"
+  ],
+  "forbidden_action_flags": {
+    "stage_recommended": false,
+    "commit_recommended": false,
+    "push_recommended": false,
+    "fetch_recommended": false,
+    "pull_recommended": false,
+    "deploy_recommended": false,
+    "runtime_workflow_recommended": false,
+    "worker_launch_recommended": false,
+    "daemon_watcher_recommended": false,
+    "ui_automation_recommended": false,
+    "queue_mutation_recommended": false,
+    "cloud_mutation_recommended": false,
+    "private_api_recommended": false,
+    "openai_api_recommended": false,
+    "billing_auth_mutation_recommended": false,
+    "trading_order_action_recommended": false,
+    "cleanup_recommended": false,
+    "history_rewrite_recommended": false
+  },
+  "safety_invariants": {
+    "next_prompt_instruction_artifact_only": true,
+    "artifacts_evidence_only": true,
+    "planning_cannot_skip_to_implementation": true,
+    "review_cannot_skip_to_commit_push": true,
+    "ready_is_not_go": true,
+    "matched_is_not_go": true,
+    "observed_safe_no_action_is_not_go": true,
+    "auto_continue_false_only": true,
+    "local_metadata_disclosure_required_for_local_refs": true,
+    "ambiguity_stops_owner_review": true
+  }
+}

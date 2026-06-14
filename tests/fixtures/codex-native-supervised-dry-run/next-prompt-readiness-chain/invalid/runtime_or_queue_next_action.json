@@ -1,0 +1,50 @@
+{
+  "schema": "lonewolf.codex_native.next_prompt_readiness_chain.v1",
+  "build_id": "NEXT_PROMPT_READINESS_CHAIN_CONTRACTS_20260615",
+  "target": "next_prompt_readiness_chain_contracts",
+  "status": "READY_FOR_OWNER_REVIEW",
+  "transition_state": "STABLE_CLOSEOUT_TO_PLANNING_ONLY",
+  "current_stable_baseline": "546301451af87141e29a07bedf155914f4e9c4be",
+  "transition_type": "stable_closeout_to_planning_only",
+  "current_packet": {
+    "packet_role": "stable_post_push_closeout_packet",
+    "packet_status": "SAFE_STABLE_CLOSEOUT_PACKET_CREATED",
+    "artifact_path": "%LOCALAPPDATA%/LoneWolfFang/data/synthetic_invalid_runtime.zip",
+    "artifact_sha256": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+    "artifact_is_evidence_only": true
+  },
+  "next_prompt": {
+    "prompt_path": "NEXT_CODEX_PROMPT.md",
+    "recommended_next_action": "START_NEXT_SAFE_PARALLEL_WAVE_PLANNING_PACKET",
+    "instruction_artifact_only": true,
+    "executor": false,
+    "recommends_direct_implementation": false,
+    "recommends_fetch": false,
+    "recommends_pull": false,
+    "recommends_runtime_workflow": true,
+    "recommends_worker_launch": false,
+    "recommends_queue_mutation": true
+  },
+  "next_action_class": "PLANNING_PACKET_ONLY",
+  "owner_gate": {
+    "exact_owner_approval_required_for_implementation": true,
+    "owner_approval_phrase_required": "APPROVE_NEXT_PROMPT_READINESS_CHAIN_CONTRACTS_DOCS_SCHEMA_TESTS_FIXTURES_IMPLEMENTATION",
+    "implementation_approval_packet_required": true,
+    "commit_approval_separate": true,
+    "push_approval_separate": true,
+    "fetch_pull_owner_gate_present": false,
+    "ambiguity_result": "STOP_OWNER_REVIEW_REQUIRED"
+  },
+  "auto_continue": false,
+  "human_review_one_point": "Runtime and Queue next actions must be rejected by owner review.",
+  "blocker_matrix": [],
+  "local_refs_referenced": false,
+  "allowed_next_actions": [
+    "START_NEXT_SAFE_PARALLEL_WAVE_PLANNING_PACKET"
+  ],
+  "forbidden_action_flags": {
+    "runtime_workflow_recommended": false,
+    "queue_mutation_recommended": false
+  },
+  "safety_invariants": {}
+}
