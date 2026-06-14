@@ -1,0 +1,21 @@
+{
+  "build_id": "HANDOFF_PACKET_CHAIN_OF_CUSTODY_CONTRACTS_20260614",
+  "fixture_id": "runtime-next-action",
+  "base_fixture": "accepted-chain-index.json",
+  "expected_valid": false,
+  "expected_error": "runtime next action",
+  "mutation": {
+    "path": "next_packet_relationship.recommended_next_action",
+    "value": "RUN_RUNTIME_WORKFLOW"
+  },
+  "secondary_mutation": {
+    "path": "allowed_next_actions",
+    "value": [
+      "RUN_RUNTIME_WORKFLOW"
+    ]
+  },
+  "tertiary_mutation": {
+    "path": "next_packet_relationship.runtime_or_queue_transition_allowed",
+    "value": true
+  }
+}

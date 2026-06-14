@@ -1,0 +1,11 @@
+{
+  "build_id": "HANDOFF_PACKET_CHAIN_OF_CUSTODY_CONTRACTS_20260614",
+  "fixture_id": "missing-human-review-one-point",
+  "base_fixture": "accepted-chain-index.json",
+  "expected_valid": false,
+  "expected_error": "human_review_one_point",
+  "mutation": {
+    "path": "human_review_one_point",
+    "value": ""
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "build_id": "HANDOFF_PACKET_CHAIN_OF_CUSTODY_CONTRACTS_20260614",
+  "fixture_id": "missing-packet-sha256",
+  "base_fixture": "accepted-chain-index.json",
+  "expected_valid": false,
+  "expected_error": "packet_sha256",
+  "mutation": {
+    "path": "packet_chain.0.packet_sha256",
+    "delete": true
+  }
+}

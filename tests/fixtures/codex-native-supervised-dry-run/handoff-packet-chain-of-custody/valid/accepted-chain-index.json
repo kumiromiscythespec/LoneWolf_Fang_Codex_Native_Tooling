@@ -1,0 +1,108 @@
+{
+  "build_id": "HANDOFF_PACKET_CHAIN_OF_CUSTODY_CONTRACTS_20260614",
+  "fixture_id": "accepted-chain-index",
+  "expected_valid": true,
+  "custody": {
+    "schema": "lonewolf.codex_native.handoff_packet_chain_of_custody.v1",
+    "build_id": "HANDOFF_PACKET_CHAIN_OF_CUSTODY_CONTRACTS_20260614",
+    "target": "handoff_packet_chain_of_custody_contracts",
+    "status": "ACCEPTED_CHAIN_INDEX",
+    "custody_state": "READY",
+    "current_stable_baseline": "4078e57ef6d638de1e1a38620d6eaf6776adaab6",
+    "packet_chain": [
+      {
+        "packet_id": "planning-integration",
+        "packet_role": "planning_integration_packet",
+        "packet_path": "C:/Users/yu_ki/AppData/Local/LoneWolfFang/data/codex_native_next_safe_parallel_wave_after_stable_closeout_artifact_chain_readiness_planning_packet_20260614_182313.zip",
+        "packet_sha256": "530CCAB258CB323D8F542FE0DBF0069BA186AD6474C1BAD664EF55197832703A",
+        "expected_manifest_status": "SAFE_NEXT_SAFE_PARALLEL_WAVE_AFTER_STABLE_CLOSEOUT_ARTIFACT_CHAIN_READINESS_PLANNING_PACKET_CREATED",
+        "observed_manifest_status": "SAFE_NEXT_SAFE_PARALLEL_WAVE_AFTER_STABLE_CLOSEOUT_ARTIFACT_CHAIN_READINESS_PLANNING_PACKET_CREATED",
+        "manifest_status_matches_expected": true,
+        "selected_target_matches_expected": true,
+        "baseline_matches_current_stable": true,
+        "is_authoritative": true,
+        "is_draft_or_partial": false
+      },
+      {
+        "packet_id": "implementation-approval",
+        "packet_role": "implementation_approval_packet",
+        "packet_path": "C:/Users/yu_ki/AppData/Local/LoneWolfFang/data/codex_native_handoff_packet_chain_of_custody_implementation_approval_packet_20260614_182907.zip",
+        "packet_sha256": "13BFBDF2AA9F030C78D60027C1282EEF969B21FEB4DC55AABC1CFDE586BBC6B1",
+        "expected_manifest_status": "SAFE_HANDOFF_PACKET_CHAIN_OF_CUSTODY_IMPLEMENTATION_APPROVAL_PACKET_CREATED",
+        "observed_manifest_status": "SAFE_HANDOFF_PACKET_CHAIN_OF_CUSTODY_IMPLEMENTATION_APPROVAL_PACKET_CREATED",
+        "manifest_status_matches_expected": true,
+        "selected_target_matches_expected": true,
+        "baseline_matches_current_stable": true,
+        "is_authoritative": true,
+        "is_draft_or_partial": false
+      }
+    ],
+    "authoritative_packets": [
+      "planning-integration",
+      "implementation-approval"
+    ],
+    "draft_or_partial_artifacts": [
+      {
+        "artifact_id": "partial-review-draft",
+        "artifact_path": "C:/Users/yu_ki/AppData/Local/LoneWolfFang/data/draft_or_partial_handoff_packet_not_authoritative",
+        "artifact_role": "draft_or_partial_artifact",
+        "authoritative_usage_allowed": false
+      }
+    ],
+    "manifest_consistency": {
+      "all_manifest_statuses_match_expected": true,
+      "all_selected_targets_match_expected": true,
+      "all_sha256_values_match_expected": true,
+      "missing_or_mismatched_manifest_fails_closed": true
+    },
+    "next_packet_relationship": {
+      "recommended_next_action": "START_HANDOFF_PACKET_CHAIN_OF_CUSTODY_IMPLEMENTATION_REVIEW_PACKET",
+      "next_action_owner_gated_packet_step_only": true,
+      "automatic_continuation_allowed": false,
+      "runtime_or_queue_transition_allowed": false
+    },
+    "next_prompt_readiness": {
+      "next_codex_prompt_present": true,
+      "next_prompt_owner_gated_only": true,
+      "next_prompt_runtime_allowed": false,
+      "next_prompt_queue_mutation_allowed": false,
+      "next_prompt_worker_launch_allowed": false,
+      "next_prompt_deploy_allowed": false,
+      "next_prompt_commit_or_push_allowed": false
+    },
+    "allowed_next_actions": [
+      "START_HANDOFF_PACKET_CHAIN_OF_CUSTODY_IMPLEMENTATION_REVIEW_PACKET"
+    ],
+    "forbidden_action_flags": {
+      "queue_mutation_performed": false,
+      "cloud_queue_mutation_performed": false,
+      "runtime_execution_performed": false,
+      "worker_launch_performed": false,
+      "daemon_or_watcher_performed": false,
+      "ui_automation_performed": false,
+      "deploy_performed": false,
+      "private_api_performed": false,
+      "openai_api_performed": false,
+      "cloud_mutation_performed": false,
+      "billing_auth_mutation_performed": false,
+      "trading_or_order_action_performed": false,
+      "automatic_continuation_performed": false,
+      "stage_performed": false,
+      "commit_performed": false,
+      "push_performed": false,
+      "destructive_git_or_cleanup_performed": false
+    },
+    "safety_invariants": {
+      "artifacts_are_evidence_only": true,
+      "artifacts_are_never_executors": true,
+      "draft_or_partial_artifacts_non_authoritative": true,
+      "ready_is_not_go": true,
+      "observed_safe_no_action_is_not_go": true,
+      "no_packet_authorizes_runtime_or_mutation": true,
+      "missing_or_mismatched_sha_fails_closed": true,
+      "manifest_status_mismatch_fails_closed": true,
+      "human_review_one_point_required": true
+    },
+    "human_review_one_point": "Confirm that only authoritative, hash-verified handoff packets should be used for the next owner-gated review packet."
+  }
+}

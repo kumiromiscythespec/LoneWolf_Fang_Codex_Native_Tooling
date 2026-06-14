@@ -1,0 +1,15 @@
+{
+  "build_id": "HANDOFF_PACKET_CHAIN_OF_CUSTODY_CONTRACTS_20260614",
+  "fixture_id": "manifest-status-mismatch",
+  "base_fixture": "accepted-chain-index.json",
+  "expected_valid": false,
+  "expected_error": "manifest status mismatch",
+  "mutation": {
+    "path": "packet_chain.1.observed_manifest_status",
+    "value": "STOP_OWNER_REVIEW_REQUIRED"
+  },
+  "secondary_mutation": {
+    "path": "packet_chain.1.manifest_status_matches_expected",
+    "value": false
+  }
+}

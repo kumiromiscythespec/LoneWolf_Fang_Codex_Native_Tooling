@@ -1,0 +1,11 @@
+{
+  "build_id": "HANDOFF_PACKET_CHAIN_OF_CUSTODY_CONTRACTS_20260614",
+  "fixture_id": "queue-mutation-flag-true",
+  "base_fixture": "accepted-chain-index.json",
+  "expected_valid": false,
+  "expected_error": "queue_mutation_performed",
+  "mutation": {
+    "path": "forbidden_action_flags.queue_mutation_performed",
+    "value": true
+  }
+}

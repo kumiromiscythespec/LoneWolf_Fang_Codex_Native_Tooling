@@ -1,0 +1,371 @@
+// BUILD_ID: HANDOFF_PACKET_CHAIN_OF_CUSTODY_CONTRACTS_20260614
+import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
+import { readFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import test from "node:test";
+import { fileURLToPath } from "node:url";
+
+const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const readText = (path) => readFileSync(resolve(root, path), "utf8");
+const readJson = (path) => JSON.parse(readText(path));
+
+const BUILD_ID = "HANDOFF_PACKET_CHAIN_OF_CUSTODY_CONTRACTS_20260614";
+const TARGET = "handoff_packet_chain_of_custody_contracts";
+const BASELINE = "4078e57ef6d638de1e1a38620d6eaf6776adaab6";
+const READY = "READY";
+const OBSERVED_SAFE_NO_ACTION = "OBSERVED_SAFE_NO_ACTION";
+const OWNER_REVIEW = "OWNER_REVIEW_REQUIRED";
+const STOP = "STOP_OWNER_REVIEW_REQUIRED";
+const NEXT_REVIEW = "START_HANDOFF_PACKET_CHAIN_OF_CUSTODY_IMPLEMENTATION_REVIEW_PACKET";
+
+const allowedFiles = [
+  "docs/orchestration/codex_native_handoff_packet_chain_of_custody_contract.md",
+  "schema/orchestration/codex_native_handoff_packet_chain_of_custody.schema.json",
+  "tests/codex_native_handoff_packet_chain_of_custody_contract.test.mjs",
+  "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/valid/accepted-chain-index.json",
+  "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/valid/owner-review-required.json",
+  "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/invalid/missing-packet-sha256.json",
+  "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/invalid/manifest-status-mismatch.json",
+  "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/invalid/runtime-next-action.json",
+  "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/invalid/queue-mutation-flag-true.json",
+  "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/invalid/draft-artifact-used-as-authoritative.json",
+  "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/invalid/missing-human-review-one-point.json"
+];
+
+const validFixturePaths = [
+  "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/valid/accepted-chain-index.json",
+  "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/valid/owner-review-required.json"
+];
+
+const invalidFixturePaths = [
+  "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/invalid/missing-packet-sha256.json",
+  "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/invalid/manifest-status-mismatch.json",
+  "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/invalid/runtime-next-action.json",
+  "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/invalid/queue-mutation-flag-true.json",
+  "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/invalid/draft-artifact-used-as-authoritative.json",
+  "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/invalid/missing-human-review-one-point.json"
+];
+
+const schema = readJson("schema/orchestration/codex_native_handoff_packet_chain_of_custody.schema.json");
+const rootRequired = schema.required;
+const rootAllowed = new Set(Object.keys(schema.properties));
+const statusValues = schema.properties.status.enum;
+const custodyStates = schema.properties.custody_state.enum;
+const safeNextActions = schema.properties.allowed_next_actions.items.enum;
+const forbiddenFlags = Object.keys(schema.$defs.forbidden_action_flags.properties);
+const invariantFlags = Object.keys(schema.$defs.safety_invariants.properties);
+const validFixtures = validFixturePaths.map((path) => [path, readJson(path)]);
+const invalidFixtures = invalidFixturePaths.map((path) => [path, readJson(path)]);
+
+function clone(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
+function nonEmptyString(value) {
+  return typeof value === "string" && value.length > 0;
+}
+
+function sha256(value) {
+  return typeof value === "string" && /^[A-Fa-f0-9]{64}$/u.test(value);
+}
+
+function missingRequired(required, value) {
+  return required.filter((field) => !Object.hasOwn(value, field));
+}
+
+function unexpectedProperties(allowed, value) {
+  return Object.keys(value).filter((field) => !allowed.has(field));
+}
+
+function safeArtifactPath(value) {
+  return typeof value === "string" && value.startsWith("C:/Users/yu_ki/AppData/Local/LoneWolfFang/data/");
+}
+
+function unsafeNextAction(value) {
+  return /GO|RUN|RUNTIME|EXECUTE|EXECUTOR|WORKFLOW|QUEUE|ENQUEUE|WORKER|DAEMON|WATCHER|DEPLOY|PUSH|COMMIT|CLOUD|API|BILLING|AUTH|TRADING|ORDER|LIVE|PAPER|FETCH_BALANCE|AUTO_CONTINUE/u.test(value);
+}
+
+function setPath(target, dottedPath, mutation) {
+  const parts = dottedPath.split(".");
+  let cursor = target;
+  for (const part of parts.slice(0, -1)) cursor = cursor[part];
+  const last = parts.at(-1);
+  if (mutation.delete === true) delete cursor[last];
+  else cursor[last] = mutation.value;
+}
+
+function baseCustodyFor(file) {
+  return clone(readJson(`tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/valid/${file}`).custody);
+}
+
+function validateCustody(record) {
+  const errors = [];
+  if (!record || typeof record !== "object" || Array.isArray(record)) return ["missing custody"];
+
+  for (const field of missingRequired(rootRequired, record)) errors.push(`missing ${field}`);
+  for (const field of unexpectedProperties(rootAllowed, record)) errors.push(`unexpected ${field}`);
+  if (errors.length) return errors;
+
+  if (record.schema !== schema.properties.schema.const) errors.push("schema");
+  if (record.build_id !== BUILD_ID) errors.push("build_id");
+  if (record.target !== TARGET) errors.push("target");
+  if (!statusValues.includes(record.status)) errors.push("status");
+  if (!custodyStates.includes(record.custody_state)) errors.push("custody_state");
+  if (record.current_stable_baseline !== BASELINE) errors.push("current_stable_baseline");
+  if (!nonEmptyString(record.human_review_one_point)) errors.push("human_review_one_point");
+
+  if (!Array.isArray(record.packet_chain) || record.packet_chain.length === 0) {
+    errors.push("packet_chain");
+  } else {
+    const packetIds = new Set();
+    for (const entry of record.packet_chain) {
+      if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
+        errors.push("packet_entry");
+        continue;
+      }
+      for (const field of schema.$defs.packet_entry.required) {
+        if (!Object.hasOwn(entry, field)) errors.push(`missing ${field}`);
+      }
+      if (!nonEmptyString(entry.packet_id)) errors.push("packet_id");
+      if (!nonEmptyString(entry.packet_role)) errors.push("packet_role");
+      if (!safeArtifactPath(entry.packet_path)) errors.push("packet_path");
+      if (!sha256(entry.packet_sha256)) errors.push("packet_sha256");
+      if (!nonEmptyString(entry.expected_manifest_status)) errors.push("expected_manifest_status");
+      if (!nonEmptyString(entry.observed_manifest_status)) errors.push("observed_manifest_status");
+      if (entry.expected_manifest_status !== entry.observed_manifest_status) errors.push("manifest status mismatch");
+      if (entry.manifest_status_matches_expected !== true) errors.push("manifest status mismatch");
+      if (entry.selected_target_matches_expected !== true) errors.push("selected target mismatch");
+      if (entry.baseline_matches_current_stable !== true) errors.push("baseline mismatch");
+      if (entry.is_authoritative !== true) errors.push("authoritative packet");
+      if (entry.is_draft_or_partial !== false) errors.push("draft artifact authoritative");
+      packetIds.add(entry.packet_id);
+    }
+    if (Array.isArray(record.authoritative_packets)) {
+      for (const packetId of record.authoritative_packets) {
+        if (!packetIds.has(packetId)) errors.push("authoritative packet");
+      }
+    }
+  }
+
+  if (!Array.isArray(record.authoritative_packets) || record.authoritative_packets.length === 0) {
+    errors.push("authoritative_packets");
+  }
+
+  const draftIds = new Set();
+  if (!Array.isArray(record.draft_or_partial_artifacts)) {
+    errors.push("draft_or_partial_artifacts");
+  } else {
+    for (const artifact of record.draft_or_partial_artifacts) {
+      if (!artifact || typeof artifact !== "object" || Array.isArray(artifact)) {
+        errors.push("draft_or_partial_artifact");
+        continue;
+      }
+      if (!nonEmptyString(artifact.artifact_id)) errors.push("draft artifact id");
+      if (!safeArtifactPath(artifact.artifact_path)) errors.push("draft artifact path");
+      if (!nonEmptyString(artifact.artifact_role)) errors.push("draft artifact role");
+      if (artifact.authoritative_usage_allowed !== false) errors.push("draft artifact authoritative");
+      draftIds.add(artifact.artifact_id);
+    }
+  }
+  if (Array.isArray(record.authoritative_packets)) {
+    for (const packetId of record.authoritative_packets) {
+      if (draftIds.has(packetId)) errors.push("draft artifact authoritative");
+    }
+  }
+
+  const manifest = record.manifest_consistency;
+  if (!manifest || typeof manifest !== "object" || Array.isArray(manifest)) {
+    errors.push("manifest_consistency");
+  } else {
+    if (manifest.all_manifest_statuses_match_expected !== true) errors.push("manifest status mismatch");
+    if (manifest.all_selected_targets_match_expected !== true) errors.push("selected target mismatch");
+    if (manifest.all_sha256_values_match_expected !== true) errors.push("packet_sha256");
+    if (manifest.missing_or_mismatched_manifest_fails_closed !== true) errors.push("manifest status mismatch");
+  }
+
+  const relationship = record.next_packet_relationship;
+  if (!relationship || typeof relationship !== "object" || Array.isArray(relationship)) {
+    errors.push("next_packet_relationship");
+  } else {
+    if (!safeNextActions.includes(relationship.recommended_next_action)) errors.push("recommended_next_action");
+    if (unsafeNextAction(relationship.recommended_next_action)) errors.push("runtime next action");
+    if (relationship.next_action_owner_gated_packet_step_only !== true) errors.push("owner gated next action");
+    if (relationship.automatic_continuation_allowed !== false) errors.push("automatic_continuation_allowed");
+    if (relationship.runtime_or_queue_transition_allowed !== false) errors.push("runtime next action");
+  }
+
+  const prompt = record.next_prompt_readiness;
+  if (!prompt || typeof prompt !== "object" || Array.isArray(prompt)) {
+    errors.push("next_prompt_readiness");
+  } else {
+    if (prompt.next_codex_prompt_present !== true) errors.push("next_codex_prompt_present");
+    if (prompt.next_prompt_owner_gated_only !== true) errors.push("next_prompt_owner_gated_only");
+    for (const field of [
+      "next_prompt_runtime_allowed",
+      "next_prompt_queue_mutation_allowed",
+      "next_prompt_worker_launch_allowed",
+      "next_prompt_deploy_allowed",
+      "next_prompt_commit_or_push_allowed"
+    ]) {
+      if (prompt[field] !== false) errors.push(field);
+    }
+  }
+
+  if (!Array.isArray(record.allowed_next_actions) || record.allowed_next_actions.length === 0) {
+    errors.push("allowed_next_actions");
+  } else {
+    for (const action of record.allowed_next_actions) {
+      if (!safeNextActions.includes(action)) errors.push("allowed_next_actions");
+      if (unsafeNextAction(action)) errors.push("runtime next action");
+    }
+  }
+
+  for (const flag of forbiddenFlags) {
+    if (record.forbidden_action_flags?.[flag] !== false) errors.push(flag);
+  }
+  for (const flag of invariantFlags) {
+    if (record.safety_invariants?.[flag] !== true) errors.push(flag);
+  }
+
+  return errors;
+}
+
+test("docs, schema, and allowlist carry BUILD_ID and review-only semantics", () => {
+  const doc = readText("docs/orchestration/codex_native_handoff_packet_chain_of_custody_contract.md");
+  assert.ok(doc.startsWith(`# BUILD_ID: ${BUILD_ID}`));
+  assert.match(doc, /Handoff packet chain evidence is not an executor/);
+  assert.match(doc, /READY is not GO/);
+  assert.match(doc, /OBSERVED_SAFE_NO_ACTION is not GO/);
+  assert.match(doc, /review evidence only/i);
+  assert.match(doc, /Queue mutation/i);
+  assert.match(doc, /Draft artifact usage as authoritative fails closed/);
+
+  assert.equal(schema.$comment, `BUILD_ID: ${BUILD_ID}`);
+  assert.equal(schema.build_id, BUILD_ID);
+  assert.equal(schema.additionalProperties, false);
+  assert.equal(schema.properties.schema.const, "lonewolf.codex_native.handoff_packet_chain_of_custody.v1");
+  assert.equal(schema.properties.target.const, TARGET);
+  assert.equal(schema.properties.current_stable_baseline.const, BASELINE);
+  assert.deepEqual(custodyStates, [READY, OBSERVED_SAFE_NO_ACTION, OWNER_REVIEW, STOP]);
+  assert.deepEqual(safeNextActions, [NEXT_REVIEW, OWNER_REVIEW, STOP]);
+  assert.equal(schema.$defs.next_packet_relationship.properties.automatic_continuation_allowed.const, false);
+  assert.equal(schema.$defs.next_packet_relationship.properties.runtime_or_queue_transition_allowed.const, false);
+  for (const flag of forbiddenFlags) assert.equal(schema.$defs.forbidden_action_flags.properties[flag].const, false);
+  for (const flag of invariantFlags) assert.equal(schema.$defs.safety_invariants.properties[flag].const, true);
+
+  assert.equal(allowedFiles.length, 11);
+  assert.equal(allowedFiles.filter((path) => path.startsWith("docs/")).length, 1);
+  assert.equal(allowedFiles.filter((path) => path.startsWith("schema/")).length, 1);
+  assert.equal(allowedFiles.filter((path) => /^tests\/[^/]+\.test\.mjs$/u.test(path)).length, 1);
+  assert.equal(allowedFiles.filter((path) => path.startsWith("tests/fixtures/")).length, 8);
+  for (const file of allowedFiles) {
+    assert.doesNotThrow(() => readText(file), `${file} must exist`);
+    assert.match(file, /^(docs|schema|tests|tests\/fixtures)\//u);
+    assert.doesNotMatch(file, /^(src|tools|scripts|runtime|worker|cloud|deploy|billing|trading|\.git|node_modules)\//u);
+    assert.ok(readText(file).includes(BUILD_ID), `${file} must include BUILD_ID`);
+  }
+});
+
+test("valid handoff packet chain custody fixtures pass", () => {
+  assert.equal(validFixtures.length, 2);
+  for (const [fixturePath, fixture] of validFixtures) {
+    assert.equal(fixture.build_id, BUILD_ID, fixturePath);
+    assert.equal(fixture.expected_valid, true, fixturePath);
+    assert.deepEqual(validateCustody(fixture.custody), [], fixturePath);
+    assert.equal(fixture.custody.safety_invariants.artifacts_are_evidence_only, true, fixturePath);
+    assert.equal(fixture.custody.safety_invariants.ready_is_not_go, true, fixturePath);
+    assert.equal(fixture.custody.safety_invariants.observed_safe_no_action_is_not_go, true, fixturePath);
+    for (const flag of forbiddenFlags) assert.equal(fixture.custody.forbidden_action_flags[flag], false, `${fixturePath} ${flag}`);
+  }
+  assert.equal(validFixtures[0][1].custody.custody_state, READY);
+  assert.equal(validFixtures[1][1].custody.custody_state, OWNER_REVIEW);
+});
+
+test("invalid handoff packet chain custody fixtures fail closed", () => {
+  assert.equal(invalidFixtures.length, 6);
+  for (const [fixturePath, fixture] of invalidFixtures) {
+    assert.equal(fixture.build_id, BUILD_ID, fixturePath);
+    assert.equal(fixture.expected_valid, false, fixturePath);
+    const custody = baseCustodyFor(fixture.base_fixture);
+    for (const mutationKey of ["mutation", "secondary_mutation", "tertiary_mutation"]) {
+      if (fixture[mutationKey]) setPath(custody, fixture[mutationKey].path, fixture[mutationKey]);
+    }
+    const errors = validateCustody(custody);
+    assert.ok(
+      errors.some((error) => error.includes(fixture.expected_error)),
+      `${fixturePath} expected ${fixture.expected_error}, got ${errors.join(", ")}`
+    );
+  }
+});
+
+test("READY and OBSERVED_SAFE_NO_ACTION never authorize execution", () => {
+  const accepted = baseCustodyFor("accepted-chain-index.json");
+  assert.equal(accepted.custody_state, READY);
+  assert.equal(accepted.safety_invariants.ready_is_not_go, true);
+  assert.equal(accepted.safety_invariants.observed_safe_no_action_is_not_go, true);
+  assert.equal(accepted.next_packet_relationship.automatic_continuation_allowed, false);
+  assert.equal(accepted.next_packet_relationship.runtime_or_queue_transition_allowed, false);
+  assert.notEqual(accepted.next_packet_relationship.recommended_next_action, "GO");
+
+  const observed = clone(accepted);
+  observed.custody_state = OBSERVED_SAFE_NO_ACTION;
+  assert.deepEqual(validateCustody(observed), []);
+  assert.equal(observed.next_packet_relationship.automatic_continuation_allowed, false);
+  assert.equal(observed.next_packet_relationship.runtime_or_queue_transition_allowed, false);
+});
+
+test("specific custody hazards fail closed", () => {
+  const missingSha = baseCustodyFor("accepted-chain-index.json");
+  delete missingSha.packet_chain[0].packet_sha256;
+  assert.ok(validateCustody(missingSha).some((error) => error.includes("packet_sha256")));
+
+  const mismatch = baseCustodyFor("accepted-chain-index.json");
+  mismatch.packet_chain[0].observed_manifest_status = "OWNER_REVIEW_REQUIRED";
+  mismatch.packet_chain[0].manifest_status_matches_expected = false;
+  assert.ok(validateCustody(mismatch).some((error) => error.includes("manifest status mismatch")));
+
+  const runtime = baseCustodyFor("accepted-chain-index.json");
+  runtime.next_packet_relationship.recommended_next_action = "RUN_RUNTIME_WORKFLOW";
+  runtime.allowed_next_actions = ["RUN_RUNTIME_WORKFLOW"];
+  assert.ok(validateCustody(runtime).some((error) => error.includes("runtime next action")));
+
+  const queue = baseCustodyFor("accepted-chain-index.json");
+  queue.forbidden_action_flags.queue_mutation_performed = true;
+  assert.ok(validateCustody(queue).some((error) => error.includes("queue_mutation_performed")));
+
+  const draft = baseCustodyFor("accepted-chain-index.json");
+  draft.authoritative_packets.push("partial-review-draft");
+  assert.ok(validateCustody(draft).some((error) => error.includes("draft artifact authoritative")));
+
+  const missingHumanReview = baseCustodyFor("accepted-chain-index.json");
+  missingHumanReview.human_review_one_point = "";
+  assert.ok(validateCustody(missingHumanReview).some((error) => error.includes("human_review_one_point")));
+});
+
+test("fixtures avoid secret-like or raw-auth placeholders", () => {
+  const badPattern = /api[_-]?key|secret|credential|password|raw[_-]?auth|bearer|private[_-]?key|production[_-]?db/iu;
+  for (const fixturePath of [...validFixturePaths, ...invalidFixturePaths]) {
+    assert.doesNotMatch(readText(fixturePath), badPattern, fixturePath);
+  }
+});
+
+test("current repo edits remain inside the exact handoff custody allowlist", () => {
+  const status = spawnSync("git", ["status", "--short", "--untracked-files=all"], {
+    cwd: root,
+    encoding: "utf8"
+  });
+  assert.equal(status.status, 0, status.stderr);
+
+  const changed = status.stdout
+    .split(/\r?\n/u)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => line.replace(/^..\s+/, "").replace(/^R\s+.* -> /, ""))
+    .map((path) => path.replace(/\\/gu, "/"));
+
+  const allowed = new Set(allowedFiles);
+  for (const file of changed) {
+    assert.ok(allowed.has(file), `unexpected changed file: ${file}`);
+  }
+});

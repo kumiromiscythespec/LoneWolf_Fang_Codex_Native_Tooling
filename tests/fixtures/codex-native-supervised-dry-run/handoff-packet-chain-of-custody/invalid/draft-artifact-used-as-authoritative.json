@@ -1,0 +1,15 @@
+{
+  "build_id": "HANDOFF_PACKET_CHAIN_OF_CUSTODY_CONTRACTS_20260614",
+  "fixture_id": "draft-artifact-used-as-authoritative",
+  "base_fixture": "accepted-chain-index.json",
+  "expected_valid": false,
+  "expected_error": "draft artifact authoritative",
+  "mutation": {
+    "path": "authoritative_packets",
+    "value": [
+      "planning-integration",
+      "implementation-approval",
+      "partial-review-draft"
+    ]
+  }
+}
