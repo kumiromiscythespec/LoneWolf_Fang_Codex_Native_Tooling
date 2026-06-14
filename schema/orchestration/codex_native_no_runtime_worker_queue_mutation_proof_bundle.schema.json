@@ -1,0 +1,551 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lonewolf.codex_native.no_runtime_worker_queue_mutation_proof_bundle.v1",
+  "$comment": "BUILD_ID: NO_RUNTIME_WORKER_QUEUE_MUTATION_PROOF_BUNDLE_CONTRACTS_20260615",
+  "title": "Codex Native No Runtime Worker Queue Mutation Proof Bundle Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "target",
+    "status",
+    "proof_bundle_state",
+    "current_stable_baseline",
+    "packet_chain",
+    "evidence_scope",
+    "local_refs_referenced",
+    "local_metadata_only_disclosure",
+    "six_window_progression_safety",
+    "no_runtime_execution",
+    "no_worker_launch",
+    "no_daemon_watcher",
+    "no_ui_automation",
+    "no_queue_mutation",
+    "no_cloud_mutation",
+    "no_private_api",
+    "no_openai_api",
+    "no_billing_auth_mutation",
+    "no_trading_or_order_action",
+    "action_results",
+    "forbidden_action_flags",
+    "blocker_matrix",
+    "human_review_one_point",
+    "next_prompt_readiness",
+    "safety_invariants"
+  ],
+  "properties": {
+    "schema": {
+      "const": "lonewolf.codex_native.no_runtime_worker_queue_mutation_proof_bundle.v1"
+    },
+    "build_id": {
+      "const": "NO_RUNTIME_WORKER_QUEUE_MUTATION_PROOF_BUNDLE_CONTRACTS_20260615"
+    },
+    "target": {
+      "const": "no_runtime_worker_queue_mutation_proof_bundle_contracts"
+    },
+    "status": {
+      "enum": [
+        "READY_FOR_OWNER_REVIEW",
+        "OWNER_REVIEW_REQUIRED",
+        "STOP_OWNER_REVIEW_REQUIRED"
+      ]
+    },
+    "proof_bundle_state": {
+      "enum": [
+        "ALL_CLEAR",
+        "OWNER_REVIEW_REQUIRED",
+        "BLOCKED_AMBIGUOUS_EVIDENCE"
+      ]
+    },
+    "current_stable_baseline": {
+      "const": "01c0217a89ae67f9cf9d6775f5586500d575b396"
+    },
+    "packet_chain": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/packet_chain_item"
+      }
+    },
+    "evidence_scope": {
+      "$ref": "#/$defs/evidence_scope"
+    },
+    "local_refs_referenced": {
+      "type": "boolean"
+    },
+    "local_metadata_only_disclosure": {
+      "$ref": "#/$defs/local_metadata_only_disclosure"
+    },
+    "six_window_progression_safety": {
+      "$ref": "#/$defs/six_window_progression_safety"
+    },
+    "no_runtime_execution": {
+      "const": true
+    },
+    "no_worker_launch": {
+      "const": true
+    },
+    "no_daemon_watcher": {
+      "const": true
+    },
+    "no_ui_automation": {
+      "const": true
+    },
+    "no_queue_mutation": {
+      "const": true
+    },
+    "no_cloud_mutation": {
+      "const": true
+    },
+    "no_private_api": {
+      "const": true
+    },
+    "no_openai_api": {
+      "const": true
+    },
+    "no_billing_auth_mutation": {
+      "const": true
+    },
+    "no_trading_or_order_action": {
+      "const": true
+    },
+    "action_results": {
+      "$ref": "#/$defs/action_results"
+    },
+    "forbidden_action_flags": {
+      "$ref": "#/$defs/forbidden_action_flags"
+    },
+    "blocker_matrix": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/blocker"
+      }
+    },
+    "human_review_one_point": {
+      "type": "string",
+      "minLength": 12
+    },
+    "next_prompt_readiness": {
+      "$ref": "#/$defs/next_prompt_readiness"
+    },
+    "safety_invariants": {
+      "$ref": "#/$defs/safety_invariants"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "proof_bundle_state": {
+            "const": "BLOCKED_AMBIGUOUS_EVIDENCE"
+          }
+        },
+        "required": [
+          "proof_bundle_state"
+        ]
+      },
+      "then": {
+        "properties": {
+          "status": {
+            "const": "STOP_OWNER_REVIEW_REQUIRED"
+          },
+          "next_prompt_readiness": {
+            "properties": {
+              "recommended_next_action": {
+                "const": "STOP_OWNER_REVIEW_REQUIRED"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "packet_chain_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "packet_id",
+        "packet_role",
+        "artifact_path",
+        "artifact_sha256",
+        "artifact_is_evidence_only",
+        "authoritative"
+      ],
+      "properties": {
+        "packet_id": {
+          "type": "string",
+          "minLength": 3
+        },
+        "packet_role": {
+          "enum": [
+            "implementation_approval_packet",
+            "stable_closeout_packet",
+            "implementation_result_artifact",
+            "review_packet",
+            "planning_packet"
+          ]
+        },
+        "artifact_path": {
+          "type": "string",
+          "minLength": 8
+        },
+        "artifact_sha256": {
+          "type": "string",
+          "pattern": "^[A-Fa-f0-9]{64}$"
+        },
+        "artifact_is_evidence_only": {
+          "const": true
+        },
+        "authoritative": {
+          "type": "boolean"
+        }
+      }
+    },
+    "evidence_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "static_evidence_bundle_only",
+        "synthetic_fixtures_only",
+        "runtime_executor",
+        "worker_launcher",
+        "queue_producer",
+        "queue_consumer",
+        "network_required",
+        "secret_required"
+      ],
+      "properties": {
+        "static_evidence_bundle_only": {
+          "const": true
+        },
+        "synthetic_fixtures_only": {
+          "const": true
+        },
+        "runtime_executor": {
+          "const": false
+        },
+        "worker_launcher": {
+          "const": false
+        },
+        "queue_producer": {
+          "const": false
+        },
+        "queue_consumer": {
+          "const": false
+        },
+        "network_required": {
+          "const": false
+        },
+        "secret_required": {
+          "const": false
+        }
+      }
+    },
+    "local_metadata_only_disclosure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "origin_master_local_metadata_only",
+        "ahead_behind_local_metadata_only",
+        "independently_fetched_live_remote_truth",
+        "fetch_performed",
+        "pull_performed",
+        "fetch_pull_requires_future_owner_gate"
+      ],
+      "properties": {
+        "origin_master_local_metadata_only": {
+          "const": true
+        },
+        "ahead_behind_local_metadata_only": {
+          "const": true
+        },
+        "independently_fetched_live_remote_truth": {
+          "const": false
+        },
+        "fetch_performed": {
+          "const": false
+        },
+        "pull_performed": {
+          "const": false
+        },
+        "fetch_pull_requires_future_owner_gate": {
+          "const": true
+        }
+      }
+    },
+    "six_window_progression_safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "operating_pattern_only",
+        "gate_bypass_allowed",
+        "owner_gate_required",
+        "automatic_continuation_allowed"
+      ],
+      "properties": {
+        "operating_pattern_only": {
+          "const": true
+        },
+        "gate_bypass_allowed": {
+          "const": false
+        },
+        "owner_gate_required": {
+          "const": true
+        },
+        "automatic_continuation_allowed": {
+          "const": false
+        }
+      }
+    },
+    "action_results": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_performed",
+        "worker_launch_performed",
+        "daemon_watcher_performed",
+        "ui_automation_performed",
+        "queue_mutation_performed",
+        "cloud_mutation_performed",
+        "private_api_performed",
+        "openai_api_performed",
+        "billing_auth_mutation_performed",
+        "trading_or_order_action_performed",
+        "deploy_performed",
+        "fetch_performed",
+        "pull_performed",
+        "cleanup_or_history_rewrite_performed"
+      ],
+      "properties": {
+        "runtime_performed": {
+          "const": false
+        },
+        "worker_launch_performed": {
+          "const": false
+        },
+        "daemon_watcher_performed": {
+          "const": false
+        },
+        "ui_automation_performed": {
+          "const": false
+        },
+        "queue_mutation_performed": {
+          "const": false
+        },
+        "cloud_mutation_performed": {
+          "const": false
+        },
+        "private_api_performed": {
+          "const": false
+        },
+        "openai_api_performed": {
+          "const": false
+        },
+        "billing_auth_mutation_performed": {
+          "const": false
+        },
+        "trading_or_order_action_performed": {
+          "const": false
+        },
+        "deploy_performed": {
+          "const": false
+        },
+        "fetch_performed": {
+          "const": false
+        },
+        "pull_performed": {
+          "const": false
+        },
+        "cleanup_or_history_rewrite_performed": {
+          "const": false
+        }
+      }
+    },
+    "forbidden_action_flags": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_allowed",
+        "worker_launch_allowed",
+        "daemon_watcher_allowed",
+        "ui_automation_allowed",
+        "queue_mutation_allowed",
+        "cloud_mutation_allowed",
+        "private_api_allowed",
+        "openai_api_allowed",
+        "billing_auth_mutation_allowed",
+        "trading_or_order_action_allowed",
+        "deploy_allowed",
+        "fetch_allowed",
+        "pull_allowed",
+        "cleanup_or_history_rewrite_allowed",
+        "automatic_continuation_allowed"
+      ],
+      "properties": {
+        "runtime_allowed": {
+          "const": false
+        },
+        "worker_launch_allowed": {
+          "const": false
+        },
+        "daemon_watcher_allowed": {
+          "const": false
+        },
+        "ui_automation_allowed": {
+          "const": false
+        },
+        "queue_mutation_allowed": {
+          "const": false
+        },
+        "cloud_mutation_allowed": {
+          "const": false
+        },
+        "private_api_allowed": {
+          "const": false
+        },
+        "openai_api_allowed": {
+          "const": false
+        },
+        "billing_auth_mutation_allowed": {
+          "const": false
+        },
+        "trading_or_order_action_allowed": {
+          "const": false
+        },
+        "deploy_allowed": {
+          "const": false
+        },
+        "fetch_allowed": {
+          "const": false
+        },
+        "pull_allowed": {
+          "const": false
+        },
+        "cleanup_or_history_rewrite_allowed": {
+          "const": false
+        },
+        "automatic_continuation_allowed": {
+          "const": false
+        }
+      }
+    },
+    "next_prompt_readiness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ready_is_go",
+        "matched_is_go",
+        "observed_safe_no_action_is_go",
+        "recommended_next_action",
+        "instruction_artifact_only",
+        "executor"
+      ],
+      "properties": {
+        "ready_is_go": {
+          "const": false
+        },
+        "matched_is_go": {
+          "const": false
+        },
+        "observed_safe_no_action_is_go": {
+          "const": false
+        },
+        "recommended_next_action": {
+          "enum": [
+            "START_IMPLEMENTATION_REVIEW_PACKET",
+            "WAIT_FOR_OWNER_REVIEW",
+            "STOP_OWNER_REVIEW_REQUIRED"
+          ]
+        },
+        "instruction_artifact_only": {
+          "const": true
+        },
+        "executor": {
+          "const": false
+        }
+      }
+    },
+    "blocker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "blocker_id",
+        "severity",
+        "status",
+        "reason",
+        "owner_review_required"
+      ],
+      "properties": {
+        "blocker_id": {
+          "type": "string",
+          "minLength": 3
+        },
+        "severity": {
+          "enum": [
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "BLOCKER"
+          ]
+        },
+        "status": {
+          "enum": [
+            "PASS",
+            "OWNER_REVIEW_REQUIRED",
+            "BLOCKED"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 8
+        },
+        "owner_review_required": {
+          "type": "boolean"
+        }
+      }
+    },
+    "safety_invariants": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "proof_bundle_evidence_only",
+        "artifacts_never_execute",
+        "ambiguous_evidence_fails_closed",
+        "human_review_required",
+        "blocker_matrix_required",
+        "local_metadata_overclaim_rejected",
+        "six_window_progression_cannot_bypass_gates",
+        "automatic_go_allowed"
+      ],
+      "properties": {
+        "proof_bundle_evidence_only": {
+          "const": true
+        },
+        "artifacts_never_execute": {
+          "const": true
+        },
+        "ambiguous_evidence_fails_closed": {
+          "const": true
+        },
+        "human_review_required": {
+          "const": true
+        },
+        "blocker_matrix_required": {
+          "const": true
+        },
+        "local_metadata_overclaim_rejected": {
+          "const": true
+        },
+        "six_window_progression_cannot_bypass_gates": {
+          "const": true
+        },
+        "automatic_go_allowed": {
+          "const": false
+        }
+      }
+    }
+  }
+}
