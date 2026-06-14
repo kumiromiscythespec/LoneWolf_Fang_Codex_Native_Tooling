@@ -1,0 +1,89 @@
+{
+  "schema": "lonewolf.codex_native.local_metadata_only_remote_freshness_disclosure.v1",
+  "build_id": "LOCAL_METADATA_ONLY_REMOTE_FRESHNESS_DISCLOSURE_CONTRACTS_20260615",
+  "target": "local_metadata_only_remote_freshness_disclosure_contracts",
+  "status": "OWNER_REVIEW_REQUIRED",
+  "freshness_state": "LOCAL_REFS_DIVERGED",
+  "current_stable_baseline": "51a9986d45c153fdcd469c40b6c095a307978c9c",
+  "local_metadata_only": true,
+  "local_refs": {
+    "head": "51a9986d45c153fdcd469c40b6c095a307978c9c",
+    "origin_master": "4078e57ef6d638de1e1a38620d6eaf6776adaab6",
+    "origin_master_present": true,
+    "origin_master_is_local_ref_only": true,
+    "refs_match": false,
+    "snapshot_mode": "local_git_metadata"
+  },
+  "ahead_behind": {
+    "raw": "1 / 0",
+    "ahead": 1,
+    "behind": 0,
+    "disclosed": true,
+    "divergence_disclosed": true,
+    "mismatch_hidden": false
+  },
+  "fetch_state": {
+    "fetch_performed": false,
+    "fetch_explicitly_approved": false,
+    "fetch_approval_reference": null
+  },
+  "pull_state": {
+    "pull_performed": false,
+    "pull_recommended": false
+  },
+  "remote_freshness_claim": {
+    "claims_live_remote_freshness": false,
+    "remote_truth_guaranteed": false,
+    "local_origin_master_treated_as_live_remote_truth": false
+  },
+  "disclosure": {
+    "local_metadata_boundary_disclosed": true,
+    "remote_ambiguity_disclosed": true,
+    "ready_is_not_go_disclosed": true,
+    "observed_safe_no_action_is_not_go_disclosed": true
+  },
+  "owner_review": {
+    "owner_review_required": true,
+    "owner_review_reason": "Local metadata diverges and must stop for owner review without fetch or pull.",
+    "automatic_go_allowed": false
+  },
+  "next_prompt_readiness": {
+    "next_prompt_kind": "owner_review_only",
+    "next_prompt_recommends_owner_gated_packet_only": true,
+    "automatic_continuation_allowed": false,
+    "ready_is_go": false,
+    "observed_safe_no_action_is_go": false
+  },
+  "allowed_next_actions": [
+    "WAIT_FOR_OWNER_REVIEW",
+    "STOP_OWNER_REVIEW_REQUIRED"
+  ],
+  "recommended_next_action": "WAIT_FOR_OWNER_REVIEW",
+  "forbidden_action_flags": {
+    "fetch_allowed": false,
+    "pull_allowed": false,
+    "stage_allowed": false,
+    "commit_allowed": false,
+    "push_allowed": false,
+    "deploy_allowed": false,
+    "runtime_execution_allowed": false,
+    "worker_launch_allowed": false,
+    "daemon_watcher_allowed": false,
+    "ui_automation_allowed": false,
+    "private_api_allowed": false,
+    "openai_api_allowed": false,
+    "cloud_mutation_allowed": false,
+    "queue_mutation_allowed": false,
+    "billing_auth_mutation_allowed": false,
+    "trading_order_allowed": false,
+    "cleanup_history_rewrite_allowed": false,
+    "automatic_continuation_allowed": false
+  },
+  "safety_invariants": {
+    "artifacts_are_evidence_only": true,
+    "ready_is_not_go": true,
+    "observed_safe_no_action_is_not_go": true,
+    "owner_gated_next_step_only": true
+  },
+  "human_review_one_point": "Review the disclosed local divergence before deciding whether any future remote check is separately approved."
+}
