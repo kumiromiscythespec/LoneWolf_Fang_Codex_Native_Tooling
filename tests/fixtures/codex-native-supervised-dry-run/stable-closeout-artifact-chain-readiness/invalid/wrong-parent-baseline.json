@@ -1,0 +1,78 @@
+{
+  "build_id": "STABLE_CLOSEOUT_ARTIFACT_CHAIN_READINESS_CONTRACTS_20260614",
+  "case_id": "wrong-parent-baseline",
+  "expected_valid": false,
+  "expected_error": "parent_baseline",
+  "readiness": {
+    "schema": "lonewolf.codex_native.stable_closeout_artifact_chain_readiness.v1",
+    "build_id": "STABLE_CLOSEOUT_ARTIFACT_CHAIN_READINESS_CONTRACTS_20260614",
+    "target": "stable_closeout_artifact_chain_readiness_contracts",
+    "status": "ACCEPTED_CLOSEOUT_CHAIN",
+    "closeout_readiness_state": "READY",
+    "artifact_chain": {
+      "stable_closeout_packet_path": "C:/Users/yu_ki/AppData/Local/LoneWolfFang/data/codex_native_queue_handoff_dry_run_handoff_stable_post_push_closeout_packet_20260614_164039.zip",
+      "stable_closeout_sha256": "0F158390EAEE5BCE426B8544886B67CA7AED1EC628D11676F54301CC394F3890",
+      "stable_closeout_sha256_matches": true,
+      "parent_artifact_sha256": "24E2C0C4527D488FB9FF6F742A3CEF11A03932F92E0CBCE260D3A34BCCDCBAB0",
+      "parent_artifact_sha256_matches": true,
+      "artifact_chain_authoritative": true,
+      "outside_allowlist_artifact_reference": false
+    },
+    "baseline_transition": {
+      "old_stable_baseline": "c7d1d2dc7ff350bb3ea9d0485d6a1de9441dbc82",
+      "new_stable_baseline": "902975798805d96d363a672d1958e658a09fdb41",
+      "parent_baseline": "85f1d5c94698071abce1b03d41cef6788417a48b",
+      "parent_matches_old_stable": false,
+      "expected_branch": "master",
+      "expected_ahead_behind": "0 / 0",
+      "stale_baseline_detected": false
+    },
+    "closeout_packet": {
+      "packet_role": "stable_post_push_closeout_packet",
+      "packet_path": "C:/Users/yu_ki/AppData/Local/LoneWolfFang/data/codex_native_queue_handoff_dry_run_handoff_stable_post_push_closeout_packet_20260614_164039.zip",
+      "stable_closeout_sha256": "0F158390EAEE5BCE426B8544886B67CA7AED1EC628D11676F54301CC394F3890",
+      "final_status": "SAFE_QUEUE_HANDOFF_DRY_RUN_HANDOFF_STABLE_POST_PUSH_CLOSEOUT_PACKET_CREATED",
+      "recommended_next_action": "START_NEXT_SAFE_PARALLEL_WAVE_PLANNING_AFTER_QUEUE_HANDOFF_DRY_RUN_HANDOFF"
+    },
+    "recommended_next_action": "OWNER_REVIEW_REQUIRED",
+    "human_review_one_point": "Review wrong parent baseline evidence.",
+    "allowed_next_actions": [
+      "OWNER_REVIEW_REQUIRED"
+    ],
+    "forbidden_action_flags": {
+      "queue_mutation_performed": false,
+      "cloud_queue_mutation_performed": false,
+      "runtime_execution_performed": false,
+      "worker_launch_performed": false,
+      "daemon_or_watcher_performed": false,
+      "ui_automation_performed": false,
+      "deploy_performed": false,
+      "private_api_performed": false,
+      "openai_api_performed": false,
+      "cloud_mutation_performed": false,
+      "billing_auth_mutation_performed": false,
+      "trading_or_order_action_performed": false,
+      "auto_go_performed": false,
+      "stage_performed": false,
+      "commit_performed": false,
+      "push_performed": false,
+      "destructive_git_or_cleanup_performed": false
+    },
+    "safety_invariants": {
+      "ready_is_go": false,
+      "observed_safe_no_action_is_go": false,
+      "stable_closeout_evidence_is_executor": false,
+      "automatic_go_allowed": false,
+      "runtime_recommendation_allowed": false,
+      "queue_mutation_allowed": false,
+      "cloud_api_billing_auth_trading_allowed": false
+    },
+    "artifact_allowlist": {
+      "allowed_artifact_root": "C:/Users/yu_ki/AppData/Local/LoneWolfFang/data",
+      "allowed_artifact_roles": [
+        "stable_post_push_closeout_packet"
+      ],
+      "outside_repo_artifact_only": true
+    }
+  }
+}
