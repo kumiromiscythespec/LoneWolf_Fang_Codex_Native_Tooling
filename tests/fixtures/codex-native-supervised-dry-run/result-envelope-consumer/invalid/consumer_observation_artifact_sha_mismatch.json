@@ -1,0 +1,14 @@
+{
+  "build_id": "RESULT_ENVELOPE_READONLY_CONSUMER_OBSERVATION_CONTRACTS_20260614",
+  "invalid_case_id": "consumer_observation_artifact_sha_mismatch",
+  "base_fixture": "consumer_observation_ready_no_action.json",
+  "mutation": {
+    "path": "artifact_evidence.0.sha256_matches_expected",
+    "value": false
+  },
+  "secondary_mutation": {
+    "path": "observed_result_envelope.parent_artifact_sha256_matches",
+    "value": false
+  },
+  "expected_error": "artifact sha mismatch"
+}

@@ -1,0 +1,14 @@
+{
+  "build_id": "RESULT_ENVELOPE_READONLY_CONSUMER_OBSERVATION_CONTRACTS_20260614",
+  "invalid_case_id": "consumer_observation_ready_auto_go",
+  "base_fixture": "consumer_observation_ready_no_action.json",
+  "mutation": {
+    "path": "observed_result_envelope.ready_interpreted_as_go",
+    "value": true
+  },
+  "secondary_mutation": {
+    "path": "recommended_next_action",
+    "value": "START_RUNTIME_EXECUTION"
+  },
+  "expected_error": "ready interpreted as go"
+}

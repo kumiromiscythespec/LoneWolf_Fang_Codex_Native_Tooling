@@ -1,0 +1,14 @@
+{
+  "build_id": "RESULT_ENVELOPE_READONLY_CONSUMER_OBSERVATION_CONTRACTS_20260614",
+  "invalid_case_id": "consumer_observation_stale_baseline",
+  "base_fixture": "consumer_observation_ready_no_action.json",
+  "mutation": {
+    "path": "stable_baseline",
+    "value": "85f1d5c94698071abce1b03d41cef6788417a48b"
+  },
+  "secondary_mutation": {
+    "path": "approval_binding.bound_stable_baseline",
+    "value": "85f1d5c94698071abce1b03d41cef6788417a48b"
+  },
+  "expected_error": "bad stable_baseline"
+}

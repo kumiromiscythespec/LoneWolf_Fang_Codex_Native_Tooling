@@ -1,0 +1,91 @@
+{
+  "build_id": "RESULT_ENVELOPE_READONLY_CONSUMER_OBSERVATION_CONTRACTS_20260614",
+  "observation": {
+    "schema": "lonewolf.codex_native.result_envelope_readonly_consumer_observation.v1",
+    "build_id": "RESULT_ENVELOPE_READONLY_CONSUMER_OBSERVATION_CONTRACTS_20260614",
+    "observation_id": "consumer_observation_rejected_forbidden_intent",
+    "target": "result_envelope_readonly_consumer_observation_contracts",
+    "stable_baseline": "d2a9dd7e3ab07fb3d177cab36a70130e0f11deec",
+    "expected_branch": "master",
+    "expected_head": "d2a9dd7e3ab07fb3d177cab36a70130e0f11deec",
+    "expected_origin_master": "d2a9dd7e3ab07fb3d177cab36a70130e0f11deec",
+    "expected_ahead_behind": "0 / 0",
+    "observed_result_envelope": {
+      "envelope_schema": "lonewolf.codex_native.supervised_dry_run_result_envelope.v1",
+      "envelope_target": "result_envelope_dry_run_outcome_contracts",
+      "envelope_result_state": "REJECTED",
+      "envelope_artifact_path": "C:/Users/example/AppData/Local/LoneWolfFang/data/rejected_result_envelope_packet.zip",
+      "envelope_artifact_sha256": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "parent_artifact_sha256_matches": true,
+      "stable_baseline": "d2a9dd7e3ab07fb3d177cab36a70130e0f11deec",
+      "ready_interpreted_as_go": false,
+      "automatic_next_action_created": false
+    },
+    "observation_state": "OBSERVED_REJECTED",
+    "blockers": [
+      {
+        "blocker_id": "forbidden_intent_detected",
+        "severity": "HIGH",
+        "reason": "Observed evidence requests forbidden behavior and must be rejected.",
+        "evidence_reference": "observed_result_envelope.envelope_result_state",
+        "fail_closed_action": "STOP_OWNER_REVIEW_REQUIRED",
+        "owner_review_required": true,
+        "allows_progression": false
+      }
+    ],
+    "reasons": [
+      "Forbidden intent was detected in the result-envelope evidence."
+    ],
+    "artifact_evidence": [
+      {
+        "artifact_role": "result_envelope_packet",
+        "artifact_path": "C:/Users/example/AppData/Local/LoneWolfFang/data/rejected_result_envelope_packet.zip",
+        "artifact_sha256": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+        "sha256_matches_expected": true
+      }
+    ],
+    "approval_binding": {
+      "owner_approval_phrase": "APPROVE_RESULT_ENVELOPE_READONLY_CONSUMER_OBSERVATION_CONTRACTS_DOCS_SCHEMA_TESTS_FIXTURES_ONLY",
+      "approval_target": "result_envelope_readonly_consumer_observation_contracts",
+      "approval_current": true,
+      "approval_stale": false,
+      "approval_superseded": false,
+      "bound_stable_baseline": "d2a9dd7e3ab07fb3d177cab36a70130e0f11deec",
+      "exact_file_allowlist_count": 14,
+      "allowed_scope": "docs_schema_tests_fixtures_only",
+      "reuse_for_runtime_prohibited": true
+    },
+    "consumer_boundaries": {
+      "read_only": true,
+      "evidence_inspection_only": true,
+      "not_executor": true,
+      "not_queue_mutator": true,
+      "not_worker_launcher": true,
+      "not_daemon_or_watcher": true,
+      "not_scheduler": true,
+      "not_deploy_trigger": true,
+      "not_private_api_caller": true,
+      "not_openai_api_caller": true,
+      "not_cloud_mutator": true,
+      "not_billing_mutator": true,
+      "not_trading_or_order_actor": true
+    },
+    "forbidden_actions": {
+      "runtime_execution_allowed": false,
+      "worker_launch_allowed": false,
+      "daemon_or_watcher_allowed": false,
+      "queue_mutation_allowed": false,
+      "private_api_allowed": false,
+      "openai_api_allowed": false,
+      "cloud_mutation_allowed": false,
+      "billing_mutation_allowed": false,
+      "trading_or_order_allowed": false,
+      "commit_allowed": false,
+      "push_allowed": false,
+      "deploy_allowed": false
+    },
+    "human_review_one_point": "Reject the forbidden-intent observation and decide whether a repair packet is needed.",
+    "owner_facing_summary": "Observation rejected unsafe intent and triggered no action.",
+    "recommended_next_action": "STOP_OWNER_REVIEW_REQUIRED"
+  }
+}

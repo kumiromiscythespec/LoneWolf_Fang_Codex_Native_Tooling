@@ -1,0 +1,22 @@
+{
+  "build_id": "RESULT_ENVELOPE_READONLY_CONSUMER_OBSERVATION_CONTRACTS_20260614",
+  "invalid_case_id": "consumer_observation_api_cloud_billing_trading_true",
+  "base_fixture": "consumer_observation_ready_no_action.json",
+  "mutation": {
+    "path": "forbidden_actions.private_api_allowed",
+    "value": true
+  },
+  "secondary_mutation": {
+    "path": "forbidden_actions.cloud_mutation_allowed",
+    "value": true
+  },
+  "tertiary_mutation": {
+    "path": "forbidden_actions.billing_mutation_allowed",
+    "value": true
+  },
+  "quaternary_mutation": {
+    "path": "forbidden_actions.trading_or_order_allowed",
+    "value": true
+  },
+  "expected_error": "forbidden private_api_allowed"
+}

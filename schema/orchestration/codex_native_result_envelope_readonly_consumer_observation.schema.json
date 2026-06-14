@@ -1,0 +1,382 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/codex_native_result_envelope_readonly_consumer_observation.schema.json",
+  "$comment": "BUILD_ID: RESULT_ENVELOPE_READONLY_CONSUMER_OBSERVATION_CONTRACTS_20260614",
+  "build_id": "RESULT_ENVELOPE_READONLY_CONSUMER_OBSERVATION_CONTRACTS_20260614",
+  "title": "Codex Native Result Envelope Read-Only Consumer Observation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "observation_id",
+    "target",
+    "stable_baseline",
+    "expected_branch",
+    "expected_head",
+    "expected_origin_master",
+    "expected_ahead_behind",
+    "observed_result_envelope",
+    "observation_state",
+    "blockers",
+    "reasons",
+    "artifact_evidence",
+    "approval_binding",
+    "consumer_boundaries",
+    "forbidden_actions",
+    "human_review_one_point",
+    "owner_facing_summary",
+    "recommended_next_action"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "lonewolf.codex_native.result_envelope_readonly_consumer_observation.v1"
+    },
+    "build_id": {
+      "type": "string",
+      "const": "RESULT_ENVELOPE_READONLY_CONSUMER_OBSERVATION_CONTRACTS_20260614"
+    },
+    "observation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target": {
+      "type": "string",
+      "const": "result_envelope_readonly_consumer_observation_contracts"
+    },
+    "stable_baseline": {
+      "type": "string",
+      "const": "d2a9dd7e3ab07fb3d177cab36a70130e0f11deec"
+    },
+    "expected_branch": {
+      "type": "string",
+      "const": "master"
+    },
+    "expected_head": {
+      "type": "string",
+      "const": "d2a9dd7e3ab07fb3d177cab36a70130e0f11deec"
+    },
+    "expected_origin_master": {
+      "type": "string",
+      "const": "d2a9dd7e3ab07fb3d177cab36a70130e0f11deec"
+    },
+    "expected_ahead_behind": {
+      "type": "string",
+      "const": "0 / 0"
+    },
+    "observed_result_envelope": {
+      "$ref": "#/$defs/observed_result_envelope"
+    },
+    "observation_state": {
+      "type": "string",
+      "enum": [
+        "OBSERVED_SAFE_NO_ACTION",
+        "OBSERVED_BLOCKED",
+        "OBSERVED_REJECTED",
+        "STOP_OWNER_REVIEW_REQUIRED"
+      ]
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/blocker"
+      }
+    },
+    "reasons": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "artifact_evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/artifact_evidence"
+      }
+    },
+    "approval_binding": {
+      "$ref": "#/$defs/approval_binding"
+    },
+    "consumer_boundaries": {
+      "$ref": "#/$defs/consumer_boundaries"
+    },
+    "forbidden_actions": {
+      "$ref": "#/$defs/forbidden_actions"
+    },
+    "human_review_one_point": {
+      "type": "string",
+      "minLength": 1
+    },
+    "owner_facing_summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "recommended_next_action": {
+      "type": "string",
+      "enum": [
+        "START_RESULT_ENVELOPE_READONLY_CONSUMER_OBSERVATION_IMPLEMENTATION_REVIEW_PACKET",
+        "REPAIR_REQUIRED_RESULT_ENVELOPE_READONLY_CONSUMER_OBSERVATION_DOCS_SCHEMA_TESTS_FIXTURES_IMPLEMENTATION",
+        "STOP_OWNER_REVIEW_REQUIRED"
+      ]
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[A-Fa-f0-9]{64}$"
+    },
+    "observed_result_envelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "envelope_schema",
+        "envelope_target",
+        "envelope_result_state",
+        "envelope_artifact_path",
+        "envelope_artifact_sha256",
+        "parent_artifact_sha256_matches",
+        "stable_baseline",
+        "ready_interpreted_as_go",
+        "automatic_next_action_created"
+      ],
+      "properties": {
+        "envelope_schema": {
+          "type": "string",
+          "const": "lonewolf.codex_native.supervised_dry_run_result_envelope.v1"
+        },
+        "envelope_target": {
+          "type": "string",
+          "const": "result_envelope_dry_run_outcome_contracts"
+        },
+        "envelope_result_state": {
+          "type": "string",
+          "enum": [
+            "READY",
+            "BLOCKED",
+            "REJECTED",
+            "STOP_OWNER_REVIEW_REQUIRED"
+          ]
+        },
+        "envelope_artifact_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "envelope_artifact_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "parent_artifact_sha256_matches": {
+          "type": "boolean",
+          "const": true
+        },
+        "stable_baseline": {
+          "type": "string",
+          "const": "d2a9dd7e3ab07fb3d177cab36a70130e0f11deec"
+        },
+        "ready_interpreted_as_go": {
+          "type": "boolean",
+          "const": false
+        },
+        "automatic_next_action_created": {
+          "type": "boolean",
+          "const": false
+        }
+      }
+    },
+    "blocker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "blocker_id",
+        "severity",
+        "reason",
+        "evidence_reference",
+        "fail_closed_action",
+        "owner_review_required",
+        "allows_progression"
+      ],
+      "properties": {
+        "blocker_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "BLOCKER",
+            "HIGH"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_reference": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fail_closed_action": {
+          "type": "string",
+          "const": "STOP_OWNER_REVIEW_REQUIRED"
+        },
+        "owner_review_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "allows_progression": {
+          "type": "boolean",
+          "const": false
+        }
+      }
+    },
+    "artifact_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_role",
+        "artifact_path",
+        "artifact_sha256",
+        "sha256_matches_expected"
+      ],
+      "properties": {
+        "artifact_role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artifact_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artifact_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "sha256_matches_expected": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "approval_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "owner_approval_phrase",
+        "approval_target",
+        "approval_current",
+        "approval_stale",
+        "approval_superseded",
+        "bound_stable_baseline",
+        "exact_file_allowlist_count",
+        "allowed_scope",
+        "reuse_for_runtime_prohibited"
+      ],
+      "properties": {
+        "owner_approval_phrase": {
+          "type": "string",
+          "const": "APPROVE_RESULT_ENVELOPE_READONLY_CONSUMER_OBSERVATION_CONTRACTS_DOCS_SCHEMA_TESTS_FIXTURES_ONLY"
+        },
+        "approval_target": {
+          "type": "string",
+          "const": "result_envelope_readonly_consumer_observation_contracts"
+        },
+        "approval_current": {
+          "type": "boolean",
+          "const": true
+        },
+        "approval_stale": {
+          "type": "boolean",
+          "const": false
+        },
+        "approval_superseded": {
+          "type": "boolean",
+          "const": false
+        },
+        "bound_stable_baseline": {
+          "type": "string",
+          "const": "d2a9dd7e3ab07fb3d177cab36a70130e0f11deec"
+        },
+        "exact_file_allowlist_count": {
+          "type": "integer",
+          "const": 14
+        },
+        "allowed_scope": {
+          "type": "string",
+          "const": "docs_schema_tests_fixtures_only"
+        },
+        "reuse_for_runtime_prohibited": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "consumer_boundaries": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "read_only",
+        "evidence_inspection_only",
+        "not_executor",
+        "not_queue_mutator",
+        "not_worker_launcher",
+        "not_daemon_or_watcher",
+        "not_scheduler",
+        "not_deploy_trigger",
+        "not_private_api_caller",
+        "not_openai_api_caller",
+        "not_cloud_mutator",
+        "not_billing_mutator",
+        "not_trading_or_order_actor"
+      ],
+      "properties": {
+        "read_only": { "type": "boolean", "const": true },
+        "evidence_inspection_only": { "type": "boolean", "const": true },
+        "not_executor": { "type": "boolean", "const": true },
+        "not_queue_mutator": { "type": "boolean", "const": true },
+        "not_worker_launcher": { "type": "boolean", "const": true },
+        "not_daemon_or_watcher": { "type": "boolean", "const": true },
+        "not_scheduler": { "type": "boolean", "const": true },
+        "not_deploy_trigger": { "type": "boolean", "const": true },
+        "not_private_api_caller": { "type": "boolean", "const": true },
+        "not_openai_api_caller": { "type": "boolean", "const": true },
+        "not_cloud_mutator": { "type": "boolean", "const": true },
+        "not_billing_mutator": { "type": "boolean", "const": true },
+        "not_trading_or_order_actor": { "type": "boolean", "const": true }
+      }
+    },
+    "forbidden_actions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_execution_allowed",
+        "worker_launch_allowed",
+        "daemon_or_watcher_allowed",
+        "queue_mutation_allowed",
+        "private_api_allowed",
+        "openai_api_allowed",
+        "cloud_mutation_allowed",
+        "billing_mutation_allowed",
+        "trading_or_order_allowed",
+        "commit_allowed",
+        "push_allowed",
+        "deploy_allowed"
+      ],
+      "properties": {
+        "runtime_execution_allowed": { "type": "boolean", "const": false },
+        "worker_launch_allowed": { "type": "boolean", "const": false },
+        "daemon_or_watcher_allowed": { "type": "boolean", "const": false },
+        "queue_mutation_allowed": { "type": "boolean", "const": false },
+        "private_api_allowed": { "type": "boolean", "const": false },
+        "openai_api_allowed": { "type": "boolean", "const": false },
+        "cloud_mutation_allowed": { "type": "boolean", "const": false },
+        "billing_mutation_allowed": { "type": "boolean", "const": false },
+        "trading_or_order_allowed": { "type": "boolean", "const": false },
+        "commit_allowed": { "type": "boolean", "const": false },
+        "push_allowed": { "type": "boolean", "const": false },
+        "deploy_allowed": { "type": "boolean", "const": false }
+      }
+    }
+  }
+}

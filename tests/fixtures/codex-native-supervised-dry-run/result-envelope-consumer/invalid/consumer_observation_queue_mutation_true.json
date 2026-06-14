@@ -1,0 +1,10 @@
+{
+  "build_id": "RESULT_ENVELOPE_READONLY_CONSUMER_OBSERVATION_CONTRACTS_20260614",
+  "invalid_case_id": "consumer_observation_queue_mutation_true",
+  "base_fixture": "consumer_observation_ready_no_action.json",
+  "mutation": {
+    "path": "forbidden_actions.queue_mutation_allowed",
+    "value": true
+  },
+  "expected_error": "forbidden queue_mutation_allowed"
+}
