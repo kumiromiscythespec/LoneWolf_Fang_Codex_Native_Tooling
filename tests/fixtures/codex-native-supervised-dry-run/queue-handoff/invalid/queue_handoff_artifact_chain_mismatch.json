@@ -1,0 +1,11 @@
+{
+  "build_id": "QUEUE_HANDOFF_DRY_RUN_HANDOFF_CONTRACTS_20260614",
+  "case_id": "queue_handoff_artifact_chain_mismatch",
+  "expected_valid": false,
+  "expected_error": "parent_artifact_sha256_matches",
+  "base_fixture": "queue_handoff_ready_review_only.json",
+  "mutation": {
+    "path": "artifact_evidence.parent_artifact_sha256_matches",
+    "value": false
+  }
+}

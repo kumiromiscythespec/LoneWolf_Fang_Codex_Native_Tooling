@@ -1,0 +1,76 @@
+{
+  "build_id": "QUEUE_HANDOFF_DRY_RUN_HANDOFF_CONTRACTS_20260614",
+  "case_id": "queue_handoff_ready_review_only",
+  "expected_valid": true,
+  "queue_handoff": {
+    "schema": "lonewolf.codex_native.queue_handoff_dry_run_handoff.v1",
+    "build_id": "QUEUE_HANDOFF_DRY_RUN_HANDOFF_CONTRACTS_20260614",
+    "handoff_id": "qh-ready-review-only",
+    "contract_target": "queue_handoff_dry_run_handoff_contracts",
+    "stable_baseline": "c7d1d2dc7ff350bb3ea9d0485d6a1de9441dbc82",
+    "expected_branch": "master",
+    "expected_head": "c7d1d2dc7ff350bb3ea9d0485d6a1de9441dbc82",
+    "expected_origin_master": "c7d1d2dc7ff350bb3ea9d0485d6a1de9441dbc82",
+    "expected_ahead_behind": "0 / 0",
+    "handoff_mode": "dry_run_review_only",
+    "observation_status": "READY",
+    "blockers": [],
+    "reasons": [
+      "Evidence is classified as ready for owner review, not ready for execution."
+    ],
+    "artifact_evidence": {
+      "artifact_available": true,
+      "artifact_role": "planning_integration_packet",
+      "artifact_path": "C:/Users/yu_ki/AppData/Local/LoneWolfFang/data/codex_native_next_safe_parallel_wave_after_readonly_consumer_observation_planning_integration_packet_20260614_152506.zip",
+      "artifact_sha256": "5DFF5BAC475BF288271160A3EFF38E891C6C2A47A8D3308B8BB6AD66BD02D511",
+      "sha256_matches_expected": true,
+      "parent_artifact_sha256": "24E2C0C4527D488FB9FF6F742A3CEF11A03932F92E0CBCE260D3A34BCCDCBAB0",
+      "parent_artifact_sha256_matches": true,
+      "artifact_authoritative": true,
+      "non_authoritative_residue_treated_as_authoritative": false
+    },
+    "approval_freshness": {
+      "owner_approval_phrase": "APPROVE_QUEUE_HANDOFF_DRY_RUN_HANDOFF_DOCS_SCHEMA_TESTS_FIXTURES_IMPLEMENTATION",
+      "approval_target": "queue_handoff_dry_run_handoff_contracts",
+      "approval_current": true,
+      "approval_stale": false,
+      "approval_superseded": false,
+      "bound_stable_baseline": "c7d1d2dc7ff350bb3ea9d0485d6a1de9441dbc82",
+      "exact_file_allowlist_count": 12,
+      "allowed_scope": "docs_schema_tests_fixtures_only",
+      "reuse_for_runtime_prohibited": true
+    },
+    "action_decision_semantics": {
+      "queue_handoff_evidence_only": true,
+      "owner_review_required": true,
+      "ready_is_go": false,
+      "observed_safe_no_action_is_go": false,
+      "automatic_go_allowed": false,
+      "execution_allowed": false,
+      "queue_mutation_allowed": false,
+      "worker_launch_allowed": false
+    },
+    "forbidden_actions": {
+      "queue_mutation_performed": false,
+      "cloud_queue_mutation_performed": false,
+      "runtime_execution_performed": false,
+      "worker_launch_performed": false,
+      "daemon_or_watcher_performed": false,
+      "ui_automation_performed": false,
+      "deploy_performed": false,
+      "private_api_performed": false,
+      "openai_api_performed": false,
+      "cloud_mutation_performed": false,
+      "billing_mutation_performed": false,
+      "trading_or_order_action_performed": false,
+      "auto_go_performed": false,
+      "destructive_git_or_cleanup_performed": false,
+      "stage_performed": false,
+      "commit_performed": false,
+      "push_performed": false
+    },
+    "human_review_one_point": "Decide whether the ready evidence should remain in review or be used for a later approval packet.",
+    "owner_facing_summary": "READY is review evidence only and does not authorize action.",
+    "recommended_next_action": "OWNER_REVIEW_REQUIRED"
+  }
+}

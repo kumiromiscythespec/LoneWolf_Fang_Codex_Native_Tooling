@@ -1,0 +1,15 @@
+{
+  "build_id": "QUEUE_HANDOFF_DRY_RUN_HANDOFF_CONTRACTS_20260614",
+  "case_id": "queue_handoff_stale_approval",
+  "expected_valid": false,
+  "expected_error": "approval_stale",
+  "base_fixture": "queue_handoff_ready_review_only.json",
+  "mutation": {
+    "path": "approval_freshness.approval_current",
+    "value": false
+  },
+  "secondary_mutation": {
+    "path": "approval_freshness.approval_stale",
+    "value": true
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "build_id": "QUEUE_HANDOFF_DRY_RUN_HANDOFF_CONTRACTS_20260614",
+  "case_id": "queue_handoff_worker_launch_true",
+  "expected_valid": false,
+  "expected_error": "worker_launch_performed",
+  "base_fixture": "queue_handoff_ready_review_only.json",
+  "mutation": {
+    "path": "forbidden_actions.worker_launch_performed",
+    "value": true
+  }
+}

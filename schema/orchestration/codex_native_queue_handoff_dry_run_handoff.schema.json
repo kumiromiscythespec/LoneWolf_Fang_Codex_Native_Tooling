@@ -1,0 +1,369 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/orchestration/codex_native_queue_handoff_dry_run_handoff.schema.json",
+  "$comment": "BUILD_ID: QUEUE_HANDOFF_DRY_RUN_HANDOFF_CONTRACTS_20260614",
+  "build_id": "QUEUE_HANDOFF_DRY_RUN_HANDOFF_CONTRACTS_20260614",
+  "title": "Codex Native Queue Handoff Dry-Run Handoff",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "handoff_id",
+    "contract_target",
+    "stable_baseline",
+    "expected_branch",
+    "expected_head",
+    "expected_origin_master",
+    "expected_ahead_behind",
+    "handoff_mode",
+    "observation_status",
+    "blockers",
+    "reasons",
+    "artifact_evidence",
+    "approval_freshness",
+    "action_decision_semantics",
+    "forbidden_actions",
+    "human_review_one_point",
+    "owner_facing_summary",
+    "recommended_next_action"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "lonewolf.codex_native.queue_handoff_dry_run_handoff.v1"
+    },
+    "build_id": {
+      "type": "string",
+      "const": "QUEUE_HANDOFF_DRY_RUN_HANDOFF_CONTRACTS_20260614"
+    },
+    "handoff_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "contract_target": {
+      "type": "string",
+      "const": "queue_handoff_dry_run_handoff_contracts"
+    },
+    "stable_baseline": {
+      "type": "string",
+      "const": "c7d1d2dc7ff350bb3ea9d0485d6a1de9441dbc82"
+    },
+    "expected_branch": {
+      "type": "string",
+      "const": "master"
+    },
+    "expected_head": {
+      "type": "string",
+      "const": "c7d1d2dc7ff350bb3ea9d0485d6a1de9441dbc82"
+    },
+    "expected_origin_master": {
+      "type": "string",
+      "const": "c7d1d2dc7ff350bb3ea9d0485d6a1de9441dbc82"
+    },
+    "expected_ahead_behind": {
+      "type": "string",
+      "const": "0 / 0"
+    },
+    "handoff_mode": {
+      "type": "string",
+      "const": "dry_run_review_only"
+    },
+    "observation_status": {
+      "type": "string",
+      "enum": [
+        "OBSERVED_SAFE_NO_ACTION",
+        "READY",
+        "BLOCKED",
+        "STOP_OWNER_REVIEW_REQUIRED"
+      ]
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/blocker"
+      }
+    },
+    "reasons": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "artifact_evidence": {
+      "$ref": "#/$defs/artifact_evidence"
+    },
+    "approval_freshness": {
+      "$ref": "#/$defs/approval_freshness"
+    },
+    "action_decision_semantics": {
+      "$ref": "#/$defs/action_decision_semantics"
+    },
+    "forbidden_actions": {
+      "$ref": "#/$defs/forbidden_actions"
+    },
+    "human_review_one_point": {
+      "type": "string",
+      "minLength": 1
+    },
+    "owner_facing_summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "recommended_next_action": {
+      "type": "string",
+      "enum": [
+        "OWNER_REVIEW_REQUIRED",
+        "BLOCKED_OWNER_REVIEW_REQUIRED",
+        "STOP_OWNER_REVIEW_REQUIRED"
+      ]
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[A-Fa-f0-9]{64}$"
+    },
+    "blocker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "blocker_id",
+        "severity",
+        "reason",
+        "evidence_reference",
+        "fail_closed_action",
+        "owner_review_required",
+        "allows_progression"
+      ],
+      "properties": {
+        "blocker_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "BLOCKER",
+            "HIGH"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_reference": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fail_closed_action": {
+          "type": "string",
+          "const": "STOP_OWNER_REVIEW_REQUIRED"
+        },
+        "owner_review_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "allows_progression": {
+          "type": "boolean",
+          "const": false
+        }
+      }
+    },
+    "artifact_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_available",
+        "artifact_role",
+        "artifact_path",
+        "artifact_sha256",
+        "sha256_matches_expected",
+        "parent_artifact_sha256",
+        "parent_artifact_sha256_matches",
+        "artifact_authoritative",
+        "non_authoritative_residue_treated_as_authoritative"
+      ],
+      "properties": {
+        "artifact_available": {
+          "type": "boolean"
+        },
+        "artifact_role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artifact_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artifact_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "sha256_matches_expected": {
+          "type": "boolean",
+          "const": true
+        },
+        "parent_artifact_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "parent_artifact_sha256_matches": {
+          "type": "boolean",
+          "const": true
+        },
+        "artifact_authoritative": {
+          "type": "boolean"
+        },
+        "non_authoritative_residue_treated_as_authoritative": {
+          "type": "boolean",
+          "const": false
+        }
+      }
+    },
+    "approval_freshness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "owner_approval_phrase",
+        "approval_target",
+        "approval_current",
+        "approval_stale",
+        "approval_superseded",
+        "bound_stable_baseline",
+        "exact_file_allowlist_count",
+        "allowed_scope",
+        "reuse_for_runtime_prohibited"
+      ],
+      "properties": {
+        "owner_approval_phrase": {
+          "type": "string",
+          "const": "APPROVE_QUEUE_HANDOFF_DRY_RUN_HANDOFF_DOCS_SCHEMA_TESTS_FIXTURES_IMPLEMENTATION"
+        },
+        "approval_target": {
+          "type": "string",
+          "const": "queue_handoff_dry_run_handoff_contracts"
+        },
+        "approval_current": {
+          "type": "boolean",
+          "const": true
+        },
+        "approval_stale": {
+          "type": "boolean",
+          "const": false
+        },
+        "approval_superseded": {
+          "type": "boolean",
+          "const": false
+        },
+        "bound_stable_baseline": {
+          "type": "string",
+          "const": "c7d1d2dc7ff350bb3ea9d0485d6a1de9441dbc82"
+        },
+        "exact_file_allowlist_count": {
+          "type": "integer",
+          "const": 12
+        },
+        "allowed_scope": {
+          "type": "string",
+          "const": "docs_schema_tests_fixtures_only"
+        },
+        "reuse_for_runtime_prohibited": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "action_decision_semantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "queue_handoff_evidence_only",
+        "owner_review_required",
+        "ready_is_go",
+        "observed_safe_no_action_is_go",
+        "automatic_go_allowed",
+        "execution_allowed",
+        "queue_mutation_allowed",
+        "worker_launch_allowed"
+      ],
+      "properties": {
+        "queue_handoff_evidence_only": {
+          "type": "boolean",
+          "const": true
+        },
+        "owner_review_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "ready_is_go": {
+          "type": "boolean",
+          "const": false
+        },
+        "observed_safe_no_action_is_go": {
+          "type": "boolean",
+          "const": false
+        },
+        "automatic_go_allowed": {
+          "type": "boolean",
+          "const": false
+        },
+        "execution_allowed": {
+          "type": "boolean",
+          "const": false
+        },
+        "queue_mutation_allowed": {
+          "type": "boolean",
+          "const": false
+        },
+        "worker_launch_allowed": {
+          "type": "boolean",
+          "const": false
+        }
+      }
+    },
+    "forbidden_actions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "queue_mutation_performed",
+        "cloud_queue_mutation_performed",
+        "runtime_execution_performed",
+        "worker_launch_performed",
+        "daemon_or_watcher_performed",
+        "ui_automation_performed",
+        "deploy_performed",
+        "private_api_performed",
+        "openai_api_performed",
+        "cloud_mutation_performed",
+        "billing_mutation_performed",
+        "trading_or_order_action_performed",
+        "auto_go_performed",
+        "destructive_git_or_cleanup_performed",
+        "stage_performed",
+        "commit_performed",
+        "push_performed"
+      ],
+      "properties": {
+        "queue_mutation_performed": { "type": "boolean", "const": false },
+        "cloud_queue_mutation_performed": { "type": "boolean", "const": false },
+        "runtime_execution_performed": { "type": "boolean", "const": false },
+        "worker_launch_performed": { "type": "boolean", "const": false },
+        "daemon_or_watcher_performed": { "type": "boolean", "const": false },
+        "ui_automation_performed": { "type": "boolean", "const": false },
+        "deploy_performed": { "type": "boolean", "const": false },
+        "private_api_performed": { "type": "boolean", "const": false },
+        "openai_api_performed": { "type": "boolean", "const": false },
+        "cloud_mutation_performed": { "type": "boolean", "const": false },
+        "billing_mutation_performed": { "type": "boolean", "const": false },
+        "trading_or_order_action_performed": { "type": "boolean", "const": false },
+        "auto_go_performed": { "type": "boolean", "const": false },
+        "destructive_git_or_cleanup_performed": { "type": "boolean", "const": false },
+        "stage_performed": { "type": "boolean", "const": false },
+        "commit_performed": { "type": "boolean", "const": false },
+        "push_performed": { "type": "boolean", "const": false }
+      }
+    }
+  }
+}
