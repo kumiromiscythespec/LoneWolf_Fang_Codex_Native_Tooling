@@ -1,0 +1,1 @@
+{"build_id":"SUPERVISED_DRY_RUN_EXECUTION_RECEIPT_TO_RESULT_OBSERVATION_LINKAGE_CONTRACTS_20260615","case_id":"linkage_worker_launch_true","expected_valid":false,"base_fixture":"linkage_matched_evidence_only.json","expected_error":"forbidden_actions.worker_launch_requested","mutation":{"path":"forbidden_actions.worker_launch_requested","value":true}}

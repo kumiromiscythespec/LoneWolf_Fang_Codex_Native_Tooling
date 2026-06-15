@@ -1,0 +1,1 @@
+{"build_id":"SUPERVISED_DRY_RUN_EXECUTION_RECEIPT_TO_RESULT_OBSERVATION_LINKAGE_CONTRACTS_20260615","case_id":"linkage_stale_baseline","expected_valid":false,"base_fixture":"linkage_matched_evidence_only.json","expected_error":"baseline_commit","mutation":{"path":"baseline_commit","value":"0000000000000000000000000000000000000000"}}
