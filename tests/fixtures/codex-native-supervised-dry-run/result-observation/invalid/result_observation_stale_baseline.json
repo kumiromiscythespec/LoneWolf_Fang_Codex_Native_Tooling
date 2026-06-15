@@ -1,0 +1,1 @@
+{"build_id":"SUPERVISED_DRY_RUN_RESULT_OBSERVATION_CONTRACTS_20260615","case_id":"result_observation_stale_baseline","expected_valid":false,"base_fixture":"result_observation_draft_ready.json","expected_error":"baseline_commit","mutation":{"path":"baseline_commit","value":"0000000000000000000000000000000000000000"}}

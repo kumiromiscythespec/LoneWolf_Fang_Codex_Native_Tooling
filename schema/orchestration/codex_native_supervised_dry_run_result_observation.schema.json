@@ -1,0 +1,398 @@
+{
+  "schema_id": "lonewolf.codex_native.supervised_dry_run_result_observation.v1",
+  "build_id": "SUPERVISED_DRY_RUN_RESULT_OBSERVATION_CONTRACTS_20260615",
+  "title": "Codex Native Supervised Dry Run Result Observation Contract",
+  "type": "object",
+  "additional_properties_allowed": false,
+  "required": [
+    "schema",
+    "build_id",
+    "observation_id",
+    "observation_created_at_utc",
+    "target",
+    "target_repo",
+    "branch",
+    "baseline_commit",
+    "local_origin_master",
+    "ahead_behind",
+    "source_linkage_commit",
+    "source_linkage_artifact",
+    "source_planning_artifact",
+    "result_evidence",
+    "result_observation_status",
+    "not_go_assertions",
+    "next_action",
+    "forbidden_actions",
+    "blocker_matrix",
+    "human_review_one_point",
+    "fail_closed_result",
+    "safety_invariants"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "lonewolf.codex_native.supervised_dry_run_result_observation.v1"
+    },
+    "build_id": {
+      "type": "string",
+      "const": "SUPERVISED_DRY_RUN_RESULT_OBSERVATION_CONTRACTS_20260615"
+    },
+    "observation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "observation_created_at_utc": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target": {
+      "type": "string",
+      "const": "supervised_dry_run_result_observation_contracts"
+    },
+    "target_repo": {
+      "type": "string",
+      "minLength": 1
+    },
+    "branch": {
+      "type": "string",
+      "const": "master"
+    },
+    "baseline_commit": {
+      "type": "string",
+      "const": "0704b5c4a8102a983d668df9829ad6e3e2da2962"
+    },
+    "local_origin_master": {
+      "type": "string",
+      "const": "0704b5c4a8102a983d668df9829ad6e3e2da2962"
+    },
+    "ahead_behind": {
+      "type": "string",
+      "const": "0 / 0"
+    },
+    "source_linkage_commit": {
+      "type": "string",
+      "const": "0704b5c4a8102a983d668df9829ad6e3e2da2962"
+    },
+    "source_linkage_artifact": {
+      "ref": "source_artifact"
+    },
+    "source_planning_artifact": {
+      "ref": "source_artifact"
+    },
+    "result_evidence": {
+      "ref": "result_evidence"
+    },
+    "result_observation_status": {
+      "type": "string",
+      "enum": [
+        "RESULT_OBSERVATION_NOT_STARTED",
+        "RESULT_OBSERVATION_BLOCKED_MISSING_LINKAGE",
+        "RESULT_OBSERVATION_DRAFT_READY",
+        "RESULT_OBSERVATION_MATCHED_EVIDENCE_ONLY",
+        "RESULT_OBSERVATION_OBSERVED_SAFE_NO_ACTION",
+        "RESULT_OBSERVATION_FAILED_CLOSED",
+        "STOP_OWNER_REVIEW_REQUIRED"
+      ]
+    },
+    "not_go_assertions": {
+      "ref": "not_go_assertions"
+    },
+    "next_action": {
+      "ref": "next_action"
+    },
+    "forbidden_actions": {
+      "ref": "forbidden_actions"
+    },
+    "blocker_matrix": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "ref": "blocker"
+      }
+    },
+    "human_review_one_point": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fail_closed_result": {
+      "type": "string",
+      "const": "STOP_OWNER_REVIEW_REQUIRED"
+    },
+    "safety_invariants": {
+      "type": "array",
+      "minItems": 20,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "definitions": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[A-F0-9]{64}$"
+    },
+    "source_artifact": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "artifact_role",
+        "artifact_path",
+        "artifact_sha256",
+        "sha256_matches_expected",
+        "evidence_only",
+        "authoritative"
+      ],
+      "properties": {
+        "artifact_role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artifact_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "artifact_sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sha256_matches_expected": {
+          "type": "boolean"
+        },
+        "evidence_only": {
+          "const": true
+        },
+        "authoritative": {
+          "type": "boolean"
+        }
+      }
+    },
+    "result_evidence": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "evidence_state",
+        "evidence_artifact_path",
+        "evidence_artifact_sha256",
+        "static_bounded_evidence_only",
+        "future_or_static_reference_only",
+        "live_observation_performed",
+        "runtime_observer_enabled",
+        "proof_of_runtime_observation"
+      ],
+      "properties": {
+        "evidence_state": {
+          "type": "string",
+          "enum": [
+            "ABSENT_FUTURE_ONLY",
+            "MISSING_LINKAGE",
+            "DRAFT_STATIC_READY",
+            "MATCHED_STATIC_EVIDENCE",
+            "OBSERVED_SAFE_NO_ACTION_STATIC",
+            "FAILED_CLOSED_STATIC",
+            "OWNER_REVIEW_REQUIRED"
+          ]
+        },
+        "evidence_artifact_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_artifact_sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "static_bounded_evidence_only": {
+          "const": true
+        },
+        "future_or_static_reference_only": {
+          "const": true
+        },
+        "live_observation_performed": {
+          "const": false
+        },
+        "runtime_observer_enabled": {
+          "const": false
+        },
+        "proof_of_runtime_observation": {
+          "const": false
+        }
+      }
+    },
+    "not_go_assertions": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "evidence_only",
+        "static_audit_metadata_only",
+        "never_executor",
+        "never_runtime_observer",
+        "never_live_observation",
+        "never_automatic_go_signal",
+        "never_runtime_trigger",
+        "never_worker_launch_request",
+        "never_queue_mutation_request",
+        "never_cloud_api_billing_auth_trading_action",
+        "never_proof_of_runtime_observation_without_bounded_evidence",
+        "never_substitute_for_owner_approval",
+        "result_observation_draft_ready_not_runtime_go",
+        "result_observation_matched_evidence_only_not_runtime_go",
+        "result_observation_observed_safe_no_action_not_runtime_go",
+        "result_observation_presence_not_enough_to_execute_observe_or_continue",
+        "linkage_presence_not_enough_to_execute_or_observe",
+        "execution_receipt_presence_not_enough_to_execute_or_observe",
+        "ready_not_go",
+        "matched_not_go",
+        "observed_safe_no_action_not_go",
+        "linkage_draft_ready_not_go",
+        "linkage_matched_evidence_only_not_go",
+        "linkage_observed_safe_no_action_not_go",
+        "execution_dry_run_receipt_recorded_not_runtime_go",
+        "owner_approved_for_next_approval_packet_not_runtime_go",
+        "cannot_bypass_safety_gates",
+        "cannot_bypass_owner_gates",
+        "cannot_bypass_stop_owner_review_required",
+        "cannot_bypass_stop_and_wait_owner_review_required"
+      ],
+      "properties": {
+        "evidence_only": { "const": true },
+        "static_audit_metadata_only": { "const": true },
+        "never_executor": { "const": true },
+        "never_runtime_observer": { "const": true },
+        "never_live_observation": { "const": true },
+        "never_automatic_go_signal": { "const": true },
+        "never_runtime_trigger": { "const": true },
+        "never_worker_launch_request": { "const": true },
+        "never_queue_mutation_request": { "const": true },
+        "never_cloud_api_billing_auth_trading_action": { "const": true },
+        "never_proof_of_runtime_observation_without_bounded_evidence": { "const": true },
+        "never_substitute_for_owner_approval": { "const": true },
+        "result_observation_draft_ready_not_runtime_go": { "const": true },
+        "result_observation_matched_evidence_only_not_runtime_go": { "const": true },
+        "result_observation_observed_safe_no_action_not_runtime_go": { "const": true },
+        "result_observation_presence_not_enough_to_execute_observe_or_continue": { "const": true },
+        "linkage_presence_not_enough_to_execute_or_observe": { "const": true },
+        "execution_receipt_presence_not_enough_to_execute_or_observe": { "const": true },
+        "ready_not_go": { "const": true },
+        "matched_not_go": { "const": true },
+        "observed_safe_no_action_not_go": { "const": true },
+        "linkage_draft_ready_not_go": { "const": true },
+        "linkage_matched_evidence_only_not_go": { "const": true },
+        "linkage_observed_safe_no_action_not_go": { "const": true },
+        "execution_dry_run_receipt_recorded_not_runtime_go": { "const": true },
+        "owner_approved_for_next_approval_packet_not_runtime_go": { "const": true },
+        "cannot_bypass_safety_gates": { "const": true },
+        "cannot_bypass_owner_gates": { "const": true },
+        "cannot_bypass_stop_owner_review_required": { "const": true },
+        "cannot_bypass_stop_and_wait_owner_review_required": { "const": true }
+      }
+    },
+    "next_action": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "recommended_next_action",
+        "bounded_and_safe",
+        "owner_gate_required",
+        "unsafe_next_action_allowed"
+      ],
+      "properties": {
+        "recommended_next_action": {
+          "type": "string",
+          "enum": [
+            "START_SUPERVISED_DRY_RUN_RESULT_OBSERVATION_CONTRACTS_IMPLEMENTATION_REVIEW_PACKET",
+            "WAIT_FOR_OWNER_REVIEW",
+            "STOP_OWNER_REVIEW_REQUIRED"
+          ]
+        },
+        "bounded_and_safe": {
+          "const": true
+        },
+        "owner_gate_required": {
+          "const": true
+        },
+        "unsafe_next_action_allowed": {
+          "const": false
+        }
+      }
+    },
+    "forbidden_actions": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "runtime_observer_requested",
+        "live_observation_requested",
+        "runtime_execution_performed",
+        "worker_launch_requested",
+        "queue_mutation_requested",
+        "cloud_api_mutation_requested",
+        "private_api_performed",
+        "openai_api_performed",
+        "billing_auth_trading_action_requested",
+        "auto_go_requested",
+        "deploy_requested",
+        "commit_requested",
+        "push_requested",
+        "fetch_pull_requested",
+        "cleanup_requested",
+        "daemon_watcher_ui_automation_requested"
+      ],
+      "properties": {
+        "runtime_observer_requested": { "const": false },
+        "live_observation_requested": { "const": false },
+        "runtime_execution_performed": { "const": false },
+        "worker_launch_requested": { "const": false },
+        "queue_mutation_requested": { "const": false },
+        "cloud_api_mutation_requested": { "const": false },
+        "private_api_performed": { "const": false },
+        "openai_api_performed": { "const": false },
+        "billing_auth_trading_action_requested": { "const": false },
+        "auto_go_requested": { "const": false },
+        "deploy_requested": { "const": false },
+        "commit_requested": { "const": false },
+        "push_requested": { "const": false },
+        "fetch_pull_requested": { "const": false },
+        "cleanup_requested": { "const": false },
+        "daemon_watcher_ui_automation_requested": { "const": false }
+      }
+    },
+    "blocker": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "blocker",
+        "status",
+        "resolution",
+        "allows_progression"
+      ],
+      "properties": {
+        "blocker": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "PASS",
+            "BLOCKED",
+            "REJECTED",
+            "OWNER_REVIEW_REQUIRED"
+          ]
+        },
+        "resolution": {
+          "type": "string",
+          "minLength": 1
+        },
+        "allows_progression": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

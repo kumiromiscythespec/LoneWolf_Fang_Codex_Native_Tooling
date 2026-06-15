@@ -1,0 +1,1 @@
+{"build_id":"SUPERVISED_DRY_RUN_RESULT_OBSERVATION_CONTRACTS_20260615","case_id":"result_observation_auto_go_true","expected_valid":false,"base_fixture":"result_observation_observed_safe_no_action.json","expected_error":"forbidden_actions.auto_go_requested","mutation":{"path":"forbidden_actions.auto_go_requested","value":true}}
