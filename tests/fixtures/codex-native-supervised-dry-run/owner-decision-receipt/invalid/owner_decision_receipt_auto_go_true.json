@@ -1,0 +1,14 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_DECISION_RECEIPT_CONTRACTS_20260615",
+  "expected_valid": false,
+  "base_fixture": "owner_decision_receipt_approved_for_next_approval_packet.json",
+  "expected_error": "next_action_constraints.automatic_go_allowed",
+  "mutation": {
+    "path": "next_action_constraints.automatic_go_allowed",
+    "value": true
+  },
+  "secondary_mutation": {
+    "path": "next_action_constraints.recommended_next_action",
+    "value": "GO_EXECUTE_PUSH_DEPLOY"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_DECISION_RECEIPT_CONTRACTS_20260615",
+  "expected_valid": false,
+  "base_fixture": "owner_decision_receipt_approved_for_next_approval_packet.json",
+  "expected_error": "owner_approval_evidence.phrase_stale",
+  "mutation": {
+    "path": "owner_approval_evidence.phrase_stale",
+    "value": true
+  },
+  "secondary_mutation": {
+    "path": "owner_approval_evidence.phrase_current",
+    "value": false
+  },
+  "tertiary_mutation": {
+    "path": "baseline",
+    "value": "0000000000000000000000000000000000000000"
+  }
+}

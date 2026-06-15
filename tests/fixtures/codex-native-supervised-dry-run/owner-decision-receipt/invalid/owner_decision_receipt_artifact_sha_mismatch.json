@@ -1,0 +1,10 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_DECISION_RECEIPT_CONTRACTS_20260615",
+  "expected_valid": false,
+  "base_fixture": "owner_decision_receipt_approved_for_next_approval_packet.json",
+  "expected_error": "parent_planning_artifact.sha256_matches_expected",
+  "mutation": {
+    "path": "parent_planning_artifact.sha256_matches_expected",
+    "value": false
+  }
+}
