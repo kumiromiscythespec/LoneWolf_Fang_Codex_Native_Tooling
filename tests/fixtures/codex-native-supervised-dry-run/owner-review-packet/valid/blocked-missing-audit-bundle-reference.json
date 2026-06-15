@@ -1,0 +1,16 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_20260615",
+  "case_id": "blocked-missing-audit-bundle-reference",
+  "expected_valid": true,
+  "owner_review_status": "OWNER_REVIEW_PACKET_BLOCKED_MISSING_AUDIT_BUNDLE_REFERENCE",
+  "audit_bundle_reference_present": false,
+  "audit_bundle_reference_status": "MISSING",
+  "audit_bundle_reference_safe": false,
+  "blocked_reason": "audit bundle reference is missing",
+  "human_review_one_point": "Owner should decide whether missing reference evidence blocks the chain.",
+  "recommended_next_action": "STOP_OWNER_REVIEW_REQUIRED",
+  "stop_owner_review_required": true,
+  "blocker": "missing audit bundle reference",
+  "blocker_status": "BLOCKED",
+  "resolution": "stop until reference evidence is present"
+}

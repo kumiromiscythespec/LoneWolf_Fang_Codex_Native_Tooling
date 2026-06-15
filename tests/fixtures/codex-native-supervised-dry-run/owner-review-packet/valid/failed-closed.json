@@ -1,0 +1,16 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_20260615",
+  "case_id": "failed-closed",
+  "expected_valid": true,
+  "owner_review_status": "OWNER_REVIEW_PACKET_FAILED_CLOSED",
+  "audit_bundle_reference_present": true,
+  "audit_bundle_reference_status": "AMBIGUOUS_EVIDENCE",
+  "audit_bundle_reference_safe": false,
+  "blocked_reason": "ambiguous evidence requires fail closed handling",
+  "human_review_one_point": "Owner should review ambiguous evidence before any later step.",
+  "recommended_next_action": "STOP_OWNER_REVIEW_REQUIRED",
+  "stop_owner_review_required": true,
+  "blocker": "ambiguous evidence",
+  "blocker_status": "REJECTED",
+  "resolution": "fail closed"
+}

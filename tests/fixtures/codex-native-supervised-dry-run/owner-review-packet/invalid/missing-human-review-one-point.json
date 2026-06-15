@@ -1,0 +1,11 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_20260615",
+  "case_id": "missing-human-review-one-point",
+  "expected_valid": false,
+  "base_fixture": "ready-for-human-review.json",
+  "mutation": {
+    "path": "human_review_one_point",
+    "delete": true
+  },
+  "expected_error": "missing human_review_one_point"
+}

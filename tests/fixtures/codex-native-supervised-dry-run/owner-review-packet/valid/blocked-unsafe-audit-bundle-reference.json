@@ -1,0 +1,16 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_20260615",
+  "case_id": "blocked-unsafe-audit-bundle-reference",
+  "expected_valid": true,
+  "owner_review_status": "OWNER_REVIEW_PACKET_BLOCKED_UNSAFE_AUDIT_BUNDLE_REFERENCE",
+  "audit_bundle_reference_present": true,
+  "audit_bundle_reference_status": "UNSAFE_FOR_OWNER_REVIEW",
+  "audit_bundle_reference_safe": false,
+  "blocked_reason": "audit bundle reference is unsafe",
+  "human_review_one_point": "Owner should review the unsafe reference before any later action.",
+  "recommended_next_action": "STOP_OWNER_REVIEW_REQUIRED",
+  "stop_owner_review_required": true,
+  "blocker": "unsafe audit bundle reference",
+  "blocker_status": "BLOCKED",
+  "resolution": "fail closed and require owner review"
+}

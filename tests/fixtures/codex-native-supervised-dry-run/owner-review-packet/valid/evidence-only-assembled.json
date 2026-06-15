@@ -1,0 +1,16 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_20260615",
+  "case_id": "evidence-only-assembled",
+  "expected_valid": true,
+  "owner_review_status": "OWNER_REVIEW_PACKET_EVIDENCE_ONLY_ASSEMBLED",
+  "audit_bundle_reference_present": true,
+  "audit_bundle_reference_status": "EVIDENCE_ONLY_ASSEMBLED",
+  "audit_bundle_reference_safe": true,
+  "blocked_reason": "none",
+  "human_review_one_point": "Confirm evidence assembly is static and not submission.",
+  "recommended_next_action": "START_SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_IMPLEMENTATION_REVIEW_PACKET",
+  "stop_owner_review_required": false,
+  "blocker": "no active blocker",
+  "blocker_status": "PASS",
+  "resolution": "ready only for implementation review"
+}

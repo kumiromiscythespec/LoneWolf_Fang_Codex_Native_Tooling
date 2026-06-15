@@ -1,0 +1,16 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_20260615",
+  "case_id": "not-started",
+  "expected_valid": true,
+  "owner_review_status": "OWNER_REVIEW_PACKET_NOT_STARTED",
+  "audit_bundle_reference_present": false,
+  "audit_bundle_reference_status": "NOT_STARTED",
+  "audit_bundle_reference_safe": false,
+  "blocked_reason": "not started",
+  "human_review_one_point": "Confirm owner-review packet creation has not started.",
+  "recommended_next_action": "WAIT_FOR_OWNER_REVIEW",
+  "stop_owner_review_required": false,
+  "blocker": "no active blocker",
+  "blocker_status": "PASS",
+  "resolution": "waiting for owner review packet drafting"
+}

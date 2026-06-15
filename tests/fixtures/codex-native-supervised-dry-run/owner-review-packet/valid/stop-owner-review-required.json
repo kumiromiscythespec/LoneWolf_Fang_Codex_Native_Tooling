@@ -1,0 +1,16 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_20260615",
+  "case_id": "stop-owner-review-required",
+  "expected_valid": true,
+  "owner_review_status": "STOP_OWNER_REVIEW_REQUIRED",
+  "audit_bundle_reference_present": true,
+  "audit_bundle_reference_status": "OWNER_REVIEW_REQUIRED",
+  "audit_bundle_reference_safe": false,
+  "blocked_reason": "stop owner review required",
+  "human_review_one_point": "Owner must resolve the stop condition.",
+  "recommended_next_action": "STOP_OWNER_REVIEW_REQUIRED",
+  "stop_owner_review_required": true,
+  "blocker": "stop owner review required",
+  "blocker_status": "OWNER_REVIEW_REQUIRED",
+  "resolution": "stop and wait"
+}

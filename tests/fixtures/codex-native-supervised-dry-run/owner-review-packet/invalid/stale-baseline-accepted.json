@@ -1,0 +1,11 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_20260615",
+  "case_id": "stale-baseline-accepted",
+  "expected_valid": false,
+  "base_fixture": "ready-for-human-review.json",
+  "mutation": {
+    "path": "stable_baseline",
+    "value": "6f0b35c890480428b0edc4d51f115adbefd0827e"
+  },
+  "expected_error": "stable_baseline"
+}

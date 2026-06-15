@@ -1,0 +1,11 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_20260615",
+  "case_id": "missing-fail-closed-reason",
+  "expected_valid": false,
+  "base_fixture": "failed-closed.json",
+  "mutation": {
+    "path": "blocked_reason",
+    "delete": true
+  },
+  "expected_error": "missing blocked_reason"
+}

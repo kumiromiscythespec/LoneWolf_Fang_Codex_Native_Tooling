@@ -1,0 +1,17 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_20260615",
+  "case_id": "private-openai-api-true",
+  "expected_valid": false,
+  "base_fixture": "ready-for-human-review.json",
+  "mutations": [
+    {
+      "path": "dangerous_action_flags.private_api_requested",
+      "value": true
+    },
+    {
+      "path": "dangerous_action_flags.openai_api_requested",
+      "value": true
+    }
+  ],
+  "expected_error": "dangerous_action_flags.private_api_requested"
+}

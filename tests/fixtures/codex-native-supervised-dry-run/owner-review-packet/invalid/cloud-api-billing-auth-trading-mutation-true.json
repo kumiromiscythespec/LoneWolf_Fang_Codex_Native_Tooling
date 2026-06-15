@@ -1,0 +1,11 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_20260615",
+  "case_id": "cloud-api-billing-auth-trading-mutation-true",
+  "expected_valid": false,
+  "base_fixture": "ready-for-human-review.json",
+  "mutation": {
+    "path": "dangerous_action_flags.cloud_api_billing_auth_trading_mutation_requested",
+    "value": true
+  },
+  "expected_error": "dangerous_action_flags.cloud_api_billing_auth_trading_mutation_requested"
+}

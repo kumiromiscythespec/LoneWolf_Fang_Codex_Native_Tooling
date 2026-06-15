@@ -1,0 +1,11 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_20260615",
+  "case_id": "worker-launch-true",
+  "expected_valid": false,
+  "base_fixture": "ready-for-human-review.json",
+  "mutation": {
+    "path": "dangerous_action_flags.worker_launch_requested",
+    "value": true
+  },
+  "expected_error": "dangerous_action_flags.worker_launch_requested"
+}

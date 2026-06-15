@@ -1,0 +1,322 @@
+{
+  "schema_id": "lonewolf.codex_native.supervised_dry_run_owner_review_packet.v1",
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_20260615",
+  "title": "Codex Native Supervised Dry Run Owner Review Packet Contract",
+  "type": "object",
+  "additional_properties_allowed": false,
+  "required": [
+    "schema",
+    "build_id",
+    "owner_review_packet_id",
+    "owner_review_packet_created_at_utc",
+    "target",
+    "target_repo",
+    "branch",
+    "stable_baseline",
+    "local_origin_master",
+    "ahead_behind",
+    "source_evidence_references",
+    "audit_bundle_reference_summary",
+    "safety_boundary_summary",
+    "owner_review_status",
+    "blocked_reason",
+    "human_review_one_point",
+    "recommended_next_action",
+    "stop_owner_review_required",
+    "forbidden_actions_confirmation",
+    "dangerous_action_flags",
+    "not_go_assertions",
+    "blocker_matrix",
+    "fail_closed_result",
+    "safety_invariants"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "lonewolf.codex_native.supervised_dry_run_owner_review_packet.v1"
+    },
+    "build_id": {
+      "type": "string",
+      "const": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_20260615"
+    },
+    "owner_review_packet_id": { "type": "string", "minLength": 1 },
+    "owner_review_packet_created_at_utc": { "type": "string", "minLength": 1 },
+    "target": {
+      "type": "string",
+      "const": "supervised_dry_run_owner_review_packet_contracts"
+    },
+    "target_repo": { "type": "string", "minLength": 1 },
+    "branch": { "type": "string", "const": "master" },
+    "stable_baseline": {
+      "type": "string",
+      "const": "bdbef6345a7cb43f97ab267c01da71aa3acd970a"
+    },
+    "local_origin_master": {
+      "type": "string",
+      "const": "bdbef6345a7cb43f97ab267c01da71aa3acd970a"
+    },
+    "ahead_behind": { "type": "string", "const": "0 / 0" },
+    "source_evidence_references": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "ref": "source_evidence_reference" }
+    },
+    "audit_bundle_reference_summary": { "ref": "audit_bundle_reference_summary" },
+    "safety_boundary_summary": { "ref": "safety_boundary_summary" },
+    "owner_review_status": {
+      "type": "string",
+      "enum": [
+        "OWNER_REVIEW_PACKET_NOT_STARTED",
+        "OWNER_REVIEW_PACKET_BLOCKED_OWNER_REVIEW_REQUIRED",
+        "OWNER_REVIEW_PACKET_BLOCKED_MISSING_AUDIT_BUNDLE_REFERENCE",
+        "OWNER_REVIEW_PACKET_BLOCKED_UNSAFE_AUDIT_BUNDLE_REFERENCE",
+        "OWNER_REVIEW_PACKET_DRAFT_READY",
+        "OWNER_REVIEW_PACKET_EVIDENCE_ONLY_ASSEMBLED",
+        "OWNER_REVIEW_PACKET_READY_FOR_HUMAN_REVIEW",
+        "OWNER_REVIEW_PACKET_FAILED_CLOSED",
+        "STOP_OWNER_REVIEW_REQUIRED"
+      ]
+    },
+    "blocked_reason": { "type": "string", "minLength": 1 },
+    "human_review_one_point": { "type": "string", "minLength": 1 },
+    "recommended_next_action": {
+      "type": "string",
+      "enum": [
+        "START_SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_IMPLEMENTATION_REVIEW_PACKET",
+        "WAIT_FOR_OWNER_REVIEW",
+        "STOP_OWNER_REVIEW_REQUIRED"
+      ]
+    },
+    "stop_owner_review_required": { "type": "boolean" },
+    "forbidden_actions_confirmation": { "ref": "forbidden_actions_confirmation" },
+    "dangerous_action_flags": { "ref": "dangerous_action_flags" },
+    "not_go_assertions": { "ref": "not_go_assertions" },
+    "blocker_matrix": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "ref": "blocker" }
+    },
+    "fail_closed_result": {
+      "type": "string",
+      "const": "STOP_OWNER_REVIEW_REQUIRED"
+    },
+    "safety_invariants": {
+      "type": "array",
+      "minItems": 20,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  },
+  "definitions": {
+    "sha256": { "type": "string", "pattern": "^[A-F0-9]{64}$" },
+    "source_evidence_reference": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "evidence_role",
+        "artifact_path",
+        "artifact_sha256",
+        "sha256_matches_expected",
+        "evidence_only",
+        "static_reference_only",
+        "authoritative"
+      ],
+      "properties": {
+        "evidence_role": { "type": "string", "minLength": 1 },
+        "artifact_path": { "type": "string", "minLength": 1 },
+        "artifact_sha256": { "ref": "sha256" },
+        "sha256_matches_expected": { "const": true },
+        "evidence_only": { "const": true },
+        "static_reference_only": { "const": true },
+        "authoritative": { "type": "boolean" }
+      }
+    },
+    "audit_bundle_reference_summary": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "reference_present",
+        "reference_status",
+        "reference_artifact_path",
+        "reference_artifact_sha256",
+        "reference_sha256_matches_expected",
+        "reference_safe_for_owner_review",
+        "static_reference_only",
+        "audit_bundle_created",
+        "presence_is_not_go"
+      ],
+      "properties": {
+        "reference_present": { "type": "boolean" },
+        "reference_status": { "type": "string", "minLength": 1 },
+        "reference_artifact_path": { "type": [ "string", "null" ] },
+        "reference_artifact_sha256": { "type": [ "string", "null" ] },
+        "reference_sha256_matches_expected": { "type": "boolean" },
+        "reference_safe_for_owner_review": { "type": "boolean" },
+        "static_reference_only": { "const": true },
+        "audit_bundle_created": { "const": false },
+        "presence_is_not_go": { "const": true }
+      }
+    },
+    "safety_boundary_summary": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "evidence_only",
+        "owner_gated",
+        "fail_closed",
+        "non_runtime",
+        "non_executor",
+        "non_observer",
+        "non_mutating",
+        "human_review_required"
+      ],
+      "properties": {
+        "evidence_only": { "const": true },
+        "owner_gated": { "const": true },
+        "fail_closed": { "const": true },
+        "non_runtime": { "const": true },
+        "non_executor": { "const": true },
+        "non_observer": { "const": true },
+        "non_mutating": { "const": true },
+        "human_review_required": { "const": true }
+      }
+    },
+    "forbidden_actions_confirmation": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "deploy_performed",
+        "runtime_workflow_performed",
+        "live_observation_performed",
+        "audit_bundle_created",
+        "worker_launch_performed",
+        "queue_mutation_performed",
+        "cloud_api_billing_auth_trading_mutation_performed",
+        "private_api_performed",
+        "openai_api_performed",
+        "stage_commit_push_performed",
+        "fetch_pull_performed",
+        "cleanup_or_history_rewrite_performed"
+      ],
+      "properties": {
+        "deploy_performed": { "const": false },
+        "runtime_workflow_performed": { "const": false },
+        "live_observation_performed": { "const": false },
+        "audit_bundle_created": { "const": false },
+        "worker_launch_performed": { "const": false },
+        "queue_mutation_performed": { "const": false },
+        "cloud_api_billing_auth_trading_mutation_performed": { "const": false },
+        "private_api_performed": { "const": false },
+        "openai_api_performed": { "const": false },
+        "stage_commit_push_performed": { "const": false },
+        "fetch_pull_performed": { "const": false },
+        "cleanup_or_history_rewrite_performed": { "const": false }
+      }
+    },
+    "dangerous_action_flags": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "runtime_execution_requested",
+        "runtime_execution_performed",
+        "live_observation_requested",
+        "live_observation_performed",
+        "audit_bundle_creation_requested",
+        "audit_bundle_creation_performed",
+        "worker_launch_requested",
+        "queue_mutation_requested",
+        "cloud_api_billing_auth_trading_mutation_requested",
+        "private_api_requested",
+        "openai_api_requested",
+        "auto_approval_requested",
+        "auto_go_signal"
+      ],
+      "properties": {
+        "runtime_execution_requested": { "const": false },
+        "runtime_execution_performed": { "const": false },
+        "live_observation_requested": { "const": false },
+        "live_observation_performed": { "const": false },
+        "audit_bundle_creation_requested": { "const": false },
+        "audit_bundle_creation_performed": { "const": false },
+        "worker_launch_requested": { "const": false },
+        "queue_mutation_requested": { "const": false },
+        "cloud_api_billing_auth_trading_mutation_requested": { "const": false },
+        "private_api_requested": { "const": false },
+        "openai_api_requested": { "const": false },
+        "auto_approval_requested": { "const": false },
+        "auto_go_signal": { "const": false }
+      }
+    },
+    "not_go_assertions": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "owner_review_packet_not_runtime_go",
+        "owner_review_packet_not_auto_approval",
+        "owner_review_packet_does_not_approve_automatically",
+        "owner_review_packet_not_executor",
+        "owner_review_packet_not_live_observer",
+        "owner_review_packet_not_audit_bundle_creator",
+        "owner_review_packet_does_not_submit_anything",
+        "owner_review_packet_does_not_launch_workers",
+        "owner_review_packet_does_not_mutate_queues_cloud_api_billing_auth_trading",
+        "owner_review_packet_does_not_call_private_or_openai_api",
+        "cannot_bypass_safety_gates",
+        "cannot_bypass_owner_gates",
+        "cannot_bypass_stop_owner_review_required",
+        "cannot_bypass_stop_and_wait_owner_review_required",
+        "ready_not_go",
+        "matched_not_go",
+        "observed_safe_no_action_not_go",
+        "audit_bundle_reference_presence_not_enough_to_execute_observe_create_submit_continue",
+        "audit_bundle_reference_presence_not_enough_to_submit",
+        "human_review_required_before_later_gated_action"
+      ],
+      "properties": {
+        "owner_review_packet_not_runtime_go": { "const": true },
+        "owner_review_packet_not_auto_approval": { "const": true },
+        "owner_review_packet_does_not_approve_automatically": { "const": true },
+        "owner_review_packet_not_executor": { "const": true },
+        "owner_review_packet_not_live_observer": { "const": true },
+        "owner_review_packet_not_audit_bundle_creator": { "const": true },
+        "owner_review_packet_does_not_submit_anything": { "const": true },
+        "owner_review_packet_does_not_launch_workers": { "const": true },
+        "owner_review_packet_does_not_mutate_queues_cloud_api_billing_auth_trading": { "const": true },
+        "owner_review_packet_does_not_call_private_or_openai_api": { "const": true },
+        "cannot_bypass_safety_gates": { "const": true },
+        "cannot_bypass_owner_gates": { "const": true },
+        "cannot_bypass_stop_owner_review_required": { "const": true },
+        "cannot_bypass_stop_and_wait_owner_review_required": { "const": true },
+        "ready_not_go": { "const": true },
+        "matched_not_go": { "const": true },
+        "observed_safe_no_action_not_go": { "const": true },
+        "audit_bundle_reference_presence_not_enough_to_execute_observe_create_submit_continue": { "const": true },
+        "audit_bundle_reference_presence_not_enough_to_submit": { "const": true },
+        "human_review_required_before_later_gated_action": { "const": true }
+      }
+    },
+    "blocker": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "blocker",
+        "status",
+        "resolution",
+        "allows_progression"
+      ],
+      "properties": {
+        "blocker": { "type": "string", "minLength": 1 },
+        "status": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "BLOCKED",
+            "REJECTED",
+            "OWNER_REVIEW_REQUIRED"
+          ]
+        },
+        "resolution": { "type": "string", "minLength": 1 },
+        "allows_progression": { "type": "boolean" }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_20260615",
+  "case_id": "ready-treated-as-go",
+  "expected_valid": false,
+  "base_fixture": "ready-for-human-review.json",
+  "mutation": {
+    "path": "recommended_next_action",
+    "value": "GO_EXECUTE_RUNTIME"
+  },
+  "expected_error": "recommended_next_action"
+}

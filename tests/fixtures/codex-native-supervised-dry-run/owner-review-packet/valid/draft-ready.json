@@ -1,0 +1,16 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_20260615",
+  "case_id": "draft-ready",
+  "expected_valid": true,
+  "owner_review_status": "OWNER_REVIEW_PACKET_DRAFT_READY",
+  "audit_bundle_reference_present": true,
+  "audit_bundle_reference_status": "DRAFT_READY",
+  "audit_bundle_reference_safe": true,
+  "blocked_reason": "none",
+  "human_review_one_point": "Confirm draft readiness is still not runtime GO.",
+  "recommended_next_action": "START_SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_IMPLEMENTATION_REVIEW_PACKET",
+  "stop_owner_review_required": false,
+  "blocker": "no active blocker",
+  "blocker_status": "PASS",
+  "resolution": "ready only for implementation review"
+}

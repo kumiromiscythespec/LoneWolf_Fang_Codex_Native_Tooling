@@ -1,0 +1,16 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_20260615",
+  "case_id": "blocked-owner-review-required",
+  "expected_valid": true,
+  "owner_review_status": "OWNER_REVIEW_PACKET_BLOCKED_OWNER_REVIEW_REQUIRED",
+  "audit_bundle_reference_present": true,
+  "audit_bundle_reference_status": "REFERENCE_PRESENT_REVIEW_REQUIRED",
+  "audit_bundle_reference_safe": true,
+  "blocked_reason": "owner review is required before any later gated action",
+  "human_review_one_point": "Owner must review the static evidence before continuation.",
+  "recommended_next_action": "STOP_OWNER_REVIEW_REQUIRED",
+  "stop_owner_review_required": true,
+  "blocker": "owner review required",
+  "blocker_status": "OWNER_REVIEW_REQUIRED",
+  "resolution": "wait for explicit owner decision"
+}
