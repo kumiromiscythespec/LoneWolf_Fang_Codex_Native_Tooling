@@ -1,0 +1,18 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_AUDIT_BUNDLE_TO_OWNER_REVIEW_PACKET_LINKAGE_CONTRACTS_20260615",
+  "case_id": "linkage-blocked-missing-audit-bundle-reference",
+  "expected_valid": true,
+  "linkage_status": "AUDIT_TO_OWNER_REVIEW_LINKAGE_BLOCKED_MISSING_AUDIT_BUNDLE_REFERENCE",
+  "blocked_reason": "audit bundle reference evidence is missing",
+  "stop_owner_review_required": true,
+  "audit_bundle_reference_present": false,
+  "audit_bundle_reference_safe": false,
+  "owner_review_packet_present": true,
+  "owner_review_packet_safe": true,
+  "hashes_match_expected": false,
+  "hash_binding_complete": false,
+  "recommended_next_action": "STOP_OWNER_REVIEW_REQUIRED",
+  "blocker": "missing audit bundle reference",
+  "blocker_status": "BLOCKED",
+  "human_review_one_point": "Confirm the audit bundle reference is present and hash-bound before any review handoff."
+}

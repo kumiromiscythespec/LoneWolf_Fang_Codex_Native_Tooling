@@ -1,0 +1,18 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_AUDIT_BUNDLE_TO_OWNER_REVIEW_PACKET_LINKAGE_CONTRACTS_20260615",
+  "case_id": "linkage-blocked-missing-owner-review-packet",
+  "expected_valid": true,
+  "linkage_status": "AUDIT_TO_OWNER_REVIEW_LINKAGE_BLOCKED_MISSING_OWNER_REVIEW_PACKET",
+  "blocked_reason": "owner review packet reference evidence is missing",
+  "stop_owner_review_required": true,
+  "audit_bundle_reference_present": true,
+  "audit_bundle_reference_safe": true,
+  "owner_review_packet_present": false,
+  "owner_review_packet_safe": false,
+  "hashes_match_expected": false,
+  "hash_binding_complete": false,
+  "recommended_next_action": "STOP_OWNER_REVIEW_REQUIRED",
+  "blocker": "missing owner review packet reference",
+  "blocker_status": "BLOCKED",
+  "human_review_one_point": "Confirm the owner review packet reference is present and hash-bound before linkage review."
+}

@@ -1,0 +1,25 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_AUDIT_BUNDLE_TO_OWNER_REVIEW_PACKET_LINKAGE_CONTRACTS_20260615",
+  "case_id": "missing-human-review-or-fail-closed-reason",
+  "expected_valid": false,
+  "base_fixture": "linkage-failed-closed.json",
+  "expected_errors": [
+    "human_review_one_point",
+    "blocked_reason",
+    "fail_closed_result.reason"
+  ],
+  "mutations": [
+    {
+      "path": "human_review_one_point",
+      "value": ""
+    },
+    {
+      "path": "blocked_reason",
+      "value": "none"
+    },
+    {
+      "path": "fail_closed_result.reason",
+      "value": ""
+    }
+  ]
+}

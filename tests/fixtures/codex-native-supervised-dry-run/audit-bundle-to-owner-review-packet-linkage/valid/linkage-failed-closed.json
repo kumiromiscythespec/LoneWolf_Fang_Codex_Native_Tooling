@@ -1,0 +1,18 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_AUDIT_BUNDLE_TO_OWNER_REVIEW_PACKET_LINKAGE_CONTRACTS_20260615",
+  "case_id": "linkage-failed-closed",
+  "expected_valid": true,
+  "linkage_status": "AUDIT_TO_OWNER_REVIEW_LINKAGE_FAILED_CLOSED",
+  "blocked_reason": "static linkage evidence failed closed before owner review",
+  "stop_owner_review_required": true,
+  "audit_bundle_reference_present": true,
+  "audit_bundle_reference_safe": false,
+  "owner_review_packet_present": true,
+  "owner_review_packet_safe": false,
+  "hashes_match_expected": false,
+  "hash_binding_complete": false,
+  "recommended_next_action": "STOP_OWNER_REVIEW_REQUIRED",
+  "blocker": "failed closed linkage evidence",
+  "blocker_status": "REJECTED",
+  "human_review_one_point": "Confirm the failed-closed reason is explicit and no automatic recovery is allowed."
+}

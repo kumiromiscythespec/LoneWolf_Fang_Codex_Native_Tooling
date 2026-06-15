@@ -1,0 +1,40 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_AUDIT_BUNDLE_TO_OWNER_REVIEW_PACKET_LINKAGE_CONTRACTS_20260615",
+  "case_id": "forbidden-execution-actions-true",
+  "expected_valid": false,
+  "base_fixture": "linkage-hash-bound-evidence-assembled.json",
+  "expected_errors": [
+    "runtime_execution_requested",
+    "runtime_execution_performed",
+    "live_observation_requested",
+    "audit_bundle_creation_requested",
+    "owner_review_submission_requested",
+    "worker_launch_requested"
+  ],
+  "mutations": [
+    {
+      "path": "forbidden_actions_confirmation.runtime_execution_requested",
+      "value": true
+    },
+    {
+      "path": "forbidden_actions_confirmation.runtime_execution_performed",
+      "value": true
+    },
+    {
+      "path": "forbidden_actions_confirmation.live_observation_requested",
+      "value": true
+    },
+    {
+      "path": "forbidden_actions_confirmation.audit_bundle_creation_requested",
+      "value": true
+    },
+    {
+      "path": "forbidden_actions_confirmation.owner_review_submission_requested",
+      "value": true
+    },
+    {
+      "path": "forbidden_actions_confirmation.worker_launch_requested",
+      "value": true
+    }
+  ]
+}

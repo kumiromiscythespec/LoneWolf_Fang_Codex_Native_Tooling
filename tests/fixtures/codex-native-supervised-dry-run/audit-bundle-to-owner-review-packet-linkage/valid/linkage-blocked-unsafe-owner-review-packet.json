@@ -1,0 +1,18 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_AUDIT_BUNDLE_TO_OWNER_REVIEW_PACKET_LINKAGE_CONTRACTS_20260615",
+  "case_id": "linkage-blocked-unsafe-owner-review-packet",
+  "expected_valid": true,
+  "linkage_status": "AUDIT_TO_OWNER_REVIEW_LINKAGE_BLOCKED_OWNER_REVIEW_PACKET_UNSAFE",
+  "blocked_reason": "owner review packet reference is not safe for linkage",
+  "stop_owner_review_required": true,
+  "audit_bundle_reference_present": true,
+  "audit_bundle_reference_safe": true,
+  "owner_review_packet_present": true,
+  "owner_review_packet_safe": false,
+  "hashes_match_expected": true,
+  "hash_binding_complete": false,
+  "recommended_next_action": "STOP_OWNER_REVIEW_REQUIRED",
+  "blocker": "unsafe owner review packet reference",
+  "blocker_status": "REJECTED",
+  "human_review_one_point": "Confirm the owner review packet reference cannot be linked while it is unsafe."
+}

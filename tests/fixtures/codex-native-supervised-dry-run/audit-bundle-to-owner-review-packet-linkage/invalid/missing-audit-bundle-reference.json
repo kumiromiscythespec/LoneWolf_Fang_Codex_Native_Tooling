@@ -1,0 +1,19 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_AUDIT_BUNDLE_TO_OWNER_REVIEW_PACKET_LINKAGE_CONTRACTS_20260615",
+  "case_id": "missing-audit-bundle-reference",
+  "expected_valid": false,
+  "base_fixture": "linkage-ready-for-human-review.json",
+  "expected_errors": [
+    "ready without audit bundle reference"
+  ],
+  "mutations": [
+    {
+      "path": "audit_bundle_reference_contract_summary.reference_present",
+      "value": false
+    },
+    {
+      "path": "source_evidence_references.audit_bundle_reference.present",
+      "value": false
+    }
+  ]
+}

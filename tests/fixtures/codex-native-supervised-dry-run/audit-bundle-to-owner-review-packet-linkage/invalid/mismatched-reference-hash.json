@@ -1,0 +1,23 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_AUDIT_BUNDLE_TO_OWNER_REVIEW_PACKET_LINKAGE_CONTRACTS_20260615",
+  "case_id": "mismatched-reference-hash",
+  "expected_valid": false,
+  "base_fixture": "linkage-hash-bound-evidence-assembled.json",
+  "expected_errors": [
+    "ready without hash match"
+  ],
+  "mutations": [
+    {
+      "path": "hash_binding_summary.hashes_match_expected",
+      "value": false
+    },
+    {
+      "path": "audit_bundle_reference_contract_summary.sha256_matches_expected",
+      "value": false
+    },
+    {
+      "path": "owner_review_packet_contract_summary.sha256_matches_expected",
+      "value": false
+    }
+  ]
+}

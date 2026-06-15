@@ -1,0 +1,20 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_AUDIT_BUNDLE_TO_OWNER_REVIEW_PACKET_LINKAGE_CONTRACTS_20260615",
+  "case_id": "auto-approval-true",
+  "expected_valid": false,
+  "base_fixture": "linkage-hash-bound-evidence-assembled.json",
+  "expected_errors": [
+    "auto_approval_requested",
+    "auto_go_signal"
+  ],
+  "mutations": [
+    {
+      "path": "forbidden_actions_confirmation.auto_approval_requested",
+      "value": true
+    },
+    {
+      "path": "forbidden_actions_confirmation.auto_go_signal",
+      "value": true
+    }
+  ]
+}

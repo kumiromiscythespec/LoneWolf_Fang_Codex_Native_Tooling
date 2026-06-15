@@ -1,0 +1,15 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_AUDIT_BUNDLE_TO_OWNER_REVIEW_PACKET_LINKAGE_CONTRACTS_20260615",
+  "case_id": "cloud-api-billing-auth-trading-mutation-true",
+  "expected_valid": false,
+  "base_fixture": "linkage-hash-bound-evidence-assembled.json",
+  "expected_errors": [
+    "cloud_api_billing_auth_trading_mutation_requested"
+  ],
+  "mutations": [
+    {
+      "path": "forbidden_actions_confirmation.cloud_api_billing_auth_trading_mutation_requested",
+      "value": true
+    }
+  ]
+}

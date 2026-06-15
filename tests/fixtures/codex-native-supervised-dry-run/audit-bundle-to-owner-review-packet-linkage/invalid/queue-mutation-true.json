@@ -1,0 +1,15 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_AUDIT_BUNDLE_TO_OWNER_REVIEW_PACKET_LINKAGE_CONTRACTS_20260615",
+  "case_id": "queue-mutation-true",
+  "expected_valid": false,
+  "base_fixture": "linkage-hash-bound-evidence-assembled.json",
+  "expected_errors": [
+    "queue_mutation_requested"
+  ],
+  "mutations": [
+    {
+      "path": "forbidden_actions_confirmation.queue_mutation_requested",
+      "value": true
+    }
+  ]
+}

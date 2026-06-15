@@ -1,0 +1,18 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_AUDIT_BUNDLE_TO_OWNER_REVIEW_PACKET_LINKAGE_CONTRACTS_20260615",
+  "case_id": "linkage-ready-for-human-review",
+  "expected_valid": true,
+  "linkage_status": "AUDIT_TO_OWNER_REVIEW_LINKAGE_READY_FOR_HUMAN_REVIEW",
+  "blocked_reason": "none",
+  "stop_owner_review_required": false,
+  "audit_bundle_reference_present": true,
+  "audit_bundle_reference_safe": true,
+  "owner_review_packet_present": true,
+  "owner_review_packet_safe": true,
+  "hashes_match_expected": true,
+  "hash_binding_complete": true,
+  "recommended_next_action": "START_SUPERVISED_DRY_RUN_AUDIT_BUNDLE_TO_OWNER_REVIEW_PACKET_LINKAGE_CONTRACTS_IMPLEMENTATION_REVIEW_PACKET",
+  "blocker": "none",
+  "blocker_status": "PASS",
+  "human_review_one_point": "Confirm ready-for-human-review never means execute, observe, submit, or continue automatically."
+}

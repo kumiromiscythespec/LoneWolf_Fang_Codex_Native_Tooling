@@ -1,0 +1,18 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_AUDIT_BUNDLE_TO_OWNER_REVIEW_PACKET_LINKAGE_CONTRACTS_20260615",
+  "case_id": "linkage-stop-owner-review-required",
+  "expected_valid": true,
+  "linkage_status": "STOP_OWNER_REVIEW_REQUIRED",
+  "blocked_reason": "owner must review the linkage evidence before any next packet",
+  "stop_owner_review_required": true,
+  "audit_bundle_reference_present": true,
+  "audit_bundle_reference_safe": true,
+  "owner_review_packet_present": true,
+  "owner_review_packet_safe": true,
+  "hashes_match_expected": true,
+  "hash_binding_complete": true,
+  "recommended_next_action": "STOP_OWNER_REVIEW_REQUIRED",
+  "blocker": "manual owner review",
+  "blocker_status": "OWNER_REVIEW_REQUIRED",
+  "human_review_one_point": "Confirm stop-owner-review-required remains the only safe result for ambiguous linkage evidence."
+}
