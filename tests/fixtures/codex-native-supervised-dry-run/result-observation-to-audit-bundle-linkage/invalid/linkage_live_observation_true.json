@@ -1,0 +1,11 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_RESULT_OBSERVATION_TO_AUDIT_BUNDLE_LINKAGE_CONTRACTS_20260615",
+  "case_id": "linkage_live_observation_true",
+  "expected_valid": false,
+  "base_fixture": "linkage_audit_bundle_reference_ready.json",
+  "expected_error": "forbidden_actions.live_observation_requested",
+  "mutation": {
+    "path": "forbidden_actions.live_observation_requested",
+    "value": true
+  }
+}

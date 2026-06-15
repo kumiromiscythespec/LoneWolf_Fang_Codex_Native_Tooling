@@ -1,0 +1,11 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_RESULT_OBSERVATION_TO_AUDIT_BUNDLE_LINKAGE_CONTRACTS_20260615",
+  "case_id": "linkage_queue_mutation_true",
+  "expected_valid": false,
+  "base_fixture": "linkage_matched_evidence_only.json",
+  "expected_error": "forbidden_actions.queue_mutation_requested",
+  "mutation": {
+    "path": "forbidden_actions.queue_mutation_requested",
+    "value": true
+  }
+}

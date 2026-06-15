@@ -1,0 +1,11 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_RESULT_OBSERVATION_TO_AUDIT_BUNDLE_LINKAGE_CONTRACTS_20260615",
+  "case_id": "linkage_missing_human_review_one_point",
+  "expected_valid": false,
+  "base_fixture": "linkage_stop_owner_review_required.json",
+  "expected_error": "human_review_one_point",
+  "mutation": {
+    "path": "human_review_one_point",
+    "delete": true
+  }
+}

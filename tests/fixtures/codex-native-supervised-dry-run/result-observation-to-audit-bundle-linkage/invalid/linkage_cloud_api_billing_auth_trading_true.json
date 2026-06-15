@@ -1,0 +1,11 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_RESULT_OBSERVATION_TO_AUDIT_BUNDLE_LINKAGE_CONTRACTS_20260615",
+  "case_id": "linkage_cloud_api_billing_auth_trading_true",
+  "expected_valid": false,
+  "base_fixture": "linkage_matched_evidence_only.json",
+  "expected_error": "forbidden_actions.cloud_api_mutation_requested",
+  "mutation": {
+    "path": "forbidden_actions.cloud_api_mutation_requested",
+    "value": true
+  }
+}
