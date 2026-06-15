@@ -1,0 +1,16 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_TO_CHAIN_SUMMARY_LINKAGE_CONTRACTS_20260615",
+  "case_id": "owner-review-submission-true",
+  "expected_valid": false,
+  "base_fixture": "linkage-ready-for-human-review.json",
+  "mutations": [
+    { "path": "forbidden_actions_confirmation.owner_review_submission_requested", "value": true },
+    { "path": "forbidden_actions_confirmation.owner_review_submission_performed", "value": true },
+    { "path": "hash_binding_summary.owner_review_submission_approval", "value": true }
+  ],
+  "expected_errors": [
+    "forbidden_actions_confirmation.owner_review_submission_requested",
+    "forbidden_actions_confirmation.owner_review_submission_performed",
+    "hash_binding_summary.owner_review_submission_approval"
+  ]
+}

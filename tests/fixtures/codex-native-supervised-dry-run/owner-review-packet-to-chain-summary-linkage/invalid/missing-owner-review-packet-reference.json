@@ -1,0 +1,13 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_TO_CHAIN_SUMMARY_LINKAGE_CONTRACTS_20260615",
+  "case_id": "missing-owner-review-packet-reference",
+  "expected_valid": false,
+  "base_fixture": "linkage-ready-for-human-review.json",
+  "mutations": [
+    { "path": "owner_review_packet_contract_summary.reference_present", "value": false },
+    { "path": "source_evidence_references.owner_review_packet.present", "value": false }
+  ],
+  "expected_errors": [
+    "ready without owner review packet"
+  ]
+}

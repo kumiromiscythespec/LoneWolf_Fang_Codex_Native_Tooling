@@ -1,0 +1,14 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_TO_CHAIN_SUMMARY_LINKAGE_CONTRACTS_20260615",
+  "case_id": "forbidden-execution-actions-true",
+  "expected_valid": false,
+  "base_fixture": "linkage-ready-for-human-review.json",
+  "mutations": [
+    { "path": "forbidden_actions_confirmation.runtime_execution_requested", "value": true },
+    { "path": "forbidden_actions_confirmation.runtime_execution_performed", "value": true }
+  ],
+  "expected_errors": [
+    "forbidden_actions_confirmation.runtime_execution_requested",
+    "forbidden_actions_confirmation.runtime_execution_performed"
+  ]
+}

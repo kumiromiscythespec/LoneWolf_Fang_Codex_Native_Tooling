@@ -1,0 +1,14 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_TO_CHAIN_SUMMARY_LINKAGE_CONTRACTS_20260615",
+  "case_id": "ready-treated-as-go",
+  "expected_valid": false,
+  "base_fixture": "linkage-ready-for-human-review.json",
+  "mutations": [
+    { "path": "not_go_assertions.ready_not_go", "value": false },
+    { "path": "hash_binding_summary.execution_approval", "value": true }
+  ],
+  "expected_errors": [
+    "not_go_assertions.ready_not_go",
+    "hash_binding_summary.execution_approval"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_TO_CHAIN_SUMMARY_LINKAGE_CONTRACTS_20260615",
+  "case_id": "linkage-draft-ready",
+  "expected_valid": true,
+  "linkage_status": "OWNER_REVIEW_TO_CHAIN_SUMMARY_LINKAGE_DRAFT_READY",
+  "blocked_reason": "none",
+  "stop_owner_review_required": false,
+  "owner_review_packet_present": true,
+  "owner_review_packet_safe": true,
+  "chain_summary_context_present": true,
+  "chain_summary_context_safe": true,
+  "hashes_match_expected": true,
+  "hash_binding_complete": false,
+  "recommended_next_action": "START_SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_TO_CHAIN_SUMMARY_LINKAGE_CONTRACTS_IMPLEMENTATION_REVIEW_PACKET",
+  "blocker": "none",
+  "blocker_status": "PASS",
+  "human_review_one_point": "Confirm draft-ready never means execute or continue automatically."
+}

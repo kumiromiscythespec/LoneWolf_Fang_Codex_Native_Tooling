@@ -1,0 +1,14 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_TO_CHAIN_SUMMARY_LINKAGE_CONTRACTS_20260615",
+  "case_id": "private-openai-api-true",
+  "expected_valid": false,
+  "base_fixture": "linkage-ready-for-human-review.json",
+  "mutations": [
+    { "path": "forbidden_actions_confirmation.private_api_requested", "value": true },
+    { "path": "forbidden_actions_confirmation.openai_api_requested", "value": true }
+  ],
+  "expected_errors": [
+    "forbidden_actions_confirmation.private_api_requested",
+    "forbidden_actions_confirmation.openai_api_requested"
+  ]
+}

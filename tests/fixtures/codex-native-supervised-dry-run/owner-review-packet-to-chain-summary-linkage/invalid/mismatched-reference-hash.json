@@ -1,0 +1,14 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_TO_CHAIN_SUMMARY_LINKAGE_CONTRACTS_20260615",
+  "case_id": "mismatched-reference-hash",
+  "expected_valid": false,
+  "base_fixture": "linkage-ready-for-human-review.json",
+  "mutations": [
+    { "path": "hash_binding_summary.hashes_match_expected", "value": false },
+    { "path": "owner_review_packet_contract_summary.sha256_matches_expected", "value": false }
+  ],
+  "expected_errors": [
+    "ready without hash match",
+    "owner_review_packet_contract_summary.sha256_matches_expected"
+  ]
+}

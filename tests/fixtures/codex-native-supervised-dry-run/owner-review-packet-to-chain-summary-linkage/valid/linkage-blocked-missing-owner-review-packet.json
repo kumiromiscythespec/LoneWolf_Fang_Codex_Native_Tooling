@@ -1,0 +1,18 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_TO_CHAIN_SUMMARY_LINKAGE_CONTRACTS_20260615",
+  "case_id": "linkage-blocked-missing-owner-review-packet",
+  "expected_valid": true,
+  "linkage_status": "OWNER_REVIEW_TO_CHAIN_SUMMARY_LINKAGE_BLOCKED_MISSING_OWNER_REVIEW_PACKET",
+  "blocked_reason": "owner review packet reference is missing",
+  "stop_owner_review_required": true,
+  "owner_review_packet_present": false,
+  "owner_review_packet_safe": false,
+  "chain_summary_context_present": true,
+  "chain_summary_context_safe": true,
+  "hashes_match_expected": false,
+  "hash_binding_complete": false,
+  "recommended_next_action": "STOP_OWNER_REVIEW_REQUIRED",
+  "blocker": "missing owner review packet",
+  "blocker_status": "OWNER_REVIEW_REQUIRED",
+  "human_review_one_point": "Confirm the missing owner review packet blocks linkage."
+}
