@@ -1,0 +1,360 @@
+{
+  "schema_id": "lonewolf.codex_native.supervised_dry_run_audit_bundle_reference.v1",
+  "build_id": "SUPERVISED_DRY_RUN_AUDIT_BUNDLE_REFERENCE_CONTRACTS_20260615",
+  "title": "Codex Native Supervised Dry Run Audit Bundle Reference Contract",
+  "type": "object",
+  "additional_properties_allowed": false,
+  "required": [
+    "schema",
+    "build_id",
+    "reference_id",
+    "reference_created_at_utc",
+    "target",
+    "target_repo",
+    "branch",
+    "baseline_commit",
+    "local_origin_master",
+    "ahead_behind",
+    "source_result_observation_to_audit_bundle_linkage_commit",
+    "source_planning_artifact",
+    "source_linkage_closeout",
+    "linkage_reference",
+    "audit_bundle_reference",
+    "baseline_check",
+    "audit_bundle_reference_status",
+    "not_go_assertions",
+    "next_action",
+    "forbidden_actions",
+    "blocker_matrix",
+    "human_review_one_point",
+    "fail_closed_result",
+    "safety_invariants"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "lonewolf.codex_native.supervised_dry_run_audit_bundle_reference.v1"
+    },
+    "build_id": {
+      "type": "string",
+      "const": "SUPERVISED_DRY_RUN_AUDIT_BUNDLE_REFERENCE_CONTRACTS_20260615"
+    },
+    "reference_id": { "type": "string", "minLength": 1 },
+    "reference_created_at_utc": { "type": "string", "minLength": 1 },
+    "target": {
+      "type": "string",
+      "const": "supervised_dry_run_audit_bundle_reference_contracts"
+    },
+    "target_repo": { "type": "string", "minLength": 1 },
+    "branch": { "type": "string", "const": "master" },
+    "baseline_commit": {
+      "type": "string",
+      "const": "6f0b35c890480428b0edc4d51f115adbefd0827e"
+    },
+    "local_origin_master": {
+      "type": "string",
+      "const": "6f0b35c890480428b0edc4d51f115adbefd0827e"
+    },
+    "ahead_behind": { "type": "string", "const": "0 / 0" },
+    "source_result_observation_to_audit_bundle_linkage_commit": {
+      "type": "string",
+      "const": "6f0b35c890480428b0edc4d51f115adbefd0827e"
+    },
+    "source_planning_artifact": { "ref": "artifact_evidence" },
+    "source_linkage_closeout": { "ref": "artifact_evidence" },
+    "linkage_reference": { "ref": "linkage_reference" },
+    "audit_bundle_reference": { "ref": "audit_bundle_reference" },
+    "baseline_check": { "ref": "baseline_check" },
+    "audit_bundle_reference_status": {
+      "type": "string",
+      "enum": [
+        "AUDIT_BUNDLE_REFERENCE_NOT_STARTED",
+        "AUDIT_BUNDLE_REFERENCE_BLOCKED_OWNER_REVIEW_REQUIRED",
+        "AUDIT_BUNDLE_REFERENCE_BLOCKED_MISSING_LINKAGE",
+        "AUDIT_BUNDLE_REFERENCE_BLOCKED_LINKAGE_UNSAFE",
+        "AUDIT_BUNDLE_REFERENCE_BLOCKED_BASELINE_MISMATCH",
+        "AUDIT_BUNDLE_REFERENCE_DRAFT_READY",
+        "AUDIT_BUNDLE_REFERENCE_MATCHED_EVIDENCE_ONLY",
+        "AUDIT_BUNDLE_REFERENCE_READY",
+        "AUDIT_BUNDLE_REFERENCE_FAILED_CLOSED",
+        "STOP_OWNER_REVIEW_REQUIRED"
+      ]
+    },
+    "not_go_assertions": { "ref": "not_go_assertions" },
+    "next_action": { "ref": "next_action" },
+    "forbidden_actions": { "ref": "forbidden_actions" },
+    "blocker_matrix": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "ref": "blocker" }
+    },
+    "human_review_one_point": { "type": "string", "minLength": 1 },
+    "fail_closed_result": {
+      "type": "string",
+      "const": "STOP_OWNER_REVIEW_REQUIRED"
+    },
+    "safety_invariants": {
+      "type": "array",
+      "minItems": 25,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  },
+  "definitions": {
+    "sha256": { "type": "string", "pattern": "^[A-F0-9]{64}$" },
+    "artifact_evidence": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "artifact_role",
+        "artifact_path",
+        "artifact_sha256",
+        "sha256_matches_expected",
+        "evidence_only",
+        "authoritative"
+      ],
+      "properties": {
+        "artifact_role": { "type": "string", "minLength": 1 },
+        "artifact_path": { "type": "string", "minLength": 1 },
+        "artifact_sha256": { "ref": "sha256" },
+        "sha256_matches_expected": { "const": true },
+        "evidence_only": { "const": true },
+        "authoritative": { "type": "boolean" }
+      }
+    },
+    "linkage_reference": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "linkage_present",
+        "linkage_status",
+        "linkage_artifact_path",
+        "linkage_artifact_sha256",
+        "linkage_artifact_sha256_matches_expected",
+        "safe_for_reference",
+        "evidence_only"
+      ],
+      "properties": {
+        "linkage_present": { "type": "boolean" },
+        "linkage_status": { "type": "string", "minLength": 1 },
+        "linkage_artifact_path": { "type": [ "string", "null" ] },
+        "linkage_artifact_sha256": { "type": [ "string", "null" ] },
+        "linkage_artifact_sha256_matches_expected": { "type": "boolean" },
+        "safe_for_reference": { "type": "boolean" },
+        "evidence_only": { "const": true }
+      }
+    },
+    "audit_bundle_reference": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "reference_kind",
+        "audit_bundle_artifact_path",
+        "audit_bundle_artifact_sha256",
+        "audit_bundle_artifact_sha256_matches_expected",
+        "static_reference_only",
+        "future_reference_only",
+        "audit_bundle_created",
+        "runtime_audit_bundle_creation_performed",
+        "live_observation_performed",
+        "proof_of_live_audit_bundle"
+      ],
+      "properties": {
+        "reference_kind": {
+          "type": "string",
+          "enum": [
+            "FUTURE_NOT_CREATED",
+            "FUTURE_STATIC_REFERENCE",
+            "EVIDENCE_ONLY_MATCH",
+            "AUDIT_BUNDLE_REFERENCE_READY"
+          ]
+        },
+        "audit_bundle_artifact_path": { "type": [ "string", "null" ] },
+        "audit_bundle_artifact_sha256": { "type": [ "string", "null" ] },
+        "audit_bundle_artifact_sha256_matches_expected": { "type": "boolean" },
+        "static_reference_only": { "const": true },
+        "future_reference_only": { "const": true },
+        "audit_bundle_created": { "const": false },
+        "runtime_audit_bundle_creation_performed": { "const": false },
+        "live_observation_performed": { "const": false },
+        "proof_of_live_audit_bundle": { "const": false }
+      }
+    },
+    "baseline_check": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "expected_baseline_commit",
+        "observed_baseline_commit",
+        "baseline_matches_expected"
+      ],
+      "properties": {
+        "expected_baseline_commit": {
+          "type": "string",
+          "const": "6f0b35c890480428b0edc4d51f115adbefd0827e"
+        },
+        "observed_baseline_commit": { "type": "string", "minLength": 1 },
+        "baseline_matches_expected": { "type": "boolean" }
+      }
+    },
+    "not_go_assertions": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "evidence_only_reference_metadata",
+        "static_reference_metadata_only",
+        "never_executor",
+        "never_runtime_observer",
+        "never_live_observation",
+        "never_automatic_go_signal",
+        "never_runtime_trigger",
+        "never_audit_bundle_creator",
+        "never_worker_launch_request",
+        "never_queue_mutation_request",
+        "never_cloud_api_billing_auth_trading_action",
+        "never_proof_live_audit_bundle_without_bounded_static_evidence",
+        "never_substitute_for_owner_approval",
+        "audit_bundle_reference_draft_ready_not_runtime_go",
+        "audit_bundle_reference_matched_evidence_only_not_runtime_go",
+        "audit_bundle_reference_ready_not_runtime_go",
+        "audit_bundle_reference_ready_does_not_create_audit_bundle",
+        "audit_bundle_reference_presence_not_enough_to_execute_observe_create_continue",
+        "result_observation_to_audit_bundle_linkage_presence_not_enough_to_execute_observe_create_continue",
+        "ready_not_go",
+        "matched_not_go",
+        "observed_safe_no_action_not_go",
+        "linkage_audit_bundle_reference_ready_not_runtime_go",
+        "linkage_audit_bundle_reference_ready_does_not_create_audit_bundle",
+        "owner_approved_for_next_approval_packet_not_runtime_go",
+        "cannot_bypass_safety_gates",
+        "cannot_bypass_owner_gates",
+        "cannot_bypass_stop_owner_review_required",
+        "cannot_bypass_stop_and_wait_owner_review_required"
+      ],
+      "properties": {
+        "evidence_only_reference_metadata": { "const": true },
+        "static_reference_metadata_only": { "const": true },
+        "never_executor": { "const": true },
+        "never_runtime_observer": { "const": true },
+        "never_live_observation": { "const": true },
+        "never_automatic_go_signal": { "const": true },
+        "never_runtime_trigger": { "const": true },
+        "never_audit_bundle_creator": { "const": true },
+        "never_worker_launch_request": { "const": true },
+        "never_queue_mutation_request": { "const": true },
+        "never_cloud_api_billing_auth_trading_action": { "const": true },
+        "never_proof_live_audit_bundle_without_bounded_static_evidence": { "const": true },
+        "never_substitute_for_owner_approval": { "const": true },
+        "audit_bundle_reference_draft_ready_not_runtime_go": { "const": true },
+        "audit_bundle_reference_matched_evidence_only_not_runtime_go": { "const": true },
+        "audit_bundle_reference_ready_not_runtime_go": { "const": true },
+        "audit_bundle_reference_ready_does_not_create_audit_bundle": { "const": true },
+        "audit_bundle_reference_presence_not_enough_to_execute_observe_create_continue": { "const": true },
+        "result_observation_to_audit_bundle_linkage_presence_not_enough_to_execute_observe_create_continue": { "const": true },
+        "ready_not_go": { "const": true },
+        "matched_not_go": { "const": true },
+        "observed_safe_no_action_not_go": { "const": true },
+        "linkage_audit_bundle_reference_ready_not_runtime_go": { "const": true },
+        "linkage_audit_bundle_reference_ready_does_not_create_audit_bundle": { "const": true },
+        "owner_approved_for_next_approval_packet_not_runtime_go": { "const": true },
+        "cannot_bypass_safety_gates": { "const": true },
+        "cannot_bypass_owner_gates": { "const": true },
+        "cannot_bypass_stop_owner_review_required": { "const": true },
+        "cannot_bypass_stop_and_wait_owner_review_required": { "const": true }
+      }
+    },
+    "next_action": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "recommended_next_action",
+        "bounded_and_safe",
+        "owner_gate_required",
+        "unsafe_next_action_allowed"
+      ],
+      "properties": {
+        "recommended_next_action": {
+          "type": "string",
+          "enum": [
+            "START_SUPERVISED_DRY_RUN_AUDIT_BUNDLE_REFERENCE_CONTRACTS_IMPLEMENTATION_REVIEW_PACKET",
+            "STOP_OWNER_REVIEW_REQUIRED"
+          ]
+        },
+        "bounded_and_safe": { "const": true },
+        "owner_gate_required": { "const": true },
+        "unsafe_next_action_allowed": { "const": false }
+      }
+    },
+    "forbidden_actions": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "runtime_audit_bundle_creation_requested",
+        "runtime_audit_bundle_creation_performed",
+        "live_observation_requested",
+        "live_observation_performed",
+        "runtime_execution_requested",
+        "worker_launch_requested",
+        "queue_mutation_requested",
+        "cloud_api_mutation_requested",
+        "private_api_performed",
+        "openai_api_performed",
+        "billing_auth_trading_action_requested",
+        "auto_go_requested",
+        "audit_bundle_creation_requested",
+        "audit_bundle_created",
+        "deploy_requested",
+        "commit_requested",
+        "push_requested",
+        "fetch_pull_requested",
+        "cleanup_requested",
+        "daemon_watcher_ui_automation_requested"
+      ],
+      "properties": {
+        "runtime_audit_bundle_creation_requested": { "const": false },
+        "runtime_audit_bundle_creation_performed": { "const": false },
+        "live_observation_requested": { "const": false },
+        "live_observation_performed": { "const": false },
+        "runtime_execution_requested": { "const": false },
+        "worker_launch_requested": { "const": false },
+        "queue_mutation_requested": { "const": false },
+        "cloud_api_mutation_requested": { "const": false },
+        "private_api_performed": { "const": false },
+        "openai_api_performed": { "const": false },
+        "billing_auth_trading_action_requested": { "const": false },
+        "auto_go_requested": { "const": false },
+        "audit_bundle_creation_requested": { "const": false },
+        "audit_bundle_created": { "const": false },
+        "deploy_requested": { "const": false },
+        "commit_requested": { "const": false },
+        "push_requested": { "const": false },
+        "fetch_pull_requested": { "const": false },
+        "cleanup_requested": { "const": false },
+        "daemon_watcher_ui_automation_requested": { "const": false }
+      }
+    },
+    "blocker": {
+      "type": "object",
+      "additional_properties_allowed": false,
+      "required": [
+        "blocker",
+        "status",
+        "resolution",
+        "allows_progression"
+      ],
+      "properties": {
+        "blocker": { "type": "string", "minLength": 1 },
+        "status": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "BLOCKED",
+            "REJECTED",
+            "OWNER_REVIEW_REQUIRED"
+          ]
+        },
+        "resolution": { "type": "string", "minLength": 1 },
+        "allows_progression": { "type": "boolean" }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_AUDIT_BUNDLE_REFERENCE_CONTRACTS_20260615",
+  "case_id": "audit_bundle_reference_stale_baseline",
+  "expected_valid": false,
+  "base_fixture": "audit_bundle_reference_ready.json",
+  "mutation": {
+    "path": "baseline_commit",
+    "value": "1111111111111111111111111111111111111111"
+  },
+  "expected_error": "baseline_commit"
+}

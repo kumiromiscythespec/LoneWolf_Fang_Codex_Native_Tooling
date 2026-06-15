@@ -1,0 +1,11 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_AUDIT_BUNDLE_REFERENCE_CONTRACTS_20260615",
+  "case_id": "audit_bundle_reference_missing_human_review_one_point",
+  "expected_valid": false,
+  "base_fixture": "audit_bundle_reference_ready.json",
+  "mutation": {
+    "path": "human_review_one_point",
+    "value": ""
+  },
+  "expected_error": "human_review_one_point"
+}
