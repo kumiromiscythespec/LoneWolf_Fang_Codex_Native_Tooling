@@ -1,0 +1,151 @@
+{
+  "schema": "lonewolf.codex_native.supervised_dry_run_execution_request_envelope.v1",
+  "build_id": "SUPERVISED_DRY_RUN_EXECUTION_REQUEST_ENVELOPE_CONTRACTS_20260615",
+  "target": "supervised_dry_run_execution_request_envelope_contracts",
+  "status": "BLOCKED_MISSING_PREFLIGHT_ARTIFACT",
+  "current_stable_baseline": "75fb341776b417f432162fb85693e58c189899e8",
+  "request_envelope_state": "BLOCKED_MISSING_PREFLIGHT_ARTIFACT",
+  "request_identity": {
+    "request_id": "request-envelope-blocked-missing-preflight-artifact",
+    "request_kind": "supervised_dry_run_execution_request_envelope",
+    "stable_baseline": "75fb341776b417f432162fb85693e58c189899e8",
+    "expected_branch": "master",
+    "expected_head": "75fb341776b417f432162fb85693e58c189899e8",
+    "expected_origin_master": "75fb341776b417f432162fb85693e58c189899e8",
+    "expected_ahead_behind": "0 / 0"
+  },
+  "request_intent": {
+    "operation_goal": "Fail closed when a supervised dry-run execution request lacks trusted preflight evidence.",
+    "actual_operation_goal_acknowledged": true,
+    "request_mode": "static_review_envelope_only",
+    "execution_allowed": false,
+    "runtime_execution_requested": false,
+    "worker_launch_requested": false,
+    "queue_mutation_requested": false,
+    "auto_continue": false,
+    "ready_is_go": false,
+    "preflight_bound_ready_is_go": false,
+    "request_draft_ready_is_go": false
+  },
+  "approval_phrase_scope": {
+    "owner_approval_phrase": "APPROVE_SUPERVISED_DRY_RUN_EXECUTION_REQUEST_ENVELOPE_DOCS_SCHEMA_TESTS_FIXTURES_IMPLEMENTATION",
+    "approval_target": "supervised_dry_run_execution_request_envelope_contracts",
+    "allowed_scope": "docs_schema_tests_fixtures_only",
+    "exact_file_allowlist_count": 13,
+    "runtime_reuse_prohibited": true,
+    "allows_runtime_execution": false,
+    "allows_worker_launch": false,
+    "allows_queue_mutation": false,
+    "allows_commit": false,
+    "allows_push": false
+  },
+  "owner_approval_freshness": {
+    "approval_current": true,
+    "approval_stale": false,
+    "approval_superseded": false,
+    "single_use": true,
+    "bound_stable_baseline": "75fb341776b417f432162fb85693e58c189899e8",
+    "fresh_owner_gate_required_before_runtime": true
+  },
+  "stable_closeout_evidence": {
+    "artifact_role": "stable_closeout_evidence",
+    "artifact_path": "C:\\Users\\yu_ki\\AppData\\Local\\LoneWolfFang\\data\\codex_native_supervised_dry_run_orchestration_preflight_stable_post_push_closeout_packet_20260615_105202.zip",
+    "artifact_sha256": "1D42AA159925BCDB5287E0CB7912350D2AF5DCFE8CEDF28AD7E154CCD53CCA57",
+    "artifact_available": true,
+    "sha256_matches_expected": true,
+    "stable_baseline": "75fb341776b417f432162fb85693e58c189899e8",
+    "stable_status": "SAFE_SUPERVISED_DRY_RUN_ORCHESTRATION_PREFLIGHT_STABLE_CLOSEOUT_PACKET_CREATED",
+    "evidence_only": true,
+    "authoritative": true
+  },
+  "preflight_evidence": {
+    "artifact_role": "supervised_dry_run_orchestration_preflight_evidence",
+    "artifact_path": "C:\\Users\\yu_ki\\AppData\\Local\\LoneWolfFang\\data\\missing_preflight_artifact.zip",
+    "artifact_sha256": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+    "artifact_available": false,
+    "sha256_matches_expected": false,
+    "preflight_build_id": "SUPERVISED_DRY_RUN_ORCHESTRATION_PREFLIGHT_CONTRACTS_20260615",
+    "preflight_state": "BLOCKED_MISSING_ARTIFACT",
+    "evidence_only": true,
+    "authoritative": false
+  },
+  "local_refs_referenced": {
+    "head": "75fb341776b417f432162fb85693e58c189899e8",
+    "origin_master": "75fb341776b417f432162fb85693e58c189899e8",
+    "ahead_behind": "0 / 0",
+    "source": "local_metadata_only_no_fetch_no_pull"
+  },
+  "local_metadata_only_disclosure": {
+    "fetch_performed": false,
+    "pull_performed": false,
+    "claims_live_remote_truth": false,
+    "independently_fetched_live_remote_truth": false,
+    "local_metadata_ambiguous": false,
+    "ambiguity_requires_stop": false
+  },
+  "six_window_progression_safety": {
+    "six_window_standard_used": true,
+    "single_window_owner_gate_required": true,
+    "implementation_review_required_before_commit": true,
+    "commit_approval_required_later": true,
+    "push_approval_required_later": true,
+    "runtime_allowed_by_this_packet": false,
+    "automatic_go_allowed": false
+  },
+  "action_results": {
+    "runtime_execution_performed": false,
+    "worker_launch_performed": false,
+    "queue_mutation_performed": false,
+    "cloud_mutation_performed": false,
+    "deploy_performed": false,
+    "private_api_performed": false,
+    "openai_api_performed": false,
+    "billing_or_auth_mutation_performed": false,
+    "trading_or_order_action_performed": false,
+    "daemon_or_watcher_started": false,
+    "ui_automation_performed": false,
+    "automatic_continuation_performed": false
+  },
+  "forbidden_action_flags": {
+    "runtime_intent_present": false,
+    "worker_launch_intent_present": false,
+    "queue_mutation_intent_present": false,
+    "cloud_mutation_intent_present": false,
+    "deploy_intent_present": false,
+    "private_api_intent_present": false,
+    "openai_api_intent_present": false,
+    "billing_or_auth_intent_present": false,
+    "trading_or_order_intent_present": false,
+    "automatic_go_intent_present": false
+  },
+  "blocker_matrix": [
+    {
+      "blocker": "missing preflight artifact",
+      "status": "BLOCKED",
+      "resolution": "Stop for owner review until the preflight artifact exists and checksum evidence is trusted."
+    }
+  ],
+  "human_review_one_point": "Confirm whether to provide trusted preflight evidence before any execution request envelope proceeds.",
+  "next_prompt_readiness": {
+    "recommended_next_action": "STOP_OWNER_REVIEW_REQUIRED",
+    "ready_is_go": false,
+    "matched_is_go": false,
+    "observed_safe_no_action_is_go": false,
+    "auto_continue": false,
+    "execution_allowed": false,
+    "runtime_next_action": false,
+    "owner_review_required": true,
+    "request_draft_ready_is_go": false
+  },
+  "safety_invariants": [
+    "Missing preflight evidence blocks progression.",
+    "No synthetic success may be inferred.",
+    "No runtime execution is authorized.",
+    "No worker launch is authorized.",
+    "No Queue mutation is authorized.",
+    "No external mutation is authorized.",
+    "Owner review is required before progression.",
+    "The envelope remains static evidence only.",
+    "REQUEST_DRAFT_READY is a static owner-review state, not GO."
+  ]
+}

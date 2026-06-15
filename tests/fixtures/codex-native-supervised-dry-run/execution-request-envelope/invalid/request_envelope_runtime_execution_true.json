@@ -1,0 +1,10 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_EXECUTION_REQUEST_ENVELOPE_CONTRACTS_20260615",
+  "expected_valid": false,
+  "expected_error": "runtime_execution_performed",
+  "base_fixture": "request_envelope_preflight_bound_ready.json",
+  "mutation": {
+    "path": "action_results.runtime_execution_performed",
+    "value": true
+  }
+}

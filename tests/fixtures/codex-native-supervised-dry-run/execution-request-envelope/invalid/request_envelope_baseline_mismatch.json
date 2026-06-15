@@ -1,0 +1,14 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_EXECUTION_REQUEST_ENVELOPE_CONTRACTS_20260615",
+  "expected_valid": false,
+  "expected_error": "baseline",
+  "base_fixture": "request_envelope_preflight_bound_ready.json",
+  "mutation": {
+    "path": "current_stable_baseline",
+    "value": "0000000000000000000000000000000000000000"
+  },
+  "secondary_mutation": {
+    "path": "request_identity.stable_baseline",
+    "value": "0000000000000000000000000000000000000000"
+  }
+}
