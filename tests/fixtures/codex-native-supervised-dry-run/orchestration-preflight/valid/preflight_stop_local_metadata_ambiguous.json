@@ -1,0 +1,142 @@
+{
+  "schema": "lonewolf.codex_native.supervised_dry_run_orchestration_preflight.v1",
+  "build_id": "SUPERVISED_DRY_RUN_ORCHESTRATION_PREFLIGHT_CONTRACTS_20260615",
+  "target": "supervised_dry_run_orchestration_preflight_contracts",
+  "status": "STOP_OWNER_REVIEW_REQUIRED",
+  "current_stable_baseline": "790576ef031a42e4828e9bf38a81912396d03329",
+  "preflight_state": "STOP_OWNER_REVIEW_REQUIRED",
+  "stable_closeout_evidence": {
+    "artifact_role": "stable closeout packet",
+    "artifact_path": "C:\\Users\\yu_ki\\AppData\\Local\\LoneWolfFang\\data\\codex_native_no_runtime_worker_queue_mutation_proof_bundle_stable_post_push_closeout_packet.zip",
+    "artifact_sha256": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "artifact_available": true,
+    "sha256_matches_expected": true,
+    "evidence_only": true,
+    "authoritative": true
+  },
+  "request_intake_evidence": {
+    "artifact_role": "request intake approval binding stable closeout",
+    "artifact_path": "C:\\Users\\yu_ki\\AppData\\Local\\LoneWolfFang\\data\\codex_native_request_intake_approval_binding_stable_post_push_closeout_packet.zip",
+    "artifact_sha256": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "artifact_available": true,
+    "sha256_matches_expected": true,
+    "evidence_only": true,
+    "authoritative": true,
+    "approval_binding_present": true,
+    "forbidden_intent_detected": false
+  },
+  "result_envelope_evidence": {
+    "artifact_role": "result envelope dry-run outcome stable closeout",
+    "artifact_path": "C:\\Users\\yu_ki\\AppData\\Local\\LoneWolfFang\\data\\codex_native_result_envelope_dry_run_outcome_stable_post_push_closeout_packet.zip",
+    "artifact_sha256": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+    "artifact_available": true,
+    "sha256_matches_expected": true,
+    "evidence_only": true,
+    "authoritative": true
+  },
+  "readonly_consumer_observation": {
+    "artifact_role": "readonly consumer observation stable closeout",
+    "artifact_path": "C:\\Users\\yu_ki\\AppData\\Local\\LoneWolfFang\\data\\codex_native_result_envelope_readonly_consumer_observation_stable_post_push_closeout_packet.zip",
+    "artifact_sha256": "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",
+    "artifact_available": true,
+    "sha256_matches_expected": true,
+    "evidence_only": true,
+    "authoritative": true
+  },
+  "queue_handoff_review_only_state": {
+    "artifact_role": "queue handoff dry-run handoff stable closeout",
+    "artifact_path": "C:\\Users\\yu_ki\\AppData\\Local\\LoneWolfFang\\data\\codex_native_queue_handoff_dry_run_handoff_stable_post_push_closeout_packet.zip",
+    "artifact_sha256": "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE",
+    "artifact_available": true,
+    "sha256_matches_expected": true,
+    "evidence_only": true,
+    "authoritative": true
+  },
+  "no_runtime_proof_bundle": {
+    "artifact_role": "no runtime worker queue mutation proof stable closeout",
+    "artifact_path": "C:\\Users\\yu_ki\\AppData\\Local\\LoneWolfFang\\data\\codex_native_no_runtime_worker_queue_mutation_proof_bundle_stable_post_push_closeout_packet.zip",
+    "artifact_sha256": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+    "artifact_available": true,
+    "sha256_matches_expected": true,
+    "evidence_only": true,
+    "authoritative": true
+  },
+  "owner_approval_freshness": {
+    "approval_phrase_present": true,
+    "approval_scope": "owner_review_required",
+    "approval_stale": true,
+    "requires_fresh_owner_gate_before_runtime": true
+  },
+  "local_refs_referenced": {
+    "head": "790576ef031a42e4828e9bf38a81912396d03329",
+    "origin_master": "790576ef031a42e4828e9bf38a81912396d03329",
+    "ahead_behind": "0 / 0",
+    "source": "local_metadata_only_no_fetch_no_pull"
+  },
+  "local_metadata_only_disclosure": {
+    "fetch_performed": false,
+    "pull_performed": false,
+    "claims_live_remote_truth": false,
+    "independently_fetched_live_remote_truth": false,
+    "local_metadata_ambiguous": true,
+    "ambiguity_requires_stop": true
+  },
+  "six_window_progression_safety": {
+    "parallel_wave_allowed": false,
+    "single_window_owner_gate_required": true,
+    "implementation_allowed_by_this_packet": false,
+    "runtime_allowed_by_this_packet": false,
+    "automatic_go_allowed": false
+  },
+  "action_results": {
+    "runtime_execution_performed": false,
+    "worker_launch_performed": false,
+    "queue_mutation_performed": false,
+    "cloud_mutation_performed": false,
+    "private_api_performed": false,
+    "openai_api_performed": false,
+    "billing_or_auth_mutation_performed": false,
+    "trading_or_order_action_performed": false,
+    "daemon_or_watcher_started": false,
+    "ui_automation_performed": false,
+    "automatic_continuation_performed": false
+  },
+  "forbidden_action_flags": {
+    "deploy_intent_present": false,
+    "runtime_intent_present": false,
+    "worker_launch_intent_present": false,
+    "queue_mutation_intent_present": false,
+    "private_api_intent_present": false,
+    "openai_api_intent_present": false,
+    "cloud_mutation_intent_present": false,
+    "billing_or_auth_intent_present": false,
+    "trading_or_order_intent_present": false,
+    "automatic_go_intent_present": false
+  },
+  "blocker_matrix": [
+    {
+      "blocker": "local metadata is ambiguous without fetch or pull",
+      "status": "BLOCKED",
+      "resolution": "stop for owner review instead of claiming live remote truth"
+    }
+  ],
+  "human_review_one_point": "Confirm whether ambiguous local metadata should stop the preflight before any future supervised dry-run request review.",
+  "next_prompt_readiness": {
+    "recommended_next_action": "STOP_OWNER_REVIEW_REQUIRED",
+    "ready_is_go": false,
+    "matched_is_go": false,
+    "observed_safe_no_action_is_go": false,
+    "auto_continue": false,
+    "execution_allowed": false
+  },
+  "safety_invariants": [
+    "local metadata ambiguity stops review",
+    "no runtime workflow execution",
+    "no worker launch",
+    "no queue mutation",
+    "no private or OpenAI API call",
+    "no cloud mutation",
+    "no billing or auth mutation",
+    "no trading or order action"
+  ]
+}

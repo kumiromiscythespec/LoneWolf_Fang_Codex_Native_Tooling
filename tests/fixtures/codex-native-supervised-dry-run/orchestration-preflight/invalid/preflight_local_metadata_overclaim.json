@@ -1,0 +1,11 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_ORCHESTRATION_PREFLIGHT_CONTRACTS_20260615",
+  "case_id": "preflight_local_metadata_overclaim",
+  "expected_valid": false,
+  "expected_error": "local metadata overclaim",
+  "base_fixture": "preflight_ready_owner_review_required.json",
+  "mutation": {
+    "path": "local_metadata_only_disclosure.independently_fetched_live_remote_truth",
+    "value": true
+  }
+}

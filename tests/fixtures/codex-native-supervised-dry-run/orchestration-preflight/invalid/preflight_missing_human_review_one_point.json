@@ -1,0 +1,11 @@
+{
+  "build_id": "SUPERVISED_DRY_RUN_ORCHESTRATION_PREFLIGHT_CONTRACTS_20260615",
+  "case_id": "preflight_missing_human_review_one_point",
+  "expected_valid": false,
+  "expected_error": "human_review_one_point",
+  "base_fixture": "preflight_ready_owner_review_required.json",
+  "mutation": {
+    "path": "human_review_one_point",
+    "value": ""
+  }
+}
