@@ -1,0 +1,13 @@
+{
+  "base_fixture": "reference-ready-for-human-review.json",
+  "mutations": [
+    {
+      "path": "chain_summary_context_reference.context_artifact_sha256",
+      "value": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
+    }
+  ],
+  "expected_errors": [
+    "chain_summary_context_reference.context_artifact_sha256",
+    "hash_binding_summary.chain_summary_context_sha256"
+  ]
+}

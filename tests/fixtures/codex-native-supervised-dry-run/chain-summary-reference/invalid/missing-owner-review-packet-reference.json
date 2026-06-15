@@ -1,0 +1,24 @@
+{
+  "base_fixture": "reference-ready-for-human-review.json",
+  "mutations": [
+    {
+      "path": "owner_review_packet_reference.owner_review_packet_present",
+      "value": false
+    },
+    {
+      "path": "owner_review_packet_reference.owner_review_packet_artifact_path",
+      "value": null
+    },
+    {
+      "path": "owner_review_packet_reference.owner_review_packet_artifact_sha256",
+      "value": null
+    },
+    {
+      "path": "owner_review_packet_reference.owner_review_packet_artifact_sha256_matches_expected",
+      "value": false
+    }
+  ],
+  "expected_errors": [
+    "owner_review_packet_reference.owner_review_packet_present"
+  ]
+}

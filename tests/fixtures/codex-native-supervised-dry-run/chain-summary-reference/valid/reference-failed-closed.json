@@ -1,0 +1,20 @@
+{
+  "case_id": "reference-failed-closed",
+  "status": "CHAIN_SUMMARY_REFERENCE_FAILED_CLOSED",
+  "owner_review_packet_present": true,
+  "owner_review_packet_status": "STATIC_OWNER_REVIEW_PACKET_PRESENT",
+  "owner_review_packet_safe_for_reference": true,
+  "chain_summary_context_present": false,
+  "chain_summary_context_status": "AMBIGUOUS",
+  "chain_summary_context_safe_for_reference": false,
+  "hash_binding_complete": false,
+  "observed_baseline_commit": "0b021093b08b22e1d3f695655d2ffbbacd257ddc",
+  "baseline_matches_expected": true,
+  "next_action": "STOP_OWNER_REVIEW_REQUIRED",
+  "blocker_status": "STOP_OWNER_REVIEW_REQUIRED",
+  "blocker": "Ambiguous chain summary context evidence must fail closed.",
+  "resolution": "Stop and wait for owner review.",
+  "human_review_one_point": "Confirm ambiguous evidence remains stopped.",
+  "failed_closed": true,
+  "fail_closed_reason": "Ambiguous chain summary context evidence."
+}

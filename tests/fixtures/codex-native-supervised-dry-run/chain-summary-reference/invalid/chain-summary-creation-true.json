@@ -1,0 +1,17 @@
+{
+  "base_fixture": "reference-ready-for-human-review.json",
+  "mutations": [
+    {
+      "path": "chain_summary_context_reference.chain_summary_created",
+      "value": true
+    },
+    {
+      "path": "forbidden_actions.chain_summary_creation_requested",
+      "value": true
+    }
+  ],
+  "expected_errors": [
+    "chain_summary_context_reference.chain_summary_created",
+    "forbidden_actions.chain_summary_creation_requested"
+  ]
+}

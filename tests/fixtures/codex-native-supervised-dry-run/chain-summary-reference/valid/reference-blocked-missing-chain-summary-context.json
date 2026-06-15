@@ -1,0 +1,20 @@
+{
+  "case_id": "reference-blocked-missing-chain-summary-context",
+  "status": "CHAIN_SUMMARY_REFERENCE_BLOCKED_MISSING_CHAIN_SUMMARY_CONTEXT",
+  "owner_review_packet_present": true,
+  "owner_review_packet_status": "STATIC_OWNER_REVIEW_PACKET_PRESENT",
+  "owner_review_packet_safe_for_reference": true,
+  "chain_summary_context_present": false,
+  "chain_summary_context_status": "MISSING",
+  "chain_summary_context_safe_for_reference": false,
+  "hash_binding_complete": false,
+  "observed_baseline_commit": "0b021093b08b22e1d3f695655d2ffbbacd257ddc",
+  "baseline_matches_expected": true,
+  "next_action": "STOP_OWNER_REVIEW_REQUIRED",
+  "blocker_status": "BLOCKED",
+  "blocker": "Chain summary context reference is missing.",
+  "resolution": "Do not proceed until a static chain summary context reference is available.",
+  "human_review_one_point": "Confirm the missing chain summary context is a hard stop.",
+  "failed_closed": true,
+  "fail_closed_reason": "Missing chain summary context reference."
+}

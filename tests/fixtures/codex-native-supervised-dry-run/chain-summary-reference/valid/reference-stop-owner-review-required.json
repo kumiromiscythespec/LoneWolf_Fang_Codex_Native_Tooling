@@ -1,0 +1,20 @@
+{
+  "case_id": "reference-stop-owner-review-required",
+  "status": "STOP_OWNER_REVIEW_REQUIRED",
+  "owner_review_packet_present": true,
+  "owner_review_packet_status": "STATIC_OWNER_REVIEW_PACKET_PRESENT",
+  "owner_review_packet_safe_for_reference": true,
+  "chain_summary_context_present": true,
+  "chain_summary_context_status": "STATIC_CONTEXT_PRESENT_BUT_REQUIRES_OWNER_REVIEW",
+  "chain_summary_context_safe_for_reference": true,
+  "hash_binding_complete": true,
+  "observed_baseline_commit": "0b021093b08b22e1d3f695655d2ffbbacd257ddc",
+  "baseline_matches_expected": true,
+  "next_action": "STOP_OWNER_REVIEW_REQUIRED",
+  "blocker_status": "STOP_OWNER_REVIEW_REQUIRED",
+  "blocker": "Owner review is required before any later gated action.",
+  "resolution": "Stop and wait for owner review.",
+  "human_review_one_point": "Owner must decide whether any later chain summary lane is authorized.",
+  "failed_closed": true,
+  "fail_closed_reason": "Owner review required."
+}

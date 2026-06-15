@@ -1,0 +1,16 @@
+{
+  "base_fixture": "reference-ready-for-human-review.json",
+  "mutations": [
+    {
+      "path": "human_review_one_point",
+      "value": ""
+    },
+    {
+      "path": "fail_closed_result.reason",
+      "value": ""
+    }
+  ],
+  "expected_errors": [
+    "human_review_one_point"
+  ]
+}

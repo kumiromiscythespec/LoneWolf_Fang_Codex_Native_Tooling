@@ -1,0 +1,22 @@
+{
+  "base_fixture": "reference-ready-for-human-review.json",
+  "mutations": [
+    {
+      "path": "forbidden_actions.worker_launch_requested",
+      "value": true
+    },
+    {
+      "path": "forbidden_actions.queue_mutation_requested",
+      "value": true
+    },
+    {
+      "path": "forbidden_actions.cloud_api_billing_auth_trading_mutation_requested",
+      "value": true
+    }
+  ],
+  "expected_errors": [
+    "forbidden_actions.worker_launch_requested",
+    "forbidden_actions.queue_mutation_requested",
+    "forbidden_actions.cloud_api_billing_auth_trading_mutation_requested"
+  ]
+}

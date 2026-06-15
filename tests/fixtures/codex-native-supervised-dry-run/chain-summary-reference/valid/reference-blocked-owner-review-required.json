@@ -1,0 +1,20 @@
+{
+  "case_id": "reference-blocked-owner-review-required",
+  "status": "CHAIN_SUMMARY_REFERENCE_BLOCKED_OWNER_REVIEW_REQUIRED",
+  "owner_review_packet_present": false,
+  "owner_review_packet_status": "OWNER_REVIEW_REQUIRED",
+  "owner_review_packet_safe_for_reference": false,
+  "chain_summary_context_present": false,
+  "chain_summary_context_status": "WAITING_FOR_OWNER_REVIEW",
+  "chain_summary_context_safe_for_reference": false,
+  "hash_binding_complete": false,
+  "observed_baseline_commit": "0b021093b08b22e1d3f695655d2ffbbacd257ddc",
+  "baseline_matches_expected": true,
+  "next_action": "STOP_OWNER_REVIEW_REQUIRED",
+  "blocker_status": "STOP_OWNER_REVIEW_REQUIRED",
+  "blocker": "Owner review is required before referencing a future chain summary context.",
+  "resolution": "Stop and wait for owner review.",
+  "human_review_one_point": "Owner must decide whether later chain summary reference work is allowed.",
+  "failed_closed": true,
+  "fail_closed_reason": "Owner review required."
+}

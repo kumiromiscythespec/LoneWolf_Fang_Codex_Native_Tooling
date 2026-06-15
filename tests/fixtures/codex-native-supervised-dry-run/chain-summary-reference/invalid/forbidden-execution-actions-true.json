@@ -1,0 +1,12 @@
+{
+  "base_fixture": "reference-ready-for-human-review.json",
+  "mutations": [
+    {
+      "path": "forbidden_actions.runtime_execution_requested",
+      "value": true
+    }
+  ],
+  "expected_errors": [
+    "forbidden_actions.runtime_execution_requested"
+  ]
+}

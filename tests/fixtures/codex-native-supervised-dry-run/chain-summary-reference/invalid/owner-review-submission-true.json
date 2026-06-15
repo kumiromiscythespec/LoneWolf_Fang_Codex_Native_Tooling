@@ -1,0 +1,17 @@
+{
+  "base_fixture": "reference-ready-for-human-review.json",
+  "mutations": [
+    {
+      "path": "owner_review_packet_reference.owner_review_packet_submitted",
+      "value": true
+    },
+    {
+      "path": "forbidden_actions.owner_review_packet_submission_requested",
+      "value": true
+    }
+  ],
+  "expected_errors": [
+    "owner_review_packet_reference.owner_review_packet_submitted",
+    "forbidden_actions.owner_review_packet_submission_requested"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "base_fixture": "reference-ready-for-human-review.json",
+  "mutations": [
+    {
+      "path": "baseline_commit",
+      "value": "6f0b35c890480428b0edc4d51f115adbefd0827e"
+    },
+    {
+      "path": "baseline_check.observed_baseline_commit",
+      "value": "6f0b35c890480428b0edc4d51f115adbefd0827e"
+    },
+    {
+      "path": "baseline_check.baseline_matches_expected",
+      "value": true
+    }
+  ],
+  "expected_errors": [
+    "baseline_commit",
+    "baseline_check.observed_baseline_commit"
+  ]
+}

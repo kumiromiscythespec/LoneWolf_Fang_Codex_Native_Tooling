@@ -1,0 +1,19 @@
+{
+  "case_id": "reference-draft-context-ready",
+  "status": "CHAIN_SUMMARY_REFERENCE_DRAFT_CONTEXT_READY",
+  "owner_review_packet_present": true,
+  "owner_review_packet_status": "STATIC_OWNER_REVIEW_PACKET_PRESENT",
+  "owner_review_packet_safe_for_reference": true,
+  "chain_summary_context_present": true,
+  "chain_summary_context_status": "DRAFT_CONTEXT_READY",
+  "chain_summary_context_safe_for_reference": true,
+  "hash_binding_complete": true,
+  "observed_baseline_commit": "0b021093b08b22e1d3f695655d2ffbbacd257ddc",
+  "baseline_matches_expected": true,
+  "next_action": "START_SUPERVISED_DRY_RUN_CHAIN_SUMMARY_REFERENCE_CONTRACTS_IMPLEMENTATION_REVIEW_PACKET",
+  "blocker": "Draft context is reference-ready but not execution-ready.",
+  "resolution": "Review the static draft context before any later owner-gated action.",
+  "human_review_one_point": "Confirm draft-context-ready is not GO.",
+  "failed_closed": false,
+  "fail_closed_reason": ""
+}

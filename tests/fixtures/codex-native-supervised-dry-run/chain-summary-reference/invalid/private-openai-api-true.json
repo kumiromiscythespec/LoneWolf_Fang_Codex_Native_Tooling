@@ -1,0 +1,17 @@
+{
+  "base_fixture": "reference-ready-for-human-review.json",
+  "mutations": [
+    {
+      "path": "forbidden_actions.private_api_requested",
+      "value": true
+    },
+    {
+      "path": "forbidden_actions.openai_api_requested",
+      "value": true
+    }
+  ],
+  "expected_errors": [
+    "forbidden_actions.private_api_requested",
+    "forbidden_actions.openai_api_requested"
+  ]
+}

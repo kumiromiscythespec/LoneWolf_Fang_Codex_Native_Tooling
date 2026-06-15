@@ -1,0 +1,22 @@
+{
+  "base_fixture": "reference-ready-for-human-review.json",
+  "mutations": [
+    {
+      "path": "not_go_assertions.ready_not_go",
+      "value": false
+    },
+    {
+      "path": "forbidden_actions.auto_go_signal",
+      "value": true
+    },
+    {
+      "path": "hash_binding_summary.runtime_go_approval",
+      "value": true
+    }
+  ],
+  "expected_errors": [
+    "not_go_assertions.ready_not_go",
+    "forbidden_actions.auto_go_signal",
+    "hash_binding_summary.runtime_go_approval"
+  ]
+}

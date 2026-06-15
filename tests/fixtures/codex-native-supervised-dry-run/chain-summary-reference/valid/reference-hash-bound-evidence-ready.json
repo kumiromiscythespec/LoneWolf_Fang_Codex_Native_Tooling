@@ -1,0 +1,19 @@
+{
+  "case_id": "reference-hash-bound-evidence-ready",
+  "status": "CHAIN_SUMMARY_REFERENCE_HASH_BOUND_EVIDENCE_READY",
+  "owner_review_packet_present": true,
+  "owner_review_packet_status": "STATIC_OWNER_REVIEW_PACKET_PRESENT",
+  "owner_review_packet_safe_for_reference": true,
+  "chain_summary_context_present": true,
+  "chain_summary_context_status": "HASH_BOUND_CONTEXT_READY",
+  "chain_summary_context_safe_for_reference": true,
+  "hash_binding_complete": true,
+  "observed_baseline_commit": "0b021093b08b22e1d3f695655d2ffbbacd257ddc",
+  "baseline_matches_expected": true,
+  "next_action": "START_SUPERVISED_DRY_RUN_CHAIN_SUMMARY_REFERENCE_CONTRACTS_IMPLEMENTATION_REVIEW_PACKET",
+  "blocker": "Hash-bound evidence is ready for review only.",
+  "resolution": "Keep the hash binding evidence-only until reviewed.",
+  "human_review_one_point": "Confirm hash binding is not execution approval.",
+  "failed_closed": false,
+  "fail_closed_reason": ""
+}

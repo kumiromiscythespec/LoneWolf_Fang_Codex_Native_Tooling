@@ -1,0 +1,19 @@
+{
+  "case_id": "reference-ready-for-human-review",
+  "status": "CHAIN_SUMMARY_REFERENCE_READY_FOR_HUMAN_REVIEW",
+  "owner_review_packet_present": true,
+  "owner_review_packet_status": "STATIC_OWNER_REVIEW_PACKET_PRESENT",
+  "owner_review_packet_safe_for_reference": true,
+  "chain_summary_context_present": true,
+  "chain_summary_context_status": "STATIC_CONTEXT_READY_FOR_HUMAN_REVIEW",
+  "chain_summary_context_safe_for_reference": true,
+  "hash_binding_complete": true,
+  "observed_baseline_commit": "0b021093b08b22e1d3f695655d2ffbbacd257ddc",
+  "baseline_matches_expected": true,
+  "next_action": "START_SUPERVISED_DRY_RUN_CHAIN_SUMMARY_REFERENCE_CONTRACTS_IMPLEMENTATION_REVIEW_PACKET",
+  "blocker": "Reference is ready for human review only.",
+  "resolution": "Use the implementation review packet as the next bounded action.",
+  "human_review_one_point": "Confirm ready-for-human-review is not GO and does not create a chain summary.",
+  "failed_closed": false,
+  "fail_closed_reason": ""
+}

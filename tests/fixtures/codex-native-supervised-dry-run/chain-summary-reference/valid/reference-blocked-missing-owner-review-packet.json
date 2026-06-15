@@ -1,0 +1,20 @@
+{
+  "case_id": "reference-blocked-missing-owner-review-packet",
+  "status": "CHAIN_SUMMARY_REFERENCE_BLOCKED_MISSING_OWNER_REVIEW_PACKET",
+  "owner_review_packet_present": false,
+  "owner_review_packet_status": "MISSING",
+  "owner_review_packet_safe_for_reference": false,
+  "chain_summary_context_present": true,
+  "chain_summary_context_status": "STATIC_CONTEXT_PRESENT",
+  "chain_summary_context_safe_for_reference": true,
+  "hash_binding_complete": false,
+  "observed_baseline_commit": "0b021093b08b22e1d3f695655d2ffbbacd257ddc",
+  "baseline_matches_expected": true,
+  "next_action": "STOP_OWNER_REVIEW_REQUIRED",
+  "blocker_status": "BLOCKED",
+  "blocker": "Owner review packet reference is missing.",
+  "resolution": "Do not proceed until a static owner review packet reference is available.",
+  "human_review_one_point": "Confirm the missing owner review packet is a hard stop.",
+  "failed_closed": true,
+  "fail_closed_reason": "Missing owner review packet reference."
+}
