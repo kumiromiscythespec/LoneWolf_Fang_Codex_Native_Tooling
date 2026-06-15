@@ -1,0 +1,1 @@
+{"build_id":"SUPERVISED_DRY_RUN_EXECUTION_RECEIPT_CONTRACTS_20260615","case_id":"execution_receipt_missing_human_review_one_point","expected_valid":false,"base_fixture":"execution_receipt_stop_owner_review_required.json","expected_error":"missing human_review_one_point","mutation":{"path":"human_review_one_point","delete":true}}

@@ -1,0 +1,1 @@
+{"build_id":"SUPERVISED_DRY_RUN_EXECUTION_RECEIPT_CONTRACTS_20260615","case_id":"execution_receipt_artifact_sha_mismatch","expected_valid":false,"base_fixture":"execution_receipt_blocked_by_preflight.json","expected_error":"preflight_artifact.sha256_matches_expected","mutation":{"path":"preflight_artifact.sha256_matches_expected","value":false}}

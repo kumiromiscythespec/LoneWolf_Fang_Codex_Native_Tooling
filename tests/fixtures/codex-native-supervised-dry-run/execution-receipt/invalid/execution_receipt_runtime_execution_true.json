@@ -1,0 +1,1 @@
+{"build_id":"SUPERVISED_DRY_RUN_EXECUTION_RECEIPT_CONTRACTS_20260615","case_id":"execution_receipt_runtime_execution_true","expected_valid":false,"base_fixture":"execution_receipt_dry_run_receipt_recorded.json","expected_error":"forbidden_actions.runtime_execution_performed","mutation":{"path":"forbidden_actions.runtime_execution_performed","value":true}}

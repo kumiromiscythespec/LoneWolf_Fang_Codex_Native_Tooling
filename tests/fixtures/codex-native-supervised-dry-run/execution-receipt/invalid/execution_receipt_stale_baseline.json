@@ -1,0 +1,1 @@
+{"build_id":"SUPERVISED_DRY_RUN_EXECUTION_RECEIPT_CONTRACTS_20260615","case_id":"execution_receipt_stale_baseline","expected_valid":false,"base_fixture":"execution_receipt_not_started.json","expected_error":"baseline","mutation":{"path":"baseline","value":"0000000000000000000000000000000000000000"},"secondary_mutation":{"path":"owner_approval_evidence.phrase_stale","value":true}}
