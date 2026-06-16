@@ -77,6 +77,15 @@ const chainSummaryReferenceImplementationLaneFiles = [
   "tests/fixtures/codex-native-supervised-dry-run/chain-summary-reference/invalid/ready-treated-as-go.json"
 ];
 
+const submissionReadinessStaticGapImplementationLaneFiles = [
+  "NEXT_CODEX_PROMPT.md",
+  "README.md",
+  "docs/oss_review/license_readiness.md",
+  "docs/oss_review/final_owner_submission_review_guide.md",
+  "docs/orchestration/codex_native_submission_readiness_completed_chain_inventory.md",
+  "tests/codex_native_submission_readiness_static_gap_contract.test.mjs"
+];
+
 const validFixturePaths = [
   "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/valid/accepted-chain-index.json",
   "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/valid/owner-review-required.json"
@@ -410,7 +419,8 @@ test("current repo edits remain inside the exact handoff custody allowlist", () 
   const allowed = new Set([
     ...allowedFiles,
     ...boundedAllowlistGuardCompatibilityRepairFiles,
-    ...chainSummaryReferenceImplementationLaneFiles
+    ...chainSummaryReferenceImplementationLaneFiles,
+    ...submissionReadinessStaticGapImplementationLaneFiles
   ]);
   for (const file of changed) {
     assert.ok(allowed.has(file), `unexpected changed file: ${file}`);

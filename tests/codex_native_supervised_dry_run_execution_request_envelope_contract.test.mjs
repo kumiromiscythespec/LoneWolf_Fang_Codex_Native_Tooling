@@ -92,6 +92,15 @@ const chainSummaryReferenceImplementationLaneFiles = [
   "tests/fixtures/codex-native-supervised-dry-run/chain-summary-reference/invalid/ready-treated-as-go.json"
 ];
 
+const submissionReadinessStaticGapImplementationLaneFiles = [
+  "NEXT_CODEX_PROMPT.md",
+  "README.md",
+  "docs/oss_review/license_readiness.md",
+  "docs/oss_review/final_owner_submission_review_guide.md",
+  "docs/orchestration/codex_native_submission_readiness_completed_chain_inventory.md",
+  "tests/codex_native_submission_readiness_static_gap_contract.test.mjs"
+];
+
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
@@ -525,7 +534,8 @@ test("working tree changes stay inside the exact 13-file allowlist", () => {
   const currentWorkingTreeGuardAllowedFiles = new Set([
     ...allowedFiles,
     ...boundedAllowlistGuardCompatibilityRepairFiles,
-    ...chainSummaryReferenceImplementationLaneFiles
+    ...chainSummaryReferenceImplementationLaneFiles,
+    ...submissionReadinessStaticGapImplementationLaneFiles
   ]);
 
   const outside = changedPaths.filter((path) => !currentWorkingTreeGuardAllowedFiles.has(path));

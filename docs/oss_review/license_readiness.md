@@ -1,22 +1,31 @@
 # License Readiness
 
-License selection remains pending owner decision.
+The repository currently contains a top-level `LICENSE` file using the MIT
+License text.
 
-The Phase 3 approval packet identifies MIT as a likely default candidate only if
-it is consistent with owner intent. It does not conclusively establish the final
-license text or copyright holder. For that reason, this Phase 3 implementation
-does not create `LICENSE`.
+Observed license evidence:
 
-## Future Decision Needed
+- file: `LICENSE`
+- license label: `MIT License`
+- copyright line:
+  `Copyright (c) 2026 kumiromiscythespec`
 
-Before publicization or application submission, the owner should confirm:
+This page records repository-local evidence only. It is not legal advice, does
+not confirm official external approval, and does not replace the owner's final
+license decision before public submission or external review.
 
-- intended license;
-- copyright holder text;
-- whether standard MIT License text is acceptable;
-- whether any non-code documentation needs separate treatment.
+This page does not confirm official external approval.
 
-The final license must not include private restrictions, confusing proprietary
-terms, trading profit claims, private API language, or personal data.
+## Owner Decision Still Required
 
-Publicization remains unapproved until a future owner decision.
+Before any publicization, release, GitHub visibility change, or application
+submission, the owner should confirm:
+
+- the intended public license remains MIT;
+- the copyright holder text is correct;
+- whether any non-code documentation needs separate treatment;
+- whether the final public package should include any additional notices.
+
+The current `LICENSE` evidence removes the older stale state where the repo was
+described as having no license file. Publicization and external submission
+remain unapproved until a future owner-gated review says otherwise.

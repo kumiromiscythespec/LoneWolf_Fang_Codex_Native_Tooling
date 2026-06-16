@@ -40,6 +40,30 @@ sending, GUI/window automation, real orchestration, PAPER or LIVE trading,
 orders, private API access, backtests, replay, sweep, Monte Carlo, deploys,
 publicization, notification sending, commits, or pushes.
 
+## Codex Native Submission Readiness
+
+This repo demonstrates static supervised dry-run orchestration contracts and
+safety boundaries. It does not demonstrate real autonomous runtime execution,
+worker launch, live observation, or cloud/API mutation.
+
+Current submission-readiness references:
+
+- [Final owner submission review guide](docs/oss_review/final_owner_submission_review_guide.md)
+- [License readiness](docs/oss_review/license_readiness.md)
+- [Completed chain inventory](docs/orchestration/codex_native_submission_readiness_completed_chain_inventory.md)
+
+Safe local validation:
+
+```powershell
+node --test
+```
+
+Deployment, runtime workflows, live observation, worker launch,
+Queue/cloud/API mutation, billing/auth/trading behavior, private API calls,
+OpenAI API calls, public submission, GitHub visibility changes, release
+creation, release asset upload, commit, and push remain separate owner/external
+gated actions.
+
 ## Quick Start
 
 1. Read the rule files first:
