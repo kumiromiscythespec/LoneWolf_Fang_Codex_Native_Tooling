@@ -92,6 +92,19 @@ const submissionReadinessStaticGapImplementationLaneFiles = [
   "tests/codex_native_submission_readiness_static_gap_contract.test.mjs"
 ];
 
+const branchLocalDryRunOrchestrationMvpPlanningImplementationLaneFiles = [
+  "docs/orchestration/codex_native_branch_local_dry_run_orchestration_mvp_plan.md",
+  "docs/orchestration/codex_native_branch_local_dry_run_orchestration_mvp_state_machine.md",
+  "schema/orchestration/codex_native_branch_local_dry_run_orchestration_mvp_plan.schema.json",
+  "tests/codex_native_branch_local_dry_run_orchestration_mvp_plan_contract.test.mjs",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp/valid/mvp-plan-ready.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp/valid/mvp-plan-stop-owner-review-required.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp/invalid/runtime-go-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp/invalid/openai-api-call-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp/invalid/private-api-call-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp/invalid/auto-approval-true.json"
+];
+
 const validFixturePaths = [
   "tests/fixtures/codex-native-supervised-dry-run/result-envelope/valid/result_envelope_ready.json",
   "tests/fixtures/codex-native-supervised-dry-run/result-envelope/valid/result_envelope_blocked_missing_artifact.json",
@@ -317,7 +330,8 @@ test("working tree changes stay inside the exact 17-file allowlist", () => {
     ...allowedFiles,
     ...boundedAllowlistGuardCompatibilityRepairFiles,
     ...chainSummaryReferenceImplementationLaneFiles,
-    ...submissionReadinessStaticGapImplementationLaneFiles
+    ...submissionReadinessStaticGapImplementationLaneFiles,
+    ...branchLocalDryRunOrchestrationMvpPlanningImplementationLaneFiles
   ]);
 
   const outside = changedPaths.filter((path) => !currentWorkingTreeGuardAllowedFiles.has(path));

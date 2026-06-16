@@ -1,0 +1,135 @@
+{
+  "schema": "lonewolf.codex_native.branch_local_dry_run_orchestration_mvp_plan.v1",
+  "build_id": "BRANCH_LOCAL_DRY_RUN_ORCHESTRATION_MVP_PLANNING_20260616",
+  "target": "branch_local_dry_run_orchestration_mvp_planning",
+  "status": "STOP_OWNER_REVIEW_REQUIRED",
+  "submitted_baseline": "45d20a704c297d0668ff9b3d2a2ab031a7832d4b",
+  "branch_scope": {
+    "expected_branch": "post-submission/codex-native-safe-development",
+    "branch_local_only": true,
+    "remote_branch_required": false,
+    "commit_allowed": false,
+    "push_allowed": false
+  },
+  "minimum_orchestrator": {
+    "purpose": "Fail closed when evidence is missing or ambiguous.",
+    "input_envelopes": [
+      "branch baseline evidence",
+      "source artifact SHA256",
+      "owner approval phrase",
+      "forbidden action flags"
+    ],
+    "dry_run_handoff_concept": "No handoff proceeds until owner review resolves the blocker.",
+    "artifact_outputs": [
+      "manifest",
+      "blocker matrix",
+      "human review one point"
+    ]
+  },
+  "state_model": {
+    "states": [
+      "NOT_STARTED",
+      "PLAN_LOADED",
+      "OWNER_DECISION_REQUIRED",
+      "DRY_RUN_READY",
+      "SIMULATED_STEP_RECORDED",
+      "ARTIFACT_READY",
+      "STOP_OWNER_REVIEW_REQUIRED",
+      "FAILED_CLOSED"
+    ],
+    "events": [
+      "load_plan",
+      "missing_evidence",
+      "forbidden_intent_detected",
+      "unknown_state_or_event"
+    ],
+    "guards": [
+      "branch_matches",
+      "baseline_matches",
+      "source_hash_matches",
+      "owner_phrase_in_scope",
+      "forbidden_flags_false"
+    ],
+    "actions": [
+      "classify_stop_state",
+      "record_blocker",
+      "stop_for_owner_review"
+    ],
+    "stop_states": [
+      "STOP_OWNER_REVIEW_REQUIRED",
+      "FAILED_CLOSED"
+    ]
+  },
+  "simulation_boundary": {
+    "simulated": [
+      "blocker classification",
+      "owner review stop",
+      "next prompt refusal"
+    ],
+    "actually_executed": [],
+    "execution_boundary": "No runtime execution is performed."
+  },
+  "owner_decision_flow": {
+    "owner_review_required": true,
+    "allowed_decisions": [
+      "GO",
+      "REPAIR",
+      "STOP"
+    ],
+    "automatic_continuation_allowed": false
+  },
+  "artifact_outputs": [
+    "safe summary",
+    "blocker matrix",
+    "human review one point",
+    "NEXT_CODEX_PROMPT.md"
+  ],
+  "evidence_before_dry_run_implementation": [
+    "owner review of blocker",
+    "fresh approval phrase",
+    "clean worktree",
+    "focused and broad tests pass"
+  ],
+  "intentionally_not_implemented": [
+    "runtime orchestrator",
+    "worker launch",
+    "OpenAI API integration",
+    "private API integration",
+    "Queue mutation",
+    "deploy",
+    "public submission"
+  ],
+  "forbidden_actions": {
+    "runtime_execution": false,
+    "openai_api_call": false,
+    "private_api_call": false,
+    "worker_or_daemon_launch": false,
+    "queue_or_cloud_mutation": false,
+    "billing_auth_trading_mutation": false,
+    "deploy": false,
+    "public_submission": false,
+    "github_visibility_change": false,
+    "release_creation_or_upload": false,
+    "github_sponsors_application": false,
+    "funding_yml_change": false,
+    "stage_commit_push": false
+  },
+  "safety_flags": {
+    "runtime_go": false,
+    "openai_api_call_allowed": false,
+    "private_api_call_allowed": false,
+    "auto_approval_allowed": false,
+    "owner_review_required": true,
+    "hash_binding_is_execution_approval": false,
+    "ready_is_go": false,
+    "matched_is_go": false,
+    "observed_safe_no_action_is_go": false
+  },
+  "human_review_one_point": "Should the owner repair the missing evidence or stop the lane?",
+  "next_prompt_readiness": {
+    "recommended_next_action": "START_CODEX_NATIVE_BRANCH_LOCAL_DRY_RUN_ORCHESTRATION_MVP_PLANNING_IMPLEMENTATION_REVIEW_PACKET",
+    "implementation_review_only": true,
+    "commit_allowed": false,
+    "push_allowed": false
+  }
+}

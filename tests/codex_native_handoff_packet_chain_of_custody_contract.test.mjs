@@ -86,6 +86,19 @@ const submissionReadinessStaticGapImplementationLaneFiles = [
   "tests/codex_native_submission_readiness_static_gap_contract.test.mjs"
 ];
 
+const branchLocalDryRunOrchestrationMvpPlanningImplementationLaneFiles = [
+  "docs/orchestration/codex_native_branch_local_dry_run_orchestration_mvp_plan.md",
+  "docs/orchestration/codex_native_branch_local_dry_run_orchestration_mvp_state_machine.md",
+  "schema/orchestration/codex_native_branch_local_dry_run_orchestration_mvp_plan.schema.json",
+  "tests/codex_native_branch_local_dry_run_orchestration_mvp_plan_contract.test.mjs",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp/valid/mvp-plan-ready.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp/valid/mvp-plan-stop-owner-review-required.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp/invalid/runtime-go-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp/invalid/openai-api-call-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp/invalid/private-api-call-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp/invalid/auto-approval-true.json"
+];
+
 const validFixturePaths = [
   "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/valid/accepted-chain-index.json",
   "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/valid/owner-review-required.json"
@@ -420,7 +433,8 @@ test("current repo edits remain inside the exact handoff custody allowlist", () 
     ...allowedFiles,
     ...boundedAllowlistGuardCompatibilityRepairFiles,
     ...chainSummaryReferenceImplementationLaneFiles,
-    ...submissionReadinessStaticGapImplementationLaneFiles
+    ...submissionReadinessStaticGapImplementationLaneFiles,
+    ...branchLocalDryRunOrchestrationMvpPlanningImplementationLaneFiles
   ]);
   for (const file of changed) {
     assert.ok(allowed.has(file), `unexpected changed file: ${file}`);

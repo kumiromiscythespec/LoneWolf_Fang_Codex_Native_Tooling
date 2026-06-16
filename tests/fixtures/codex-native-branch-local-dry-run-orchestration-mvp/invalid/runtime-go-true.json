@@ -1,0 +1,73 @@
+{
+  "schema": "lonewolf.codex_native.branch_local_dry_run_orchestration_mvp_plan.v1",
+  "build_id": "BRANCH_LOCAL_DRY_RUN_ORCHESTRATION_MVP_PLANNING_20260616",
+  "target": "branch_local_dry_run_orchestration_mvp_planning",
+  "status": "MVP_PLAN_READY",
+  "submitted_baseline": "45d20a704c297d0668ff9b3d2a2ab031a7832d4b",
+  "branch_scope": {
+    "expected_branch": "post-submission/codex-native-safe-development",
+    "branch_local_only": true,
+    "remote_branch_required": false,
+    "commit_allowed": false,
+    "push_allowed": false
+  },
+  "minimum_orchestrator": {
+    "purpose": "Invalid runtime GO example.",
+    "input_envelopes": ["static request"],
+    "dry_run_handoff_concept": "Invalid fixture.",
+    "artifact_outputs": ["manifest"]
+  },
+  "state_model": {
+    "states": ["NOT_STARTED", "PLAN_LOADED", "OWNER_DECISION_REQUIRED", "DRY_RUN_READY", "SIMULATED_STEP_RECORDED", "ARTIFACT_READY", "STOP_OWNER_REVIEW_REQUIRED", "FAILED_CLOSED"],
+    "events": ["load_plan"],
+    "guards": ["forbidden_flags_false"],
+    "actions": ["stop_for_owner_review"],
+    "stop_states": ["STOP_OWNER_REVIEW_REQUIRED", "FAILED_CLOSED"]
+  },
+  "simulation_boundary": {
+    "simulated": ["invalid example"],
+    "actually_executed": [],
+    "execution_boundary": "No runtime execution is performed."
+  },
+  "owner_decision_flow": {
+    "owner_review_required": true,
+    "allowed_decisions": ["GO", "REPAIR", "STOP"],
+    "automatic_continuation_allowed": false
+  },
+  "artifact_outputs": ["manifest"],
+  "evidence_before_dry_run_implementation": ["owner review"],
+  "intentionally_not_implemented": ["runtime orchestrator"],
+  "forbidden_actions": {
+    "runtime_execution": false,
+    "openai_api_call": false,
+    "private_api_call": false,
+    "worker_or_daemon_launch": false,
+    "queue_or_cloud_mutation": false,
+    "billing_auth_trading_mutation": false,
+    "deploy": false,
+    "public_submission": false,
+    "github_visibility_change": false,
+    "release_creation_or_upload": false,
+    "github_sponsors_application": false,
+    "funding_yml_change": false,
+    "stage_commit_push": false
+  },
+  "safety_flags": {
+    "runtime_go": true,
+    "openai_api_call_allowed": false,
+    "private_api_call_allowed": false,
+    "auto_approval_allowed": false,
+    "owner_review_required": true,
+    "hash_binding_is_execution_approval": false,
+    "ready_is_go": false,
+    "matched_is_go": false,
+    "observed_safe_no_action_is_go": false
+  },
+  "human_review_one_point": "Invalid fixture must be rejected.",
+  "next_prompt_readiness": {
+    "recommended_next_action": "START_CODEX_NATIVE_BRANCH_LOCAL_DRY_RUN_ORCHESTRATION_MVP_PLANNING_IMPLEMENTATION_REVIEW_PACKET",
+    "implementation_review_only": true,
+    "commit_allowed": false,
+    "push_allowed": false
+  }
+}

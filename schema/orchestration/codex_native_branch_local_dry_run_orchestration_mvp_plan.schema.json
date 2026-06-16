@@ -1,0 +1,310 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lonewolf.codex_native.branch_local_dry_run_orchestration_mvp_plan.v1",
+  "$comment": "BUILD_ID: BRANCH_LOCAL_DRY_RUN_ORCHESTRATION_MVP_PLANNING_20260616",
+  "title": "Codex Native Branch Local Dry Run Orchestration MVP Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "target",
+    "status",
+    "submitted_baseline",
+    "branch_scope",
+    "minimum_orchestrator",
+    "state_model",
+    "simulation_boundary",
+    "owner_decision_flow",
+    "artifact_outputs",
+    "evidence_before_dry_run_implementation",
+    "intentionally_not_implemented",
+    "forbidden_actions",
+    "safety_flags",
+    "human_review_one_point",
+    "next_prompt_readiness"
+  ],
+  "properties": {
+    "schema": {
+      "const": "lonewolf.codex_native.branch_local_dry_run_orchestration_mvp_plan.v1"
+    },
+    "build_id": {
+      "const": "BRANCH_LOCAL_DRY_RUN_ORCHESTRATION_MVP_PLANNING_20260616"
+    },
+    "target": {
+      "const": "branch_local_dry_run_orchestration_mvp_planning"
+    },
+    "status": {
+      "enum": [
+        "MVP_PLAN_READY",
+        "STOP_OWNER_REVIEW_REQUIRED"
+      ]
+    },
+    "submitted_baseline": {
+      "const": "45d20a704c297d0668ff9b3d2a2ab031a7832d4b"
+    },
+    "branch_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expected_branch",
+        "branch_local_only",
+        "remote_branch_required",
+        "commit_allowed",
+        "push_allowed"
+      ],
+      "properties": {
+        "expected_branch": {
+          "const": "post-submission/codex-native-safe-development"
+        },
+        "branch_local_only": {
+          "const": true
+        },
+        "remote_branch_required": {
+          "const": false
+        },
+        "commit_allowed": {
+          "const": false
+        },
+        "push_allowed": {
+          "const": false
+        }
+      }
+    },
+    "minimum_orchestrator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "purpose",
+        "input_envelopes",
+        "dry_run_handoff_concept",
+        "artifact_outputs"
+      ],
+      "properties": {
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "input_envelopes": {
+          "$ref": "#/$defs/non_empty_string_array"
+        },
+        "dry_run_handoff_concept": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artifact_outputs": {
+          "$ref": "#/$defs/non_empty_string_array"
+        }
+      }
+    },
+    "state_model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "states",
+        "events",
+        "guards",
+        "actions",
+        "stop_states"
+      ],
+      "properties": {
+        "states": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "NOT_STARTED",
+              "PLAN_LOADED",
+              "OWNER_DECISION_REQUIRED",
+              "DRY_RUN_READY",
+              "SIMULATED_STEP_RECORDED",
+              "ARTIFACT_READY",
+              "STOP_OWNER_REVIEW_REQUIRED",
+              "FAILED_CLOSED"
+            ]
+          },
+          "minItems": 8,
+          "uniqueItems": true
+        },
+        "events": {
+          "$ref": "#/$defs/non_empty_string_array"
+        },
+        "guards": {
+          "$ref": "#/$defs/non_empty_string_array"
+        },
+        "actions": {
+          "$ref": "#/$defs/non_empty_string_array"
+        },
+        "stop_states": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "STOP_OWNER_REVIEW_REQUIRED",
+              "FAILED_CLOSED"
+            ]
+          },
+          "minItems": 2,
+          "uniqueItems": true
+        }
+      }
+    },
+    "simulation_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "simulated",
+        "actually_executed",
+        "execution_boundary"
+      ],
+      "properties": {
+        "simulated": {
+          "$ref": "#/$defs/non_empty_string_array"
+        },
+        "actually_executed": {
+          "type": "array",
+          "maxItems": 0
+        },
+        "execution_boundary": {
+          "type": "string",
+          "pattern": "No runtime execution"
+        }
+      }
+    },
+    "owner_decision_flow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "owner_review_required",
+        "allowed_decisions",
+        "automatic_continuation_allowed"
+      ],
+      "properties": {
+        "owner_review_required": {
+          "const": true
+        },
+        "allowed_decisions": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "GO",
+              "REPAIR",
+              "STOP"
+            ]
+          },
+          "minItems": 3,
+          "uniqueItems": true
+        },
+        "automatic_continuation_allowed": {
+          "const": false
+        }
+      }
+    },
+    "artifact_outputs": {
+      "$ref": "#/$defs/non_empty_string_array"
+    },
+    "evidence_before_dry_run_implementation": {
+      "$ref": "#/$defs/non_empty_string_array"
+    },
+    "intentionally_not_implemented": {
+      "$ref": "#/$defs/non_empty_string_array"
+    },
+    "forbidden_actions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_execution",
+        "openai_api_call",
+        "private_api_call",
+        "worker_or_daemon_launch",
+        "queue_or_cloud_mutation",
+        "billing_auth_trading_mutation",
+        "deploy",
+        "public_submission",
+        "github_visibility_change",
+        "release_creation_or_upload",
+        "github_sponsors_application",
+        "funding_yml_change",
+        "stage_commit_push"
+      ],
+      "properties": {
+        "runtime_execution": { "const": false },
+        "openai_api_call": { "const": false },
+        "private_api_call": { "const": false },
+        "worker_or_daemon_launch": { "const": false },
+        "queue_or_cloud_mutation": { "const": false },
+        "billing_auth_trading_mutation": { "const": false },
+        "deploy": { "const": false },
+        "public_submission": { "const": false },
+        "github_visibility_change": { "const": false },
+        "release_creation_or_upload": { "const": false },
+        "github_sponsors_application": { "const": false },
+        "funding_yml_change": { "const": false },
+        "stage_commit_push": { "const": false }
+      }
+    },
+    "safety_flags": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_go",
+        "openai_api_call_allowed",
+        "private_api_call_allowed",
+        "auto_approval_allowed",
+        "owner_review_required",
+        "hash_binding_is_execution_approval",
+        "ready_is_go",
+        "matched_is_go",
+        "observed_safe_no_action_is_go"
+      ],
+      "properties": {
+        "runtime_go": { "const": false },
+        "openai_api_call_allowed": { "const": false },
+        "private_api_call_allowed": { "const": false },
+        "auto_approval_allowed": { "const": false },
+        "owner_review_required": { "const": true },
+        "hash_binding_is_execution_approval": { "const": false },
+        "ready_is_go": { "const": false },
+        "matched_is_go": { "const": false },
+        "observed_safe_no_action_is_go": { "const": false }
+      }
+    },
+    "human_review_one_point": {
+      "type": "string",
+      "minLength": 1
+    },
+    "next_prompt_readiness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recommended_next_action",
+        "implementation_review_only",
+        "commit_allowed",
+        "push_allowed"
+      ],
+      "properties": {
+        "recommended_next_action": {
+          "const": "START_CODEX_NATIVE_BRANCH_LOCAL_DRY_RUN_ORCHESTRATION_MVP_PLANNING_IMPLEMENTATION_REVIEW_PACKET"
+        },
+        "implementation_review_only": {
+          "const": true
+        },
+        "commit_allowed": {
+          "const": false
+        },
+        "push_allowed": {
+          "const": false
+        }
+      }
+    }
+  },
+  "$defs": {
+    "non_empty_string_array": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  }
+}
