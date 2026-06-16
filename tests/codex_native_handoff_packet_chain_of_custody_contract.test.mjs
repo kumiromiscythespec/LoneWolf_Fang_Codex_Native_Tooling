@@ -99,6 +99,22 @@ const branchLocalDryRunOrchestrationMvpPlanningImplementationLaneFiles = [
   "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp/invalid/auto-approval-true.json"
 ];
 
+const branchLocalDryRunOrchestrationMvpStaticExecutionImplementationLaneFiles = [
+  "docs/orchestration/codex_native_branch_local_dry_run_orchestration_mvp_static_execution_contracts.md",
+  "docs/orchestration/codex_native_branch_local_dry_run_orchestration_mvp_static_execution_state_trace.md",
+  "schema/orchestration/codex_native_branch_local_dry_run_orchestration_mvp_static_execution.schema.json",
+  "tests/codex_native_branch_local_dry_run_orchestration_mvp_static_execution_contract.test.mjs",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/valid/static-execution-ready.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/valid/static-execution-stop-owner-review-required.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/invalid/runtime-go-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/invalid/openai-api-call-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/invalid/private-api-call-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/invalid/queue-mutation-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/invalid/cloud-mutation-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/invalid/trading-mutation-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/invalid/auto-approval-true.json"
+];
+
 const validFixturePaths = [
   "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/valid/accepted-chain-index.json",
   "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/valid/owner-review-required.json"
@@ -434,7 +450,8 @@ test("current repo edits remain inside the exact handoff custody allowlist", () 
     ...boundedAllowlistGuardCompatibilityRepairFiles,
     ...chainSummaryReferenceImplementationLaneFiles,
     ...submissionReadinessStaticGapImplementationLaneFiles,
-    ...branchLocalDryRunOrchestrationMvpPlanningImplementationLaneFiles
+    ...branchLocalDryRunOrchestrationMvpPlanningImplementationLaneFiles,
+    ...branchLocalDryRunOrchestrationMvpStaticExecutionImplementationLaneFiles
   ]);
   for (const file of changed) {
     assert.ok(allowed.has(file), `unexpected changed file: ${file}`);

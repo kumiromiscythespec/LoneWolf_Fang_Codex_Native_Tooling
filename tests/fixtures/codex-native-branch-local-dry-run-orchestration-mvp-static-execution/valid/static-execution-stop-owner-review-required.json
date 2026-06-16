@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0.0",
+  "schema": "lonewolf.codex_native.branch_local_dry_run_orchestration_mvp_static_execution.v1",
+  "build_id": "BRANCH_LOCAL_DRY_RUN_ORCHESTRATION_MVP_STATIC_EXECUTION_CONTRACTS_20260616",
+  "lane": "BRANCH_LOCAL_DRY_RUN_ORCHESTRATION_MVP_STATIC_EXECUTION_CONTRACTS",
+  "submitted_baseline": "45d20a704c297d0668ff9b3d2a2ab031a7832d4b",
+  "branch_scope": {
+    "expected_branch": "post-submission/codex-native-safe-development",
+    "local_head_bound": "00e06a73484c5072d652a9ef8d11828687d330e9",
+    "origin_master_bound": "45d20a704c297d0668ff9b3d2a2ab031a7832d4b",
+    "remote_branch_bound": "00e06a73484c5072d652a9ef8d11828687d330e9",
+    "branch_mutation_allowed": false
+  },
+  "execution_request": {
+    "request_id": "static-execution-stop-owner-review-required",
+    "request_kind": "STATIC_EXECUTION_CONTRACT_VALIDATION",
+    "static_only": true,
+    "owner_approval_scope": "docs_schema_tests_fixtures_only",
+    "source_approval_packet_name": "codex_native_branch_local_dry_run_orchestration_mvp_static_execution_contracts_approval_packet_20260616_141826.zip",
+    "requested_outputs": [
+      "stop classification",
+      "blocker matrix",
+      "owner review point"
+    ]
+  },
+  "static_transition_trace": {
+    "initial_state": "REQUEST_RECEIVED",
+    "transitions": [
+      {
+        "from": "REQUEST_RECEIVED",
+        "event": "missing_or_ambiguous_evidence",
+        "guard": "stop",
+        "to": "Stop and Wait - Owner Review Required",
+        "action_kind": "STATIC_STOP_CLASSIFICATION"
+      }
+    ],
+    "terminal_state": "Stop and Wait - Owner Review Required",
+    "executed_runtime_actions": []
+  },
+  "safety_decision": {
+    "decision": "STATIC_STOP_OWNER_REVIEW_REQUIRED",
+    "owner_review_required": true,
+    "unsafe_action_detected": false,
+    "reasons": [
+      "evidence requires human review",
+      "no automatic continuation is allowed",
+      "unsafe flags remain false"
+    ]
+  },
+  "closeout_record": {
+    "classification": "STATIC_EXECUTION_CONTRACTS_STOP_OWNER_REVIEW_REQUIRED",
+    "review_status": "Stop and Wait - Owner Review Required",
+    "ready_is_go": false,
+    "matched_is_go": false,
+    "observed_safe_no_action_is_go": false,
+    "next_prompt": "START_CODEX_NATIVE_BRANCH_LOCAL_DRY_RUN_ORCHESTRATION_MVP_STATIC_EXECUTION_CONTRACTS_IMPLEMENTATION_REVIEW_PACKET"
+  },
+  "evidence_hash_binding": {
+    "hash_algorithm": "SHA256",
+    "source_approval_packet_path": "C:\\Users\\yu_ki\\AppData\\Local\\LoneWolfFang\\data\\codex_native_branch_local_dry_run_orchestration_mvp_static_execution_contracts_approval_packet_20260616_141826.zip",
+    "source_approval_packet_sha256": "E620315735D0DB38D87FE96E99406852F4E5EE84B9547D0C3F5D7932EC430A51",
+    "hash_binding_is_execution_approval": false
+  },
+  "owner_review_required": true,
+  "terminal_state": "Stop and Wait - Owner Review Required",
+  "forbidden_actions": {
+    "runtime_execution": false,
+    "openai_api_call": false,
+    "private_api_call": false,
+    "queue_mutation": false,
+    "cloud_mutation": false,
+    "billing_mutation": false,
+    "auth_mutation": false,
+    "trading_mutation": false,
+    "auto_approval": false,
+    "pr_creation": false,
+    "merge": false,
+    "deploy": false,
+    "public_submission": false,
+    "release_creation": false,
+    "github_visibility_change": false,
+    "sponsors_or_funding_change": false
+  },
+  "safety_flags": {
+    "runtime_go": false,
+    "openai_api_call_allowed": false,
+    "private_api_call_allowed": false,
+    "queue_mutation_allowed": false,
+    "cloud_mutation_allowed": false,
+    "billing_mutation_allowed": false,
+    "auth_mutation_allowed": false,
+    "trading_mutation_allowed": false,
+    "auto_approval_allowed": false,
+    "pr_creation_allowed": false,
+    "merge_allowed": false,
+    "deploy_allowed": false,
+    "public_submission_allowed": false
+  },
+  "human_review_one_point": "Should the owner repair the evidence gap or stop this static lane?",
+  "next_prompt_readiness": {
+    "recommended_next_action": "START_CODEX_NATIVE_BRANCH_LOCAL_DRY_RUN_ORCHESTRATION_MVP_STATIC_EXECUTION_CONTRACTS_IMPLEMENTATION_REVIEW_PACKET",
+    "review_only": true,
+    "commit_allowed": false,
+    "push_allowed": false,
+    "runtime_go_allowed": false
+  }
+}
