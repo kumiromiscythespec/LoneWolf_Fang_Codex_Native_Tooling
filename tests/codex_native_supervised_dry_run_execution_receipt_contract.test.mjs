@@ -133,6 +133,22 @@ const branchLocalDryRunOrchestrationMvpStaticExecutionImplementationLaneFiles = 
   "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/invalid/trading-mutation-true.json",
   "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/invalid/auto-approval-true.json"
 ];
+const lwfNoteNetworkLocalOrchestratorImplementationLaneFiles = [
+  "docs/orchestration/lwf_note_network_local_orchestrator_contract.md",
+  "docs/orchestration/lwf_note_network_local_orchestrator_state_machine.md",
+  "schema/orchestration/lwf_note_network_local_orchestrator.schema.json",
+  "tests/lwf_note_network_local_orchestrator_contract.test.mjs",
+  "tests/fixtures/lwf-note-network-local-orchestrator/valid/scout-packet.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/valid/review-packet.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/valid/full-loop-ready-for-codex.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/missing-note-node.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/unsafe-go.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/push-approval-confusion.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/public-version-priority.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/codex-direct-execution-without-scout.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/review-skipped.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/note-output-used-as-proof-without-verification.json"
+];
 
 
 const schema = readJson(schemaPath);
@@ -494,7 +510,8 @@ test("working tree changes stay inside the exact 19-file allowlist", () => {
     ...chainSummaryReferenceImplementationLaneFiles,
     ...submissionReadinessStaticGapImplementationLaneFiles,
     ...branchLocalDryRunOrchestrationMvpPlanningImplementationLaneFiles,
-    ...branchLocalDryRunOrchestrationMvpStaticExecutionImplementationLaneFiles
+    ...branchLocalDryRunOrchestrationMvpStaticExecutionImplementationLaneFiles,
+    ...lwfNoteNetworkLocalOrchestratorImplementationLaneFiles
   ]);
 
   const outside = changedPaths.filter((file) => !currentWorkingTreeGuardAllowedFiles.has(file));

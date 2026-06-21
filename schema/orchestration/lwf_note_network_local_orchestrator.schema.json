@@ -1,0 +1,269 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lonewolf.lwf_note_network.local_orchestrator.v1",
+  "title": "LWF NOTE-NETWORK Local Orchestrator Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "lane",
+    "project_priority",
+    "public_version_deferred",
+    "local_orchestrator_priority",
+    "scout_phase",
+    "note_nodes",
+    "node_roles",
+    "merged_packet",
+    "compact_packet",
+    "codex_phase",
+    "codex_usage_reduction",
+    "review_phase",
+    "chatgpt_final_review",
+    "owner_decision",
+    "safety_boundary",
+    "forbidden_actions",
+    "evidence_requirements",
+    "terminal_state"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "lane": { "const": "LWF_NOTE_NETWORK_LOCAL_ORCHESTRATOR" },
+    "project_priority": { "const": "LOCAL_LWF_NOTE_NETWORK_FIRST" },
+    "public_version_deferred": { "const": true },
+    "local_orchestrator_priority": { "const": true },
+    "scout_phase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "chatgpt_writes_plan",
+        "owner_writes_plan_to_input",
+        "local_runner",
+        "all_note_nodes_required",
+        "completed",
+        "chatgpt_review_required",
+        "codex_execution_approved_by_scout"
+      ],
+      "properties": {
+        "chatgpt_writes_plan": { "const": true },
+        "owner_writes_plan_to_input": { "const": "C:\\LWF_NoteNetwork\\inputs\\scout_plan.txt" },
+        "local_runner": { "const": "run-scout.ps1" },
+        "all_note_nodes_required": { "const": true },
+        "completed": { "type": "boolean" },
+        "chatgpt_review_required": { "const": true },
+        "codex_execution_approved_by_scout": { "const": false }
+      }
+    },
+    "note_nodes": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": {
+        "enum": ["NOTE-01", "NOTE-02", "NOTE-03", "NOTE-04", "NOTE-05"]
+      },
+      "contains": { "const": "NOTE-01" }
+    },
+    "node_roles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["NOTE-01", "NOTE-02", "NOTE-03", "NOTE-04", "NOTE-05"],
+      "properties": {
+        "NOTE-01": { "type": "string", "minLength": 1 },
+        "NOTE-02": { "type": "string", "minLength": 1 },
+        "NOTE-03": { "type": "string", "minLength": 1 },
+        "NOTE-04": { "type": "string", "minLength": 1 },
+        "NOTE-05": { "type": "string", "minLength": 1 }
+      }
+    },
+    "merged_packet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created", "includes_all_note_nodes", "treated_as_proof"],
+      "properties": {
+        "created": { "type": "boolean" },
+        "includes_all_note_nodes": { "const": true },
+        "treated_as_proof": { "const": false }
+      }
+    },
+    "compact_packet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created", "given_to_chatgpt", "requires_independent_verification"],
+      "properties": {
+        "created": { "type": "boolean" },
+        "given_to_chatgpt": { "type": "boolean" },
+        "requires_independent_verification": { "const": true }
+      }
+    },
+    "codex_phase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bounded_prompt_required",
+        "scout_completed",
+        "chatgpt_scout_review_completed",
+        "execution_allowed",
+        "artifact_zip_required",
+        "sha_sidecars_required",
+        "cloud_unpushed_worktree_assumed_readable"
+      ],
+      "properties": {
+        "bounded_prompt_required": { "const": true },
+        "scout_completed": { "type": "boolean" },
+        "chatgpt_scout_review_completed": { "type": "boolean" },
+        "execution_allowed": { "type": "boolean" },
+        "artifact_zip_required": { "const": true },
+        "sha_sidecars_required": { "const": true },
+        "cloud_unpushed_worktree_assumed_readable": { "const": false }
+      }
+    },
+    "codex_usage_reduction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["note_preprocessing_enabled", "codex_scope_reduced_by_scout", "codex_final_authority"],
+      "properties": {
+        "note_preprocessing_enabled": { "const": true },
+        "codex_scope_reduced_by_scout": { "const": true },
+        "codex_final_authority": { "const": false }
+      }
+    },
+    "review_phase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_after_codex_execution",
+        "completed",
+        "all_note_nodes_required",
+        "push_approved_by_review"
+      ],
+      "properties": {
+        "required_after_codex_execution": { "const": true },
+        "completed": { "type": "boolean" },
+        "all_note_nodes_required": { "const": true },
+        "push_approved_by_review": { "const": false }
+      }
+    },
+    "chatgpt_final_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required",
+        "uses_artifacts",
+        "uses_diffs",
+        "uses_tests",
+        "uses_manifests",
+        "uses_repo_evidence",
+        "note_output_is_proof"
+      ],
+      "properties": {
+        "required": { "const": true },
+        "uses_artifacts": { "const": true },
+        "uses_diffs": { "const": true },
+        "uses_tests": { "const": true },
+        "uses_manifests": { "const": true },
+        "uses_repo_evidence": { "const": true },
+        "note_output_is_proof": { "const": false }
+      }
+    },
+    "owner_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "one_point_only", "ready_is_go", "matched_is_go"],
+      "properties": {
+        "required": { "const": true },
+        "one_point_only": { "const": true },
+        "ready_is_go": { "const": false },
+        "matched_is_go": { "const": false }
+      }
+    },
+    "safety_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_go",
+        "push_go",
+        "deploy_go",
+        "public_submission_go",
+        "note_output_is_local_preprocessing",
+        "owner_review_mandatory"
+      ],
+      "properties": {
+        "runtime_go": { "const": false },
+        "push_go": { "const": false },
+        "deploy_go": { "const": false },
+        "public_submission_go": { "const": false },
+        "note_output_is_local_preprocessing": { "const": true },
+        "owner_review_mandatory": { "const": true }
+      }
+    },
+    "forbidden_actions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_automation",
+        "openai_api_call",
+        "private_api_call",
+        "local_note_node_call",
+        "ollama_call",
+        "queue_mutation",
+        "cloud_mutation",
+        "billing_mutation",
+        "auth_mutation",
+        "trading_mutation",
+        "push",
+        "pr",
+        "merge",
+        "deploy",
+        "public_submission"
+      ],
+      "properties": {
+        "runtime_automation": { "const": false },
+        "openai_api_call": { "const": false },
+        "private_api_call": { "const": false },
+        "local_note_node_call": { "const": false },
+        "ollama_call": { "const": false },
+        "queue_mutation": { "const": false },
+        "cloud_mutation": { "const": false },
+        "billing_mutation": { "const": false },
+        "auth_mutation": { "const": false },
+        "trading_mutation": { "const": false },
+        "push": { "const": false },
+        "pr": { "const": false },
+        "merge": { "const": false },
+        "deploy": { "const": false },
+        "public_submission": { "const": false }
+      }
+    },
+    "evidence_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_zip",
+        "sha_sidecars",
+        "diffs",
+        "test_summary",
+        "manifest",
+        "repo_evidence",
+        "note_output_alone_sufficient"
+      ],
+      "properties": {
+        "artifact_zip": { "const": true },
+        "sha_sidecars": { "const": true },
+        "diffs": { "const": true },
+        "test_summary": { "const": true },
+        "manifest": { "const": true },
+        "repo_evidence": { "const": true },
+        "note_output_alone_sufficient": { "const": false }
+      }
+    },
+    "terminal_state": {
+      "enum": [
+        "READY_FOR_CHATGPT_SCOUT_REVIEW",
+        "READY_FOR_CODEX_BOUNDED_PROMPT",
+        "READY_FOR_CHATGPT_FINAL_REVIEW",
+        "READY_FOR_NEXT_BOUNDED_PROMPT",
+        "STOP_OWNER_REVIEW_REQUIRED"
+      ]
+    }
+  }
+}

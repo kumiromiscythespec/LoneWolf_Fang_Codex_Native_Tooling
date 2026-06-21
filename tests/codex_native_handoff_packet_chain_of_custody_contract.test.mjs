@@ -114,6 +114,22 @@ const branchLocalDryRunOrchestrationMvpStaticExecutionImplementationLaneFiles = 
   "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/invalid/trading-mutation-true.json",
   "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/invalid/auto-approval-true.json"
 ];
+const lwfNoteNetworkLocalOrchestratorImplementationLaneFiles = [
+  "docs/orchestration/lwf_note_network_local_orchestrator_contract.md",
+  "docs/orchestration/lwf_note_network_local_orchestrator_state_machine.md",
+  "schema/orchestration/lwf_note_network_local_orchestrator.schema.json",
+  "tests/lwf_note_network_local_orchestrator_contract.test.mjs",
+  "tests/fixtures/lwf-note-network-local-orchestrator/valid/scout-packet.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/valid/review-packet.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/valid/full-loop-ready-for-codex.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/missing-note-node.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/unsafe-go.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/push-approval-confusion.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/public-version-priority.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/codex-direct-execution-without-scout.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/review-skipped.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/note-output-used-as-proof-without-verification.json"
+];
 
 const validFixturePaths = [
   "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/valid/accepted-chain-index.json",
@@ -451,7 +467,8 @@ test("current repo edits remain inside the exact handoff custody allowlist", () 
     ...chainSummaryReferenceImplementationLaneFiles,
     ...submissionReadinessStaticGapImplementationLaneFiles,
     ...branchLocalDryRunOrchestrationMvpPlanningImplementationLaneFiles,
-    ...branchLocalDryRunOrchestrationMvpStaticExecutionImplementationLaneFiles
+    ...branchLocalDryRunOrchestrationMvpStaticExecutionImplementationLaneFiles,
+    ...lwfNoteNetworkLocalOrchestratorImplementationLaneFiles
   ]);
   for (const file of changed) {
     assert.ok(allowed.has(file), `unexpected changed file: ${file}`);
