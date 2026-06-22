@@ -108,6 +108,52 @@ const submissionReadinessStaticGapImplementationLaneFiles = [
   "tests/codex_native_submission_readiness_static_gap_contract.test.mjs"
 ];
 
+const branchLocalDryRunOrchestrationMvpPlanningImplementationLaneFiles = [
+  "docs/orchestration/codex_native_branch_local_dry_run_orchestration_mvp_plan.md",
+  "docs/orchestration/codex_native_branch_local_dry_run_orchestration_mvp_state_machine.md",
+  "schema/orchestration/codex_native_branch_local_dry_run_orchestration_mvp_plan.schema.json",
+  "tests/codex_native_branch_local_dry_run_orchestration_mvp_plan_contract.test.mjs",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp/valid/mvp-plan-ready.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp/valid/mvp-plan-stop-owner-review-required.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp/invalid/runtime-go-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp/invalid/openai-api-call-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp/invalid/private-api-call-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp/invalid/auto-approval-true.json"
+];
+
+const branchLocalDryRunOrchestrationMvpStaticExecutionImplementationLaneFiles = [
+  "docs/orchestration/codex_native_branch_local_dry_run_orchestration_mvp_static_execution_contracts.md",
+  "docs/orchestration/codex_native_branch_local_dry_run_orchestration_mvp_static_execution_state_trace.md",
+  "schema/orchestration/codex_native_branch_local_dry_run_orchestration_mvp_static_execution.schema.json",
+  "tests/codex_native_branch_local_dry_run_orchestration_mvp_static_execution_contract.test.mjs",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/valid/static-execution-ready.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/valid/static-execution-stop-owner-review-required.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/invalid/runtime-go-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/invalid/openai-api-call-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/invalid/private-api-call-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/invalid/queue-mutation-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/invalid/cloud-mutation-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/invalid/trading-mutation-true.json",
+  "tests/fixtures/codex-native-branch-local-dry-run-orchestration-mvp-static-execution/invalid/auto-approval-true.json"
+];
+const lwfNoteNetworkLocalOrchestratorImplementationLaneFiles = [
+  "docs/orchestration/lwf_note_network_local_orchestrator_contract.md",
+  "docs/orchestration/lwf_note_network_local_orchestrator_usage.md",
+  "docs/orchestration/lwf_note_network_local_orchestrator_state_machine.md",
+  "schema/orchestration/lwf_note_network_local_orchestrator.schema.json",
+  "tests/lwf_note_network_local_orchestrator_contract.test.mjs",
+  "tests/fixtures/lwf-note-network-local-orchestrator/valid/scout-packet.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/valid/review-packet.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/valid/full-loop-ready-for-codex.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/missing-note-node.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/unsafe-go.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/push-approval-confusion.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/public-version-priority.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/codex-direct-execution-without-scout.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/review-skipped.json",
+  "tests/fixtures/lwf-note-network-local-orchestrator/invalid/note-output-used-as-proof-without-verification.json"
+];
+
 
 const schema = readJson(schemaPath);
 const statuses = schema.properties.linkage_status.enum;
@@ -382,7 +428,10 @@ test("working tree changes stay inside the exact 21-file allowlist", () => {
     ...allowedFiles,
     ...boundedAllowlistGuardCompatibilityRepairFiles,
     ...chainSummaryReferenceImplementationLaneFiles,
-    ...submissionReadinessStaticGapImplementationLaneFiles
+    ...submissionReadinessStaticGapImplementationLaneFiles,
+    ...branchLocalDryRunOrchestrationMvpPlanningImplementationLaneFiles,
+    ...branchLocalDryRunOrchestrationMvpStaticExecutionImplementationLaneFiles,
+    ...lwfNoteNetworkLocalOrchestratorImplementationLaneFiles
   ]);
 
   const outside = changedPaths.filter((file) => !currentWorkingTreeGuardAllowedFiles.has(file));

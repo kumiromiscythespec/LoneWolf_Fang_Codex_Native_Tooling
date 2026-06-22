@@ -1,0 +1,387 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lonewolf.codex_native.branch_local_dry_run_orchestration_mvp_static_execution.v1",
+  "$comment": "BUILD_ID: BRANCH_LOCAL_DRY_RUN_ORCHESTRATION_MVP_STATIC_EXECUTION_CONTRACTS_20260616",
+  "title": "Codex Native Branch Local Dry Run Orchestration MVP Static Execution Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "schema",
+    "build_id",
+    "lane",
+    "submitted_baseline",
+    "branch_scope",
+    "execution_request",
+    "static_transition_trace",
+    "safety_decision",
+    "closeout_record",
+    "evidence_hash_binding",
+    "owner_review_required",
+    "terminal_state",
+    "forbidden_actions",
+    "safety_flags",
+    "human_review_one_point",
+    "next_prompt_readiness"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "schema": {
+      "const": "lonewolf.codex_native.branch_local_dry_run_orchestration_mvp_static_execution.v1"
+    },
+    "build_id": {
+      "const": "BRANCH_LOCAL_DRY_RUN_ORCHESTRATION_MVP_STATIC_EXECUTION_CONTRACTS_20260616"
+    },
+    "lane": {
+      "const": "BRANCH_LOCAL_DRY_RUN_ORCHESTRATION_MVP_STATIC_EXECUTION_CONTRACTS"
+    },
+    "submitted_baseline": {
+      "const": "45d20a704c297d0668ff9b3d2a2ab031a7832d4b"
+    },
+    "branch_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expected_branch",
+        "local_head_bound",
+        "origin_master_bound",
+        "remote_branch_bound",
+        "branch_mutation_allowed"
+      ],
+      "properties": {
+        "expected_branch": {
+          "const": "post-submission/codex-native-safe-development"
+        },
+        "local_head_bound": {
+          "const": "00e06a73484c5072d652a9ef8d11828687d330e9"
+        },
+        "origin_master_bound": {
+          "const": "45d20a704c297d0668ff9b3d2a2ab031a7832d4b"
+        },
+        "remote_branch_bound": {
+          "const": "00e06a73484c5072d652a9ef8d11828687d330e9"
+        },
+        "branch_mutation_allowed": {
+          "const": false
+        }
+      }
+    },
+    "execution_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "request_id",
+        "request_kind",
+        "static_only",
+        "owner_approval_scope",
+        "source_approval_packet_name",
+        "requested_outputs"
+      ],
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request_kind": {
+          "const": "STATIC_EXECUTION_CONTRACT_VALIDATION"
+        },
+        "static_only": {
+          "const": true
+        },
+        "owner_approval_scope": {
+          "const": "docs_schema_tests_fixtures_only"
+        },
+        "source_approval_packet_name": {
+          "const": "codex_native_branch_local_dry_run_orchestration_mvp_static_execution_contracts_approval_packet_20260616_141826.zip"
+        },
+        "requested_outputs": {
+          "$ref": "#/$defs/non_empty_string_array"
+        }
+      }
+    },
+    "static_transition_trace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "initial_state",
+        "transitions",
+        "terminal_state",
+        "executed_runtime_actions"
+      ],
+      "properties": {
+        "initial_state": {
+          "const": "REQUEST_RECEIVED"
+        },
+        "transitions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/static_transition"
+          },
+          "minItems": 1
+        },
+        "terminal_state": {
+          "$ref": "#/$defs/terminal_state"
+        },
+        "executed_runtime_actions": {
+          "type": "array",
+          "maxItems": 0
+        }
+      }
+    },
+    "safety_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision",
+        "owner_review_required",
+        "unsafe_action_detected",
+        "reasons"
+      ],
+      "properties": {
+        "decision": {
+          "enum": [
+            "STATIC_READY_FOR_OWNER_REVIEW",
+            "STATIC_STOP_OWNER_REVIEW_REQUIRED"
+          ]
+        },
+        "owner_review_required": {
+          "const": true
+        },
+        "unsafe_action_detected": {
+          "const": false
+        },
+        "reasons": {
+          "$ref": "#/$defs/non_empty_string_array"
+        }
+      }
+    },
+    "closeout_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "classification",
+        "review_status",
+        "ready_is_go",
+        "matched_is_go",
+        "observed_safe_no_action_is_go",
+        "next_prompt"
+      ],
+      "properties": {
+        "classification": {
+          "enum": [
+            "STATIC_EXECUTION_CONTRACTS_READY_FOR_OWNER_REVIEW",
+            "STATIC_EXECUTION_CONTRACTS_STOP_OWNER_REVIEW_REQUIRED"
+          ]
+        },
+        "review_status": {
+          "$ref": "#/$defs/terminal_state"
+        },
+        "ready_is_go": {
+          "const": false
+        },
+        "matched_is_go": {
+          "const": false
+        },
+        "observed_safe_no_action_is_go": {
+          "const": false
+        },
+        "next_prompt": {
+          "const": "START_CODEX_NATIVE_BRANCH_LOCAL_DRY_RUN_ORCHESTRATION_MVP_STATIC_EXECUTION_CONTRACTS_IMPLEMENTATION_REVIEW_PACKET"
+        }
+      }
+    },
+    "evidence_hash_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hash_algorithm",
+        "source_approval_packet_path",
+        "source_approval_packet_sha256",
+        "hash_binding_is_execution_approval"
+      ],
+      "properties": {
+        "hash_algorithm": {
+          "const": "SHA256"
+        },
+        "source_approval_packet_path": {
+          "const": "C:\\Users\\yu_ki\\AppData\\Local\\LoneWolfFang\\data\\codex_native_branch_local_dry_run_orchestration_mvp_static_execution_contracts_approval_packet_20260616_141826.zip"
+        },
+        "source_approval_packet_sha256": {
+          "const": "E620315735D0DB38D87FE96E99406852F4E5EE84B9547D0C3F5D7932EC430A51"
+        },
+        "hash_binding_is_execution_approval": {
+          "const": false
+        }
+      }
+    },
+    "owner_review_required": {
+      "const": true
+    },
+    "terminal_state": {
+      "$ref": "#/$defs/terminal_state"
+    },
+    "forbidden_actions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_execution",
+        "openai_api_call",
+        "private_api_call",
+        "queue_mutation",
+        "cloud_mutation",
+        "billing_mutation",
+        "auth_mutation",
+        "trading_mutation",
+        "auto_approval",
+        "pr_creation",
+        "merge",
+        "deploy",
+        "public_submission",
+        "release_creation",
+        "github_visibility_change",
+        "sponsors_or_funding_change"
+      ],
+      "properties": {
+        "runtime_execution": { "const": false },
+        "openai_api_call": { "const": false },
+        "private_api_call": { "const": false },
+        "queue_mutation": { "const": false },
+        "cloud_mutation": { "const": false },
+        "billing_mutation": { "const": false },
+        "auth_mutation": { "const": false },
+        "trading_mutation": { "const": false },
+        "auto_approval": { "const": false },
+        "pr_creation": { "const": false },
+        "merge": { "const": false },
+        "deploy": { "const": false },
+        "public_submission": { "const": false },
+        "release_creation": { "const": false },
+        "github_visibility_change": { "const": false },
+        "sponsors_or_funding_change": { "const": false }
+      }
+    },
+    "safety_flags": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_go",
+        "openai_api_call_allowed",
+        "private_api_call_allowed",
+        "queue_mutation_allowed",
+        "cloud_mutation_allowed",
+        "billing_mutation_allowed",
+        "auth_mutation_allowed",
+        "trading_mutation_allowed",
+        "auto_approval_allowed",
+        "pr_creation_allowed",
+        "merge_allowed",
+        "deploy_allowed",
+        "public_submission_allowed"
+      ],
+      "properties": {
+        "runtime_go": { "const": false },
+        "openai_api_call_allowed": { "const": false },
+        "private_api_call_allowed": { "const": false },
+        "queue_mutation_allowed": { "const": false },
+        "cloud_mutation_allowed": { "const": false },
+        "billing_mutation_allowed": { "const": false },
+        "auth_mutation_allowed": { "const": false },
+        "trading_mutation_allowed": { "const": false },
+        "auto_approval_allowed": { "const": false },
+        "pr_creation_allowed": { "const": false },
+        "merge_allowed": { "const": false },
+        "deploy_allowed": { "const": false },
+        "public_submission_allowed": { "const": false }
+      }
+    },
+    "human_review_one_point": {
+      "type": "string",
+      "minLength": 1
+    },
+    "next_prompt_readiness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recommended_next_action",
+        "review_only",
+        "commit_allowed",
+        "push_allowed",
+        "runtime_go_allowed"
+      ],
+      "properties": {
+        "recommended_next_action": {
+          "const": "START_CODEX_NATIVE_BRANCH_LOCAL_DRY_RUN_ORCHESTRATION_MVP_STATIC_EXECUTION_CONTRACTS_IMPLEMENTATION_REVIEW_PACKET"
+        },
+        "review_only": {
+          "const": true
+        },
+        "commit_allowed": {
+          "const": false
+        },
+        "push_allowed": {
+          "const": false
+        },
+        "runtime_go_allowed": {
+          "const": false
+        }
+      }
+    }
+  },
+  "$defs": {
+    "terminal_state": {
+      "enum": [
+        "READY_FOR_OWNER_REVIEW",
+        "STOP_OWNER_REVIEW_REQUIRED",
+        "Stop and Wait - Owner Review Required"
+      ]
+    },
+    "static_transition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "from",
+        "event",
+        "guard",
+        "to",
+        "action_kind"
+      ],
+      "properties": {
+        "from": {
+          "type": "string",
+          "minLength": 1
+        },
+        "event": {
+          "type": "string",
+          "minLength": 1
+        },
+        "guard": {
+          "enum": [
+            "pass",
+            "stop"
+          ]
+        },
+        "to": {
+          "type": "string",
+          "minLength": 1
+        },
+        "action_kind": {
+          "enum": [
+            "STATIC_CONTRACT_VALIDATION",
+            "STATIC_STOP_CLASSIFICATION"
+          ]
+        }
+      }
+    },
+    "non_empty_string_array": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  }
+}
