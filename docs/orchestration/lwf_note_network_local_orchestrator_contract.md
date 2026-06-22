@@ -1,3 +1,5 @@
+<!-- BUILD_ID: 20260622_lwf_note_network_schema_fixture_test_linkage_repair_v1 -->
+
 # LWF NOTE-NETWORK Local Orchestrator Contract
 
 ## Purpose
@@ -116,6 +118,56 @@ Every bounded Codex lane must produce:
 - `NEXT_CODEX_PROMPT.md`
 - artifact ZIP
 - SHA256 sidecars
+
+The LWF NOTE-NETWORK artifact packet shape is AppData-evidence-centric. A valid
+packet record must identify its packet kind, classification, final status,
+blocker count, manifest path, artifact ZIP path, ZIP SHA256 checksum evidence,
+and checksum sidecars. The checksum evidence must include both a `.zip.sha256`
+text sidecar and, when practical, a `.zip.sha256.json` metadata sidecar.
+
+Packet linkage must bind each phase to the evidence that authorized or closed
+it:
+
+- source packet verification: source ZIP path, expected SHA256, observed SHA256,
+  and `matched: true`;
+- approval packet verification: approval ZIP path, expected SHA256, observed
+  SHA256, classification, blocker count, and `matched: true`;
+- closeout packet verification: closeout ZIP path, expected SHA256, observed
+  SHA256, final status, and `matched: true` when a closeout exists.
+
+Implementation, review, and closeout packets must not advance PR, merge,
+deploy, runtime, NOTE/Ollama, API, cloud, auth, billing, or trading state. A
+closeout packet may report readiness for owner review, but it must keep
+`pr_go`, `merge_go`, `deploy_go`, and `runtime_go` false.
+
+## Safe NEXT_CODEX_PROMPT Options
+
+`NEXT_CODEX_PROMPT.md` must recommend exactly one safe next action. Safe options
+for this lane are limited to bounded review, bounded commit-approval packet
+creation, or stop-and-wait owner review. It must not recommend immediate
+commit, push, PR, merge, deploy, runtime, NOTE/Ollama execution, API/cloud
+mutation, auth/billing mutation, or trading action.
+
+## SCOUT / REVIEW Handoff Shape
+
+SCOUT and REVIEW handoff records must label the phase, scope, missing context,
+evidence bundle, reviewer result, and owner decision point. Partial SCOUT
+evidence is allowed only as missing-context evidence; it is not implementation
+approval. REVIEW handoff must include changed files, tests, artifacts, checksum
+evidence, and a one-point owner decision.
+
+## Owner-Facing Japanese Summary
+
+Owner-facing packet summaries must require a Japanese owner summary section.
+The summary must report changed files, purpose mapping, test results, unknowns,
+dangerous-change status, and one human decision point. Missing owner-facing
+Japanese summary evidence is invalid for this lane.
+
+## Blocker Matrix
+
+Every packet must include a blocker matrix with `blocker_count`. A packet with
+`blocker_count: 0` is still not GO; it only means no blocker was found inside
+the bounded review surface.
 
 ## Safety Boundary
 

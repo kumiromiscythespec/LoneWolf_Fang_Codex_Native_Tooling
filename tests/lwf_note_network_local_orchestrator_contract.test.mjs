@@ -1,3 +1,5 @@
+// BUILD_ID: 20260622_lwf_note_network_closeout_linkage_narrow_correction_v1
+
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
@@ -12,27 +14,36 @@ const schemaPath = "schema/orchestration/lwf_note_network_local_orchestrator.sch
 const fixtureRoot = "tests/fixtures/lwf-note-network-local-orchestrator";
 
 const validFixtures = [
-  `${fixtureRoot}/valid/scout-packet.json`,
-  `${fixtureRoot}/valid/review-packet.json`,
-  `${fixtureRoot}/valid/full-loop-ready-for-codex.json`
+  `${fixtureRoot}/valid/artifact-manifest-safe-options.json`,
+  `${fixtureRoot}/valid/source-packet-verification-linkage.json`,
+  `${fixtureRoot}/valid/scout-review-handoff-shape.json`
 ];
 
 const invalidFixtures = [
-  `${fixtureRoot}/invalid/missing-note-node.json`,
-  `${fixtureRoot}/invalid/unsafe-go.json`,
-  `${fixtureRoot}/invalid/push-approval-confusion.json`,
-  `${fixtureRoot}/invalid/public-version-priority.json`,
-  `${fixtureRoot}/invalid/codex-direct-execution-without-scout.json`,
-  `${fixtureRoot}/invalid/review-skipped.json`,
-  `${fixtureRoot}/invalid/note-output-used-as-proof-without-verification.json`
+  `${fixtureRoot}/invalid/unsafe-next-codex-prompt.json`,
+  `${fixtureRoot}/invalid/missing-source-packet-verification.json`,
+  `${fixtureRoot}/invalid/missing-owner-facing-ja-summary.json`
 ];
 
 const requiredTopLevel = [
   "schema_version",
   "lane",
+  "packet_kind",
+  "packet_type",
+  "classification",
+  "final_status",
+  "blocker_count",
   "project_priority",
   "public_version_deferred",
   "local_orchestrator_priority",
+  "artifact_packet",
+  "source_packet_verification",
+  "approval_packet_verification",
+  "closeout_packet_verification",
+  "next_codex_prompt",
+  "handoff",
+  "owner_facing_summary",
+  "human_decision_point",
   "scout_phase",
   "note_nodes",
   "node_roles",
@@ -76,6 +87,24 @@ const falseForbiddenActions = [
   "public_submission"
 ];
 
+const falseForbiddenAdvancement = [
+  "commit",
+  "push",
+  "pr",
+  "merge",
+  "deploy",
+  "runtime",
+  "note_ollama",
+  "api_cloud_auth_billing_trading"
+];
+
+const shaPattern = /^[A-Fa-f0-9]{64}$/;
+const safePromptOptions = new Set([
+  "START_LWF_NOTE_NETWORK_LOCAL_ORCHESTRATOR_IMPLEMENTATION_REVIEW_PACKET",
+  "START_LWF_NOTE_NETWORK_LOCAL_ORCHESTRATOR_COMMIT_APPROVAL_PACKET",
+  "STOP_AND_WAIT_OWNER_REVIEW"
+]);
+
 function requireObject(value, label, errors) {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
     errors.push(`${label} must be an object`);
@@ -98,10 +127,94 @@ function validateLocalOrchestrator(record) {
 
   expectConst(record.schema_version, "1.0.0", "schema_version", errors);
   expectConst(record.lane, "LWF_NOTE_NETWORK_LOCAL_ORCHESTRATOR", "lane", errors);
+  if (!["SCOUT_HANDOFF", "IMPLEMENTATION_RESULT", "REVIEW_HANDOFF", "CLOSEOUT"].includes(record.packet_kind)) errors.push("packet_kind is invalid");
+  if (!["approval", "implementation", "review", "closeout", "handoff"].includes(record.packet_type)) errors.push("packet_type is invalid");
+  if (typeof record.classification !== "string" || !record.classification.startsWith("LWF_NOTE_NETWORK_LOCAL_ORCHESTRATOR_")) errors.push("classification is invalid");
+  if (typeof record.final_status !== "string" || !/^(SAFE_|READY_|STOP_)/.test(record.final_status)) errors.push("final_status is invalid");
+  if (!Number.isInteger(record.blocker_count) || record.blocker_count < 0) errors.push("blocker_count must be a non-negative integer");
   expectConst(record.project_priority, "LOCAL_LWF_NOTE_NETWORK_FIRST", "project_priority", errors);
   expectConst(record.public_version_deferred, true, "public_version_deferred", errors);
   expectConst(record.local_orchestrator_priority, true, "local_orchestrator_priority", errors);
   if (!terminalStates.has(record.terminal_state)) errors.push("terminal_state is invalid");
+
+  const artifact = requireObject(record.artifact_packet, "artifact_packet", errors);
+  if (artifact) {
+    for (const key of ["manifest_path", "artifact_zip_path", "sha256_sidecar_path", "sha256_json_sidecar_path"]) {
+      if (typeof artifact[key] !== "string" || artifact[key].length === 0) errors.push(`artifact_packet.${key} is required`);
+    }
+    if (typeof artifact.zip_sha256 !== "string" || !shaPattern.test(artifact.zip_sha256)) errors.push("artifact_packet.zip_sha256 must be SHA256");
+    expectConst(artifact.manifest_references_artifact, true, "artifact_packet.manifest_references_artifact", errors);
+    expectConst(artifact.sidecars_verified, true, "artifact_packet.sidecars_verified", errors);
+  }
+
+  validatePacketVerification(record.source_packet_verification, "source_packet_verification", errors);
+  validatePacketVerification(record.approval_packet_verification, "approval_packet_verification", errors);
+
+  const closeout = requireObject(record.closeout_packet_verification, "closeout_packet_verification", errors);
+  if (closeout) {
+    if (typeof closeout.required !== "boolean") errors.push("closeout_packet_verification.required must be boolean");
+    if (closeout.required === true && closeout.matched !== true) errors.push("closeout_packet_verification.matched must be true when required");
+    if (closeout.required === true) {
+      for (const key of ["packet_zip_path", "expected_sha256", "observed_sha256", "final_status"]) {
+        if (!(key in closeout)) errors.push(`closeout_packet_verification.${key} is required when closeout verification is required`);
+      }
+      if ("packet_zip_path" in closeout && (typeof closeout.packet_zip_path !== "string" || closeout.packet_zip_path.length === 0)) {
+        errors.push("closeout_packet_verification.packet_zip_path must be non-empty when required");
+      }
+      for (const key of ["expected_sha256", "observed_sha256"]) {
+        if (key in closeout && (typeof closeout[key] !== "string" || !shaPattern.test(closeout[key]))) {
+          errors.push(`closeout_packet_verification.${key} must be SHA256 when required`);
+        }
+      }
+      if ("final_status" in closeout && (typeof closeout.final_status !== "string" || closeout.final_status.length === 0)) {
+        errors.push("closeout_packet_verification.final_status must be non-empty when required");
+      }
+    }
+    for (const key of ["pr_go", "merge_go", "deploy_go", "runtime_go"]) {
+      expectConst(closeout[key], false, `closeout_packet_verification.${key}`, errors);
+    }
+  }
+
+  const nextPrompt = requireObject(record.next_codex_prompt, "next_codex_prompt", errors);
+  if (nextPrompt) {
+    if (!safePromptOptions.has(nextPrompt.safe_option)) errors.push("next_codex_prompt.safe_option is unsafe");
+    expectConst(nextPrompt.one_action_only, true, "next_codex_prompt.one_action_only", errors);
+    const forbiddenAdvancement = requireObject(nextPrompt.forbidden_advancement, "next_codex_prompt.forbidden_advancement", errors);
+    if (forbiddenAdvancement) {
+      for (const action of falseForbiddenAdvancement) {
+        expectConst(forbiddenAdvancement[action], false, `next_codex_prompt.forbidden_advancement.${action}`, errors);
+      }
+    }
+  }
+
+  const handoff = requireObject(record.handoff, "handoff", errors);
+  if (handoff) {
+    if (!["SCOUT", "IMPLEMENTATION", "REVIEW", "CLOSEOUT"].includes(handoff.phase)) errors.push("handoff.phase is invalid");
+    if (!["read-only context", "editable target", "validation-related", "likely file scope"].includes(handoff.scope_label)) errors.push("handoff.scope_label is invalid");
+    if (!Array.isArray(handoff.missing_context)) errors.push("handoff.missing_context must be an array");
+    const bundle = requireObject(handoff.evidence_bundle, "handoff.evidence_bundle", errors);
+    if (bundle) {
+      for (const key of ["artifacts", "diffs", "tests", "checksums", "manifests"]) {
+        expectConst(bundle[key], true, `handoff.evidence_bundle.${key}`, errors);
+      }
+    }
+    if (!["PASS", "REPAIR", "STOP", "NEXT_BOUNDED_PROMPT"].includes(handoff.reviewer_result)) errors.push("handoff.reviewer_result is invalid");
+  }
+
+  const summary = requireObject(record.owner_facing_summary, "owner_facing_summary", errors);
+  if (summary) {
+    expectConst(summary.language, "ja", "owner_facing_summary.language", errors);
+    for (const key of ["changed_files", "purpose_mapping", "test_results", "unknowns", "dangerous_change_status", "one_human_decision_point"]) {
+      expectConst(summary[key], true, `owner_facing_summary.${key}`, errors);
+    }
+  }
+
+  const humanDecision = requireObject(record.human_decision_point, "human_decision_point", errors);
+  if (humanDecision) {
+    expectConst(humanDecision.required, true, "human_decision_point.required", errors);
+    expectConst(humanDecision.one_point_only, true, "human_decision_point.one_point_only", errors);
+    if (typeof humanDecision.decision !== "string" || humanDecision.decision.length === 0) errors.push("human_decision_point.decision is required");
+  }
 
   if (!Array.isArray(record.note_nodes)) {
     errors.push("note_nodes must be an array");
@@ -220,6 +333,17 @@ function assertNoDuplicates(values, errors) {
   if (new Set(values).size !== values.length) errors.push("note_nodes must not contain duplicates");
 }
 
+function validatePacketVerification(value, label, errors) {
+  const verification = requireObject(value, label, errors);
+  if (!verification) return;
+  if (typeof verification.packet_zip_path !== "string" || verification.packet_zip_path.length === 0) errors.push(`${label}.packet_zip_path is required`);
+  if (typeof verification.expected_sha256 !== "string" || !shaPattern.test(verification.expected_sha256)) errors.push(`${label}.expected_sha256 must be SHA256`);
+  if (typeof verification.observed_sha256 !== "string" || !shaPattern.test(verification.observed_sha256)) errors.push(`${label}.observed_sha256 must be SHA256`);
+  expectConst(verification.matched, true, `${label}.matched`, errors);
+  if (typeof verification.classification !== "string" || verification.classification.length === 0) errors.push(`${label}.classification is required`);
+  if (!Number.isInteger(verification.blocker_count) || verification.blocker_count < 0) errors.push(`${label}.blocker_count must be a non-negative integer`);
+}
+
 test("schema declares the required local orchestrator safety fields", () => {
   const schema = readJson(schemaPath);
   for (const key of requiredTopLevel) {
@@ -229,6 +353,14 @@ test("schema declares the required local orchestrator safety fields", () => {
 
   assert.equal(schema.properties.public_version_deferred.const, true);
   assert.equal(schema.properties.local_orchestrator_priority.const, true);
+  assert.ok(schema.properties.packet_kind);
+  assert.ok(schema.properties.artifact_packet);
+  assert.ok(schema.properties.source_packet_verification);
+  assert.ok(schema.properties.approval_packet_verification);
+  assert.ok(schema.properties.closeout_packet_verification);
+  assert.ok(schema.properties.next_codex_prompt);
+  assert.ok(schema.properties.handoff);
+  assert.ok(schema.properties.owner_facing_summary);
   assert.equal(schema.properties.chatgpt_final_review.properties.note_output_is_proof.const, false);
   assert.equal(schema.properties.codex_phase.properties.cloud_unpushed_worktree_assumed_readable.const, false);
   assert.equal(schema.properties.review_phase.properties.push_approved_by_review.const, false);
@@ -250,10 +382,15 @@ test("invalid fixtures fail the local orchestrator contract", () => {
 });
 
 test("fixtures preserve the requested safety semantics", () => {
-  const fullLoop = readJson(`${fixtureRoot}/valid/full-loop-ready-for-codex.json`);
+  const fullLoop = readJson(`${fixtureRoot}/valid/artifact-manifest-safe-options.json`);
 
   assert.equal(fullLoop.public_version_deferred, true);
   assert.equal(fullLoop.local_orchestrator_priority, true);
+  assert.equal(fullLoop.source_packet_verification.matched, true);
+  assert.equal(fullLoop.approval_packet_verification.matched, true);
+  assert.equal(fullLoop.owner_facing_summary.language, "ja");
+  assert.equal(fullLoop.next_codex_prompt.one_action_only, true);
+  assert.equal(fullLoop.next_codex_prompt.forbidden_advancement.commit, false);
   assert.equal(fullLoop.scout_phase.codex_execution_approved_by_scout, false);
   assert.equal(fullLoop.review_phase.push_approved_by_review, false);
   assert.equal(fullLoop.chatgpt_final_review.note_output_is_proof, false);
@@ -265,6 +402,34 @@ test("fixtures preserve the requested safety semantics", () => {
 
 test("the exact fixture matrix is covered", () => {
   assert.equal(validFixtures.length, 3);
-  assert.equal(invalidFixtures.length, 7);
-  assert.equal([...validFixtures, ...invalidFixtures].length, 10);
+  assert.equal(invalidFixtures.length, 3);
+  assert.equal([...validFixtures, ...invalidFixtures].length, 6);
+});
+
+test("unsafe NEXT_CODEX_PROMPT is rejected", () => {
+  const errors = validateLocalOrchestrator(readJson(`${fixtureRoot}/invalid/unsafe-next-codex-prompt.json`));
+  assert.ok(errors.some((error) => error.includes("next_codex_prompt.safe_option") || error.includes("forbidden_advancement.commit")), errors.join("\n"));
+});
+
+test("missing source packet verification is rejected", () => {
+  const errors = validateLocalOrchestrator(readJson(`${fixtureRoot}/invalid/missing-source-packet-verification.json`));
+  assert.ok(errors.some((error) => error.includes("source_packet_verification")), errors.join("\n"));
+});
+
+test("missing owner-facing Japanese summary is rejected", () => {
+  const errors = validateLocalOrchestrator(readJson(`${fixtureRoot}/invalid/missing-owner-facing-ja-summary.json`));
+  assert.ok(errors.some((error) => error.includes("owner_facing_summary")), errors.join("\n"));
+});
+
+test("required closeout verification rejects missing linkage fields", () => {
+  for (const key of ["packet_zip_path", "expected_sha256", "observed_sha256", "final_status"]) {
+    const record = readJson(`${fixtureRoot}/valid/source-packet-verification-linkage.json`);
+    delete record.closeout_packet_verification[key];
+
+    const errors = validateLocalOrchestrator(record);
+    assert.ok(
+      errors.some((error) => error.includes(`closeout_packet_verification.${key}`)),
+      `${key} should be required when closeout verification is required:\n${errors.join("\n")}`
+    );
+  }
 });

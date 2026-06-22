@@ -7,9 +7,22 @@
   "required": [
     "schema_version",
     "lane",
+    "packet_kind",
+    "packet_type",
+    "classification",
+    "final_status",
+    "blocker_count",
     "project_priority",
     "public_version_deferred",
     "local_orchestrator_priority",
+    "artifact_packet",
+    "source_packet_verification",
+    "approval_packet_verification",
+    "closeout_packet_verification",
+    "next_codex_prompt",
+    "handoff",
+    "owner_facing_summary",
+    "human_decision_point",
     "scout_phase",
     "note_nodes",
     "node_roles",
@@ -28,9 +41,167 @@
   "properties": {
     "schema_version": { "const": "1.0.0" },
     "lane": { "const": "LWF_NOTE_NETWORK_LOCAL_ORCHESTRATOR" },
+    "packet_kind": {
+      "enum": ["SCOUT_HANDOFF", "IMPLEMENTATION_RESULT", "REVIEW_HANDOFF", "CLOSEOUT"]
+    },
+    "packet_type": {
+      "enum": ["approval", "implementation", "review", "closeout", "handoff"]
+    },
+    "classification": {
+      "type": "string",
+      "pattern": "^LWF_NOTE_NETWORK_LOCAL_ORCHESTRATOR_[A-Z0-9_]+$"
+    },
+    "final_status": {
+      "type": "string",
+      "pattern": "^(SAFE_|READY_|STOP_)[A-Z0-9_]+$"
+    },
+    "blocker_count": { "type": "integer", "minimum": 0 },
     "project_priority": { "const": "LOCAL_LWF_NOTE_NETWORK_FIRST" },
     "public_version_deferred": { "const": true },
     "local_orchestrator_priority": { "const": true },
+    "artifact_packet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "manifest_path",
+        "artifact_zip_path",
+        "zip_sha256",
+        "sha256_sidecar_path",
+        "sha256_json_sidecar_path",
+        "manifest_references_artifact",
+        "sidecars_verified"
+      ],
+      "properties": {
+        "manifest_path": { "type": "string", "minLength": 1 },
+        "artifact_zip_path": { "type": "string", "minLength": 1 },
+        "zip_sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" },
+        "sha256_sidecar_path": { "type": "string", "minLength": 1 },
+        "sha256_json_sidecar_path": { "type": "string", "minLength": 1 },
+        "manifest_references_artifact": { "const": true },
+        "sidecars_verified": { "const": true }
+      }
+    },
+    "source_packet_verification": {
+      "$ref": "#/$defs/packet_verification"
+    },
+    "approval_packet_verification": {
+      "$ref": "#/$defs/packet_verification"
+    },
+    "closeout_packet_verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "matched", "pr_go", "merge_go", "deploy_go", "runtime_go"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "packet_zip_path": { "type": "string", "minLength": 1 },
+        "expected_sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" },
+        "observed_sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" },
+        "matched": { "type": "boolean" },
+        "final_status": { "type": "string", "minLength": 1 },
+        "pr_go": { "const": false },
+        "merge_go": { "const": false },
+        "deploy_go": { "const": false },
+        "runtime_go": { "const": false }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "required": { "const": true }
+            },
+            "required": ["required"]
+          },
+          "then": {
+            "required": [
+              "packet_zip_path",
+              "expected_sha256",
+              "observed_sha256",
+              "final_status"
+            ]
+          }
+        }
+      ]
+    },
+    "next_codex_prompt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["safe_option", "one_action_only", "forbidden_advancement"],
+      "properties": {
+        "safe_option": {
+          "enum": [
+            "START_LWF_NOTE_NETWORK_LOCAL_ORCHESTRATOR_IMPLEMENTATION_REVIEW_PACKET",
+            "START_LWF_NOTE_NETWORK_LOCAL_ORCHESTRATOR_COMMIT_APPROVAL_PACKET",
+            "STOP_AND_WAIT_OWNER_REVIEW"
+          ]
+        },
+        "one_action_only": { "const": true },
+        "forbidden_advancement": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["commit", "push", "pr", "merge", "deploy", "runtime", "note_ollama", "api_cloud_auth_billing_trading"],
+          "properties": {
+            "commit": { "const": false },
+            "push": { "const": false },
+            "pr": { "const": false },
+            "merge": { "const": false },
+            "deploy": { "const": false },
+            "runtime": { "const": false },
+            "note_ollama": { "const": false },
+            "api_cloud_auth_billing_trading": { "const": false }
+          }
+        }
+      }
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["phase", "scope_label", "missing_context", "evidence_bundle", "reviewer_result"],
+      "properties": {
+        "phase": { "enum": ["SCOUT", "IMPLEMENTATION", "REVIEW", "CLOSEOUT"] },
+        "scope_label": { "enum": ["read-only context", "editable target", "validation-related", "likely file scope"] },
+        "missing_context": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "evidence_bundle": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["artifacts", "diffs", "tests", "checksums", "manifests"],
+          "properties": {
+            "artifacts": { "const": true },
+            "diffs": { "const": true },
+            "tests": { "const": true },
+            "checksums": { "const": true },
+            "manifests": { "const": true }
+          }
+        },
+        "reviewer_result": { "enum": ["PASS", "REPAIR", "STOP", "NEXT_BOUNDED_PROMPT"] }
+      }
+    },
+    "owner_facing_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["language", "changed_files", "purpose_mapping", "test_results", "unknowns", "dangerous_change_status", "one_human_decision_point"],
+      "properties": {
+        "language": { "const": "ja" },
+        "changed_files": { "const": true },
+        "purpose_mapping": { "const": true },
+        "test_results": { "const": true },
+        "unknowns": { "const": true },
+        "dangerous_change_status": { "const": true },
+        "one_human_decision_point": { "const": true }
+      }
+    },
+    "human_decision_point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "one_point_only", "decision"],
+      "properties": {
+        "required": { "const": true },
+        "one_point_only": { "const": true },
+        "decision": { "type": "string", "minLength": 1 }
+      }
+    },
     "scout_phase": {
       "type": "object",
       "additionalProperties": false,
@@ -264,6 +435,28 @@
         "READY_FOR_NEXT_BOUNDED_PROMPT",
         "STOP_OWNER_REVIEW_REQUIRED"
       ]
+    }
+  },
+  "$defs": {
+    "packet_verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "packet_zip_path",
+        "expected_sha256",
+        "observed_sha256",
+        "matched",
+        "classification",
+        "blocker_count"
+      ],
+      "properties": {
+        "packet_zip_path": { "type": "string", "minLength": 1 },
+        "expected_sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" },
+        "observed_sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" },
+        "matched": { "const": true },
+        "classification": { "type": "string", "minLength": 1 },
+        "blocker_count": { "type": "integer", "minimum": 0 }
+      }
     }
   }
 }

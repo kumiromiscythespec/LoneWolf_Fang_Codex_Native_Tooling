@@ -1,3 +1,5 @@
+<!-- BUILD_ID: 20260622_lwf_note_network_schema_fixture_test_linkage_repair_v1 -->
+
 # LWF NOTE-NETWORK Local Orchestrator Usage
 
 ## Purpose
@@ -103,6 +105,26 @@ Every Codex handoff in this lane should include:
 - `human_review_one_point.md`;
 - `NEXT_CODEX_PROMPT.md`.
 
+The manifest should bind the handoff to:
+
+- packet kind and packet type;
+- classification and final status;
+- blocker count;
+- artifact ZIP path;
+- manifest path;
+- `.zip.sha256` and `.zip.sha256.json` sidecars;
+- source packet verification;
+- approval packet verification;
+- closeout packet verification when a closeout exists;
+- exact changed-file scope;
+- tests run and focused/broad results;
+- forbidden-action confirmation.
+
+The source, approval, and closeout packet verifications are expected to compare
+an expected SHA256 with the observed SHA256 and record `matched: true`. A packet
+that cannot bind its source evidence should stop for owner review instead of
+continuing.
+
 ChatGPT final review should prefer direct evidence: artifacts, diffs, tests,
 manifests, and connector-readable repo files where available.
 
@@ -174,3 +196,21 @@ Safe continuation should remain owner-gated and evidence-first:
 The recommended next lane after this implementation is an AppData-only
 implementation review packet, not staging, commit, push, PR, merge, deploy,
 runtime automation, NOTE/Ollama execution, or public submission.
+
+Safe `NEXT_CODEX_PROMPT.md` choices for this lane are intentionally narrow:
+
+- implementation review packet;
+- commit approval packet after review;
+- stop and wait for owner review.
+
+They must not recommend immediate staging, commit, push, PR, merge, deploy,
+runtime execution, NOTE/Ollama execution, API/cloud/auth/billing/trading
+mutation, or `C:\LWF_NoteNetwork` mutation.
+
+## Owner-Facing Japanese Summary
+
+Each implementation or review result must include an owner-facing Japanese
+summary that covers changed files, purpose mapping, tests, unknown assumptions,
+dangerous-change status, and one human decision point. This protects the owner
+from treating a generic packet as sufficient evidence for a Japanese-facing LWF
+handoff.
