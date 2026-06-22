@@ -130,6 +130,7 @@ const branchLocalDryRunOrchestrationMvpStaticExecutionImplementationLaneFiles = 
 ];
 const lwfNoteNetworkLocalOrchestratorImplementationLaneFiles = [
   "docs/orchestration/lwf_note_network_local_orchestrator_contract.md",
+  "docs/orchestration/lwf_note_network_local_orchestrator_usage.md",
   "docs/orchestration/lwf_note_network_local_orchestrator_state_machine.md",
   "schema/orchestration/lwf_note_network_local_orchestrator.schema.json",
   "tests/lwf_note_network_local_orchestrator_contract.test.mjs",

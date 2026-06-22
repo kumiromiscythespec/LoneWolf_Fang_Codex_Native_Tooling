@@ -64,6 +64,15 @@ OpenAI API calls, public submission, GitHub visibility changes, release
 creation, release asset upload, commit, and push remain separate owner/external
 gated actions.
 
+## LWF NOTE-NETWORK Local Orchestrator
+
+For the owner-facing LWF local orchestration lane, see
+[docs/orchestration/lwf_note_network_local_orchestrator_usage.md](docs/orchestration/lwf_note_network_local_orchestrator_usage.md).
+This is a static/local orchestration contract, not runtime automation. The
+public version remains deferred while the local LWF NOTE-NETWORK loop is the
+priority. This documentation does not imply PR, merge, deploy, runtime,
+NOTE/Ollama, or `C:\LWF_NoteNetwork` modification approval.
+
 ## Quick Start
 
 1. Read the rule files first:
