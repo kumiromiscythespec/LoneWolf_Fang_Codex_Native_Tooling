@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "lwf_note_network_outputs_and_lite_prompt_operations",
+  "output_root": "C:\\LWF_NoteNetwork\\outputs",
+  "prompt_policy": "lite_compressed_plans_not_full_codex_sized_prompts",
+  "recommended_prompt_chars_min": 4000,
+  "recommended_prompt_chars_max": 6000,
+  "known_failure_prompt_chars": 15763,
+  "observed_success_prompt_chars": 4364,
+  "stable_model": "llama3.2:3b",
+  "nodes": [],
+  "safety_boundary": {
+    "scout_review_support_only": false,
+    "owner_review_required": false,
+    "note_output_is_execution_proof": true,
+    "lite_prompt_required": true
+  },
+  "forbidden_actions": {
+    "runtime_workflow": true,
+    "deploy": true,
+    "api_call": true,
+    "cloud_mutation": true,
+    "auth_mutation": true,
+    "billing_mutation": true,
+    "trading_mutation": true,
+    "openai_api_call": false,
+    "private_api_call": false,
+    "queue_mutation": true,
+    "autonomous_execution": true,
+    "public_submission": false
+  },
+  "autonomous_execution_allowed": true
+}
