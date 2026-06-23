@@ -135,6 +135,15 @@ const lwfNoteNetworkLocalOrchestratorImplementationLaneFiles = [
   "tests/fixtures/lwf-note-network-local-orchestrator/invalid/review-skipped.json",
   "tests/fixtures/lwf-note-network-local-orchestrator/invalid/note-output-used-as-proof-without-verification.json"
 ];
+const lwfNoteNetworkOutputsLitePromptOperationsImplementationLaneFiles = [
+  "docs/lwf-note-network/outputs_and_lite_prompt_operations.md",
+  "schema/lwf-note-network/note_network_operations.schema.json",
+  "tests/lwf_note_network_outputs_and_lite_prompt_operations_contract.test.mjs",
+  "tests/fixtures/lwf-note-network/operations/valid/current-lite-scout-operations.json",
+  "tests/fixtures/lwf-note-network/operations/invalid/full-scout-plan-as-default.json",
+  "tests/fixtures/lwf-note-network/operations/invalid/appdata-output-root.json",
+  "tests/fixtures/lwf-note-network/operations/invalid/runtime-action-approved.json"
+];
 
 const validFixturePaths = [
   "tests/fixtures/codex-native-supervised-dry-run/stable-closeout-artifact-chain-readiness/valid/accepted-closeout-chain.json",
@@ -376,7 +385,8 @@ test("working tree changes stay inside the exact 12-file allowlist", () => {
     ...submissionReadinessStaticGapImplementationLaneFiles,
     ...branchLocalDryRunOrchestrationMvpPlanningImplementationLaneFiles,
     ...branchLocalDryRunOrchestrationMvpStaticExecutionImplementationLaneFiles,
-    ...lwfNoteNetworkLocalOrchestratorImplementationLaneFiles
+    ...lwfNoteNetworkLocalOrchestratorImplementationLaneFiles,
+    ...lwfNoteNetworkOutputsLitePromptOperationsImplementationLaneFiles
   ]);
 
   const outside = changedPaths.filter((path) => !currentWorkingTreeGuardAllowedFiles.has(path));

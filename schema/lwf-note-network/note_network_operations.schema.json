@@ -1,0 +1,217 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lonewolf-fang.local/schemas/lwf-note-network/note_network_operations.schema.json",
+  "title": "LWF Note Network Operations Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "scope",
+    "output_root",
+    "prompt_policy",
+    "recommended_prompt_chars_min",
+    "recommended_prompt_chars_max",
+    "known_failure_prompt_chars",
+    "observed_success_prompt_chars",
+    "stable_model",
+    "nodes",
+    "safety_boundary",
+    "forbidden_actions",
+    "autonomous_execution_allowed"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "scope": {
+      "type": "string",
+      "const": "lwf_note_network_outputs_and_lite_prompt_operations"
+    },
+    "output_root": {
+      "type": "string",
+      "const": "C:\\LWF_NoteNetwork\\outputs"
+    },
+    "prompt_policy": {
+      "type": "string",
+      "const": "lite_compressed_plans_not_full_codex_sized_prompts"
+    },
+    "recommended_prompt_chars_min": {
+      "type": "integer",
+      "const": 4000
+    },
+    "recommended_prompt_chars_max": {
+      "type": "integer",
+      "const": 6000
+    },
+    "known_failure_prompt_chars": {
+      "type": "integer",
+      "minimum": 15000
+    },
+    "observed_success_prompt_chars": {
+      "type": "integer",
+      "const": 4364
+    },
+    "stable_model": {
+      "type": "string",
+      "const": "llama3.2:3b"
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "host",
+          "url",
+          "diagnostics"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^LWF-NOTE-0[1-5]$"
+          },
+          "host": {
+            "type": "string",
+            "const": "192.168.50.12"
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^http://192\\.168\\.50\\.1[3-7]:11434$"
+          },
+          "diagnostics": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "ping",
+              "api_tags",
+              "smoke_generate",
+              "lite_scout_generate"
+            ],
+            "properties": {
+              "ping": {
+                "type": "boolean",
+                "const": true
+              },
+              "api_tags": {
+                "type": "boolean",
+                "const": true
+              },
+              "smoke_generate": {
+                "type": "boolean",
+                "const": true
+              },
+              "lite_scout_generate": {
+                "type": "boolean",
+                "const": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "safety_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scout_review_support_only",
+        "owner_review_required",
+        "note_output_is_execution_proof",
+        "lite_prompt_required"
+      ],
+      "properties": {
+        "scout_review_support_only": {
+          "type": "boolean",
+          "const": true
+        },
+        "owner_review_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "note_output_is_execution_proof": {
+          "type": "boolean",
+          "const": false
+        },
+        "lite_prompt_required": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "forbidden_actions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_workflow",
+        "deploy",
+        "api_call",
+        "cloud_mutation",
+        "auth_mutation",
+        "billing_mutation",
+        "trading_mutation",
+        "openai_api_call",
+        "private_api_call",
+        "queue_mutation",
+        "autonomous_execution",
+        "public_submission"
+      ],
+      "properties": {
+        "runtime_workflow": {
+          "type": "boolean",
+          "const": false
+        },
+        "deploy": {
+          "type": "boolean",
+          "const": false
+        },
+        "api_call": {
+          "type": "boolean",
+          "const": false
+        },
+        "cloud_mutation": {
+          "type": "boolean",
+          "const": false
+        },
+        "auth_mutation": {
+          "type": "boolean",
+          "const": false
+        },
+        "billing_mutation": {
+          "type": "boolean",
+          "const": false
+        },
+        "trading_mutation": {
+          "type": "boolean",
+          "const": false
+        },
+        "openai_api_call": {
+          "type": "boolean",
+          "const": false
+        },
+        "private_api_call": {
+          "type": "boolean",
+          "const": false
+        },
+        "queue_mutation": {
+          "type": "boolean",
+          "const": false
+        },
+        "autonomous_execution": {
+          "type": "boolean",
+          "const": false
+        },
+        "public_submission": {
+          "type": "boolean",
+          "const": false
+        }
+      }
+    },
+    "autonomous_execution_allowed": {
+      "type": "boolean",
+      "const": false
+    }
+  }
+}
