@@ -141,6 +141,13 @@ const lwfNoteNetworkOutputsLitePromptOperationsImplementationLaneFiles = [
   "tests/fixtures/lwf-note-network/operations/invalid/runtime-action-approved.json"
 ];
 
+const noteCoreArtifactContractImplementationLaneFiles = [
+  "docs/orchestration/note_core_artifact_contract.md",
+  "schema/orchestration/note_core_artifact_contract.schema.json",
+  "tests/note_core_artifact_contract.test.mjs",
+  "tests/fixtures/note-core-artifact-contract/valid/scout-review-artifact.json",
+  "tests/fixtures/note-core-artifact-contract/invalid/runtime-approved.json"
+];
 const validFixturePaths = [
   "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/valid/accepted-chain-index.json",
   "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/valid/owner-review-required.json"
@@ -479,7 +486,8 @@ test("current repo edits remain inside the exact handoff custody allowlist", () 
     ...branchLocalDryRunOrchestrationMvpPlanningImplementationLaneFiles,
     ...branchLocalDryRunOrchestrationMvpStaticExecutionImplementationLaneFiles,
     ...lwfNoteNetworkLocalOrchestratorImplementationLaneFiles,
-    ...lwfNoteNetworkOutputsLitePromptOperationsImplementationLaneFiles
+    ...lwfNoteNetworkOutputsLitePromptOperationsImplementationLaneFiles,
+    ...noteCoreArtifactContractImplementationLaneFiles
   ]);
   for (const file of changed) {
     assert.ok(allowed.has(file), `unexpected changed file: ${file}`);

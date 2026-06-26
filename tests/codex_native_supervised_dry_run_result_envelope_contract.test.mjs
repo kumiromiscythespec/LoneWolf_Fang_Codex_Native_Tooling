@@ -147,6 +147,13 @@ const lwfNoteNetworkOutputsLitePromptOperationsImplementationLaneFiles = [
   "tests/fixtures/lwf-note-network/operations/invalid/runtime-action-approved.json"
 ];
 
+const noteCoreArtifactContractImplementationLaneFiles = [
+  "docs/orchestration/note_core_artifact_contract.md",
+  "schema/orchestration/note_core_artifact_contract.schema.json",
+  "tests/note_core_artifact_contract.test.mjs",
+  "tests/fixtures/note-core-artifact-contract/valid/scout-review-artifact.json",
+  "tests/fixtures/note-core-artifact-contract/invalid/runtime-approved.json"
+];
 const validFixturePaths = [
   "tests/fixtures/codex-native-supervised-dry-run/result-envelope/valid/result_envelope_ready.json",
   "tests/fixtures/codex-native-supervised-dry-run/result-envelope/valid/result_envelope_blocked_missing_artifact.json",
@@ -376,7 +383,8 @@ test("working tree changes stay inside the exact 17-file allowlist", () => {
     ...branchLocalDryRunOrchestrationMvpPlanningImplementationLaneFiles,
     ...branchLocalDryRunOrchestrationMvpStaticExecutionImplementationLaneFiles,
     ...lwfNoteNetworkLocalOrchestratorImplementationLaneFiles,
-    ...lwfNoteNetworkOutputsLitePromptOperationsImplementationLaneFiles
+    ...lwfNoteNetworkOutputsLitePromptOperationsImplementationLaneFiles,
+    ...noteCoreArtifactContractImplementationLaneFiles
   ]);
 
   const outside = changedPaths.filter((path) => !currentWorkingTreeGuardAllowedFiles.has(path));

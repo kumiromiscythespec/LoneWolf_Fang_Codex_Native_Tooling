@@ -1,0 +1,47 @@
+{
+  "build_id": "NOTE_CORE_ARTIFACT_CONTRACT_SCHEMA_TESTS_20260626",
+  "lane_name": "NOTE_CORE_ARTIFACT_CONTRACT_SCHEMA_TESTS_LANE",
+  "artifact_kind": "note_review",
+  "artifact_status": "review_complete",
+  "verdict": "SAFE_TO_PREPARE_CODEX_PROMPT",
+  "recommended_next_action": "OWNER_PREPARE_CODEX_PROMPT_FOR_NOTE_ARTIFACT_CONTRACT_LANE",
+  "result_count": 5,
+  "error_count": 0,
+  "blocker_count": 0,
+  "checksum": {
+    "artifact_zip_sha256": "0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF",
+    "sha256_sidecar_present": true,
+    "sha256_json_sidecar_present": true
+  },
+  "forbidden_actions": {
+    "runtime_approved": false,
+    "deploy_approved": false,
+    "cloud_api_auth_billing_approved": false,
+    "trading_order_paper_live_approved": false,
+    "private_repo_read": false,
+    "contracts_repo_read": false,
+    "source_edit_approved": false,
+    "commit_approved": false,
+    "push_approved": false,
+    "pr_create_approved": false,
+    "merge_approved": false,
+    "branch_delete_approved": false
+  },
+  "public_safety": {
+    "synthetic_values_only": true,
+    "redacted_for_public_repo": true,
+    "contains_real_network_mapping": false,
+    "contains_real_note_endpoint": false,
+    "contains_credential_material": false,
+    "contains_auth_detail": false,
+    "contains_account_or_payment_detail": false,
+    "contains_market_action_detail": false,
+    "contains_raw_local_log": false,
+    "contains_private_implementation_detail": false,
+    "contains_contracts_repo_content": false,
+    "contains_private_artifact_content": false,
+    "contains_personal_data": false,
+    "contains_production_data": false
+  },
+  "human_review_one_point": "Owner decides whether to prepare the bounded Codex prompt."
+}
