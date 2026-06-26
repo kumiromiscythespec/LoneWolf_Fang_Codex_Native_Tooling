@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lonewolf.note_core.artifact_contract.v1",
+  "title": "NOTE-Core Artifact Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "build_id",
+    "lane_name",
+    "artifact_kind",
+    "artifact_status",
+    "verdict",
+    "recommended_next_action",
+    "result_count",
+    "error_count",
+    "blocker_count",
+    "checksum",
+    "forbidden_actions",
+    "public_safety",
+    "human_review_one_point"
+  ],
+  "properties": {
+    "build_id": {
+      "type": "string",
+      "const": "NOTE_CORE_ARTIFACT_CONTRACT_SCHEMA_TESTS_20260626"
+    },
+    "lane_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artifact_kind": {
+      "type": "string",
+      "enum": [
+        "note_scout",
+        "note_review",
+        "codex_packet",
+        "approval_packet",
+        "execution_packet",
+        "closeout_packet"
+      ]
+    },
+    "artifact_status": {
+      "type": "string",
+      "minLength": 1
+    },
+    "verdict": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recommended_next_action": {
+      "type": "string",
+      "minLength": 1
+    },
+    "result_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "error_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "blocker_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "checksum": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_zip_sha256",
+        "sha256_sidecar_present",
+        "sha256_json_sidecar_present"
+      ],
+      "properties": {
+        "artifact_zip_sha256": {
+          "type": "string",
+          "pattern": "^[A-Fa-f0-9]{64}$"
+        },
+        "sha256_sidecar_present": {
+          "type": "boolean",
+          "const": true
+        },
+        "sha256_json_sidecar_present": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "forbidden_actions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_approved",
+        "deploy_approved",
+        "cloud_api_auth_billing_approved",
+        "trading_order_paper_live_approved",
+        "private_repo_read",
+        "contracts_repo_read",
+        "source_edit_approved",
+        "commit_approved",
+        "push_approved",
+        "pr_create_approved",
+        "merge_approved",
+        "branch_delete_approved"
+      ],
+      "properties": {
+        "runtime_approved": { "type": "boolean", "const": false },
+        "deploy_approved": { "type": "boolean", "const": false },
+        "cloud_api_auth_billing_approved": { "type": "boolean", "const": false },
+        "trading_order_paper_live_approved": { "type": "boolean", "const": false },
+        "private_repo_read": { "type": "boolean", "const": false },
+        "contracts_repo_read": { "type": "boolean", "const": false },
+        "source_edit_approved": { "type": "boolean", "const": false },
+        "commit_approved": { "type": "boolean", "const": false },
+        "push_approved": { "type": "boolean", "const": false },
+        "pr_create_approved": { "type": "boolean", "const": false },
+        "merge_approved": { "type": "boolean", "const": false },
+        "branch_delete_approved": { "type": "boolean", "const": false }
+      }
+    },
+    "public_safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "synthetic_values_only",
+        "redacted_for_public_repo",
+        "contains_real_network_mapping",
+        "contains_real_note_endpoint",
+        "contains_credential_material",
+        "contains_auth_detail",
+        "contains_account_or_payment_detail",
+        "contains_market_action_detail",
+        "contains_raw_local_log",
+        "contains_private_implementation_detail",
+        "contains_contracts_repo_content",
+        "contains_private_artifact_content",
+        "contains_personal_data",
+        "contains_production_data"
+      ],
+      "properties": {
+        "synthetic_values_only": { "type": "boolean", "const": true },
+        "redacted_for_public_repo": { "type": "boolean", "const": true },
+        "contains_real_network_mapping": { "type": "boolean", "const": false },
+        "contains_real_note_endpoint": { "type": "boolean", "const": false },
+        "contains_credential_material": { "type": "boolean", "const": false },
+        "contains_auth_detail": { "type": "boolean", "const": false },
+        "contains_account_or_payment_detail": { "type": "boolean", "const": false },
+        "contains_market_action_detail": { "type": "boolean", "const": false },
+        "contains_raw_local_log": { "type": "boolean", "const": false },
+        "contains_private_implementation_detail": { "type": "boolean", "const": false },
+        "contains_contracts_repo_content": { "type": "boolean", "const": false },
+        "contains_private_artifact_content": { "type": "boolean", "const": false },
+        "contains_personal_data": { "type": "boolean", "const": false },
+        "contains_production_data": { "type": "boolean", "const": false }
+      }
+    },
+    "human_review_one_point": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

@@ -24,6 +24,13 @@ const docPath = "docs/orchestration/codex_native_supervised_dry_run_execution_re
 const testPath = "tests/codex_native_supervised_dry_run_execution_request_envelope_contract.test.mjs";
 const fixtureRoot = "tests/fixtures/codex-native-supervised-dry-run/execution-request-envelope";
 
+const noteCoreArtifactContractImplementationLaneFiles = [
+  "docs/orchestration/note_core_artifact_contract.md",
+  "schema/orchestration/note_core_artifact_contract.schema.json",
+  "tests/note_core_artifact_contract.test.mjs",
+  "tests/fixtures/note-core-artifact-contract/valid/scout-review-artifact.json",
+  "tests/fixtures/note-core-artifact-contract/invalid/runtime-approved.json"
+];
 const validFixtures = [
   `${fixtureRoot}/valid/request_envelope_owner_review_required.json`,
   `${fixtureRoot}/valid/request_envelope_preflight_bound_ready.json`,
@@ -594,7 +601,8 @@ test("working tree changes stay inside the exact 13-file allowlist", () => {
     ...branchLocalDryRunOrchestrationMvpPlanningImplementationLaneFiles,
     ...branchLocalDryRunOrchestrationMvpStaticExecutionImplementationLaneFiles,
     ...lwfNoteNetworkLocalOrchestratorImplementationLaneFiles,
-    ...lwfNoteNetworkOutputsLitePromptOperationsImplementationLaneFiles
+    ...lwfNoteNetworkOutputsLitePromptOperationsImplementationLaneFiles,
+    ...noteCoreArtifactContractImplementationLaneFiles
   ]);
 
   const outside = changedPaths.filter((path) => !currentWorkingTreeGuardAllowedFiles.has(path));
