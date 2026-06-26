@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0.0",
+  "build_id": "2026-06-26_post_merge_closeout_ledger_contract_v1",
+  "record_type": "post_merge_closeout_ledger_record",
+  "lane_name": "NOTE_CORE_ARTIFACT_CONTRACT_ADOPTION_LEDGER_DOCS_SCHEMA_TESTS_LANE",
+  "pr": {
+    "number": 6,
+    "url": "https://github.com/kumiromiscythespec/LoneWolf_Fang_Codex_Native_Tooling/pull/6",
+    "title": "docs(orchestration): add note-core artifact adoption ledger",
+    "state": "MERGED",
+    "base_branch": "master",
+    "head_branch": "post-submission/codex-native-safe-development",
+    "head_commit_before_merge": "fe351b70aa6f7f975eef2f69f986b90683d4c29b"
+  },
+  "merge": {
+    "method": "squash",
+    "command_used": "gh pr merge 6 --squash --delete-branch=false",
+    "merge_commit_sha": "9f08072f49b02b1efb8340bcb608a1dbedb63346",
+    "merged_at": "2026-06-26T13:43:43Z",
+    "branch_deleted": false
+  },
+  "remote_heads": {
+    "master_head_after_merge": "9f08072f49b02b1efb8340bcb608a1dbedb63346",
+    "head_branch_after_merge": "fe351b70aa6f7f975eef2f69f986b90683d4c29b",
+    "head_branch_kept": true
+  },
+  "closeout": {
+    "closeout_classification": "NOTE_CORE_ARTIFACT_ADOPTION_LEDGER_POST_MERGE_CLOSEOUT_READY",
+    "final_lane_status": "LANE_CLOSED_MERGED_NO_RUNTIME_ACTION",
+    "recommended_owner_action": "RUN_RUNTIME_AFTER_CLOSEOUT",
+    "no_runtime_action": false
+  },
+  "scope": {
+    "expected_file_count": 0,
+    "actual_file_count": 0,
+    "expected_files": [],
+    "actual_files": [],
+    "unexpected_files": [],
+    "missing_expected_files": []
+  },
+  "validation": {
+    "focused_test": "PASS",
+    "full_test": "PASS",
+    "diff_check": "PASS",
+    "github_checks_summary": "NO_GITHUB_CHECKS_REPORTED",
+    "dangerous_area_review": "FAILED: runtime action requested"
+  },
+  "safety_boundary": {
+    "deploy_touched": false,
+    "runtime_touched": true,
+    "api_auth_billing_trading_touched": false,
+    "private_repo_read": false,
+    "contracts_repo_read": false,
+    "fetch_pull_checkout_performed": false,
+    "branch_deleted": false,
+    "force_push_performed": false
+  },
+  "owner_acceptance": {
+    "phrase": "OWNER_ACCEPT_PR_6_LANE_CLOSED_MERGED_NO_RUNTIME_ACTION",
+    "accepted_at": null
+  },
+  "human_decision_point": "Whether the owner accepts PR #6 as closed and merged with no runtime action.",
+  "created_at": "2026-06-26T22:53:36+09:00"
+}
