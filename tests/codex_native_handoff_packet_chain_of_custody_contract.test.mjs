@@ -148,6 +148,15 @@ const noteCoreArtifactContractImplementationLaneFiles = [
   "tests/fixtures/note-core-artifact-contract/valid/scout-review-artifact.json",
   "tests/fixtures/note-core-artifact-contract/invalid/runtime-approved.json"
 ];
+
+const noteCoreArtifactAdoptionLedgerImplementationLaneFiles = [
+  "docs/orchestration/note_core_artifact_adoption_ledger_contract.md",
+  "schema/orchestration/note_core_artifact_adoption_ledger_contract.schema.json",
+  "tests/note_core_artifact_adoption_ledger_contract.test.mjs",
+  "tests/fixtures/note-core-artifact-adoption-ledger-contract/valid/accepted-closeout-ledger.json",
+  "tests/fixtures/note-core-artifact-adoption-ledger-contract/invalid/runtime-touched.json",
+  "tests/fixtures/note-core-artifact-adoption-ledger-contract/invalid/missing-owner-acceptance.json"
+];
 const validFixturePaths = [
   "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/valid/accepted-chain-index.json",
   "tests/fixtures/codex-native-supervised-dry-run/handoff-packet-chain-of-custody/valid/owner-review-required.json"
@@ -487,7 +496,8 @@ test("current repo edits remain inside the exact handoff custody allowlist", () 
     ...branchLocalDryRunOrchestrationMvpStaticExecutionImplementationLaneFiles,
     ...lwfNoteNetworkLocalOrchestratorImplementationLaneFiles,
     ...lwfNoteNetworkOutputsLitePromptOperationsImplementationLaneFiles,
-    ...noteCoreArtifactContractImplementationLaneFiles
+    ...noteCoreArtifactContractImplementationLaneFiles,
+    ...noteCoreArtifactAdoptionLedgerImplementationLaneFiles
   ]);
   for (const file of changed) {
     assert.ok(allowed.has(file), `unexpected changed file: ${file}`);

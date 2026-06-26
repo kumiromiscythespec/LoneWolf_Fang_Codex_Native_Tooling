@@ -30,6 +30,15 @@ const noteCoreArtifactContractImplementationLaneFiles = [
   "tests/fixtures/note-core-artifact-contract/valid/scout-review-artifact.json",
   "tests/fixtures/note-core-artifact-contract/invalid/runtime-approved.json"
 ];
+
+const noteCoreArtifactAdoptionLedgerImplementationLaneFiles = [
+  "docs/orchestration/note_core_artifact_adoption_ledger_contract.md",
+  "schema/orchestration/note_core_artifact_adoption_ledger_contract.schema.json",
+  "tests/note_core_artifact_adoption_ledger_contract.test.mjs",
+  "tests/fixtures/note-core-artifact-adoption-ledger-contract/valid/accepted-closeout-ledger.json",
+  "tests/fixtures/note-core-artifact-adoption-ledger-contract/invalid/runtime-touched.json",
+  "tests/fixtures/note-core-artifact-adoption-ledger-contract/invalid/missing-owner-acceptance.json"
+];
 const validFixtures = [
   fixtureRoot + "/valid/result_observation_not_started.json",
   fixtureRoot + "/valid/result_observation_blocked_missing_linkage.json",
@@ -435,7 +444,8 @@ test("working tree changes stay inside the exact 19-file allowlist", () => {
     ...branchLocalDryRunOrchestrationMvpStaticExecutionImplementationLaneFiles,
     ...lwfNoteNetworkLocalOrchestratorImplementationLaneFiles,
     ...lwfNoteNetworkOutputsLitePromptOperationsImplementationLaneFiles,
-    ...noteCoreArtifactContractImplementationLaneFiles
+    ...noteCoreArtifactContractImplementationLaneFiles,
+    ...noteCoreArtifactAdoptionLedgerImplementationLaneFiles
   ]);
 
   const outside = changedPaths.filter((file) => !currentWorkingTreeGuardAllowedFiles.has(file));
