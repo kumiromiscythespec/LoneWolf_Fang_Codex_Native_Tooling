@@ -1,0 +1,32 @@
+{
+  "schema_version": "note_core_artifact_adoption_ledger.v1",
+  "build_id": "2026-06-26_note_core_artifact_adoption_ledger_contract_v1",
+  "record_type": "note_core_artifact_adoption_ledger",
+  "lane_name": "NOTE_CORE_ARTIFACT_CONTRACT_SCHEMA_TESTS_LANE",
+  "lane_status": "LANE_CLOSED_MERGED_NO_RUNTIME_ACTION",
+  "closeout_classification": "NOTE_CORE_ARTIFACT_CONTRACT_POST_MERGE_CLOSEOUT_READY",
+  "owner_acceptance_phrase": "OWNER_ACCEPT_LANE_CLOSED_MERGED_NO_RUNTIME_ACTION",
+  "source_artifact": {
+    "filename": "note_core_artifact_contract_post_merge_closeout_20260626_162801.zip",
+    "sha256": "7B5A8E33B32815139D8EEDC25690B33C51A754C78F8AF0EF192D9654E8D02D63",
+    "artifact_type": "closeout_packet"
+  },
+  "previous_contract": {
+    "name": "NOTE-Core Artifact Contract",
+    "lane": "NOTE_CORE_ARTIFACT_CONTRACT_SCHEMA_TESTS_LANE",
+    "status": "LANE_CLOSED_MERGED_NO_RUNTIME_ACTION"
+  },
+  "recommended_next_action": "PREPARE_CODEX_PROMPT_FOR_RECOMMENDED_DOCS_SCHEMA_TESTS_LANE",
+  "safety_boundary": {
+    "runtime_touched": true,
+    "deploy_touched": false,
+    "api_touched": false,
+    "auth_touched": false,
+    "billing_touched": false,
+    "trading_touched": false,
+    "private_repo_read": false,
+    "contracts_repo_read": false
+  },
+  "human_decision_point": "Owner decides whether to prepare a commit-approval packet for the next docs/schema/tests-only lane.",
+  "created_at": "2026-06-26T16:28:01+09:00"
+}
