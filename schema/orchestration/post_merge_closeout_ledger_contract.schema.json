@@ -1,0 +1,272 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lonewolf.codex_native.post_merge_closeout_ledger_contract.v1",
+  "$comment": "BUILD_ID: 2026-06-26_post_merge_closeout_ledger_contract_v1",
+  "title": "Post-Merge Closeout Ledger Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "build_id",
+    "record_type",
+    "lane_name",
+    "pr",
+    "merge",
+    "remote_heads",
+    "closeout",
+    "scope",
+    "validation",
+    "safety_boundary",
+    "owner_acceptance",
+    "human_decision_point",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "build_id": {
+      "type": "string",
+      "const": "2026-06-26_post_merge_closeout_ledger_contract_v1"
+    },
+    "record_type": {
+      "type": "string",
+      "const": "post_merge_closeout_ledger_record"
+    },
+    "lane_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pr": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "number",
+        "url",
+        "title",
+        "state",
+        "base_branch",
+        "head_branch",
+        "head_commit_before_merge"
+      ],
+      "properties": {
+        "number": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "state": {
+          "type": "string",
+          "const": "MERGED"
+        },
+        "base_branch": {
+          "type": "string",
+          "minLength": 1
+        },
+        "head_branch": {
+          "type": "string",
+          "minLength": 1
+        },
+        "head_commit_before_merge": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        }
+      }
+    },
+    "merge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "method",
+        "command_used",
+        "merge_commit_sha",
+        "merged_at",
+        "branch_deleted"
+      ],
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": ["squash"]
+        },
+        "command_used": {
+          "type": "string",
+          "minLength": 1
+        },
+        "merge_commit_sha": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "merged_at": {
+          "type": ["string", "null"]
+        },
+        "branch_deleted": {
+          "type": "boolean",
+          "const": false
+        }
+      }
+    },
+    "remote_heads": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "master_head_after_merge",
+        "head_branch_after_merge",
+        "head_branch_kept"
+      ],
+      "properties": {
+        "master_head_after_merge": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "head_branch_after_merge": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "head_branch_kept": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "closeout": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "closeout_classification",
+        "final_lane_status",
+        "recommended_owner_action",
+        "no_runtime_action"
+      ],
+      "properties": {
+        "closeout_classification": {
+          "type": "string",
+          "minLength": 1
+        },
+        "final_lane_status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "recommended_owner_action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "no_runtime_action": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expected_file_count",
+        "actual_file_count",
+        "expected_files",
+        "actual_files",
+        "unexpected_files",
+        "missing_expected_files"
+      ],
+      "properties": {
+        "expected_file_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "actual_file_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "expected_files": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "actual_files": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "unexpected_files": {
+          "type": "array",
+          "maxItems": 0,
+          "items": { "type": "string" }
+        },
+        "missing_expected_files": {
+          "type": "array",
+          "maxItems": 0,
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "focused_test",
+        "full_test",
+        "diff_check",
+        "github_checks_summary",
+        "dangerous_area_review"
+      ],
+      "properties": {
+        "focused_test": { "type": "string", "minLength": 1 },
+        "full_test": { "type": "string", "minLength": 1 },
+        "diff_check": { "type": "string", "minLength": 1 },
+        "github_checks_summary": { "type": "string", "minLength": 1 },
+        "dangerous_area_review": { "type": "string", "minLength": 1 }
+      }
+    },
+    "safety_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "deploy_touched",
+        "runtime_touched",
+        "api_auth_billing_trading_touched",
+        "private_repo_read",
+        "contracts_repo_read",
+        "fetch_pull_checkout_performed",
+        "branch_deleted",
+        "force_push_performed"
+      ],
+      "properties": {
+        "deploy_touched": { "type": "boolean", "const": false },
+        "runtime_touched": { "type": "boolean", "const": false },
+        "api_auth_billing_trading_touched": { "type": "boolean", "const": false },
+        "private_repo_read": { "type": "boolean", "const": false },
+        "contracts_repo_read": { "type": "boolean", "const": false },
+        "fetch_pull_checkout_performed": { "type": "boolean", "const": false },
+        "branch_deleted": { "type": "boolean", "const": false },
+        "force_push_performed": { "type": "boolean", "const": false }
+      }
+    },
+    "owner_acceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["phrase", "accepted_at"],
+      "properties": {
+        "phrase": {
+          "type": "string",
+          "minLength": 1
+        },
+        "accepted_at": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "human_decision_point": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}
