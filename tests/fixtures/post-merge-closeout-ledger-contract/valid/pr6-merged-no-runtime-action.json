@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0.0",
+  "build_id": "2026-06-26_post_merge_closeout_ledger_contract_v1",
+  "record_type": "post_merge_closeout_ledger_record",
+  "lane_name": "NOTE_CORE_ARTIFACT_CONTRACT_ADOPTION_LEDGER_DOCS_SCHEMA_TESTS_LANE",
+  "pr": {
+    "number": 6,
+    "url": "https://github.com/kumiromiscythespec/LoneWolf_Fang_Codex_Native_Tooling/pull/6",
+    "title": "docs(orchestration): add note-core artifact adoption ledger",
+    "state": "MERGED",
+    "base_branch": "master",
+    "head_branch": "post-submission/codex-native-safe-development",
+    "head_commit_before_merge": "fe351b70aa6f7f975eef2f69f986b90683d4c29b"
+  },
+  "merge": {
+    "method": "squash",
+    "command_used": "gh pr merge 6 --squash --delete-branch=false",
+    "merge_commit_sha": "9f08072f49b02b1efb8340bcb608a1dbedb63346",
+    "merged_at": "2026-06-26T13:43:43Z",
+    "branch_deleted": false
+  },
+  "remote_heads": {
+    "master_head_after_merge": "9f08072f49b02b1efb8340bcb608a1dbedb63346",
+    "head_branch_after_merge": "fe351b70aa6f7f975eef2f69f986b90683d4c29b",
+    "head_branch_kept": true
+  },
+  "closeout": {
+    "closeout_classification": "NOTE_CORE_ARTIFACT_ADOPTION_LEDGER_POST_MERGE_CLOSEOUT_READY",
+    "final_lane_status": "LANE_CLOSED_MERGED_NO_RUNTIME_ACTION",
+    "recommended_owner_action": "OWNER_ACCEPT_PR_6_LANE_CLOSED_MERGED_NO_RUNTIME_ACTION",
+    "no_runtime_action": true
+  },
+  "scope": {
+    "expected_file_count": 19,
+    "actual_file_count": 19,
+    "expected_files": [
+      "docs/orchestration/note_core_artifact_adoption_ledger_contract.md",
+      "schema/orchestration/note_core_artifact_adoption_ledger_contract.schema.json",
+      "tests/note_core_artifact_adoption_ledger_contract.test.mjs",
+      "tests/fixtures/note-core-artifact-adoption-ledger-contract/valid/accepted-closeout-ledger.json",
+      "tests/fixtures/note-core-artifact-adoption-ledger-contract/invalid/runtime-touched.json",
+      "tests/fixtures/note-core-artifact-adoption-ledger-contract/invalid/missing-owner-acceptance.json",
+      "tests/codex_native_handoff_packet_chain_of_custody_contract.test.mjs",
+      "tests/codex_native_queue_handoff_dry_run_handoff_contract.test.mjs",
+      "tests/codex_native_result_envelope_readonly_consumer_observation_contract.test.mjs",
+      "tests/codex_native_stable_closeout_artifact_chain_readiness_contract.test.mjs",
+      "tests/codex_native_supervised_dry_run_audit_bundle_reference_contract.test.mjs",
+      "tests/codex_native_supervised_dry_run_execution_receipt_contract.test.mjs",
+      "tests/codex_native_supervised_dry_run_execution_receipt_to_result_observation_linkage_contract.test.mjs",
+      "tests/codex_native_supervised_dry_run_execution_request_envelope_contract.test.mjs",
+      "tests/codex_native_supervised_dry_run_owner_decision_receipt_contract.test.mjs",
+      "tests/codex_native_supervised_dry_run_owner_review_packet_contract.test.mjs",
+      "tests/codex_native_supervised_dry_run_result_envelope_contract.test.mjs",
+      "tests/codex_native_supervised_dry_run_result_observation_contract.test.mjs",
+      "tests/codex_native_supervised_dry_run_result_observation_to_audit_bundle_linkage_contract.test.mjs"
+    ],
+    "actual_files": [
+      "docs/orchestration/note_core_artifact_adoption_ledger_contract.md",
+      "schema/orchestration/note_core_artifact_adoption_ledger_contract.schema.json",
+      "tests/note_core_artifact_adoption_ledger_contract.test.mjs",
+      "tests/fixtures/note-core-artifact-adoption-ledger-contract/valid/accepted-closeout-ledger.json",
+      "tests/fixtures/note-core-artifact-adoption-ledger-contract/invalid/runtime-touched.json",
+      "tests/fixtures/note-core-artifact-adoption-ledger-contract/invalid/missing-owner-acceptance.json",
+      "tests/codex_native_handoff_packet_chain_of_custody_contract.test.mjs",
+      "tests/codex_native_queue_handoff_dry_run_handoff_contract.test.mjs",
+      "tests/codex_native_result_envelope_readonly_consumer_observation_contract.test.mjs",
+      "tests/codex_native_stable_closeout_artifact_chain_readiness_contract.test.mjs",
+      "tests/codex_native_supervised_dry_run_audit_bundle_reference_contract.test.mjs",
+      "tests/codex_native_supervised_dry_run_execution_receipt_contract.test.mjs",
+      "tests/codex_native_supervised_dry_run_execution_receipt_to_result_observation_linkage_contract.test.mjs",
+      "tests/codex_native_supervised_dry_run_execution_request_envelope_contract.test.mjs",
+      "tests/codex_native_supervised_dry_run_owner_decision_receipt_contract.test.mjs",
+      "tests/codex_native_supervised_dry_run_owner_review_packet_contract.test.mjs",
+      "tests/codex_native_supervised_dry_run_result_envelope_contract.test.mjs",
+      "tests/codex_native_supervised_dry_run_result_observation_contract.test.mjs",
+      "tests/codex_native_supervised_dry_run_result_observation_to_audit_bundle_linkage_contract.test.mjs"
+    ],
+    "unexpected_files": [],
+    "missing_expected_files": []
+  },
+  "validation": {
+    "focused_test": "PASS 8/8",
+    "full_test": "PASS 271/271",
+    "diff_check": "PASS",
+    "github_checks_summary": "NO_GITHUB_CHECKS_REPORTED",
+    "dangerous_area_review": "PASS: docs/schema/tests/fixtures/test-guard-only; no deploy/runtime/API/auth/billing/trading/private/contracts/secrets/production/cloud/PAPER/LIVE/order/private API areas in PR scope."
+  },
+  "safety_boundary": {
+    "deploy_touched": false,
+    "runtime_touched": false,
+    "api_auth_billing_trading_touched": false,
+    "private_repo_read": false,
+    "contracts_repo_read": false,
+    "fetch_pull_checkout_performed": false,
+    "branch_deleted": false,
+    "force_push_performed": false
+  },
+  "owner_acceptance": {
+    "phrase": "OWNER_ACCEPT_PR_6_LANE_CLOSED_MERGED_NO_RUNTIME_ACTION",
+    "accepted_at": null
+  },
+  "human_decision_point": "Whether the owner accepts PR #6 as closed and merged with no runtime action.",
+  "created_at": "2026-06-26T22:53:36+09:00"
+}

@@ -1,4 +1,5 @@
 // BUILD_ID: RESULT_ENVELOPE_READONLY_CONSUMER_OBSERVATION_CONTRACTS_20260614
+// BUILD_ID: 2026-06-26_post_merge_closeout_ledger_guard_allowlist_repair_v1
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
@@ -159,6 +160,15 @@ const noteCoreArtifactAdoptionLedgerImplementationLaneFiles = [
   "tests/fixtures/note-core-artifact-adoption-ledger-contract/valid/accepted-closeout-ledger.json",
   "tests/fixtures/note-core-artifact-adoption-ledger-contract/invalid/runtime-touched.json",
   "tests/fixtures/note-core-artifact-adoption-ledger-contract/invalid/missing-owner-acceptance.json"
+];
+
+const postMergeCloseoutLedgerContractImplementationLaneFiles = [
+  "docs/orchestration/post_merge_closeout_ledger_contract.md",
+  "schema/orchestration/post_merge_closeout_ledger_contract.schema.json",
+  "tests/post_merge_closeout_ledger_contract.test.mjs",
+  "tests/fixtures/post-merge-closeout-ledger-contract/valid/pr6-merged-no-runtime-action.json",
+  "tests/fixtures/post-merge-closeout-ledger-contract/invalid/runtime-action-requested.json",
+  "tests/fixtures/post-merge-closeout-ledger-contract/invalid/missing-owner-acceptance.json"
 ];
 const validFixturePaths = [
   "tests/fixtures/codex-native-supervised-dry-run/result-envelope-consumer/valid/consumer_observation_ready_no_action.json",
@@ -434,7 +444,8 @@ test("working tree changes stay inside the exact 14-file allowlist", () => {
     ...lwfNoteNetworkLocalOrchestratorImplementationLaneFiles,
     ...lwfNoteNetworkOutputsLitePromptOperationsImplementationLaneFiles,
     ...noteCoreArtifactContractImplementationLaneFiles,
-    ...noteCoreArtifactAdoptionLedgerImplementationLaneFiles
+    ...noteCoreArtifactAdoptionLedgerImplementationLaneFiles,
+    ...postMergeCloseoutLedgerContractImplementationLaneFiles
   ]);
 
   const outside = changedPaths.filter((path) => !currentWorkingTreeGuardAllowedFiles.has(path));
