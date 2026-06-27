@@ -55,4 +55,3 @@ such request invalidates the record and requires owner review.
 The record carries exactly one human decision point. That decision may approve
 the next bounded planning or implementation phase, but it does not approve a
 commit, push, PR, merge, deploy, runtime action, or branch mutation by itself.
-
