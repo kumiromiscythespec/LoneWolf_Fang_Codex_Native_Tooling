@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0.0",
+  "build_id": "2026-06-27_squash_merge_retained_branch_realignment_contract_v1",
+  "record_type": "squash_merge_retained_branch_realignment_contract",
+  "lane_name": "unsafe_branch_rewrite",
+  "prior_squash_merge": {
+    "prior_pr_number": 6,
+    "prior_merge_commit": "9f08072f49b02b1efb8340bcb608a1dbedb63346",
+    "retained_head_branch": "post-submission/codex-native-safe-development",
+    "retained_head_commit": "3c6a42a83195b2e1feb7b5777b7941121a18003c"
+  },
+  "current_candidate": {
+    "base_branch": "master",
+    "base_commit": "9f08072f49b02b1efb8340bcb608a1dbedb63346",
+    "head_branch": "post-submission/post-merge-closeout-ledger-clean-pr",
+    "head_commit": "ed0bfd6b2cc5af0708c662dd6b9698146b8118b6",
+    "expected_file_count": 1,
+    "actual_compare_file_count": 1,
+    "expected_files": ["current-lane.json"],
+    "compare_files": ["current-lane.json"],
+    "unexpected_files": [],
+    "missing_expected_files": [],
+    "carryover_files": []
+  },
+  "detection": {
+    "compare_status": "ahead",
+    "ahead_by": 1,
+    "behind_by": 0,
+    "blocker_triggered": true,
+    "blocker_reason": "force_push_requested"
+  },
+  "realignment_plan": {
+    "required": true,
+    "method": "exact_19_file_patch",
+    "clean_branch": "post-submission/post-merge-closeout-ledger-clean-pr",
+    "clean_branch_base_commit": "9f08072f49b02b1efb8340bcb608a1dbedb63346",
+    "source_commit": "3c6a42a83195b2e1feb7b5777b7941121a18003c",
+    "exact_file_transfer": true,
+    "expected_clean_compare_file_count": 1,
+    "clean_compare_file_count": 1,
+    "clean_compare_exact": true,
+    "resulting_remote_master_commit": "fad49c2065bea4d07aa67516b2ddad705ae0b629",
+    "recommended_status": "STOP_OWNER_REVIEW_REQUIRED"
+  },
+  "safety_boundary": {
+    "no_force_push": false,
+    "no_branch_deletion": false,
+    "no_branch_cleanup": true,
+    "no_broad_fetch_or_pull": true,
+    "no_deploy": true,
+    "no_runtime": true,
+    "no_api_auth_billing_trading": true,
+    "no_private_or_contracts_access": true,
+    "no_unrelated_refactor": true
+  },
+  "validation": {
+    "focused_test": "NOT_RUN",
+    "full_test": "NOT_RUN",
+    "diff_check": "NOT_RUN",
+    "allowlist_static_check": "NOT_RUN",
+    "github_compare_check": "STOP_OWNER_REVIEW_REQUIRED"
+  },
+  "human_decision_point": "Whether the unsafe branch rewrite request must stop.",
+  "created_at": "2026-06-27T00:00:00Z"
+}
