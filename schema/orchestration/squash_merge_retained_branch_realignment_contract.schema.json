@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lonewolf.codex_native.squash_merge_retained_branch_realignment_contract.v1",
+  "$comment": "BUILD_ID: 2026-06-27_squash_merge_retained_branch_realignment_contract_v1",
+  "title": "Squash Merge Retained Branch Realignment Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "build_id",
+    "record_type",
+    "lane_name",
+    "prior_squash_merge",
+    "current_candidate",
+    "detection",
+    "realignment_plan",
+    "safety_boundary",
+    "validation",
+    "human_decision_point",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "build_id": { "const": "2026-06-27_squash_merge_retained_branch_realignment_contract_v1" },
+    "record_type": { "const": "squash_merge_retained_branch_realignment_contract" },
+    "lane_name": { "type": "string", "minLength": 1 },
+    "prior_squash_merge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["prior_pr_number", "prior_merge_commit", "retained_head_branch", "retained_head_commit"],
+      "properties": {
+        "prior_pr_number": { "type": "integer", "minimum": 1 },
+        "prior_merge_commit": { "$ref": "#/$defs/sha" },
+        "retained_head_branch": { "$ref": "#/$defs/nonEmpty" },
+        "retained_head_commit": { "$ref": "#/$defs/sha" }
+      }
+    },
+    "current_candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "base_branch", "base_commit", "head_branch", "head_commit",
+        "expected_file_count", "actual_compare_file_count", "expected_files",
+        "compare_files", "unexpected_files", "missing_expected_files", "carryover_files"
+      ],
+      "properties": {
+        "base_branch": { "$ref": "#/$defs/nonEmpty" },
+        "base_commit": { "$ref": "#/$defs/sha" },
+        "head_branch": { "$ref": "#/$defs/nonEmpty" },
+        "head_commit": { "$ref": "#/$defs/sha" },
+        "expected_file_count": { "type": "integer", "minimum": 1 },
+        "actual_compare_file_count": { "type": "integer", "minimum": 0 },
+        "expected_files": { "$ref": "#/$defs/pathArray" },
+        "compare_files": { "$ref": "#/$defs/pathArray" },
+        "unexpected_files": { "$ref": "#/$defs/pathArray" },
+        "missing_expected_files": { "$ref": "#/$defs/pathArray" },
+        "carryover_files": { "$ref": "#/$defs/pathArray" }
+      }
+    },
+    "detection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["compare_status", "ahead_by", "behind_by", "blocker_triggered", "blocker_reason"],
+      "properties": {
+        "compare_status": { "enum": ["ahead", "diverged", "identical", "unknown"] },
+        "ahead_by": { "type": "integer", "minimum": 0 },
+        "behind_by": { "type": "integer", "minimum": 0 },
+        "blocker_triggered": { "type": "boolean" },
+        "blocker_reason": {
+          "enum": [
+            "unexpected_carryover_files", "force_push_requested",
+            "branch_deletion_requested", "clean_compare_not_exact",
+            "remote_master_object_missing", "none"
+          ]
+        }
+      }
+    },
+    "realignment_plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required", "method", "clean_branch", "clean_branch_base_commit",
+        "source_commit", "exact_file_transfer", "expected_clean_compare_file_count",
+        "clean_compare_file_count", "clean_compare_exact", "resulting_remote_master_commit",
+        "recommended_status"
+      ],
+      "properties": {
+        "required": { "type": "boolean" },
+        "method": { "enum": ["exact_19_file_patch", "none"] },
+        "clean_branch": { "$ref": "#/$defs/nonEmpty" },
+        "clean_branch_base_commit": { "$ref": "#/$defs/sha" },
+        "source_commit": { "$ref": "#/$defs/sha" },
+        "exact_file_transfer": { "type": "boolean" },
+        "expected_clean_compare_file_count": { "type": "integer", "minimum": 1 },
+        "clean_compare_file_count": { "type": "integer", "minimum": 0 },
+        "clean_compare_exact": { "const": true },
+        "resulting_remote_master_commit": { "$ref": "#/$defs/sha" },
+        "recommended_status": { "enum": ["CLEAN_BRANCH_REALIGNMENT_READY", "STOP_OWNER_REVIEW_REQUIRED"] }
+      }
+    },
+    "safety_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "no_force_push", "no_branch_deletion", "no_branch_cleanup", "no_broad_fetch_or_pull",
+        "no_deploy", "no_runtime", "no_api_auth_billing_trading",
+        "no_private_or_contracts_access", "no_unrelated_refactor"
+      ],
+      "properties": {
+        "no_force_push": { "const": true },
+        "no_branch_deletion": { "const": true },
+        "no_branch_cleanup": { "const": true },
+        "no_broad_fetch_or_pull": { "const": true },
+        "no_deploy": { "const": true },
+        "no_runtime": { "const": true },
+        "no_api_auth_billing_trading": { "const": true },
+        "no_private_or_contracts_access": { "const": true },
+        "no_unrelated_refactor": { "const": true }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["focused_test", "full_test", "diff_check", "allowlist_static_check", "github_compare_check"],
+      "properties": {
+        "focused_test": { "$ref": "#/$defs/nonEmpty" },
+        "full_test": { "$ref": "#/$defs/nonEmpty" },
+        "diff_check": { "$ref": "#/$defs/nonEmpty" },
+        "allowlist_static_check": { "$ref": "#/$defs/nonEmpty" },
+        "github_compare_check": { "$ref": "#/$defs/nonEmpty" }
+      }
+    },
+    "human_decision_point": { "$ref": "#/$defs/nonEmpty" },
+    "created_at": { "type": "string", "format": "date-time" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "current_candidate": {
+            "anyOf": [
+              { "properties": { "unexpected_files": { "minItems": 1 } } },
+              { "properties": { "carryover_files": { "minItems": 1 } } }
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "detection": {
+            "properties": {
+              "blocker_triggered": { "const": true },
+              "blocker_reason": { "const": "unexpected_carryover_files" }
+            }
+          },
+          "realignment_plan": { "properties": { "required": { "const": true } } }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "nonEmpty": { "type": "string", "minLength": 1 },
+    "sha": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "pathArray": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  }
+}

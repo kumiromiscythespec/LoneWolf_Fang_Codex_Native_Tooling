@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0.0",
+  "build_id": "2026-06-27_squash_merge_retained_branch_realignment_contract_v1",
+  "record_type": "squash_merge_retained_branch_realignment_contract",
+  "lane_name": "unsafe_unblocked_carryover",
+  "prior_squash_merge": {
+    "prior_pr_number": 6,
+    "prior_merge_commit": "9f08072f49b02b1efb8340bcb608a1dbedb63346",
+    "retained_head_branch": "post-submission/codex-native-safe-development",
+    "retained_head_commit": "3c6a42a83195b2e1feb7b5777b7941121a18003c"
+  },
+  "current_candidate": {
+    "base_branch": "master",
+    "base_commit": "9f08072f49b02b1efb8340bcb608a1dbedb63346",
+    "head_branch": "post-submission/codex-native-safe-development",
+    "head_commit": "3c6a42a83195b2e1feb7b5777b7941121a18003c",
+    "expected_file_count": 1,
+    "actual_compare_file_count": 2,
+    "expected_files": ["current-lane.json"],
+    "compare_files": ["current-lane.json", "prior-lane.json"],
+    "unexpected_files": ["prior-lane.json"],
+    "missing_expected_files": [],
+    "carryover_files": ["prior-lane.json"]
+  },
+  "detection": {
+    "compare_status": "ahead",
+    "ahead_by": 2,
+    "behind_by": 0,
+    "blocker_triggered": false,
+    "blocker_reason": "none"
+  },
+  "realignment_plan": {
+    "required": false,
+    "method": "none",
+    "clean_branch": "not-planned",
+    "clean_branch_base_commit": "9f08072f49b02b1efb8340bcb608a1dbedb63346",
+    "source_commit": "3c6a42a83195b2e1feb7b5777b7941121a18003c",
+    "exact_file_transfer": false,
+    "expected_clean_compare_file_count": 1,
+    "clean_compare_file_count": 1,
+    "clean_compare_exact": true,
+    "resulting_remote_master_commit": "fad49c2065bea4d07aa67516b2ddad705ae0b629",
+    "recommended_status": "CLEAN_BRANCH_REALIGNMENT_READY"
+  },
+  "safety_boundary": {
+    "no_force_push": true,
+    "no_branch_deletion": true,
+    "no_branch_cleanup": true,
+    "no_broad_fetch_or_pull": true,
+    "no_deploy": true,
+    "no_runtime": true,
+    "no_api_auth_billing_trading": true,
+    "no_private_or_contracts_access": true,
+    "no_unrelated_refactor": true
+  },
+  "validation": {
+    "focused_test": "NOT_RUN",
+    "full_test": "NOT_RUN",
+    "diff_check": "NOT_RUN",
+    "allowlist_static_check": "NOT_RUN",
+    "github_compare_check": "FAILED_SCOPE"
+  },
+  "human_decision_point": "Whether the unsafe candidate must stop.",
+  "created_at": "2026-06-27T00:00:00Z"
+}

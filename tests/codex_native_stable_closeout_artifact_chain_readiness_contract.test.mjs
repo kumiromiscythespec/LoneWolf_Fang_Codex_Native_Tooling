@@ -1,5 +1,6 @@
 // BUILD_ID: STABLE_CLOSEOUT_ARTIFACT_CHAIN_READINESS_CONTRACTS_20260614
 // BUILD_ID: 2026-06-26_post_merge_closeout_ledger_guard_allowlist_repair_v1
+// BUILD_ID: 2026-06-27_squash_merge_retained_branch_realignment_contract_v1
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
@@ -170,6 +171,14 @@ const postMergeCloseoutLedgerContractImplementationLaneFiles = [
   "tests/fixtures/post-merge-closeout-ledger-contract/valid/pr6-merged-no-runtime-action.json",
   "tests/fixtures/post-merge-closeout-ledger-contract/invalid/runtime-action-requested.json",
   "tests/fixtures/post-merge-closeout-ledger-contract/invalid/missing-owner-acceptance.json"
+];
+const squashMergeRetainedBranchRealignmentContractImplementationLaneFiles = [
+  "docs/orchestration/squash_merge_retained_branch_realignment_contract.md",
+  "schema/orchestration/squash_merge_retained_branch_realignment_contract.schema.json",
+  "tests/squash_merge_retained_branch_realignment_contract.test.mjs",
+  "tests/fixtures/squash-merge-retained-branch-realignment-contract/valid/clean-branch-realignment-ready.json",
+  "tests/fixtures/squash-merge-retained-branch-realignment-contract/invalid/unexpected-carryover-files.json",
+  "tests/fixtures/squash-merge-retained-branch-realignment-contract/invalid/force-push-or-branch-delete-requested.json"
 ];
 const validFixturePaths = [
   "tests/fixtures/codex-native-supervised-dry-run/stable-closeout-artifact-chain-readiness/valid/accepted-closeout-chain.json",
@@ -415,7 +424,8 @@ test("working tree changes stay inside the exact 12-file allowlist", () => {
     ...lwfNoteNetworkOutputsLitePromptOperationsImplementationLaneFiles,
     ...noteCoreArtifactContractImplementationLaneFiles,
     ...noteCoreArtifactAdoptionLedgerImplementationLaneFiles,
-    ...postMergeCloseoutLedgerContractImplementationLaneFiles
+    ...postMergeCloseoutLedgerContractImplementationLaneFiles,
+    ...squashMergeRetainedBranchRealignmentContractImplementationLaneFiles
   ]);
 
   const outside = changedPaths.filter((path) => !currentWorkingTreeGuardAllowedFiles.has(path));
