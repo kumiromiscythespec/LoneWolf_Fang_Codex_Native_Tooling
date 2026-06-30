@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lonewolf.codex_native.untracked_new_file_diff_check_coverage_contract.v1",
+  "$comment": "BUILD_ID: 2026-06-28_untracked_new_file_diff_check_coverage_contract_v1",
+  "title": "Untracked New File Diff Check Coverage Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "build_id", "record_type", "lane_name", "intended_change_set", "diff_check_coverage", "commit_approval_gate", "push_approval_gate", "repair_policy", "safety_boundary", "validation", "human_decision_point", "created_at"],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "build_id": { "const": "2026-06-28_untracked_new_file_diff_check_coverage_contract_v1" },
+    "record_type": { "const": "untracked_new_file_diff_check_coverage_contract" },
+    "lane_name": { "$ref": "#/$defs/nonEmpty" },
+    "intended_change_set": {
+      "type": "object", "additionalProperties": false,
+      "required": ["expected_files", "expected_file_count", "tracked_modified_files", "untracked_new_files", "missing_expected_files", "unexpected_files"],
+      "properties": {
+        "expected_files": { "$ref": "#/$defs/pathArray" },
+        "expected_file_count": { "type": "integer", "minimum": 1 },
+        "tracked_modified_files": { "$ref": "#/$defs/pathArray" },
+        "untracked_new_files": { "$ref": "#/$defs/pathArray" },
+        "missing_expected_files": { "$ref": "#/$defs/pathArray" },
+        "unexpected_files": { "$ref": "#/$defs/pathArray" }
+      }
+    },
+    "diff_check_coverage": {
+      "type": "object", "additionalProperties": false,
+      "required": ["coverage_method", "status_short_untracked_all_captured", "tracked_files_checked", "untracked_new_files_checked", "staged_files_checked", "committed_diff_checked", "coverage_complete", "coverage_gap_detected", "coverage_gap_reason"],
+      "properties": {
+        "coverage_method": { "$ref": "#/$defs/nonEmpty" },
+        "status_short_untracked_all_captured": { "const": true },
+        "tracked_files_checked": { "type": "boolean" },
+        "untracked_new_files_checked": { "type": "boolean" },
+        "staged_files_checked": { "type": "boolean" },
+        "committed_diff_checked": { "type": "boolean" },
+        "coverage_complete": { "type": "boolean" },
+        "coverage_gap_detected": { "type": "boolean" },
+        "coverage_gap_reason": { "type": "string" }
+      }
+    },
+    "commit_approval_gate": { "$ref": "#/$defs/gate" },
+    "push_approval_gate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["approval_allowed", "committed_diff_check_status", "committed_diff_check_failure", "blocker_triggered", "blocker_reason"],
+      "properties": {
+        "approval_allowed": { "type": "boolean" },
+        "committed_diff_check_status": { "enum": ["PASS", "FAIL", "NOT_RUN"] },
+        "committed_diff_check_failure": { "type": "boolean" },
+        "blocker_triggered": { "type": "boolean" },
+        "blocker_reason": { "type": "string" }
+      }
+    },
+    "repair_policy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["repair_required", "repair_scope", "amend_allowed", "force_push_allowed", "branch_deletion_allowed", "approval_packet_regenerated", "combined_branch_diff_exact"],
+      "properties": {
+        "repair_required": { "type": "boolean" },
+        "repair_scope": { "type": "string" },
+        "amend_allowed": { "const": false },
+        "force_push_allowed": { "const": false },
+        "branch_deletion_allowed": { "const": false },
+        "approval_packet_regenerated": { "type": "boolean" },
+        "combined_branch_diff_exact": { "type": "boolean" }
+      }
+    },
+    "safety_boundary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["no_deploy", "no_runtime", "no_api_auth_billing_trading", "no_private_or_contracts_access", "no_pull_fetch_without_approval", "no_checkout_switch_without_approval", "no_force_push", "no_branch_deletion"],
+      "properties": {
+        "no_deploy": { "const": true }, "no_runtime": { "const": true },
+        "no_api_auth_billing_trading": { "const": true }, "no_private_or_contracts_access": { "const": true },
+        "no_pull_fetch_without_approval": { "const": true }, "no_checkout_switch_without_approval": { "const": true },
+        "no_force_push": { "const": true }, "no_branch_deletion": { "const": true }
+      }
+    },
+    "validation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["focused_test", "full_test", "diff_check", "guard_allowlist_static_check"],
+      "properties": {
+        "focused_test": { "$ref": "#/$defs/nonEmpty" }, "full_test": { "$ref": "#/$defs/nonEmpty" },
+        "diff_check": { "$ref": "#/$defs/nonEmpty" }, "guard_allowlist_static_check": { "$ref": "#/$defs/nonEmpty" }
+      }
+    },
+    "human_decision_point": { "$ref": "#/$defs/nonEmpty" },
+    "created_at": { "type": "string", "format": "date-time" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "intended_change_set": { "properties": { "untracked_new_files": { "minItems": 1 } } } } },
+      "then": { "properties": { "diff_check_coverage": { "properties": { "untracked_new_files_checked": { "const": true } } } } }
+    },
+    {
+      "if": { "properties": { "diff_check_coverage": { "anyOf": [{ "properties": { "coverage_complete": { "const": false } } }, { "properties": { "coverage_gap_detected": { "const": true } } }] } } },
+      "then": { "properties": { "commit_approval_gate": { "properties": { "approval_allowed": { "const": false }, "blocker_triggered": { "const": true } } } } }
+    },
+    {
+      "if": { "properties": { "push_approval_gate": { "properties": { "committed_diff_check_failure": { "const": true } } } } },
+      "then": { "properties": { "push_approval_gate": { "properties": { "approval_allowed": { "const": false }, "blocker_triggered": { "const": true } } } } }
+    },
+    {
+      "if": { "properties": { "repair_policy": { "properties": { "repair_required": { "const": true } } } } },
+      "then": { "properties": { "repair_policy": { "properties": { "approval_packet_regenerated": { "const": true } } } } }
+    }
+  ],
+  "$defs": {
+    "nonEmpty": { "type": "string", "minLength": 1 },
+    "pathArray": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "gate": { "type": "object", "additionalProperties": false, "required": ["approval_allowed", "blocker_triggered", "blocker_reason"], "properties": { "approval_allowed": { "type": "boolean" }, "blocker_triggered": { "type": "boolean" }, "blocker_reason": { "type": "string" } } }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0.0", "build_id": "2026-06-28_untracked_new_file_diff_check_coverage_contract_v1", "record_type": "untracked_new_file_diff_check_coverage_contract", "lane_name": "unsafe_untracked_coverage",
+  "intended_change_set": { "expected_files": ["docs/example.md", "tests/new-example.test.mjs"], "expected_file_count": 2, "tracked_modified_files": ["docs/example.md"], "untracked_new_files": ["tests/new-example.test.mjs"], "missing_expected_files": [], "unexpected_files": [] },
+  "diff_check_coverage": { "coverage_method": "tracked diff only", "status_short_untracked_all_captured": true, "tracked_files_checked": true, "untracked_new_files_checked": false, "staged_files_checked": false, "committed_diff_checked": false, "coverage_complete": false, "coverage_gap_detected": true, "coverage_gap_reason": "untracked file omitted" },
+  "commit_approval_gate": { "approval_allowed": true, "blocker_triggered": false, "blocker_reason": "" },
+  "push_approval_gate": { "approval_allowed": false, "committed_diff_check_status": "NOT_RUN", "committed_diff_check_failure": false, "blocker_triggered": true, "blocker_reason": "coverage incomplete" },
+  "repair_policy": { "repair_required": false, "repair_scope": "", "amend_allowed": false, "force_push_allowed": false, "branch_deletion_allowed": false, "approval_packet_regenerated": false, "combined_branch_diff_exact": false },
+  "safety_boundary": { "no_deploy": true, "no_runtime": true, "no_api_auth_billing_trading": true, "no_private_or_contracts_access": true, "no_pull_fetch_without_approval": true, "no_checkout_switch_without_approval": true, "no_force_push": true, "no_branch_deletion": true },
+  "validation": { "focused_test": "FAIL", "full_test": "NOT_RUN", "diff_check": "NOT_RUN", "guard_allowlist_static_check": "PASS" }, "human_decision_point": "Stop for owner review.", "created_at": "2026-06-28T00:00:00Z"
+}

@@ -1,6 +1,7 @@
 // BUILD_ID: SUPERVISED_DRY_RUN_OWNER_REVIEW_PACKET_CONTRACTS_20260615
 // BUILD_ID: 2026-06-26_post_merge_closeout_ledger_guard_allowlist_repair_v1
 // BUILD_ID: 2026-06-27_squash_merge_retained_branch_realignment_contract_v1
+// BUILD_ID: 2026-06-28_untracked_new_file_diff_check_coverage_contract_v1
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
@@ -61,6 +62,14 @@ const squashMergeRetainedBranchRealignmentContractImplementationLaneFiles = [
   "tests/fixtures/squash-merge-retained-branch-realignment-contract/valid/clean-branch-realignment-ready.json",
   "tests/fixtures/squash-merge-retained-branch-realignment-contract/invalid/unexpected-carryover-files.json",
   "tests/fixtures/squash-merge-retained-branch-realignment-contract/invalid/force-push-or-branch-delete-requested.json"
+];
+const untrackedNewFileDiffCheckCoverageContractImplementationLaneFiles = [
+  "docs/orchestration/untracked_new_file_diff_check_coverage_contract.md",
+  "schema/orchestration/untracked_new_file_diff_check_coverage_contract.schema.json",
+  "tests/untracked_new_file_diff_check_coverage_contract.test.mjs",
+  "tests/fixtures/untracked-new-file-diff-check-coverage-contract/valid/complete-intended-file-set-covered.json",
+  "tests/fixtures/untracked-new-file-diff-check-coverage-contract/invalid/untracked-new-file-not-covered.json",
+  "tests/fixtures/untracked-new-file-diff-check-coverage-contract/invalid/push-approved-after-committed-diff-check-failure.json"
 ];
 const validFixtures = [
   fixtureRoot + "/valid/not-started.json",
@@ -590,7 +599,8 @@ test("working tree changes stay inside the exact 24-file allowlist", () => {
     ...noteCoreArtifactContractImplementationLaneFiles,
     ...noteCoreArtifactAdoptionLedgerImplementationLaneFiles,
     ...postMergeCloseoutLedgerContractImplementationLaneFiles,
-    ...squashMergeRetainedBranchRealignmentContractImplementationLaneFiles
+    ...squashMergeRetainedBranchRealignmentContractImplementationLaneFiles,
+    ...untrackedNewFileDiffCheckCoverageContractImplementationLaneFiles
   ]);
 
   const outside = changedPaths.filter((file) => !currentWorkingTreeGuardAllowedFiles.has(file));
