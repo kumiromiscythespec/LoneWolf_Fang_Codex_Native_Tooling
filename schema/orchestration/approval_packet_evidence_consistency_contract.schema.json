@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lonewolf.codex_native.approval_packet_evidence_consistency_contract.v1",
+  "$comment": "BUILD_ID: 2026-07-01_approval_packet_evidence_consistency_contract_v1",
+  "title": "Approval Packet Evidence Consistency Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["build_id", "contract_name", "packet_type", "readiness_classification", "manifest_counts", "evidence_files_present", "changed_files_exact", "tracked_modified_files", "untracked_new_files", "staged_files", "git_status_short_untracked_all", "consistency_checks", "blocker_classification", "human_review_required", "repair_requirements", "safety_boundary"],
+  "properties": {
+    "build_id": { "const": "2026-07-01_approval_packet_evidence_consistency_contract_v1" },
+    "contract_name": { "const": "approval_packet_evidence_consistency_contract" },
+    "packet_type": { "type": "string", "minLength": 1 },
+    "readiness_classification": { "type": "string", "minLength": 1 },
+    "manifest_counts": {
+      "type": "object", "additionalProperties": false,
+      "required": ["changed_file_count", "tracked_modified_file_count", "untracked_new_file_count", "staged_file_count"],
+      "properties": {
+        "changed_file_count": { "type": "integer", "minimum": 0 },
+        "tracked_modified_file_count": { "type": "integer", "minimum": 0 },
+        "untracked_new_file_count": { "type": "integer", "minimum": 0 },
+        "staged_file_count": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "evidence_files_present": {
+      "type": "object", "additionalProperties": false,
+      "required": ["manifest", "git_status", "changed_files_exact", "tracked_modified_files", "untracked_new_files", "staged_files", "checksums"],
+      "properties": {
+        "manifest": { "type": "boolean" }, "git_status": { "type": "boolean" },
+        "changed_files_exact": { "type": "boolean" }, "tracked_modified_files": { "type": "boolean" },
+        "untracked_new_files": { "type": "boolean" }, "staged_files": { "type": "boolean" },
+        "checksums": { "type": "boolean" }
+      }
+    },
+    "changed_files_exact": { "$ref": "#/$defs/pathArray" },
+    "tracked_modified_files": { "$ref": "#/$defs/pathArray" },
+    "untracked_new_files": { "$ref": "#/$defs/pathArray" },
+    "staged_files": { "$ref": "#/$defs/pathArray" },
+    "git_status_short_untracked_all": { "type": "array", "items": { "type": "string", "minLength": 4 } },
+    "consistency_checks": {
+      "type": "object", "additionalProperties": false,
+      "required": ["changed_count_matches", "tracked_modified_count_matches", "untracked_new_count_matches", "staged_count_matches", "changed_set_matches_union", "untracked_paths_match_status", "tracked_paths_match_status", "staged_paths_match_status", "no_ready_classification_when_contradicted"],
+      "properties": {
+        "changed_count_matches": { "type": "boolean" }, "tracked_modified_count_matches": { "type": "boolean" },
+        "untracked_new_count_matches": { "type": "boolean" }, "staged_count_matches": { "type": "boolean" },
+        "changed_set_matches_union": { "type": "boolean" }, "untracked_paths_match_status": { "type": "boolean" },
+        "tracked_paths_match_status": { "type": "boolean" }, "staged_paths_match_status": { "type": "boolean" },
+        "no_ready_classification_when_contradicted": { "type": "boolean" }
+      }
+    },
+    "blocker_classification": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "human_review_required": { "const": true },
+    "repair_requirements": {
+      "type": "object", "additionalProperties": false,
+      "required": ["appdata_only_without_separate_source_approval", "regenerate_contradictory_evidence", "update_manifest_and_checksums", "no_warning_downgrade"],
+      "properties": {
+        "appdata_only_without_separate_source_approval": { "const": true },
+        "regenerate_contradictory_evidence": { "const": true },
+        "update_manifest_and_checksums": { "const": true },
+        "no_warning_downgrade": { "const": true }
+      }
+    },
+    "safety_boundary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["no_runtime", "no_deploy", "no_api_auth_billing_trading", "no_private_or_contracts_access", "no_repository_mutation_without_approval"],
+      "properties": {
+        "no_runtime": { "const": true }, "no_deploy": { "const": true },
+        "no_api_auth_billing_trading": { "const": true }, "no_private_or_contracts_access": { "const": true },
+        "no_repository_mutation_without_approval": { "const": true }
+      }
+    }
+  },
+  "$defs": {
+    "pathArray": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "build_id": "2026-07-01_approval_packet_evidence_consistency_contract_v1",
+  "contract_name": "approval_packet_evidence_consistency_contract",
+  "packet_type": "commit_approval",
+  "readiness_classification": "COMMIT_APPROVAL_PACKET_READY",
+  "manifest_counts": { "changed_file_count": 2, "tracked_modified_file_count": 1, "untracked_new_file_count": 1, "staged_file_count": 0 },
+  "evidence_files_present": { "manifest": true, "git_status": true, "changed_files_exact": true, "tracked_modified_files": true, "untracked_new_files": true, "staged_files": true, "checksums": true },
+  "changed_files_exact": ["tracked", "untracked"], "tracked_modified_files": ["tracked"], "untracked_new_files": ["untracked"], "staged_files": [],
+  "git_status_short_untracked_all": [" M tracked", "?? untracked"],
+  "consistency_checks": { "changed_count_matches": true, "tracked_modified_count_matches": true, "untracked_new_count_matches": true, "staged_count_matches": true, "changed_set_matches_union": true, "untracked_paths_match_status": true, "tracked_paths_match_status": true, "staged_paths_match_status": true, "no_ready_classification_when_contradicted": false },
+  "blocker_classification": ["READY_CLASSIFICATION_WITH_FAILED_CONSISTENCY_CHECK"], "human_review_required": true,
+  "repair_requirements": { "appdata_only_without_separate_source_approval": true, "regenerate_contradictory_evidence": true, "update_manifest_and_checksums": true, "no_warning_downgrade": true },
+  "safety_boundary": { "no_runtime": true, "no_deploy": true, "no_api_auth_billing_trading": true, "no_private_or_contracts_access": true, "no_repository_mutation_without_approval": true }
+}
