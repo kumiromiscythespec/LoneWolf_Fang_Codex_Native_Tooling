@@ -18,7 +18,7 @@
         "changed_file_count": { "type": "integer", "minimum": 0 },
         "tracked_modified_file_count": { "type": "integer", "minimum": 0 },
         "untracked_new_file_count": { "type": "integer", "minimum": 0 },
-        "staged_file_count": { "type": "integer", "minimum": 0 }
+        "staged_file_count": { "type": "integer", "minimum": 0, "description": "Must equal both staged_files length and the independently derived staged status path count." }
       }
     },
     "evidence_files_present": {
@@ -43,7 +43,7 @@
         "changed_count_matches": { "type": "boolean" }, "tracked_modified_count_matches": { "type": "boolean" },
         "untracked_new_count_matches": { "type": "boolean" }, "staged_count_matches": { "type": "boolean" },
         "changed_set_matches_union": { "type": "boolean" }, "untracked_paths_match_status": { "type": "boolean" },
-        "tracked_paths_match_status": { "type": "boolean" }, "staged_paths_match_status": { "type": "boolean" },
+        "tracked_paths_match_status": { "type": "boolean" }, "staged_paths_match_status": { "type": "boolean", "description": "Reports exact staged_files equality with paths independently derived from the porcelain index column; a true value cannot override a derived mismatch." },
         "no_ready_classification_when_contradicted": { "type": "boolean" }
       }
     },

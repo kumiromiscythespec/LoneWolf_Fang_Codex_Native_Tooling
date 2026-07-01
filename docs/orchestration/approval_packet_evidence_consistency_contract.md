@@ -28,6 +28,14 @@ are exactly tracked `M` paths; staged paths match staged evidence. For a
 pre-commit packet with zero staged files, the exact changed set equals the
 union of tracked modified and untracked new paths.
 
+Staged paths are independently derived from the first (index) column of each
+porcelain short-status entry. Index states such as `A `, `M `, `D `, `R `,
+`C `, `AM`, and `MM` are staged; worktree-only states such as ` M` and ` D`,
+and untracked `??`, are not. Rename and copy entries use the destination path.
+The declared staged set must exactly equal the derived set, and
+`staged_file_count` must equal both set sizes. A self-reported
+`staged_paths_match_status: true` never overrides a derived mismatch.
+
 Any contradiction blocks READY with one or more of:
 
 - `APPROVAL_PACKET_EVIDENCE_COUNT_MISMATCH`
