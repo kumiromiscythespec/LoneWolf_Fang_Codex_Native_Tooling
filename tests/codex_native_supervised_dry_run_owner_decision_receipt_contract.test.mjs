@@ -2,6 +2,7 @@
 // BUILD_ID: 2026-06-26_post_merge_closeout_ledger_guard_allowlist_repair_v1
 // BUILD_ID: 2026-06-27_squash_merge_retained_branch_realignment_contract_v1
 // BUILD_ID: 2026-06-28_untracked_new_file_diff_check_coverage_contract_v1
+// BUILD_ID: 2026-07-01_approval_packet_evidence_consistency_contract_v1
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
@@ -63,7 +64,15 @@ const untrackedNewFileDiffCheckCoverageContractImplementationLaneFiles = [
   "tests/untracked_new_file_diff_check_coverage_contract.test.mjs",
   "tests/fixtures/untracked-new-file-diff-check-coverage-contract/valid/complete-intended-file-set-covered.json",
   "tests/fixtures/untracked-new-file-diff-check-coverage-contract/invalid/untracked-new-file-not-covered.json",
-  "tests/fixtures/untracked-new-file-diff-check-coverage-contract/invalid/push-approved-after-committed-diff-check-failure.json"
+  "tests/fixtures/untracked-new-file-diff-check-coverage-contract/invalid/push-approved-after-committed-diff-check-failure.json",
+  "docs/orchestration/approval_packet_evidence_consistency_contract.md",
+  "schema/orchestration/approval_packet_evidence_consistency_contract.schema.json",
+  "tests/approval_packet_evidence_consistency_contract.test.mjs",
+  "tests/fixtures/approval-packet-evidence-consistency-contract/valid/consistent-commit-approval-packet.json",
+  "tests/fixtures/approval-packet-evidence-consistency-contract/invalid/untracked-list-contradicts-manifest.json",
+  "tests/fixtures/approval-packet-evidence-consistency-contract/invalid/changed-files-count-contradicts-manifest.json",
+  "tests/fixtures/approval-packet-evidence-consistency-contract/invalid/status-split-contradicts-lists.json",
+  "tests/fixtures/approval-packet-evidence-consistency-contract/invalid/ready-classification-with-failed-check.json"
 ];
 const validFixtures = [
   `${fixtureRoot}/valid/owner_decision_receipt_approved_for_next_approval_packet.json`,
