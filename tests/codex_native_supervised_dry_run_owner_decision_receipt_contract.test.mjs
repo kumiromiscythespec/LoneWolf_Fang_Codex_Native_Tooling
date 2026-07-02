@@ -512,7 +512,17 @@ test("working tree changes stay inside the exact 15-file allowlist", () => {
     ...noteCoreArtifactAdoptionLedgerImplementationLaneFiles,
     ...postMergeCloseoutLedgerContractImplementationLaneFiles,
     ...squashMergeRetainedBranchRealignmentContractImplementationLaneFiles,
-    ...untrackedNewFileDiffCheckCoverageContractImplementationLaneFiles
+    ...untrackedNewFileDiffCheckCoverageContractImplementationLaneFiles,
+    "docs/orchestration/post_merge_closeout_evidence_consistency_contract.md",
+    "schema/orchestration/post_merge_closeout_evidence_consistency_contract.schema.json",
+    "tests/post_merge_closeout_evidence_consistency_contract.test.mjs",
+    "tests/fixtures/post-merge-closeout-evidence-consistency-contract/valid/consistent-post-merge-closeout-ready.json",
+    "tests/fixtures/post-merge-closeout-evidence-consistency-contract/invalid/ready-classification-but-pr-not-merged.json",
+    "tests/fixtures/post-merge-closeout-evidence-consistency-contract/invalid/closed-lane-but-open-pr-remains.json",
+    "tests/fixtures/post-merge-closeout-evidence-consistency-contract/invalid/remote-master-mismatch.json",
+    "tests/fixtures/post-merge-closeout-evidence-consistency-contract/invalid/source-diff-not-empty.json",
+    "tests/fixtures/post-merge-closeout-evidence-consistency-contract/invalid/branch-retention-mismatch.json",
+    "tests/fixtures/post-merge-closeout-evidence-consistency-contract/invalid/safety-boundary-contradiction.json"
   ]);
 
   const outside = changedPaths.filter((file) => !currentWorkingTreeGuardAllowedFiles.has(file));
