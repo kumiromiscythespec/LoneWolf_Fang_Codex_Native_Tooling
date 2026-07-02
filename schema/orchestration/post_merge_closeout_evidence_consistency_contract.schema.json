@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lonewolf.codex_native.post_merge_closeout_evidence_consistency_contract.v1",
+  "$comment": "BUILD_ID: 2026-07-02_post_merge_closeout_evidence_consistency_contract_v1",
+  "title": "Post-Merge Closeout Evidence Consistency Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["build_id", "contract_name", "final_classification", "final_lane_status", "pr", "merge", "retained_branch", "open_pr_after_merge", "working_tree", "safety_boundary", "merge_result_packet_sha256", "checks", "human_review_required"],
+  "properties": {
+    "build_id": { "const": "2026-07-02_post_merge_closeout_evidence_consistency_contract_v1" },
+    "contract_name": { "const": "post_merge_closeout_evidence_consistency_contract" },
+    "final_classification": { "type": "string", "pattern": "POST_MERGE_CLOSEOUT_READY$" },
+    "final_lane_status": { "const": "LANE_CLOSED_MERGED_NO_RUNTIME_ACTION" },
+    "pr": {
+      "type": "object", "additionalProperties": false,
+      "required": ["number", "url", "final_state"],
+      "properties": {
+        "number": { "type": "integer", "minimum": 1 },
+        "url": { "type": "string", "minLength": 1 },
+        "final_state": { "const": "MERGED" }
+      }
+    },
+    "merge": {
+      "type": "object", "additionalProperties": false,
+      "required": ["old_remote_master", "new_remote_master", "merge_commit_oid", "squash_merge_commit"],
+      "properties": {
+        "old_remote_master": { "$ref": "#/$defs/sha" },
+        "new_remote_master": { "$ref": "#/$defs/sha" },
+        "merge_commit_oid": { "$ref": "#/$defs/sha" },
+        "squash_merge_commit": { "$ref": "#/$defs/sha" }
+      }
+    },
+    "retained_branch": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "branch_retained", "retained_branch_sha", "remote_evidence_sha"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "branch_retained": { "const": true },
+        "retained_branch_sha": { "$ref": "#/$defs/sha" },
+        "remote_evidence_sha": { "$ref": "#/$defs/sha" }
+      }
+    },
+    "open_pr_after_merge": {
+      "type": "object", "additionalProperties": false,
+      "required": ["count", "prs"],
+      "properties": {
+        "count": { "const": 0 },
+        "prs": { "type": "array", "maxItems": 0, "items": { "type": "integer" } }
+      }
+    },
+    "working_tree": {
+      "type": "object", "additionalProperties": false,
+      "required": ["clean", "staged_file_count", "source_diff_empty", "source_diff_file_count", "cached_diff_file_count"],
+      "properties": {
+        "clean": { "const": true },
+        "staged_file_count": { "const": 0 },
+        "source_diff_empty": { "const": true },
+        "source_diff_file_count": { "const": 0 },
+        "cached_diff_file_count": { "const": 0 }
+      }
+    },
+    "safety_boundary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["no_runtime_action_required", "forbidden_actions_after_merge", "fetch_performed", "pull_performed", "checkout_or_switch_performed", "push_performed", "branch_deleted", "cleanup_performed", "deploy_performed", "runtime_performed", "api_auth_billing_trading_performed"],
+      "properties": {
+        "no_runtime_action_required": { "const": true },
+        "forbidden_actions_after_merge": { "type": "array", "maxItems": 0, "items": { "type": "string" } },
+        "fetch_performed": { "const": false },
+        "pull_performed": { "const": false },
+        "checkout_or_switch_performed": { "const": false },
+        "push_performed": { "const": false },
+        "branch_deleted": { "const": false },
+        "cleanup_performed": { "const": false },
+        "deploy_performed": { "const": false },
+        "runtime_performed": { "const": false },
+        "api_auth_billing_trading_performed": { "const": false }
+      }
+    },
+    "merge_result_packet_sha256": { "$ref": "#/$defs/sha256" },
+    "checks": {
+      "type": "object", "additionalProperties": false,
+      "required": ["pr_merged", "remote_master_matches_merge", "retained_branch_matches", "open_pr_absent", "working_tree_clean", "safety_boundary_consistent", "merge_result_linked"],
+      "properties": {
+        "pr_merged": { "const": "PASS" },
+        "remote_master_matches_merge": { "const": "PASS" },
+        "retained_branch_matches": { "const": "PASS" },
+        "open_pr_absent": { "const": "PASS" },
+        "working_tree_clean": { "const": "PASS" },
+        "safety_boundary_consistent": { "const": "PASS" },
+        "merge_result_linked": { "const": "PASS" }
+      }
+    },
+    "human_review_required": { "const": true }
+  },
+  "$defs": {
+    "sha": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" }
+  }
+}
