@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lonewolf.codex_native.post_merge_closeout_acceptance_reference_consistency_contract.v1",
+  "$comment": "BUILD_ID: 2026-07-03_post_merge_closeout_acceptance_reference_consistency_contract_v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["build_id", "lane_id", "closeout_packet", "owner_acceptance", "final_lane_status", "pr", "squash_commit", "remote_master", "retained_branch", "next_scout", "safety_boundary"],
+  "properties": {
+    "build_id": {"const": "2026-07-03_post_merge_closeout_acceptance_reference_consistency_contract_v1"},
+    "lane_id": {"const": "POST_MERGE_CLOSEOUT_EVIDENCE_CONSISTENCY_CONTRACT"},
+    "closeout_packet": {"type": "object", "additionalProperties": false, "required": ["artifact_id", "sha256", "classification", "blocker_matrix"], "properties": {"artifact_id": {"type": "string", "minLength": 1}, "sha256": {"$ref": "#/$defs/sha256"}, "classification": {"const": "POST_MERGE_CLOSEOUT_EVIDENCE_CONSISTENCY_CONTRACT_PR_11_POST_MERGE_CLOSEOUT_READY"}, "blocker_matrix": {"const": "NO_BLOCKERS"}}},
+    "owner_acceptance": {"const": "OWNER_ACCEPT_PR_11_LANE_CLOSED_MERGED_NO_RUNTIME_ACTION"},
+    "final_lane_status": {"const": "CLOSED_MERGED_NO_RUNTIME_ACTION"},
+    "pr": {"type": "object", "additionalProperties": false, "required": ["number", "state", "merged_at"], "properties": {"number": {"const": 11}, "state": {"const": "MERGED"}, "merged_at": {"const": "2026-07-02T10:10:33Z"}}},
+    "squash_commit": {"const": "8934e5cd1370bb38a2ad062b2b45fa7048e301f2"},
+    "remote_master": {"const": "8934e5cd1370bb38a2ad062b2b45fa7048e301f2"},
+    "retained_branch": {"type": "object", "additionalProperties": false, "required": ["name", "head"], "properties": {"name": {"const": "post-submission/post-merge-closeout-evidence-consistency-contract"}, "head": {"const": "fb6f77fced275a7993a8d6ff66569d78cc0975cf"}}},
+    "next_scout": {"type": "object", "additionalProperties": false, "required": ["artifact_id", "sha256", "classification", "primary_recommendation", "source_lane_id", "owner_acceptance"], "properties": {"artifact_id": {"type": "string", "minLength": 1}, "sha256": {"$ref": "#/$defs/sha256"}, "classification": {"const": "AUTHORITATIVE_NEXT_LANE_SCOUT_AFTER_PR11_CLOSEOUT_READY"}, "primary_recommendation": {"const": "POST_MERGE_CLOSEOUT_ACCEPTANCE_REFERENCE_CONSISTENCY_CONTRACT"}, "source_lane_id": {"const": "POST_MERGE_CLOSEOUT_EVIDENCE_CONSISTENCY_CONTRACT"}, "owner_acceptance": {"const": "OWNER_ACCEPT_PR_11_LANE_CLOSED_MERGED_NO_RUNTIME_ACTION"}}},
+    "safety_boundary": {"type": "object", "additionalProperties": false, "required": ["deploy", "runtime", "api", "auth", "billing", "trading", "private_access", "contracts_access", "fetch", "pull", "checkout_switch", "push", "branch_deletion", "pr_mutation"], "properties": {"deploy": {"const": false}, "runtime": {"const": false}, "api": {"const": false}, "auth": {"const": false}, "billing": {"const": false}, "trading": {"const": false}, "private_access": {"const": false}, "contracts_access": {"const": false}, "fetch": {"const": false}, "pull": {"const": false}, "checkout_switch": {"const": false}, "push": {"const": false}, "branch_deletion": {"const": false}, "pr_mutation": {"const": false}}
+    }
+  },
+  "$defs": {"sha256": {"type": "string", "pattern": "^[A-Fa-f0-9]{64}$"}}
+}
