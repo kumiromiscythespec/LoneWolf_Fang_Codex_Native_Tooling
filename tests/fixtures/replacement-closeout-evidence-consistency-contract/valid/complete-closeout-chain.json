@@ -1,0 +1,60 @@
+{
+  "build_id": "2026-07-08_replacement_closeout_evidence_consistency_contract_v1",
+  "lane_id": "POST_MERGE_CLOSEOUT_ACCEPTANCE_REFERENCE_CONSISTENCY_CONTRACT",
+  "source_final_closeout_packet": {
+    "artifact_id": "post_merge_closeout_acceptance_reference_consistency_contract_final_lane_closeout_packet_20260708_112354",
+    "sha256": "D7EA4C062B903FA1D76C2A9C5D8B92AE51D2E848494E96AD999D34B61FBA212A",
+    "classification": "POST_MERGE_CLOSEOUT_ACCEPTANCE_REFERENCE_CONSISTENCY_CONTRACT_FINAL_LANE_CLOSEOUT_PACKET_READY",
+    "final_lane_status": "LANE_CLOSED_READY_FOR_OWNER_ACCEPTANCE",
+    "blocker_matrix": "NO_BLOCKERS"
+  },
+  "owner_next_action": "APPROVE_PREPARE_NEXT_SAFE_LANE_SCOUT_PACKET_AFTER_POST_MERGE_CLOSEOUT_ACCEPTANCE_REFERENCE_CONSISTENCY_CONTRACT_CLOSEOUT",
+  "final_lane_status": "LANE_CLOSED_READY_FOR_OWNER_ACCEPTANCE",
+  "replacement_pr": {
+    "number": 13,
+    "state": "MERGED",
+    "head_branch": "post-submission/post-merge-closeout-acceptance-reference-consistency-contract-clean",
+    "head_commit": "3d95172d304ebfa619286b8cb3f28f7236a5d44e",
+    "merge_commit": "36aaeac837eee99c2117b2e8fada71517ebe0899"
+  },
+  "superseded_pr": {
+    "number": 12,
+    "state": "CLOSED",
+    "head_branch": "post-submission/post-merge-closeout-acceptance-reference-consistency-contract",
+    "head_commit": "01099d1e20e957d11835cb7c75bfd06bf460f57b",
+    "closed_at": "2026-07-08T02:07:38Z",
+    "merged_at": null,
+    "merge_commit": null,
+    "superseded_by_pr": 13
+  },
+  "remote_master": "36aaeac837eee99c2117b2e8fada71517ebe0899",
+  "retained_branches": {
+    "branch_deletion_default": false,
+    "dirty_pr12_branch": {
+      "name": "post-submission/post-merge-closeout-acceptance-reference-consistency-contract",
+      "head": "01099d1e20e957d11835cb7c75bfd06bf460f57b",
+      "still_present": true
+    },
+    "clean_replacement_branch": {
+      "name": "post-submission/post-merge-closeout-acceptance-reference-consistency-contract-clean",
+      "head": "3d95172d304ebfa619286b8cb3f28f7236a5d44e",
+      "still_present": true
+    }
+  },
+  "safety_boundary": {
+    "deploy": false,
+    "runtime": false,
+    "api": false,
+    "auth": false,
+    "billing": false,
+    "trading": false,
+    "private_access": false,
+    "contracts_access": false,
+    "fetch": false,
+    "pull": false,
+    "checkout_switch": false,
+    "push": false,
+    "branch_deletion": false,
+    "pr_mutation_after_closeout": false
+  }
+}
