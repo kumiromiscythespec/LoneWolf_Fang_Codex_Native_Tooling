@@ -1,0 +1,18 @@
+{
+  "schema": "goal_plan_v1",
+  "rootGoal": "自律開発システム",
+  "subgoals": [
+    {
+      "id": "SG-009",
+      "title": "承認済みフィードバックの安全なGitHub返送を一回実行する",
+      "dependsOn": [
+        "SG-008"
+      ],
+      "acceptanceCriteria": [
+        "Implement a bounded, opt-in, one-shot feedback uploader that uses the existing GitHub CLI authentication and a pinned repository and branch; send only newly generated allowlisted goal-feedback JSON with Node.js standard libraries, without launching Codex or invoking paid APIs.",
+        "Require complete recorded human-review evidence and an unchanged LIVE state during preparation; reject unexpected remote paths, malformed or sensitive fields, duplicate uploads and API failures without modifying goal-state-live.json or overwriting unrelated remote files.",
+        "Add offline tests with stubbed GitHub CLI responses covering first upload, duplicate, pending review, unsafe JSON and failed network or remote verification; keep all existing regression tests passing."
+      ]
+    }
+  ]
+}
