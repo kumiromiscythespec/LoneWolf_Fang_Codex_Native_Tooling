@@ -1,0 +1,85 @@
+{
+  "schema": "lonewolf.goal_feedback.v1",
+  "mode": "LOCAL_EXPORT_NO_MODEL_NO_REVIEW",
+  "reviewBasis": "RECORDED_HUMAN_REVIEW_ONLY_NOT_INDEPENDENTLY_VERIFIED",
+  "goals": [
+    {
+      "index": 0,
+      "id": "SG-004",
+      "recordedStatus": "PASS",
+      "reviewedStatus": "PASS",
+      "evidence": {
+        "kind": "CODEX_EXECUTION",
+        "exitCode": 0,
+        "artifactCount": 0,
+        "testCount": null
+      },
+      "review": "RECORDED_HUMAN_REVIEW"
+    },
+    {
+      "index": 1,
+      "id": "SG-005",
+      "recordedStatus": "PASS",
+      "reviewedStatus": "PASS",
+      "evidence": {
+        "kind": "CODEX_EXECUTION",
+        "exitCode": 0,
+        "artifactCount": 0,
+        "testCount": null
+      },
+      "review": "RECORDED_HUMAN_REVIEW"
+    },
+    {
+      "index": 2,
+      "id": "SG-006",
+      "recordedStatus": "PASS",
+      "reviewedStatus": "PASS",
+      "evidence": {
+        "kind": "LOCAL_IMPLEMENTATION",
+        "exitCode": 0,
+        "artifactCount": 2,
+        "testCount": 37
+      },
+      "review": "RECORDED_HUMAN_REVIEW"
+    },
+    {
+      "index": 3,
+      "id": "SG-007",
+      "recordedStatus": "PASS",
+      "reviewedStatus": "PASS",
+      "evidence": {
+        "kind": "CODEX_EXECUTION",
+        "exitCode": 0,
+        "artifactCount": 0,
+        "testCount": null
+      },
+      "review": "RECORDED_HUMAN_REVIEW"
+    },
+    {
+      "index": 4,
+      "id": "SG-008",
+      "recordedStatus": "PASS",
+      "reviewedStatus": "PASS",
+      "evidence": {
+        "kind": "CODEX_EXECUTION",
+        "exitCode": 0,
+        "artifactCount": 0,
+        "testCount": null
+      },
+      "review": "RECORDED_HUMAN_REVIEW"
+    },
+    {
+      "index": 5,
+      "id": "SG-009",
+      "recordedStatus": "PASS",
+      "reviewedStatus": "PASS",
+      "evidence": {
+        "kind": "CODEX_EXECUTION",
+        "exitCode": 0,
+        "artifactCount": 0,
+        "testCount": null
+      },
+      "review": "RECORDED_HUMAN_REVIEW"
+    }
+  ]
+}
