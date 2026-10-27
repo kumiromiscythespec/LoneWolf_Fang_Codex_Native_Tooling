@@ -3,15 +3,15 @@
   "rootGoal": "自律開発システム",
   "subgoals": [
     {
-      "id": "SG-010",
-      "title": "Windowsで安全な定期Goal受信を実行する",
+      "id": "SG-011",
+      "title": "Windows定期受信の実行証跡を安全に監査する",
       "dependsOn": [
-        "SG-009"
+        "SG-010"
       ],
       "acceptanceCriteria": [
-        "Create opt-in Windows Task Scheduler setup and removal scripts that use the existing Node.js receiver in the exact isolated Goal Queue workspace, without installing software or copying credentials.",
-        "The scheduled action must only invoke the existing one-shot receiver to validate and stage a new plan; it must never import goals, run Codex, alter the LIVE queue, auto-approve reviews or perform retries without bounds.",
-        "Provide offline checks for safe command construction, duplicate-schedule prevention, review-pending stop behavior and clean removal; test setup must not register a real scheduled task and all current regressions must continue passing."
+        "Implement a read-only local operator check that verifies the exact pinned Windows scheduled-task action, last-run result and next trigger without registering, triggering, editing or deleting a task.",
+        "Check local receipt-ledger SHA against the staged plan file and distinguish never-run, duplicate receipt, newly received plan and failed or pending-review states without changing LIVE state or invoking Codex.",
+        "Provide offline tests for missing scheduler task, never-run status, nonzero result, valid receipt and modified staged bytes; preserve the existing regression tests."
       ]
     }
   ]
