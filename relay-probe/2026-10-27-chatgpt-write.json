@@ -1,0 +1,14 @@
+{
+  "schema": "chat-goal-relay.probe.v1",
+  "id": "CHAT_RELAY_TEST_20261027_001",
+  "type": "CONNECTIVITY_TEST_ONLY",
+  "createdBy": "ChatGPT via connected GitHub tool",
+  "rootGoal": "自律開発システム",
+  "message": "GitHubからこのファイルを読み取れたら RELAY_FETCH_OK とだけ表示する",
+  "executeCodex": false,
+  "executeCommands": false,
+  "mutateGoalState": false,
+  "automaticExecutionAuthorized": false,
+  "paidApiAuthorized": false,
+  "status": "PROBE_NOT_A_DEVELOPMENT_GOAL"
+}
