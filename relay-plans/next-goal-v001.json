@@ -1,0 +1,18 @@
+{
+  "schema": "goal_plan_v1",
+  "rootGoal": "自律開発システム",
+  "subgoals": [
+    {
+      "id": "SG-007",
+      "title": "検証済みGoalの実行結果を安全なJSONに書き出す",
+      "dependsOn": [
+        "SG-006"
+      ],
+      "acceptanceCriteria": [
+        "Implement a Node.js standard-library-only command that exports reviewed goal statuses and compact evidence summaries to a local JSON feedback file without invoking Codex or any network API.",
+        "Exclude local absolute paths, credentials, environment values and raw model output; identify CODEX_EXECUTION and LOCAL_IMPLEMENTATION evidence accurately without claiming automatic human approval.",
+        "Add focused tests for reviewed PASS, local implementation PASS, missing review evidence and sensitive-data redaction; keep the existing regression tests passing."
+      ]
+    }
+  ]
+}
