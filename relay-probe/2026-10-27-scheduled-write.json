@@ -1,0 +1,11 @@
+{
+  "schema": "chat-goal-relay.probe.v1",
+  "id": "CHAT_RELAY_SCHEDULED_TEST_20261027_001",
+  "type": "SCHEDULED_CONNECTOR_WRITE_PROBE",
+  "executeCodex": false,
+  "executeCommands": false,
+  "mutateGoalState": false,
+  "automaticExecutionAuthorized": false,
+  "paidApiAuthorized": false,
+  "status": "PROBE_ONLY"
+}
