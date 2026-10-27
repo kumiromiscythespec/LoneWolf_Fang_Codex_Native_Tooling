@@ -1,0 +1,18 @@
+{
+  "schema": "goal_plan_v1",
+  "rootGoal": "自律開発システム",
+  "subgoals": [
+    {
+      "id": "SG-008",
+      "title": "Goal Relayの新規計画を重複なく安全に受信する",
+      "dependsOn": [
+        "SG-007"
+      ],
+      "acceptanceCriteria": [
+        "Add a bounded, local-only one-shot receiver command using Node.js standard libraries that checks a fixed allowlisted GitHub plan path and stages only a newly validated plan, without invoking Codex or automatically importing goals.",
+        "Record the last accepted plan blob SHA in a workspace-local receipt ledger so duplicate polling is idempotent; reject changed or malformed schemas, unexpected paths and unreviewed RUNNING goals without altering goal-state-live.json.",
+        "Add focused tests for first receipt, duplicate receipt, invalid remote plan, failed fetch and pending human review, while preserving existing tests."
+      ]
+    }
+  ]
+}
